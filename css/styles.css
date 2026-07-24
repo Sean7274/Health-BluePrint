@@ -89,6 +89,10 @@ img { max-width: 100%; display: block; }
 .font-btn:hover, .font-btn:focus-visible { background: var(--color-primary-light); }
 .font-btn-mid { font-size: 0.95em; }
 
+.btn-nav {
+  padding: 9px 16px; font-size: 0.92em; white-space: nowrap;
+}
+
 .lang-select {
   font-size: 1em; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--color-border);
   background: var(--color-bg); color: var(--color-text); min-width: 140px;
@@ -228,6 +232,38 @@ img { max-width: 100%; display: block; }
   background: var(--color-success-bg); color: var(--color-success-text); border-radius: var(--radius);
   padding: 22px; font-weight: 600; font-size: 1.05em;
 }
+
+/* ---------- Tier badge / official site link ---------- */
+.tier-badge {
+  display: inline-flex; align-items: center; gap: 6px; background: #fff4e6; color: #9a5a12;
+  border: 1px solid #f0d3a6; border-radius: 999px; padding: 4px 12px; font-size: 0.85em; font-weight: 800;
+}
+.official-link {
+  display: inline-flex; align-items: center; gap: 6px; font-weight: 700; text-decoration: none;
+}
+.no-website-note { color: var(--color-text-muted); font-size: 0.9em; font-style: italic; }
+
+/* ---------- Join Us / Trip Planner shared blocks ---------- */
+.choice-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 20px 0 30px; }
+@media (max-width: 640px) { .choice-row { grid-template-columns: 1fr; } }
+.choice-card {
+  border: 2px solid var(--color-border); border-radius: var(--radius); padding: 24px; text-align: center;
+  background: var(--color-bg); cursor: pointer; font-weight: 700; font-size: 1.1em;
+  display: flex; flex-direction: column; align-items: center; gap: 10px; text-decoration: none; color: var(--color-text);
+}
+.choice-card .icon { font-size: 2em; }
+.choice-card:hover, .choice-card:focus-visible, .choice-card.active { border-color: var(--color-primary); background: var(--color-primary-light); }
+
+.route-card { display: flex; flex-direction: column; gap: 8px; }
+.route-days { color: var(--color-text-muted); font-size: 0.9em; }
+
+.plan-summary {
+  background: var(--color-primary-light); border-radius: var(--radius); padding: 18px 20px; margin: 20px 0;
+  display: flex; flex-wrap: wrap; gap: 10px 26px; align-items: center;
+}
+.plan-summary span strong { display: block; font-size: 0.8em; color: var(--color-text-muted); font-weight: 700; }
+.plan-summary .muted { color: var(--color-text-muted); font-style: italic; }
+.link-btn { background: none; border: none; color: var(--color-primary); font-weight: 700; text-decoration: underline; cursor: pointer; padding: 0; font-size: 0.95em; }
 
 /* ---------- Empty / no-results ---------- */
 .empty-state { text-align: center; padding: 50px 20px; color: var(--color-text-muted); }

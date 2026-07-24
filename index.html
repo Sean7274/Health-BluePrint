@@ -20,6 +20,9 @@
       </a>
 
       <div class="header-controls">
+        <a href="#/trip" class="btn btn-secondary btn-nav" id="tripNavLink">🧭 <span id="tripNavLabel">Plan a Trip</span></a>
+        <a href="#/join" class="btn btn-primary btn-nav" id="joinNavLink">🤝 <span id="joinNavLabel">Join as an Agent</span></a>
+
         <div class="font-size-control" role="group" aria-label="Text size">
           <button type="button" id="fontDecrease" class="font-btn">A−</button>
           <button type="button" id="fontReset" class="font-btn font-btn-mid">A</button>
@@ -68,6 +71,18 @@
     <input type="text" name="hospital">
     <input type="text" name="program">
     <input type="text" name="agent">
+    <input type="text" name="route">
+    <input type="text" name="company">
+  </form>
+
+  <!-- Static fallback form so Netlify detects the "agent-application" form
+       (same reasoning as above: needed at deploy time, not just from JS). -->
+  <form name="agent-application" data-netlify="true" netlify-honeypot="company" enctype="multipart/form-data" hidden>
+    <input type="text" name="name">
+    <input type="text" name="birthYear">
+    <input type="text" name="phone">
+    <input type="email" name="email">
+    <input type="file" name="resume">
     <input type="text" name="company">
   </form>
 

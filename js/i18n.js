@@ -22,7 +22,7 @@ window.I18N = {
   strings: {
     en: {
       brand: { name: "Health Blueprint", tagline: "Your trusted path to healthcare in China" },
-      nav: { home: "Home", howItWorks: "How It Works", contact: "Contact" },
+      nav: { home: "Home", howItWorks: "How It Works", contact: "Contact", joinUs: "Join as an Agent", trip: "Plan a Trip" },
       fontSize: { label: "Text size", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "Find the right hospital in China — with people to guide you there",
@@ -35,7 +35,7 @@ window.I18N = {
       steps: {
         area: "Step 1 · Choose a Region",
         hospital: "Step 2 · Choose a Hospital",
-        program: "Step 3 · Choose a Program",
+        program: "Step 3 · Choose a Specialty",
         agent: "Step 4 · Choose Your Agent"
       },
       filters: {
@@ -48,18 +48,22 @@ window.I18N = {
         noResults: "No hospitals match your filters. Try changing your selection."
       },
       hospital: {
-        viewPrograms: "View Programs",
-        programsAvailable: "{n} programs available",
+        viewPrograms: "View Specialties",
+        programsAvailable: "{n} specialties available",
         aboutTitle: "About this hospital",
-        programsTitle: "Available Programs"
+        programsTitle: "Specialties Offered",
+        officialWebsite: "Official hospital website",
+        tierLabel: "2023 China Hospital Ranking"
       },
       program: {
         viewDetails: "View Details",
         duration: "Typical duration",
         priceRange: "Estimated cost",
-        included: "What's included",
-        selectProgram: "Select This Program",
-        agentsTitle: "Available Agents for This Program",
+        priceNote: "Provided by your agent after consultation",
+        genericNote: "This hospital offers care in this specialty area. Exact package details, duration, and pricing will be confirmed with you directly by your assigned agent, based on your medical needs and the hospital's current offerings.",
+        included: "What's typically included",
+        selectProgram: "Select This Specialty",
+        agentsTitle: "Available Agents for This Specialty",
         agentsSubtitle: "These agents will take care of you throughout your trip to China — from planning to your safe return home."
       },
       agent: {
@@ -84,17 +88,18 @@ window.I18N = {
         success: "Thank you! Your request has been sent. Your agent will contact you within 1 business day.",
         requiredNote: "* Required fields",
         summaryHospital: "Hospital",
-        summaryProgram: "Program",
-        summaryAgent: "Agent"
+        summaryProgram: "Specialty",
+        summaryAgent: "Agent",
+        summaryRoute: "Travel route"
       },
       footer: {
         aboutTitle: "About Health Blueprint",
         aboutText: "Health Blueprint connects international patients with licensed hospitals and trusted local agents in China, making healthcare travel simple and safe for people of all ages.",
-        disclaimer: "Health Blueprint is a directory and concierge-matching service. We do not provide medical advice or perform medical procedures. Always consult a licensed physician.",
+        disclaimer: "Health Blueprint is a directory and concierge-matching service. We do not provide medical advice or perform medical procedures. Always consult a licensed physician. Hospital rankings shown are from the publicly published 2023 China Hospital Ranking; travel routes are general suggestions, not bookings.",
         contactUs: "Contact us",
         rights: "All rights reserved."
       },
-      common: { back: "Back", learnMore: "Learn more", close: "Close", viewAll: "View all" },
+      common: { back: "Back", learnMore: "Learn more", close: "Close", viewAll: "View all", next: "Next", optional: "optional" },
       specialties: {
         checkup: "Health Checkup",
         oncology: "Cancer Care",
@@ -103,18 +108,63 @@ window.I18N = {
         dental: "Dental Care",
         fertility: "Fertility & IVF",
         orthopedics: "Orthopedics",
-        cardiology: "Cardiology"
+        cardiology: "Cardiology",
+        pediatrics: "Pediatrics",
+        obgyn: "Women's Health & OB-GYN",
+        ophthalmology: "Eye, Ear, Nose & Throat",
+        neurology: "Neurology",
+        psychiatry: "Mental Health",
+        respiratory: "Respiratory & Pulmonary",
+        hematology: "Hematology"
       },
       areas: {
-        beijing: "Beijing", shanghai: "Shanghai", guangzhou: "Guangzhou",
-        shenzhen: "Shenzhen", hainan: "Hainan (Boao)", chengdu: "Chengdu",
-        xian: "Xi'an", hangzhou: "Hangzhou"
+        beijing: "Beijing", shanghai: "Shanghai", tianjin: "Tianjin", chongqing: "Chongqing",
+        guangzhou: "Guangzhou", shenzhen: "Shenzhen", hangzhou: "Hangzhou", wenzhou: "Wenzhou",
+        nanjing: "Nanjing", suzhou: "Suzhou", chengdu: "Chengdu", xian: "Xi'an",
+        wuhan: "Wuhan", changsha: "Changsha", zhengzhou: "Zhengzhou", jinan: "Jinan",
+        qingdao: "Qingdao", shenyang: "Shenyang", changchun: "Changchun", harbin: "Harbin",
+        hefei: "Hefei", fuzhou: "Fuzhou", nanchang: "Nanchang", hainan: "Hainan (Boao)"
+      },
+      join: {
+        title: "Become a Health Blueprint Agent",
+        subtitle: "We're looking for people based in China who can accompany international patients in person — hospital visits, translation, and travel support. Tell us a bit about yourself and we'll be in touch if there's a fit.",
+        name: "Full name",
+        birthYear: "Year of birth",
+        phone: "Phone / WeChat number",
+        email: "Email address",
+        resume: "Resume / CV",
+        resumeHint: "PDF or Word document",
+        submit: "Submit Application",
+        success: "Thank you! Your application has been received. Our team will reach out if there's a match.",
+        requiredNote: "* Required fields"
+      },
+      trip: {
+        title: "Plan Your Trip to China",
+        subtitle: "Combine your hospital visit with a recommended travel route — see a bit of the country while you're here.",
+        startRegion: "Start with a Destination",
+        startHospital: "Start with a Hospital",
+        chooseRegion: "Choose a Region",
+        chooseHospitalFirst: "Choose a Hospital",
+        recommendedHospitals: "Recommended Hospitals in This Region",
+        recommendedRoutes: "Recommended Travel Routes",
+        anyRegion: "Any region — choose a route separately",
+        viewRoute: "View Route",
+        days: "{n} days",
+        highlights: "Highlights",
+        selectThisRoute: "Select This Route",
+        summaryTitle: "Your Plan So Far",
+        changeRegion: "Change region",
+        changeHospital: "Change hospital",
+        changeRoute: "Change route",
+        continueToAgents: "Continue to Choose an Agent",
+        noRoute: "No route selected yet",
+        noHospital: "No hospital selected yet"
       }
     },
 
     "zh-CN": {
       brand: { name: "健康蓝图", tagline: "您通往中国医疗的信赖之路" },
-      nav: { home: "首页", howItWorks: "使用流程", contact: "联系我们" },
+      nav: { home: "首页", howItWorks: "使用流程", contact: "联系我们", joinUs: "成为服务人员", trip: "行程规划" },
       fontSize: { label: "字体大小", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "在中国找到合适的医院——并有专人全程陪同",
@@ -127,7 +177,7 @@ window.I18N = {
       steps: {
         area: "第一步 · 选择地区",
         hospital: "第二步 · 选择医院",
-        program: "第三步 · 选择项目",
+        program: "第三步 · 选择专科",
         agent: "第四步 · 选择您的服务人员"
       },
       filters: {
@@ -140,18 +190,22 @@ window.I18N = {
         noResults: "没有符合条件的医院，请尝试更改筛选条件。"
       },
       hospital: {
-        viewPrograms: "查看项目",
-        programsAvailable: "{n} 个项目可选",
+        viewPrograms: "查看专科",
+        programsAvailable: "{n} 个专科可选",
         aboutTitle: "医院简介",
-        programsTitle: "可选项目"
+        programsTitle: "开设专科",
+        officialWebsite: "医院官方网站",
+        tierLabel: "2023年度中国医院排行"
       },
       program: {
         viewDetails: "查看详情",
         duration: "预计时长",
         priceRange: "预计费用",
-        included: "服务内容",
-        selectProgram: "选择此项目",
-        agentsTitle: "该项目可选服务人员",
+        priceNote: "具体费用由您的服务人员咨询后提供",
+        genericNote: "该医院开设此专科的诊疗服务。具体的项目内容、时长和费用将由您的专属服务人员根据您的医疗需求及医院当前情况与您直接确认。",
+        included: "通常包含服务",
+        selectProgram: "选择此专科",
+        agentsTitle: "该专科可选服务人员",
         agentsSubtitle: "这些服务人员将在您整个中国之旅中全程照顾您——从行程安排到平安返程。"
       },
       agent: {
@@ -176,17 +230,18 @@ window.I18N = {
         success: "感谢您！请求已发送，服务人员将在1个工作日内与您联系。",
         requiredNote: "* 为必填项",
         summaryHospital: "医院",
-        summaryProgram: "项目",
-        summaryAgent: "服务人员"
+        summaryProgram: "专科",
+        summaryAgent: "服务人员",
+        summaryRoute: "旅行路线"
       },
       footer: {
         aboutTitle: "关于健康蓝图",
         aboutText: "健康蓝图为国际患者连接中国的正规医院与值得信赖的本地服务人员，让各年龄段的人都能安心、便捷地赴华就医。",
-        disclaimer: "健康蓝图是一个医院信息目录及服务人员匹配平台，不提供医疗建议或医疗操作，请务必咨询执业医师。",
+        disclaimer: "健康蓝图是一个医院信息目录及服务人员匹配平台，不提供医疗建议或医疗操作，请务必咨询执业医师。医院排名信息来自公开发布的2023年度中国医院综合排行榜；旅行路线仅为一般建议，不构成预订。",
         contactUs: "联系我们",
         rights: "版权所有。"
       },
-      common: { back: "返回", learnMore: "了解更多", close: "关闭", viewAll: "查看全部" },
+      common: { back: "返回", learnMore: "了解更多", close: "关闭", viewAll: "查看全部", next: "下一步", optional: "选填" },
       specialties: {
         checkup: "健康体检",
         oncology: "肿瘤治疗",
@@ -195,18 +250,63 @@ window.I18N = {
         dental: "牙科",
         fertility: "生育与试管婴儿",
         orthopedics: "骨科",
-        cardiology: "心脏科"
+        cardiology: "心脏科",
+        pediatrics: "儿科",
+        obgyn: "妇产科",
+        ophthalmology: "眼耳鼻喉科",
+        neurology: "神经内科",
+        psychiatry: "精神心理科",
+        respiratory: "呼吸科",
+        hematology: "血液科"
       },
       areas: {
-        beijing: "北京", shanghai: "上海", guangzhou: "广州",
-        shenzhen: "深圳", hainan: "海南（博鳌）", chengdu: "成都",
-        xian: "西安", hangzhou: "杭州"
+        beijing: "北京", shanghai: "上海", tianjin: "天津", chongqing: "重庆",
+        guangzhou: "广州", shenzhen: "深圳", hangzhou: "杭州", wenzhou: "温州",
+        nanjing: "南京", suzhou: "苏州", chengdu: "成都", xian: "西安",
+        wuhan: "武汉", changsha: "长沙", zhengzhou: "郑州", jinan: "济南",
+        qingdao: "青岛", shenyang: "沈阳", changchun: "长春", harbin: "哈尔滨",
+        hefei: "合肥", fuzhou: "福州", nanchang: "南昌", hainan: "海南（博鳌）"
+      },
+      join: {
+        title: "成为健康蓝图服务人员",
+        subtitle: "我们正在寻找常驻中国、能够全程陪同国际患者的服务人员——包括陪诊、翻译及行程协助。请留下您的基本信息，如有合适机会我们会与您联系。",
+        name: "姓名",
+        birthYear: "出生年份",
+        phone: "电话 / 微信号",
+        email: "电子邮箱",
+        resume: "简历",
+        resumeHint: "PDF 或 Word 文档",
+        submit: "提交申请",
+        success: "感谢您！我们已收到您的申请，如有合适机会将与您联系。",
+        requiredNote: "* 为必填项"
+      },
+      trip: {
+        title: "规划您的中国之行",
+        subtitle: "将就医安排与推荐旅行路线相结合，在中国期间也能领略当地风光。",
+        startRegion: "从目的地开始",
+        startHospital: "从医院开始",
+        chooseRegion: "选择地区",
+        chooseHospitalFirst: "选择医院",
+        recommendedHospitals: "该地区推荐医院",
+        recommendedRoutes: "推荐旅行路线",
+        anyRegion: "不限地区——单独选择路线",
+        viewRoute: "查看路线",
+        days: "{n} 天",
+        highlights: "行程亮点",
+        selectThisRoute: "选择此路线",
+        summaryTitle: "您当前的行程规划",
+        changeRegion: "更改地区",
+        changeHospital: "更改医院",
+        changeRoute: "更改路线",
+        continueToAgents: "继续选择服务人员",
+        noRoute: "尚未选择路线",
+        noHospital: "尚未选择医院"
       }
     },
 
     "zh-TW": {
       brand: { name: "健康藍圖", tagline: "您通往中國醫療的信賴之路" },
-      nav: { home: "首頁", howItWorks: "使用流程", contact: "聯絡我們" },
+      nav: { home: "首頁", howItWorks: "使用流程", contact: "聯絡我們", joinUs: "成為服務人員", trip: "行程規劃" },
       fontSize: { label: "字體大小", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "在中國找到合適的醫院——並有專人全程陪同",
@@ -219,7 +319,7 @@ window.I18N = {
       steps: {
         area: "第一步 · 選擇地區",
         hospital: "第二步 · 選擇醫院",
-        program: "第三步 · 選擇項目",
+        program: "第三步 · 選擇專科",
         agent: "第四步 · 選擇您的服務人員"
       },
       filters: {
@@ -232,18 +332,22 @@ window.I18N = {
         noResults: "沒有符合條件的醫院，請嘗試更改篩選條件。"
       },
       hospital: {
-        viewPrograms: "查看項目",
-        programsAvailable: "{n} 個項目可選",
+        viewPrograms: "查看專科",
+        programsAvailable: "{n} 個專科可選",
         aboutTitle: "醫院簡介",
-        programsTitle: "可選項目"
+        programsTitle: "開設專科",
+        officialWebsite: "醫院官方網站",
+        tierLabel: "2023年度中國醫院排行"
       },
       program: {
         viewDetails: "查看詳情",
         duration: "預計時長",
         priceRange: "預計費用",
-        included: "服務內容",
-        selectProgram: "選擇此項目",
-        agentsTitle: "該項目可選服務人員",
+        priceNote: "具體費用由您的服務人員諮詢後提供",
+        genericNote: "該醫院開設此專科的診療服務。具體的項目內容、時長和費用將由您的專屬服務人員根據您的醫療需求及醫院當前情況與您直接確認。",
+        included: "通常包含服務",
+        selectProgram: "選擇此專科",
+        agentsTitle: "該專科可選服務人員",
         agentsSubtitle: "這些服務人員將在您整趟中國旅程中全程照顧您——從行程安排到平安返程。"
       },
       agent: {
@@ -268,17 +372,18 @@ window.I18N = {
         success: "感謝您！請求已送出，服務人員將在1個工作日內與您聯繫。",
         requiredNote: "* 為必填欄位",
         summaryHospital: "醫院",
-        summaryProgram: "項目",
-        summaryAgent: "服務人員"
+        summaryProgram: "專科",
+        summaryAgent: "服務人員",
+        summaryRoute: "旅行路線"
       },
       footer: {
         aboutTitle: "關於健康藍圖",
         aboutText: "健康藍圖為國際患者連接中國的合法醫院與值得信賴的當地服務人員，讓各年齡層的人都能安心、便捷地赴中就醫。",
-        disclaimer: "健康藍圖是醫院資訊目錄及服務人員媒合平台，不提供醫療建議或醫療行為，請務必諮詢執業醫師。",
+        disclaimer: "健康藍圖是醫院資訊目錄及服務人員媒合平台，不提供醫療建議或醫療行為，請務必諮詢執業醫師。醫院排名資訊來自公開發布的2023年度中國醫院綜合排行榜；旅行路線僅為一般建議，不構成預訂。",
         contactUs: "聯絡我們",
         rights: "版權所有。"
       },
-      common: { back: "返回", learnMore: "了解更多", close: "關閉", viewAll: "查看全部" },
+      common: { back: "返回", learnMore: "了解更多", close: "關閉", viewAll: "查看全部", next: "下一步", optional: "選填" },
       specialties: {
         checkup: "健康檢查",
         oncology: "腫瘤治療",
@@ -287,18 +392,63 @@ window.I18N = {
         dental: "牙科",
         fertility: "生育與試管嬰兒",
         orthopedics: "骨科",
-        cardiology: "心臟科"
+        cardiology: "心臟科",
+        pediatrics: "兒科",
+        obgyn: "婦產科",
+        ophthalmology: "眼耳鼻喉科",
+        neurology: "神經內科",
+        psychiatry: "精神心理科",
+        respiratory: "呼吸科",
+        hematology: "血液科"
       },
       areas: {
-        beijing: "北京", shanghai: "上海", guangzhou: "廣州",
-        shenzhen: "深圳", hainan: "海南（博鰲）", chengdu: "成都",
-        xian: "西安", hangzhou: "杭州"
+        beijing: "北京", shanghai: "上海", tianjin: "天津", chongqing: "重慶",
+        guangzhou: "廣州", shenzhen: "深圳", hangzhou: "杭州", wenzhou: "溫州",
+        nanjing: "南京", suzhou: "蘇州", chengdu: "成都", xian: "西安",
+        wuhan: "武漢", changsha: "長沙", zhengzhou: "鄭州", jinan: "濟南",
+        qingdao: "青島", shenyang: "瀋陽", changchun: "長春", harbin: "哈爾濱",
+        hefei: "合肥", fuzhou: "福州", nanchang: "南昌", hainan: "海南（博鰲）"
+      },
+      join: {
+        title: "成為健康藍圖服務人員",
+        subtitle: "我們正在尋找常駐中國、能夠全程陪同國際患者的服務人員——包括陪診、翻譯及行程協助。請留下您的基本資料，如有合適機會我們會與您聯繫。",
+        name: "姓名",
+        birthYear: "出生年份",
+        phone: "電話 / 微信號",
+        email: "電子郵箱",
+        resume: "簡歷",
+        resumeHint: "PDF 或 Word 文件",
+        submit: "送出申請",
+        success: "感謝您！我們已收到您的申請，如有合適機會將與您聯繫。",
+        requiredNote: "* 為必填項"
+      },
+      trip: {
+        title: "規劃您的中國行程",
+        subtitle: "將就醫安排與推薦旅行路線相結合，在中國期間也能領略當地風光。",
+        startRegion: "從目的地開始",
+        startHospital: "從醫院開始",
+        chooseRegion: "選擇地區",
+        chooseHospitalFirst: "選擇醫院",
+        recommendedHospitals: "該地區推薦醫院",
+        recommendedRoutes: "推薦旅行路線",
+        anyRegion: "不限地區——單獨選擇路線",
+        viewRoute: "查看路線",
+        days: "{n} 天",
+        highlights: "行程亮點",
+        selectThisRoute: "選擇此路線",
+        summaryTitle: "您目前的行程規劃",
+        changeRegion: "更改地區",
+        changeHospital: "更改醫院",
+        changeRoute: "更改路線",
+        continueToAgents: "繼續選擇服務人員",
+        noRoute: "尚未選擇路線",
+        noHospital: "尚未選擇醫院"
       }
     },
 
     es: {
       brand: { name: "Health Blueprint", tagline: "Su camino de confianza hacia la atención médica en China" },
-      nav: { home: "Inicio", howItWorks: "Cómo funciona", contact: "Contacto" },
+      nav: { home: "Inicio", howItWorks: "Cómo funciona", contact: "Contacto", joinUs: "Únase como agente", trip: "Planificar viaje" },
       fontSize: { label: "Tamaño de texto", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "Encuentre el hospital adecuado en China, con personas que lo guíen",
@@ -311,7 +461,7 @@ window.I18N = {
       steps: {
         area: "Paso 1 · Elija una región",
         hospital: "Paso 2 · Elija un hospital",
-        program: "Paso 3 · Elija un programa",
+        program: "Paso 3 · Elija una especialidad",
         agent: "Paso 4 · Elija su agente"
       },
       filters: {
@@ -324,18 +474,22 @@ window.I18N = {
         noResults: "Ningún hospital coincide con sus filtros. Intente cambiar su selección."
       },
       hospital: {
-        viewPrograms: "Ver programas",
-        programsAvailable: "{n} programas disponibles",
+        viewPrograms: "Ver especialidades",
+        programsAvailable: "{n} especialidades disponibles",
         aboutTitle: "Sobre este hospital",
-        programsTitle: "Programas disponibles"
+        programsTitle: "Especialidades ofrecidas",
+        officialWebsite: "Sitio web oficial del hospital",
+        tierLabel: "Ranking de hospitales de China 2023"
       },
       program: {
         viewDetails: "Ver detalles",
         duration: "Duración habitual",
         priceRange: "Costo estimado",
-        included: "Qué incluye",
-        selectProgram: "Seleccionar este programa",
-        agentsTitle: "Agentes disponibles para este programa",
+        priceNote: "Proporcionado por su agente tras la consulta",
+        genericNote: "Este hospital ofrece atención en esta especialidad. Los detalles exactos del paquete, la duración y el precio se los confirmará directamente su agente asignado, según sus necesidades médicas y la oferta actual del hospital.",
+        included: "Qué suele incluir",
+        selectProgram: "Seleccionar esta especialidad",
+        agentsTitle: "Agentes disponibles para esta especialidad",
         agentsSubtitle: "Estos agentes lo cuidarán durante todo su viaje a China, desde la planificación hasta su regreso seguro a casa."
       },
       agent: {
@@ -360,17 +514,18 @@ window.I18N = {
         success: "¡Gracias! Su solicitud ha sido enviada. Su agente se pondrá en contacto en 1 día hábil.",
         requiredNote: "* Campos obligatorios",
         summaryHospital: "Hospital",
-        summaryProgram: "Programa",
-        summaryAgent: "Agente"
+        summaryProgram: "Especialidad",
+        summaryAgent: "Agente",
+        summaryRoute: "Ruta de viaje"
       },
       footer: {
         aboutTitle: "Acerca de Health Blueprint",
         aboutText: "Health Blueprint conecta a pacientes internacionales con hospitales certificados y agentes locales de confianza en China, haciendo que viajar por motivos de salud sea simple y seguro para personas de todas las edades.",
-        disclaimer: "Health Blueprint es un directorio y servicio de conserjería. No brindamos asesoramiento médico ni realizamos procedimientos médicos. Consulte siempre a un médico certificado.",
+        disclaimer: "Health Blueprint es un directorio y servicio de conserjería. No brindamos asesoramiento médico ni realizamos procedimientos médicos. Consulte siempre a un médico certificado. La clasificación hospitalaria mostrada proviene del Ranking de Hospitales de China 2023, publicado públicamente; las rutas de viaje son sugerencias generales, no reservas.",
         contactUs: "Contáctenos",
         rights: "Todos los derechos reservados."
       },
-      common: { back: "Atrás", learnMore: "Saber más", close: "Cerrar", viewAll: "Ver todo" },
+      common: { back: "Atrás", learnMore: "Saber más", close: "Cerrar", viewAll: "Ver todo", next: "Siguiente", optional: "opcional" },
       specialties: {
         checkup: "Chequeo médico",
         oncology: "Oncología",
@@ -379,18 +534,63 @@ window.I18N = {
         dental: "Odontología",
         fertility: "Fertilidad y FIV",
         orthopedics: "Ortopedia",
-        cardiology: "Cardiología"
+        cardiology: "Cardiología",
+        pediatrics: "Pediatría",
+        obgyn: "Salud de la mujer y ginecología",
+        ophthalmology: "Oftalmología y otorrinolaringología",
+        neurology: "Neurología",
+        psychiatry: "Salud mental",
+        respiratory: "Neumología",
+        hematology: "Hematología"
       },
       areas: {
-        beijing: "Pekín", shanghai: "Shanghái", guangzhou: "Cantón (Guangzhou)",
-        shenzhen: "Shenzhen", hainan: "Hainan (Boao)", chengdu: "Chengdú",
-        xian: "Xi'an", hangzhou: "Hangzhou"
+        beijing: "Pekín", shanghai: "Shanghái", tianjin: "Tianjín", chongqing: "Chongqing",
+        guangzhou: "Cantón (Guangzhou)", shenzhen: "Shenzhen", hangzhou: "Hangzhou", wenzhou: "Wenzhou",
+        nanjing: "Nankín", suzhou: "Suzhou", chengdu: "Chengdú", xian: "Xi'an",
+        wuhan: "Wuhan", changsha: "Changsha", zhengzhou: "Zhengzhou", jinan: "Jinan",
+        qingdao: "Qingdao", shenyang: "Shenyang", changchun: "Changchun", harbin: "Harbin",
+        hefei: "Hefei", fuzhou: "Fuzhou", nanchang: "Nanchang", hainan: "Hainan (Boao)"
+      },
+      join: {
+        title: "Conviértase en agente de Health Blueprint",
+        subtitle: "Buscamos personas residentes en China que puedan acompañar en persona a pacientes internacionales: visitas al hospital, traducción y apoyo logístico. Cuéntenos sobre usted y le contactaremos si hay una buena oportunidad.",
+        name: "Nombre completo",
+        birthYear: "Año de nacimiento",
+        phone: "Teléfono / WeChat",
+        email: "Correo electrónico",
+        resume: "Currículum / CV",
+        resumeHint: "Documento PDF o Word",
+        submit: "Enviar solicitud",
+        success: "¡Gracias! Hemos recibido su solicitud. Nuestro equipo se pondrá en contacto si hay una coincidencia.",
+        requiredNote: "* Campos obligatorios"
+      },
+      trip: {
+        title: "Planifique su viaje a China",
+        subtitle: "Combine su visita al hospital con una ruta de viaje recomendada y conozca un poco del país mientras está aquí.",
+        startRegion: "Comenzar por un destino",
+        startHospital: "Comenzar por un hospital",
+        chooseRegion: "Elija una región",
+        chooseHospitalFirst: "Elija un hospital",
+        recommendedHospitals: "Hospitales recomendados en esta región",
+        recommendedRoutes: "Rutas de viaje recomendadas",
+        anyRegion: "Cualquier región — elegir ruta por separado",
+        viewRoute: "Ver ruta",
+        days: "{n} días",
+        highlights: "Puntos destacados",
+        selectThisRoute: "Seleccionar esta ruta",
+        summaryTitle: "Su plan hasta ahora",
+        changeRegion: "Cambiar región",
+        changeHospital: "Cambiar hospital",
+        changeRoute: "Cambiar ruta",
+        continueToAgents: "Continuar para elegir un agente",
+        noRoute: "Aún no ha seleccionado una ruta",
+        noHospital: "Aún no ha seleccionado un hospital"
       }
     },
 
     fr: {
       brand: { name: "Health Blueprint", tagline: "Votre chemin de confiance vers les soins de santé en Chine" },
-      nav: { home: "Accueil", howItWorks: "Comment ça marche", contact: "Contact" },
+      nav: { home: "Accueil", howItWorks: "Comment ça marche", contact: "Contact", joinUs: "Devenir agent", trip: "Planifier un voyage" },
       fontSize: { label: "Taille du texte", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "Trouvez le bon hôpital en Chine — avec des personnes pour vous guider",
@@ -403,7 +603,7 @@ window.I18N = {
       steps: {
         area: "Étape 1 · Choisir une région",
         hospital: "Étape 2 · Choisir un hôpital",
-        program: "Étape 3 · Choisir un programme",
+        program: "Étape 3 · Choisir une spécialité",
         agent: "Étape 4 · Choisir votre agent"
       },
       filters: {
@@ -416,18 +616,22 @@ window.I18N = {
         noResults: "Aucun hôpital ne correspond à vos filtres. Essayez de modifier votre sélection."
       },
       hospital: {
-        viewPrograms: "Voir les programmes",
-        programsAvailable: "{n} programmes disponibles",
+        viewPrograms: "Voir les spécialités",
+        programsAvailable: "{n} spécialités disponibles",
         aboutTitle: "À propos de cet hôpital",
-        programsTitle: "Programmes disponibles"
+        programsTitle: "Spécialités proposées",
+        officialWebsite: "Site officiel de l'hôpital",
+        tierLabel: "Classement des hôpitaux chinois 2023"
       },
       program: {
         viewDetails: "Voir les détails",
         duration: "Durée habituelle",
         priceRange: "Coût estimé",
-        included: "Ce qui est inclus",
-        selectProgram: "Choisir ce programme",
-        agentsTitle: "Agents disponibles pour ce programme",
+        priceNote: "Fourni par votre agent après consultation",
+        genericNote: "Cet hôpital propose des soins dans cette spécialité. Les détails exacts du programme, la durée et le prix vous seront confirmés directement par votre agent attitré, selon vos besoins médicaux et l'offre actuelle de l'hôpital.",
+        included: "Ce qui est généralement inclus",
+        selectProgram: "Choisir cette spécialité",
+        agentsTitle: "Agents disponibles pour cette spécialité",
         agentsSubtitle: "Ces agents s'occuperont de vous tout au long de votre voyage en Chine, de la planification jusqu'à votre retour en toute sécurité."
       },
       agent: {
@@ -452,17 +656,18 @@ window.I18N = {
         success: "Merci ! Votre demande a été envoyée. Votre agent vous contactera sous 1 jour ouvré.",
         requiredNote: "* Champs obligatoires",
         summaryHospital: "Hôpital",
-        summaryProgram: "Programme",
-        summaryAgent: "Agent"
+        summaryProgram: "Spécialité",
+        summaryAgent: "Agent",
+        summaryRoute: "Itinéraire de voyage"
       },
       footer: {
         aboutTitle: "À propos de Health Blueprint",
         aboutText: "Health Blueprint met en relation les patients internationaux avec des hôpitaux agréés et des agents locaux de confiance en Chine, rendant le voyage médical simple et sûr pour les personnes de tous âges.",
-        disclaimer: "Health Blueprint est un annuaire et un service de mise en relation. Nous ne fournissons pas de conseils médicaux et ne réalisons pas d'actes médicaux. Consultez toujours un médecin agréé.",
+        disclaimer: "Health Blueprint est un annuaire et un service de mise en relation. Nous ne fournissons pas de conseils médicaux et ne réalisons pas d'actes médicaux. Consultez toujours un médecin agréé. Le classement des hôpitaux affiché provient du classement national chinois des hôpitaux 2023, publié publiquement ; les itinéraires de voyage sont des suggestions générales, pas des réservations.",
         contactUs: "Nous contacter",
         rights: "Tous droits réservés."
       },
-      common: { back: "Retour", learnMore: "En savoir plus", close: "Fermer", viewAll: "Voir tout" },
+      common: { back: "Retour", learnMore: "En savoir plus", close: "Fermer", viewAll: "Voir tout", next: "Suivant", optional: "facultatif" },
       specialties: {
         checkup: "Bilan de santé",
         oncology: "Oncologie",
@@ -471,18 +676,63 @@ window.I18N = {
         dental: "Soins dentaires",
         fertility: "Fertilité et FIV",
         orthopedics: "Orthopédie",
-        cardiology: "Cardiologie"
+        cardiology: "Cardiologie",
+        pediatrics: "Pédiatrie",
+        obgyn: "Santé de la femme et gynécologie",
+        ophthalmology: "Ophtalmologie et ORL",
+        neurology: "Neurologie",
+        psychiatry: "Santé mentale",
+        respiratory: "Pneumologie",
+        hematology: "Hématologie"
       },
       areas: {
-        beijing: "Pékin", shanghai: "Shanghai", guangzhou: "Canton (Guangzhou)",
-        shenzhen: "Shenzhen", hainan: "Hainan (Boao)", chengdu: "Chengdu",
-        xian: "Xi'an", hangzhou: "Hangzhou"
+        beijing: "Pékin", shanghai: "Shanghai", tianjin: "Tianjin", chongqing: "Chongqing",
+        guangzhou: "Canton (Guangzhou)", shenzhen: "Shenzhen", hangzhou: "Hangzhou", wenzhou: "Wenzhou",
+        nanjing: "Nankin", suzhou: "Suzhou", chengdu: "Chengdu", xian: "Xi'an",
+        wuhan: "Wuhan", changsha: "Changsha", zhengzhou: "Zhengzhou", jinan: "Jinan",
+        qingdao: "Qingdao", shenyang: "Shenyang", changchun: "Changchun", harbin: "Harbin",
+        hefei: "Hefei", fuzhou: "Fuzhou", nanchang: "Nanchang", hainan: "Hainan (Boao)"
+      },
+      join: {
+        title: "Devenez agent Health Blueprint",
+        subtitle: "Nous recherchons des personnes basées en Chine capables d'accompagner en personne des patients internationaux : visites à l'hôpital, traduction et assistance logistique. Parlez-nous de vous, nous vous contacterons en cas de correspondance.",
+        name: "Nom complet",
+        birthYear: "Année de naissance",
+        phone: "Téléphone / WeChat",
+        email: "Adresse e-mail",
+        resume: "CV",
+        resumeHint: "Document PDF ou Word",
+        submit: "Envoyer la candidature",
+        success: "Merci ! Votre candidature a été reçue. Notre équipe vous contactera en cas de correspondance.",
+        requiredNote: "* Champs obligatoires"
+      },
+      trip: {
+        title: "Planifiez votre voyage en Chine",
+        subtitle: "Combinez votre visite à l'hôpital avec un itinéraire de voyage recommandé, et découvrez un peu le pays pendant votre séjour.",
+        startRegion: "Commencer par une destination",
+        startHospital: "Commencer par un hôpital",
+        chooseRegion: "Choisir une région",
+        chooseHospitalFirst: "Choisir un hôpital",
+        recommendedHospitals: "Hôpitaux recommandés dans cette région",
+        recommendedRoutes: "Itinéraires de voyage recommandés",
+        anyRegion: "N'importe quelle région — choisir l'itinéraire séparément",
+        viewRoute: "Voir l'itinéraire",
+        days: "{n} jours",
+        highlights: "Points forts",
+        selectThisRoute: "Sélectionner cet itinéraire",
+        summaryTitle: "Votre plan jusqu'à présent",
+        changeRegion: "Changer de région",
+        changeHospital: "Changer d'hôpital",
+        changeRoute: "Changer d'itinéraire",
+        continueToAgents: "Continuer pour choisir un agent",
+        noRoute: "Aucun itinéraire sélectionné pour l'instant",
+        noHospital: "Aucun hôpital sélectionné pour l'instant"
       }
     },
 
     de: {
       brand: { name: "Health Blueprint", tagline: "Ihr vertrauenswürdiger Weg zur Gesundheitsversorgung in China" },
-      nav: { home: "Startseite", howItWorks: "So funktioniert's", contact: "Kontakt" },
+      nav: { home: "Startseite", howItWorks: "So funktioniert's", contact: "Kontakt", joinUs: "Als Betreuer mitmachen", trip: "Reise planen" },
       fontSize: { label: "Textgröße", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "Finden Sie das richtige Krankenhaus in China — mit persönlicher Begleitung",
@@ -495,7 +745,7 @@ window.I18N = {
       steps: {
         area: "Schritt 1 · Region wählen",
         hospital: "Schritt 2 · Krankenhaus wählen",
-        program: "Schritt 3 · Programm wählen",
+        program: "Schritt 3 · Fachbereich wählen",
         agent: "Schritt 4 · Ihren Betreuer wählen"
       },
       filters: {
@@ -508,18 +758,22 @@ window.I18N = {
         noResults: "Keine Krankenhäuser entsprechen Ihren Filtern. Ändern Sie Ihre Auswahl."
       },
       hospital: {
-        viewPrograms: "Programme ansehen",
-        programsAvailable: "{n} Programme verfügbar",
+        viewPrograms: "Fachbereiche ansehen",
+        programsAvailable: "{n} Fachbereiche verfügbar",
         aboutTitle: "Über dieses Krankenhaus",
-        programsTitle: "Verfügbare Programme"
+        programsTitle: "Angebotene Fachbereiche",
+        officialWebsite: "Offizielle Website des Krankenhauses",
+        tierLabel: "Chinesisches Krankenhausranking 2023"
       },
       program: {
         viewDetails: "Details ansehen",
         duration: "Übliche Dauer",
         priceRange: "Geschätzte Kosten",
-        included: "Leistungsumfang",
-        selectProgram: "Dieses Programm wählen",
-        agentsTitle: "Verfügbare Betreuer für dieses Programm",
+        priceNote: "Wird von Ihrem Betreuer nach Beratung mitgeteilt",
+        genericNote: "Dieses Krankenhaus bietet Behandlungen in diesem Fachbereich an. Genaue Programmdetails, Dauer und Preis werden Ihnen von Ihrem zugewiesenen Betreuer direkt bestätigt, basierend auf Ihrem medizinischen Bedarf und dem aktuellen Angebot des Krankenhauses.",
+        included: "Üblicherweise enthalten",
+        selectProgram: "Diesen Fachbereich wählen",
+        agentsTitle: "Verfügbare Betreuer für diesen Fachbereich",
         agentsSubtitle: "Diese Betreuer kümmern sich während Ihrer gesamten Reise nach China um Sie — von der Planung bis zur sicheren Heimreise."
       },
       agent: {
@@ -544,17 +798,18 @@ window.I18N = {
         success: "Vielen Dank! Ihre Anfrage wurde gesendet. Ihr Betreuer meldet sich innerhalb eines Werktags.",
         requiredNote: "* Pflichtfelder",
         summaryHospital: "Krankenhaus",
-        summaryProgram: "Programm",
-        summaryAgent: "Betreuer"
+        summaryProgram: "Fachbereich",
+        summaryAgent: "Betreuer",
+        summaryRoute: "Reiseroute"
       },
       footer: {
         aboutTitle: "Über Health Blueprint",
         aboutText: "Health Blueprint verbindet internationale Patienten mit zugelassenen Krankenhäusern und vertrauenswürdigen lokalen Betreuern in China und macht medizinische Reisen für Menschen jeden Alters einfach und sicher.",
-        disclaimer: "Health Blueprint ist ein Verzeichnis- und Vermittlungsdienst. Wir bieten keine medizinische Beratung und führen keine medizinischen Eingriffe durch. Konsultieren Sie immer einen zugelassenen Arzt.",
+        disclaimer: "Health Blueprint ist ein Verzeichnis- und Vermittlungsdienst. Wir bieten keine medizinische Beratung und führen keine medizinischen Eingriffe durch. Konsultieren Sie immer einen zugelassenen Arzt. Die angezeigte Krankenhausrangliste stammt aus dem öffentlich veröffentlichten chinesischen Krankenhausranking 2023; Reiserouten sind allgemeine Vorschläge, keine Buchungen.",
         contactUs: "Kontaktieren Sie uns",
         rights: "Alle Rechte vorbehalten."
       },
-      common: { back: "Zurück", learnMore: "Mehr erfahren", close: "Schließen", viewAll: "Alle anzeigen" },
+      common: { back: "Zurück", learnMore: "Mehr erfahren", close: "Schließen", viewAll: "Alle anzeigen", next: "Weiter", optional: "optional" },
       specialties: {
         checkup: "Gesundheits-Check-up",
         oncology: "Onkologie",
@@ -563,18 +818,63 @@ window.I18N = {
         dental: "Zahnmedizin",
         fertility: "Fruchtbarkeit & IVF",
         orthopedics: "Orthopädie",
-        cardiology: "Kardiologie"
+        cardiology: "Kardiologie",
+        pediatrics: "Pädiatrie",
+        obgyn: "Frauengesundheit & Gynäkologie",
+        ophthalmology: "Augen-, HNO-Heilkunde",
+        neurology: "Neurologie",
+        psychiatry: "Psychische Gesundheit",
+        respiratory: "Pneumologie",
+        hematology: "Hämatologie"
       },
       areas: {
-        beijing: "Peking", shanghai: "Shanghai", guangzhou: "Guangzhou (Kanton)",
-        shenzhen: "Shenzhen", hainan: "Hainan (Boao)", chengdu: "Chengdu",
-        xian: "Xi'an", hangzhou: "Hangzhou"
+        beijing: "Peking", shanghai: "Shanghai", tianjin: "Tianjin", chongqing: "Chongqing",
+        guangzhou: "Guangzhou (Kanton)", shenzhen: "Shenzhen", hangzhou: "Hangzhou", wenzhou: "Wenzhou",
+        nanjing: "Nanjing", suzhou: "Suzhou", chengdu: "Chengdu", xian: "Xi'an",
+        wuhan: "Wuhan", changsha: "Changsha", zhengzhou: "Zhengzhou", jinan: "Jinan",
+        qingdao: "Qingdao", shenyang: "Shenyang", changchun: "Changchun", harbin: "Harbin",
+        hefei: "Hefei", fuzhou: "Fuzhou", nanchang: "Nanchang", hainan: "Hainan (Boao)"
+      },
+      join: {
+        title: "Werden Sie Health-Blueprint-Betreuer",
+        subtitle: "Wir suchen Personen mit Sitz in China, die internationale Patienten persönlich begleiten können — Krankenhausbesuche, Übersetzung und Reiseunterstützung. Erzählen Sie uns von sich; wir melden uns bei passender Gelegenheit.",
+        name: "Vollständiger Name",
+        birthYear: "Geburtsjahr",
+        phone: "Telefon / WeChat-Nummer",
+        email: "E-Mail-Adresse",
+        resume: "Lebenslauf",
+        resumeHint: "PDF- oder Word-Dokument",
+        submit: "Bewerbung absenden",
+        success: "Vielen Dank! Ihre Bewerbung ist eingegangen. Unser Team meldet sich bei einer passenden Gelegenheit.",
+        requiredNote: "* Pflichtfelder"
+      },
+      trip: {
+        title: "Planen Sie Ihre Reise nach China",
+        subtitle: "Kombinieren Sie Ihren Krankenhausbesuch mit einer empfohlenen Reiseroute und lernen Sie das Land ein wenig kennen.",
+        startRegion: "Mit einem Reiseziel beginnen",
+        startHospital: "Mit einem Krankenhaus beginnen",
+        chooseRegion: "Region wählen",
+        chooseHospitalFirst: "Krankenhaus wählen",
+        recommendedHospitals: "Empfohlene Krankenhäuser in dieser Region",
+        recommendedRoutes: "Empfohlene Reiserouten",
+        anyRegion: "Beliebige Region — Route separat wählen",
+        viewRoute: "Route ansehen",
+        days: "{n} Tage",
+        highlights: "Höhepunkte",
+        selectThisRoute: "Diese Route wählen",
+        summaryTitle: "Ihr bisheriger Plan",
+        changeRegion: "Region ändern",
+        changeHospital: "Krankenhaus ändern",
+        changeRoute: "Route ändern",
+        continueToAgents: "Weiter zur Betreuerauswahl",
+        noRoute: "Noch keine Route ausgewählt",
+        noHospital: "Noch kein Krankenhaus ausgewählt"
       }
     },
 
     pt: {
       brand: { name: "Health Blueprint", tagline: "Seu caminho de confiança para a saúde na China" },
-      nav: { home: "Início", howItWorks: "Como funciona", contact: "Contato" },
+      nav: { home: "Início", howItWorks: "Como funciona", contact: "Contato", joinUs: "Seja um agente", trip: "Planejar viagem" },
       fontSize: { label: "Tamanho do texto", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "Encontre o hospital certo na China — com pessoas para guiá-lo",
@@ -587,7 +887,7 @@ window.I18N = {
       steps: {
         area: "Passo 1 · Escolha uma região",
         hospital: "Passo 2 · Escolha um hospital",
-        program: "Passo 3 · Escolha um programa",
+        program: "Passo 3 · Escolha uma especialidade",
         agent: "Passo 4 · Escolha seu agente"
       },
       filters: {
@@ -600,18 +900,22 @@ window.I18N = {
         noResults: "Nenhum hospital corresponde aos seus filtros. Tente alterar sua seleção."
       },
       hospital: {
-        viewPrograms: "Ver programas",
-        programsAvailable: "{n} programas disponíveis",
+        viewPrograms: "Ver especialidades",
+        programsAvailable: "{n} especialidades disponíveis",
         aboutTitle: "Sobre este hospital",
-        programsTitle: "Programas disponíveis"
+        programsTitle: "Especialidades oferecidas",
+        officialWebsite: "Site oficial do hospital",
+        tierLabel: "Ranking de Hospitais da China 2023"
       },
       program: {
         viewDetails: "Ver detalhes",
         duration: "Duração típica",
         priceRange: "Custo estimado",
-        included: "O que está incluído",
-        selectProgram: "Selecionar este programa",
-        agentsTitle: "Agentes disponíveis para este programa",
+        priceNote: "Fornecido pelo seu agente após a consulta",
+        genericNote: "Este hospital oferece atendimento nesta especialidade. Os detalhes exatos do pacote, duração e preço serão confirmados diretamente com você pelo seu agente designado, com base em suas necessidades médicas e na oferta atual do hospital.",
+        included: "O que geralmente está incluído",
+        selectProgram: "Selecionar esta especialidade",
+        agentsTitle: "Agentes disponíveis para esta especialidade",
         agentsSubtitle: "Esses agentes cuidarão de você durante toda a sua viagem à China, do planejamento até o seu retorno seguro para casa."
       },
       agent: {
@@ -636,17 +940,18 @@ window.I18N = {
         success: "Obrigado! Sua solicitação foi enviada. Seu agente entrará em contato em até 1 dia útil.",
         requiredNote: "* Campos obrigatórios",
         summaryHospital: "Hospital",
-        summaryProgram: "Programa",
-        summaryAgent: "Agente"
+        summaryProgram: "Especialidade",
+        summaryAgent: "Agente",
+        summaryRoute: "Roteiro de viagem"
       },
       footer: {
         aboutTitle: "Sobre a Health Blueprint",
         aboutText: "A Health Blueprint conecta pacientes internacionais a hospitais licenciados e agentes locais de confiança na China, tornando as viagens de saúde simples e seguras para pessoas de todas as idades.",
-        disclaimer: "A Health Blueprint é um diretório e serviço de intermediação. Não fornecemos aconselhamento médico nem realizamos procedimentos médicos. Consulte sempre um médico licenciado.",
+        disclaimer: "A Health Blueprint é um diretório e serviço de intermediação. Não fornecemos aconselhamento médico nem realizamos procedimentos médicos. Consulte sempre um médico licenciado. O ranking hospitalar exibido vem do Ranking de Hospitais da China 2023, publicado publicamente; os roteiros de viagem são sugestões gerais, não reservas.",
         contactUs: "Fale conosco",
         rights: "Todos os direitos reservados."
       },
-      common: { back: "Voltar", learnMore: "Saiba mais", close: "Fechar", viewAll: "Ver tudo" },
+      common: { back: "Voltar", learnMore: "Saiba mais", close: "Fechar", viewAll: "Ver tudo", next: "Próximo", optional: "opcional" },
       specialties: {
         checkup: "Check-up de saúde",
         oncology: "Oncologia",
@@ -655,18 +960,63 @@ window.I18N = {
         dental: "Odontologia",
         fertility: "Fertilidade e FIV",
         orthopedics: "Ortopedia",
-        cardiology: "Cardiologia"
+        cardiology: "Cardiologia",
+        pediatrics: "Pediatria",
+        obgyn: "Saúde da mulher e ginecologia",
+        ophthalmology: "Oftalmologia e otorrinolaringologia",
+        neurology: "Neurologia",
+        psychiatry: "Saúde mental",
+        respiratory: "Pneumologia",
+        hematology: "Hematologia"
       },
       areas: {
-        beijing: "Pequim", shanghai: "Xangai", guangzhou: "Guangzhou (Cantão)",
-        shenzhen: "Shenzhen", hainan: "Hainan (Boao)", chengdu: "Chengdu",
-        xian: "Xi'an", hangzhou: "Hangzhou"
+        beijing: "Pequim", shanghai: "Xangai", tianjin: "Tianjin", chongqing: "Chongqing",
+        guangzhou: "Guangzhou (Cantão)", shenzhen: "Shenzhen", hangzhou: "Hangzhou", wenzhou: "Wenzhou",
+        nanjing: "Nanquim", suzhou: "Suzhou", chengdu: "Chengdu", xian: "Xi'an",
+        wuhan: "Wuhan", changsha: "Changsha", zhengzhou: "Zhengzhou", jinan: "Jinan",
+        qingdao: "Qingdao", shenyang: "Shenyang", changchun: "Changchun", harbin: "Harbin",
+        hefei: "Hefei", fuzhou: "Fuzhou", nanchang: "Nanchang", hainan: "Hainan (Boao)"
+      },
+      join: {
+        title: "Torne-se um agente Health Blueprint",
+        subtitle: "Procuramos pessoas baseadas na China que possam acompanhar pacientes internacionais pessoalmente: visitas ao hospital, tradução e apoio logístico. Conte-nos sobre você e entraremos em contato se houver compatibilidade.",
+        name: "Nome completo",
+        birthYear: "Ano de nascimento",
+        phone: "Telefone / WeChat",
+        email: "Endereço de e-mail",
+        resume: "Currículo",
+        resumeHint: "Documento PDF ou Word",
+        submit: "Enviar candidatura",
+        success: "Obrigado! Sua candidatura foi recebida. Nossa equipe entrará em contato se houver compatibilidade.",
+        requiredNote: "* Campos obrigatórios"
+      },
+      trip: {
+        title: "Planeje sua viagem à China",
+        subtitle: "Combine sua visita ao hospital com um roteiro de viagem recomendado e conheça um pouco do país enquanto estiver por aqui.",
+        startRegion: "Começar por um destino",
+        startHospital: "Começar por um hospital",
+        chooseRegion: "Escolha uma região",
+        chooseHospitalFirst: "Escolha um hospital",
+        recommendedHospitals: "Hospitais recomendados nesta região",
+        recommendedRoutes: "Roteiros de viagem recomendados",
+        anyRegion: "Qualquer região — escolher roteiro separadamente",
+        viewRoute: "Ver roteiro",
+        days: "{n} dias",
+        highlights: "Destaques",
+        selectThisRoute: "Selecionar este roteiro",
+        summaryTitle: "Seu plano até agora",
+        changeRegion: "Mudar região",
+        changeHospital: "Mudar hospital",
+        changeRoute: "Mudar roteiro",
+        continueToAgents: "Continuar para escolher um agente",
+        noRoute: "Nenhum roteiro selecionado ainda",
+        noHospital: "Nenhum hospital selecionado ainda"
       }
     },
 
     ru: {
       brand: { name: "Health Blueprint", tagline: "Ваш надёжный путь к медицине в Китае" },
-      nav: { home: "Главная", howItWorks: "Как это работает", contact: "Контакты" },
+      nav: { home: "Главная", howItWorks: "Как это работает", contact: "Контакты", joinUs: "Стать агентом", trip: "Спланировать поездку" },
       fontSize: { label: "Размер текста", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "Найдите подходящую больницу в Китае — с сопровождением на каждом шаге",
@@ -679,7 +1029,7 @@ window.I18N = {
       steps: {
         area: "Шаг 1 · Выберите регион",
         hospital: "Шаг 2 · Выберите больницу",
-        program: "Шаг 3 · Выберите программу",
+        program: "Шаг 3 · Выберите направление",
         agent: "Шаг 4 · Выберите агента"
       },
       filters: {
@@ -692,18 +1042,22 @@ window.I18N = {
         noResults: "Нет больниц, соответствующих фильтрам. Попробуйте изменить выбор."
       },
       hospital: {
-        viewPrograms: "Посмотреть программы",
-        programsAvailable: "Доступно программ: {n}",
+        viewPrograms: "Посмотреть направления",
+        programsAvailable: "Доступно направлений: {n}",
         aboutTitle: "О больнице",
-        programsTitle: "Доступные программы"
+        programsTitle: "Доступные направления",
+        officialWebsite: "Официальный сайт больницы",
+        tierLabel: "Рейтинг больниц Китая 2023"
       },
       program: {
         viewDetails: "Подробнее",
         duration: "Обычная продолжительность",
         priceRange: "Ориентировочная стоимость",
-        included: "Что включено",
-        selectProgram: "Выбрать эту программу",
-        agentsTitle: "Доступные агенты для этой программы",
+        priceNote: "Уточняется у вашего агента после консультации",
+        genericNote: "Эта больница предлагает лечение по данному направлению. Точные детали программы, продолжительность и стоимость вам подтвердит назначенный агент с учётом ваших медицинских потребностей и текущих возможностей больницы.",
+        included: "Что обычно включено",
+        selectProgram: "Выбрать это направление",
+        agentsTitle: "Доступные агенты для этого направления",
         agentsSubtitle: "Эти агенты будут заботиться о вас на протяжении всей поездки в Китай — от планирования до благополучного возвращения домой."
       },
       agent: {
@@ -728,17 +1082,18 @@ window.I18N = {
         success: "Спасибо! Ваш запрос отправлен. Агент свяжется с вами в течение 1 рабочего дня.",
         requiredNote: "* Обязательные поля",
         summaryHospital: "Больница",
-        summaryProgram: "Программа",
-        summaryAgent: "Агент"
+        summaryProgram: "Направление",
+        summaryAgent: "Агент",
+        summaryRoute: "Маршрут поездки"
       },
       footer: {
         aboutTitle: "О Health Blueprint",
         aboutText: "Health Blueprint соединяет иностранных пациентов с лицензированными больницами и надёжными местными агентами в Китае, делая медицинские поездки простыми и безопасными для людей любого возраста.",
-        disclaimer: "Health Blueprint — это каталог и сервис подбора агентов. Мы не даём медицинских консультаций и не проводим медицинские процедуры. Всегда консультируйтесь с лицензированным врачом.",
+        disclaimer: "Health Blueprint — это каталог и сервис подбора агентов. Мы не даём медицинских консультаций и не проводим медицинские процедуры. Всегда консультируйтесь с лицензированным врачом. Рейтинг больниц взят из опубликованного рейтинга больниц Китая 2023 года; маршруты поездок — это общие рекомендации, а не бронирования.",
         contactUs: "Связаться с нами",
         rights: "Все права защищены."
       },
-      common: { back: "Назад", learnMore: "Узнать больше", close: "Закрыть", viewAll: "Показать все" },
+      common: { back: "Назад", learnMore: "Узнать больше", close: "Закрыть", viewAll: "Показать все", next: "Далее", optional: "необязательно" },
       specialties: {
         checkup: "Медицинский чек-ап",
         oncology: "Онкология",
@@ -747,18 +1102,63 @@ window.I18N = {
         dental: "Стоматология",
         fertility: "Лечение бесплодия и ЭКО",
         orthopedics: "Ортопедия",
-        cardiology: "Кардиология"
+        cardiology: "Кардиология",
+        pediatrics: "Педиатрия",
+        obgyn: "Женское здоровье и гинекология",
+        ophthalmology: "Офтальмология и ЛОР",
+        neurology: "Неврология",
+        psychiatry: "Психическое здоровье",
+        respiratory: "Пульмонология",
+        hematology: "Гематология"
       },
       areas: {
-        beijing: "Пекин", shanghai: "Шанхай", guangzhou: "Гуанчжоу",
-        shenzhen: "Шэньчжэнь", hainan: "Хайнань (Боао)", chengdu: "Чэнду",
-        xian: "Сиань", hangzhou: "Ханчжоу"
+        beijing: "Пекин", shanghai: "Шанхай", tianjin: "Тяньцзинь", chongqing: "Чунцин",
+        guangzhou: "Гуанчжоу", shenzhen: "Шэньчжэнь", hangzhou: "Ханчжоу", wenzhou: "Вэньчжоу",
+        nanjing: "Нанкин", suzhou: "Сучжоу", chengdu: "Чэнду", xian: "Сиань",
+        wuhan: "Ухань", changsha: "Чанша", zhengzhou: "Чжэнчжоу", jinan: "Цзинань",
+        qingdao: "Циндао", shenyang: "Шэньян", changchun: "Чанчунь", harbin: "Харбин",
+        hefei: "Хэфэй", fuzhou: "Фучжоу", nanchang: "Наньчан", hainan: "Хайнань (Боао)"
+      },
+      join: {
+        title: "Станьте агентом Health Blueprint",
+        subtitle: "Мы ищем людей, проживающих в Китае, которые готовы лично сопровождать иностранных пациентов: посещения больниц, перевод и логистическая поддержка. Расскажите немного о себе — мы свяжемся с вами при подходящей возможности.",
+        name: "Полное имя",
+        birthYear: "Год рождения",
+        phone: "Телефон / WeChat",
+        email: "Адрес электронной почты",
+        resume: "Резюме",
+        resumeHint: "Документ PDF или Word",
+        submit: "Отправить заявку",
+        success: "Спасибо! Ваша заявка получена. Наша команда свяжется с вами при подходящей возможности.",
+        requiredNote: "* Обязательные поля"
+      },
+      trip: {
+        title: "Спланируйте поездку в Китай",
+        subtitle: "Совместите визит в больницу с рекомендованным маршрутом поездки и увидите немного страны, пока вы здесь.",
+        startRegion: "Начать с направления",
+        startHospital: "Начать с больницы",
+        chooseRegion: "Выберите регион",
+        chooseHospitalFirst: "Выберите больницу",
+        recommendedHospitals: "Рекомендуемые больницы в этом регионе",
+        recommendedRoutes: "Рекомендуемые маршруты поездок",
+        anyRegion: "Любой регион — выбрать маршрут отдельно",
+        viewRoute: "Посмотреть маршрут",
+        days: "{n} дн.",
+        highlights: "Основные моменты",
+        selectThisRoute: "Выбрать этот маршрут",
+        summaryTitle: "Ваш план на данный момент",
+        changeRegion: "Изменить регион",
+        changeHospital: "Изменить больницу",
+        changeRoute: "Изменить маршрут",
+        continueToAgents: "Перейти к выбору агента",
+        noRoute: "Маршрут ещё не выбран",
+        noHospital: "Больница ещё не выбрана"
       }
     },
 
     ar: {
       brand: { name: "Health Blueprint", tagline: "طريقك الموثوق للرعاية الصحية في الصين" },
-      nav: { home: "الرئيسية", howItWorks: "كيف يعمل الموقع", contact: "اتصل بنا" },
+      nav: { home: "الرئيسية", howItWorks: "كيف يعمل الموقع", contact: "اتصل بنا", joinUs: "انضم كوكيل", trip: "خطّط لرحلتك" },
       fontSize: { label: "حجم النص", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "اعثر على المستشفى المناسب في الصين — مع مرافقين يرشدونك في كل خطوة",
@@ -771,7 +1171,7 @@ window.I18N = {
       steps: {
         area: "الخطوة 1 · اختر منطقة",
         hospital: "الخطوة 2 · اختر مستشفى",
-        program: "الخطوة 3 · اختر برنامجًا",
+        program: "الخطوة 3 · اختر تخصصًا",
         agent: "الخطوة 4 · اختر وكيلك"
       },
       filters: {
@@ -784,18 +1184,22 @@ window.I18N = {
         noResults: "لا توجد مستشفيات مطابقة لعوامل التصفية. جرّب تغيير اختيارك."
       },
       hospital: {
-        viewPrograms: "عرض البرامج",
-        programsAvailable: "{n} برنامج متاح",
+        viewPrograms: "عرض التخصصات",
+        programsAvailable: "{n} تخصص متاح",
         aboutTitle: "عن هذا المستشفى",
-        programsTitle: "البرامج المتاحة"
+        programsTitle: "التخصصات المتاحة",
+        officialWebsite: "الموقع الرسمي للمستشفى",
+        tierLabel: "تصنيف المستشفيات الصينية 2023"
       },
       program: {
         viewDetails: "عرض التفاصيل",
         duration: "المدة المعتادة",
         priceRange: "التكلفة التقديرية",
-        included: "ما الذي يشمله البرنامج",
-        selectProgram: "اختر هذا البرنامج",
-        agentsTitle: "الوكلاء المتاحون لهذا البرنامج",
+        priceNote: "يقدمها وكيلك بعد الاستشارة",
+        genericNote: "يقدم هذا المستشفى رعاية في هذا التخصص. سيؤكد لك وكيلك المخصص تفاصيل البرنامج الدقيقة والمدة والتكلفة مباشرة، بناءً على احتياجاتك الطبية والخدمات المتاحة حاليًا في المستشفى.",
+        included: "ما يتضمنه عادةً",
+        selectProgram: "اختر هذا التخصص",
+        agentsTitle: "الوكلاء المتاحون لهذا التخصص",
         agentsSubtitle: "سيهتم هؤلاء الوكلاء بك طوال رحلتك إلى الصين — من التخطيط وحتى عودتك الآمنة إلى بلدك."
       },
       agent: {
@@ -820,17 +1224,18 @@ window.I18N = {
         success: "شكرًا لك! تم إرسال طلبك. سيتواصل معك الوكيل خلال يوم عمل واحد.",
         requiredNote: "* حقول إلزامية",
         summaryHospital: "المستشفى",
-        summaryProgram: "البرنامج",
-        summaryAgent: "الوكيل"
+        summaryProgram: "التخصص",
+        summaryAgent: "الوكيل",
+        summaryRoute: "مسار الرحلة"
       },
       footer: {
         aboutTitle: "عن Health Blueprint",
         aboutText: "يربط Health Blueprint المرضى الدوليين بمستشفيات مرخصة ووكلاء محليين موثوقين في الصين، مما يجعل السفر العلاجي بسيطًا وآمنًا للأشخاص من جميع الأعمار.",
-        disclaimer: "Health Blueprint هو دليل وخدمة مطابقة، ولا يقدم استشارات طبية ولا يجري إجراءات طبية. يُرجى دائمًا استشارة طبيب مرخّص.",
+        disclaimer: "Health Blueprint هو دليل وخدمة مطابقة، ولا يقدم استشارات طبية ولا يجري إجراءات طبية. يُرجى دائمًا استشارة طبيب مرخّص. تصنيف المستشفيات المعروض مأخوذ من تصنيف المستشفيات الصينية 2023 المنشور علنًا؛ مسارات الرحلات هي اقتراحات عامة وليست حجوزات.",
         contactUs: "تواصل معنا",
         rights: "جميع الحقوق محفوظة."
       },
-      common: { back: "رجوع", learnMore: "معرفة المزيد", close: "إغلاق", viewAll: "عرض الكل" },
+      common: { back: "رجوع", learnMore: "معرفة المزيد", close: "إغلاق", viewAll: "عرض الكل", next: "التالي", optional: "اختياري" },
       specialties: {
         checkup: "الفحص الصحي الشامل",
         oncology: "علاج الأورام",
@@ -839,18 +1244,63 @@ window.I18N = {
         dental: "طب الأسنان",
         fertility: "الخصوبة وأطفال الأنابيب",
         orthopedics: "جراحة العظام",
-        cardiology: "أمراض القلب"
+        cardiology: "أمراض القلب",
+        pediatrics: "طب الأطفال",
+        obgyn: "صحة المرأة وأمراض النساء والتوليد",
+        ophthalmology: "طب العيون والأنف والأذن والحنجرة",
+        neurology: "طب الأعصاب",
+        psychiatry: "الصحة النفسية",
+        respiratory: "أمراض الجهاز التنفسي",
+        hematology: "أمراض الدم"
       },
       areas: {
-        beijing: "بكين", shanghai: "شنغهاي", guangzhou: "قوانغتشو",
-        shenzhen: "شنتشن", hainan: "هاينان (بوآو)", chengdu: "تشنغدو",
-        xian: "شيان", hangzhou: "هانغتشو"
+        beijing: "بكين", shanghai: "شنغهاي", tianjin: "تيانجين", chongqing: "تشونغتشينغ",
+        guangzhou: "قوانغتشو", shenzhen: "شنتشن", hangzhou: "هانغتشو", wenzhou: "ون تشو",
+        nanjing: "نانجينغ", suzhou: "سوتشو", chengdu: "تشنغدو", xian: "شيان",
+        wuhan: "ووهان", changsha: "تشانغشا", zhengzhou: "تشنغتشو", jinan: "جينان",
+        qingdao: "تشينغداو", shenyang: "شنيانغ", changchun: "تشانغتشون", harbin: "هاربين",
+        hefei: "خفي", fuzhou: "فوتشو", nanchang: "نانتشانغ", hainan: "هاينان (بوآو)"
+      },
+      join: {
+        title: "كن وكيلاً لدى Health Blueprint",
+        subtitle: "نبحث عن أشخاص مقيمين في الصين قادرين على مرافقة المرضى الدوليين شخصيًا — زيارات المستشفى، الترجمة، والدعم اللوجستي للسفر. أخبرنا قليلاً عن نفسك وسنتواصل معك إذا كان هناك تطابق مناسب.",
+        name: "الاسم الكامل",
+        birthYear: "سنة الميلاد",
+        phone: "رقم الهاتف / WeChat",
+        email: "البريد الإلكتروني",
+        resume: "السيرة الذاتية",
+        resumeHint: "مستند PDF أو Word",
+        submit: "إرسال الطلب",
+        success: "شكرًا لك! تم استلام طلبك. سيتواصل معك فريقنا إذا كان هناك تطابق مناسب.",
+        requiredNote: "* حقول إلزامية"
+      },
+      trip: {
+        title: "خطّط لرحلتك إلى الصين",
+        subtitle: "اجمع بين زيارة المستشفى ومسار سفر موصى به — وشاهد جزءًا من البلاد أثناء وجودك هنا.",
+        startRegion: "ابدأ بوجهة",
+        startHospital: "ابدأ بمستشفى",
+        chooseRegion: "اختر منطقة",
+        chooseHospitalFirst: "اختر مستشفى",
+        recommendedHospitals: "المستشفيات الموصى بها في هذه المنطقة",
+        recommendedRoutes: "مسارات السفر الموصى بها",
+        anyRegion: "أي منطقة — اختر المسار بشكل منفصل",
+        viewRoute: "عرض المسار",
+        days: "{n} أيام",
+        highlights: "أبرز المعالم",
+        selectThisRoute: "اختيار هذا المسار",
+        summaryTitle: "خطتك حتى الآن",
+        changeRegion: "تغيير المنطقة",
+        changeHospital: "تغيير المستشفى",
+        changeRoute: "تغيير المسار",
+        continueToAgents: "متابعة لاختيار وكيل",
+        noRoute: "لم يتم اختيار مسار بعد",
+        noHospital: "لم يتم اختيار مستشفى بعد"
       }
     },
 
     ja: {
       brand: { name: "Health Blueprint", tagline: "中国の医療への信頼できる架け橋" },
-      nav: { home: "ホーム", howItWorks: "ご利用の流れ", contact: "お問い合わせ" },
+      nav: { home: "ホーム", howItWorks: "ご利用の流れ", contact: "お問い合わせ", joinUs: "エージェント登録", trip: "旅程を計画" },
       fontSize: { label: "文字サイズ", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "中国で最適な病院を見つけましょう——現地スタッフが最後までご案内します",
@@ -863,7 +1313,7 @@ window.I18N = {
       steps: {
         area: "ステップ1・地域を選ぶ",
         hospital: "ステップ2・病院を選ぶ",
-        program: "ステップ3・プログラムを選ぶ",
+        program: "ステップ3・診療科を選ぶ",
         agent: "ステップ4・エージェントを選ぶ"
       },
       filters: {
@@ -876,18 +1326,22 @@ window.I18N = {
         noResults: "条件に一致する病院がありません。条件を変更してお試しください。"
       },
       hospital: {
-        viewPrograms: "プログラムを見る",
-        programsAvailable: "{n} 件のプログラムあり",
+        viewPrograms: "診療科を見る",
+        programsAvailable: "{n} 件の診療科あり",
         aboutTitle: "この病院について",
-        programsTitle: "利用可能なプログラム"
+        programsTitle: "診療科目",
+        officialWebsite: "病院公式サイト",
+        tierLabel: "2023年版 中国病院ランキング"
       },
       program: {
         viewDetails: "詳細を見る",
         duration: "標準的な期間",
         priceRange: "概算費用",
-        included: "含まれるサービス",
-        selectProgram: "このプログラムを選択",
-        agentsTitle: "このプログラムのエージェント",
+        priceNote: "詳細はエージェントとの相談後にご案内します",
+        genericNote: "この病院ではこの診療科の診療を行っています。具体的なプラン内容、期間、費用については、お客様の医療ニーズと病院の現在の提供状況に基づき、担当エージェントより直接ご案内いたします。",
+        included: "一般的な内容",
+        selectProgram: "この診療科を選択",
+        agentsTitle: "この診療科のエージェント",
         agentsSubtitle: "これらのエージェントが、計画から無事のご帰国まで、中国滞在中ずっとサポートします。"
       },
       agent: {
@@ -912,17 +1366,18 @@ window.I18N = {
         success: "ありがとうございます。お申し込みを受け付けました。1営業日以内にエージェントよりご連絡いたします。",
         requiredNote: "* は必須項目です",
         summaryHospital: "病院",
-        summaryProgram: "プログラム",
-        summaryAgent: "エージェント"
+        summaryProgram: "診療科",
+        summaryAgent: "エージェント",
+        summaryRoute: "旅程ルート"
       },
       footer: {
         aboutTitle: "Health Blueprintについて",
         aboutText: "Health Blueprintは、世界中の患者様を中国の認可病院と信頼できる現地エージェントに繋ぎ、あらゆる年齢層の方が安心して医療渡航できるようサポートします。",
-        disclaimer: "Health Blueprintは病院情報の紹介およびエージェントとのマッチングサービスであり、医療アドバイスや医療行為は行いません。必ず認可を受けた医師にご相談ください。",
+        disclaimer: "Health Blueprintは病院情報の紹介およびエージェントとのマッチングサービスであり、医療アドバイスや医療行為は行いません。必ず認可を受けた医師にご相談ください。掲載の病院ランキングは公開されている2023年版中国病院ランキングによるものです。旅程ルートは一般的な提案であり、予約を意味するものではありません。",
         contactUs: "お問い合わせ",
         rights: "All rights reserved."
       },
-      common: { back: "戻る", learnMore: "詳しく見る", close: "閉じる", viewAll: "すべて見る" },
+      common: { back: "戻る", learnMore: "詳しく見る", close: "閉じる", viewAll: "すべて見る", next: "次へ", optional: "任意" },
       specialties: {
         checkup: "健康診断",
         oncology: "がん治療",
@@ -931,18 +1386,63 @@ window.I18N = {
         dental: "歯科",
         fertility: "不妊治療・体外受精",
         orthopedics: "整形外科",
-        cardiology: "循環器科"
+        cardiology: "循環器科",
+        pediatrics: "小児科",
+        obgyn: "女性の健康・産婦人科",
+        ophthalmology: "眼科・耳鼻咽喉科",
+        neurology: "神経内科",
+        psychiatry: "精神科・メンタルヘルス",
+        respiratory: "呼吸器内科",
+        hematology: "血液内科"
       },
       areas: {
-        beijing: "北京", shanghai: "上海", guangzhou: "広州",
-        shenzhen: "深圳", hainan: "海南（博鰲）", chengdu: "成都",
-        xian: "西安", hangzhou: "杭州"
+        beijing: "北京", shanghai: "上海", tianjin: "天津", chongqing: "重慶",
+        guangzhou: "広州", shenzhen: "深圳", hangzhou: "杭州", wenzhou: "温州",
+        nanjing: "南京", suzhou: "蘇州", chengdu: "成都", xian: "西安",
+        wuhan: "武漢", changsha: "長沙", zhengzhou: "鄭州", jinan: "済南",
+        qingdao: "青島", shenyang: "瀋陽", changchun: "長春", harbin: "ハルビン",
+        hefei: "合肥", fuzhou: "福州", nanchang: "南昌", hainan: "海南（博鰲）"
+      },
+      join: {
+        title: "Health Blueprintのエージェントになる",
+        subtitle: "中国在住で、海外からの患者様に病院への同行・通訳・渡航サポートなどを提供いただける方を募集しています。簡単なプロフィールをご入力ください。マッチする機会があればご連絡いたします。",
+        name: "お名前",
+        birthYear: "生年",
+        phone: "電話番号 / WeChat ID",
+        email: "メールアドレス",
+        resume: "履歴書",
+        resumeHint: "PDFまたはWord形式",
+        submit: "応募する",
+        success: "ありがとうございます。応募を受け付けました。マッチする機会があればチームよりご連絡いたします。",
+        requiredNote: "* は必須項目です"
+      },
+      trip: {
+        title: "中国旅程を計画する",
+        subtitle: "病院での受診と、おすすめの旅行ルートを組み合わせて、滞在中に少し観光もお楽しみいただけます。",
+        startRegion: "目的地から選ぶ",
+        startHospital: "病院から選ぶ",
+        chooseRegion: "地域を選択",
+        chooseHospitalFirst: "病院を選択",
+        recommendedHospitals: "この地域のおすすめ病院",
+        recommendedRoutes: "おすすめ旅行ルート",
+        anyRegion: "地域を問わず——ルートを別途選択",
+        viewRoute: "ルートを見る",
+        days: "{n} 日間",
+        highlights: "見どころ",
+        selectThisRoute: "このルートを選択",
+        summaryTitle: "現在の計画",
+        changeRegion: "地域を変更",
+        changeHospital: "病院を変更",
+        changeRoute: "ルートを変更",
+        continueToAgents: "エージェント選択に進む",
+        noRoute: "まだルートが選択されていません",
+        noHospital: "まだ病院が選択されていません"
       }
     },
 
     ko: {
       brand: { name: "Health Blueprint", tagline: "중국 의료로 가는 믿을 수 있는 길" },
-      nav: { home: "홈", howItWorks: "이용 방법", contact: "문의하기" },
+      nav: { home: "홈", howItWorks: "이용 방법", contact: "문의하기", joinUs: "에이전트 지원", trip: "여행 계획" },
       fontSize: { label: "글자 크기", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "중국에서 알맞은 병원을 찾아보세요 — 처음부터 끝까지 안내해 드립니다",
@@ -955,7 +1455,7 @@ window.I18N = {
       steps: {
         area: "1단계 · 지역 선택",
         hospital: "2단계 · 병원 선택",
-        program: "3단계 · 프로그램 선택",
+        program: "3단계 · 진료과 선택",
         agent: "4단계 · 에이전트 선택"
       },
       filters: {
@@ -968,18 +1468,22 @@ window.I18N = {
         noResults: "필터에 맞는 병원이 없습니다. 선택 항목을 변경해 보세요."
       },
       hospital: {
-        viewPrograms: "프로그램 보기",
-        programsAvailable: "{n}개 프로그램 이용 가능",
+        viewPrograms: "진료과 보기",
+        programsAvailable: "{n}개 진료과 이용 가능",
         aboutTitle: "병원 소개",
-        programsTitle: "이용 가능한 프로그램"
+        programsTitle: "운영 중인 진료과",
+        officialWebsite: "병원 공식 웹사이트",
+        tierLabel: "2023 중국 병원 순위"
       },
       program: {
         viewDetails: "자세히 보기",
         duration: "일반적인 소요 기간",
         priceRange: "예상 비용",
-        included: "포함 사항",
-        selectProgram: "이 프로그램 선택",
-        agentsTitle: "이 프로그램의 이용 가능한 에이전트",
+        priceNote: "상담 후 에이전트가 안내해 드립니다",
+        genericNote: "이 병원은 해당 진료과의 진료를 제공합니다. 정확한 프로그램 세부 사항, 기간, 비용은 귀하의 의료 필요와 병원의 현재 제공 사항에 따라 담당 에이전트가 직접 확인해 드립니다.",
+        included: "일반적인 포함 사항",
+        selectProgram: "이 진료과 선택",
+        agentsTitle: "이 진료과의 이용 가능한 에이전트",
         agentsSubtitle: "이 에이전트들은 계획 단계부터 무사히 귀국하실 때까지 중국 여행 전 과정을 함께합니다."
       },
       agent: {
@@ -1004,17 +1508,18 @@ window.I18N = {
         success: "감사합니다! 요청이 접수되었습니다. 영업일 기준 1일 이내에 에이전트가 연락드립니다.",
         requiredNote: "* 필수 입력 항목",
         summaryHospital: "병원",
-        summaryProgram: "프로그램",
-        summaryAgent: "에이전트"
+        summaryProgram: "진료과",
+        summaryAgent: "에이전트",
+        summaryRoute: "여행 경로"
       },
       footer: {
         aboutTitle: "Health Blueprint 소개",
         aboutText: "Health Blueprint는 해외 환자를 중국의 인증된 병원과 신뢰할 수 있는 현지 에이전트와 연결하여 모든 연령대의 사람들이 안전하고 간편하게 의료 여행을 할 수 있도록 돕습니다.",
-        disclaimer: "Health Blueprint는 병원 정보 안내 및 에이전트 매칭 서비스이며, 의료 자문이나 의료 행위를 제공하지 않습니다. 항상 인증된 의사와 상담하시기 바랍니다.",
+        disclaimer: "Health Blueprint는 병원 정보 안내 및 에이전트 매칭 서비스이며, 의료 자문이나 의료 행위를 제공하지 않습니다. 항상 인증된 의사와 상담하시기 바랍니다. 표시된 병원 순위는 공개된 2023 중국 병원 순위를 기반으로 하며, 여행 경로는 예약이 아닌 일반적인 제안입니다.",
         contactUs: "문의하기",
         rights: "All rights reserved."
       },
-      common: { back: "뒤로", learnMore: "자세히 알아보기", close: "닫기", viewAll: "전체 보기" },
+      common: { back: "뒤로", learnMore: "자세히 알아보기", close: "닫기", viewAll: "전체 보기", next: "다음", optional: "선택 사항" },
       specialties: {
         checkup: "건강검진",
         oncology: "암 치료",
@@ -1023,18 +1528,63 @@ window.I18N = {
         dental: "치과",
         fertility: "난임 치료 및 시험관 시술",
         orthopedics: "정형외과",
-        cardiology: "심장내과"
+        cardiology: "심장내과",
+        pediatrics: "소아과",
+        obgyn: "여성 건강 및 산부인과",
+        ophthalmology: "안과·이비인후과",
+        neurology: "신경과",
+        psychiatry: "정신건강의학과",
+        respiratory: "호흡기내과",
+        hematology: "혈액내과"
       },
       areas: {
-        beijing: "베이징", shanghai: "상하이", guangzhou: "광저우",
-        shenzhen: "선전", hainan: "하이난(보아오)", chengdu: "청두",
-        xian: "시안", hangzhou: "항저우"
+        beijing: "베이징", shanghai: "상하이", tianjin: "톈진", chongqing: "충칭",
+        guangzhou: "광저우", shenzhen: "선전", hangzhou: "항저우", wenzhou: "원저우",
+        nanjing: "난징", suzhou: "쑤저우", chengdu: "청두", xian: "시안",
+        wuhan: "우한", changsha: "창사", zhengzhou: "정저우", jinan: "지난",
+        qingdao: "칭다오", shenyang: "선양", changchun: "창춘", harbin: "하얼빈",
+        hefei: "허페이", fuzhou: "푸저우", nanchang: "난창", hainan: "하이난(보아오)"
+      },
+      join: {
+        title: "Health Blueprint 에이전트 되기",
+        subtitle: "중국에 거주하며 해외 환자를 직접 동행하실 수 있는 분을 찾습니다 — 병원 동행, 통역, 여행 지원 등. 간단한 정보를 남겨주시면 적합한 기회가 있을 때 연락드립니다.",
+        name: "성명",
+        birthYear: "출생연도",
+        phone: "전화 / WeChat 번호",
+        email: "이메일 주소",
+        resume: "이력서",
+        resumeHint: "PDF 또는 Word 문서",
+        submit: "지원서 제출",
+        success: "감사합니다! 지원서가 접수되었습니다. 적합한 기회가 있을 때 저희 팀에서 연락드립니다.",
+        requiredNote: "* 필수 입력 항목"
+      },
+      trip: {
+        title: "중국 여행 계획하기",
+        subtitle: "병원 방문과 추천 여행 경로를 결합해, 체류 기간 동안 중국을 조금 둘러보세요.",
+        startRegion: "목적지부터 선택",
+        startHospital: "병원부터 선택",
+        chooseRegion: "지역 선택",
+        chooseHospitalFirst: "병원 선택",
+        recommendedHospitals: "이 지역의 추천 병원",
+        recommendedRoutes: "추천 여행 경로",
+        anyRegion: "지역 무관 — 경로를 별도로 선택",
+        viewRoute: "경로 보기",
+        days: "{n}일",
+        highlights: "주요 볼거리",
+        selectThisRoute: "이 경로 선택",
+        summaryTitle: "현재까지의 계획",
+        changeRegion: "지역 변경",
+        changeHospital: "병원 변경",
+        changeRoute: "경로 변경",
+        continueToAgents: "에이전트 선택으로 이동",
+        noRoute: "아직 선택된 경로가 없습니다",
+        noHospital: "아직 선택된 병원이 없습니다"
       }
     },
 
     hi: {
       brand: { name: "Health Blueprint", tagline: "चीन में स्वास्थ्य सेवा तक आपका भरोसेमंद रास्ता" },
-      nav: { home: "होम", howItWorks: "यह कैसे काम करता है", contact: "संपर्क करें" },
+      nav: { home: "होम", howItWorks: "यह कैसे काम करता है", contact: "संपर्क करें", joinUs: "एजेंट के रूप में जुड़ें", trip: "यात्रा की योजना बनाएं" },
       fontSize: { label: "टेक्स्ट का आकार", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "चीन में सही अस्पताल खोजें — साथ में आपका मार्गदर्शन करने वाले लोग भी",
@@ -1047,7 +1597,7 @@ window.I18N = {
       steps: {
         area: "चरण 1 · क्षेत्र चुनें",
         hospital: "चरण 2 · अस्पताल चुनें",
-        program: "चरण 3 · कार्यक्रम चुनें",
+        program: "चरण 3 · विभाग चुनें",
         agent: "चरण 4 · अपना एजेंट चुनें"
       },
       filters: {
@@ -1060,18 +1610,22 @@ window.I18N = {
         noResults: "आपके फ़िल्टर से मेल खाने वाला कोई अस्पताल नहीं मिला। अपना चयन बदलकर देखें।"
       },
       hospital: {
-        viewPrograms: "कार्यक्रम देखें",
-        programsAvailable: "{n} कार्यक्रम उपलब्ध",
+        viewPrograms: "विभाग देखें",
+        programsAvailable: "{n} विभाग उपलब्ध",
         aboutTitle: "इस अस्पताल के बारे में",
-        programsTitle: "उपलब्ध कार्यक्रम"
+        programsTitle: "उपलब्ध विभाग",
+        officialWebsite: "अस्पताल की आधिकारिक वेबसाइट",
+        tierLabel: "2023 चीन अस्पताल रैंकिंग"
       },
       program: {
         viewDetails: "विवरण देखें",
         duration: "सामान्य अवधि",
         priceRange: "अनुमानित लागत",
-        included: "इसमें क्या शामिल है",
-        selectProgram: "यह कार्यक्रम चुनें",
-        agentsTitle: "इस कार्यक्रम के लिए उपलब्ध एजेंट",
+        priceNote: "परामर्श के बाद आपके एजेंट द्वारा बताई जाएगी",
+        genericNote: "यह अस्पताल इस विभाग में देखभाल प्रदान करता है। सटीक पैकेज विवरण, अवधि और कीमत की पुष्टि आपके सौंपे गए एजेंट द्वारा सीधे आपके चिकित्सा आवश्यकताओं और अस्पताल की वर्तमान सेवाओं के आधार पर की जाएगी।",
+        included: "आमतौर पर इसमें क्या शामिल होता है",
+        selectProgram: "यह विभाग चुनें",
+        agentsTitle: "इस विभाग के लिए उपलब्ध एजेंट",
         agentsSubtitle: "ये एजेंट योजना बनाने से लेकर आपकी सुरक्षित वापसी तक, चीन की पूरी यात्रा के दौरान आपकी देखभाल करेंगे।"
       },
       agent: {
@@ -1096,17 +1650,18 @@ window.I18N = {
         success: "धन्यवाद! आपका अनुरोध भेज दिया गया है। आपका एजेंट 1 कार्य दिवस के भीतर संपर्क करेगा।",
         requiredNote: "* आवश्यक फ़ील्ड",
         summaryHospital: "अस्पताल",
-        summaryProgram: "कार्यक्रम",
-        summaryAgent: "एजेंट"
+        summaryProgram: "विभाग",
+        summaryAgent: "एजेंट",
+        summaryRoute: "यात्रा मार्ग"
       },
       footer: {
         aboutTitle: "Health Blueprint के बारे में",
         aboutText: "Health Blueprint अंतरराष्ट्रीय मरीज़ों को चीन के लाइसेंस प्राप्त अस्पतालों और भरोसेमंद स्थानीय एजेंटों से जोड़ता है, जिससे हर उम्र के लोगों के लिए स्वास्थ्य यात्रा सरल और सुरक्षित बनती है।",
-        disclaimer: "Health Blueprint एक डायरेक्टरी और मिलान सेवा है। हम चिकित्सा सलाह नहीं देते और न ही कोई चिकित्सा प्रक्रिया करते हैं। कृपया हमेशा किसी लाइसेंस प्राप्त चिकित्सक से सलाह लें।",
+        disclaimer: "Health Blueprint एक डायरेक्टरी और मिलान सेवा है। हम चिकित्सा सलाह नहीं देते और न ही कोई चिकित्सा प्रक्रिया करते हैं। कृपया हमेशा किसी लाइसेंस प्राप्त चिकित्सक से सलाह लें। दिखाई गई अस्पताल रैंकिंग सार्वजनिक रूप से प्रकाशित 2023 चीन अस्पताल रैंकिंग से ली गई है; यात्रा मार्ग केवल सामान्य सुझाव हैं, बुकिंग नहीं।",
         contactUs: "हमसे संपर्क करें",
         rights: "सर्वाधिकार सुरक्षित।"
       },
-      common: { back: "वापस", learnMore: "और जानें", close: "बंद करें", viewAll: "सभी देखें" },
+      common: { back: "वापस", learnMore: "और जानें", close: "बंद करें", viewAll: "सभी देखें", next: "अगला", optional: "वैकल्पिक" },
       specialties: {
         checkup: "स्वास्थ्य जांच",
         oncology: "कैंसर देखभाल",
@@ -1115,12 +1670,57 @@ window.I18N = {
         dental: "दंत चिकित्सा",
         fertility: "प्रजनन क्षमता और आईवीएफ",
         orthopedics: "अस्थि रोग (ऑर्थोपेडिक्स)",
-        cardiology: "हृदय रोग विज्ञान"
+        cardiology: "हृदय रोग विज्ञान",
+        pediatrics: "बाल रोग",
+        obgyn: "महिला स्वास्थ्य और स्त्री रोग",
+        ophthalmology: "नेत्र एवं ईएनटी",
+        neurology: "स्नायु रोग विज्ञान",
+        psychiatry: "मानसिक स्वास्थ्य",
+        respiratory: "श्वसन रोग विज्ञान",
+        hematology: "रक्त रोग विज्ञान"
       },
       areas: {
-        beijing: "बीजिंग", shanghai: "शंघाई", guangzhou: "ग्वांगझोऊ",
-        shenzhen: "शेनझेन", hainan: "हैनान (बोआओ)", chengdu: "छेंगदू",
-        xian: "शीआन", hangzhou: "हांगझोऊ"
+        beijing: "बीजिंग", shanghai: "शंघाई", tianjin: "थियानजिन", chongqing: "छोंगछिंग",
+        guangzhou: "ग्वांगझोऊ", shenzhen: "शेनझेन", hangzhou: "हांगझोऊ", wenzhou: "वेनझोऊ",
+        nanjing: "नानजिंग", suzhou: "सूझोऊ", chengdu: "छेंगदू", xian: "शीआन",
+        wuhan: "वुहान", changsha: "छांगशा", zhengzhou: "झेंगझोऊ", jinan: "जिनान",
+        qingdao: "छिंगदाओ", shenyang: "शेनयांग", changchun: "छांगछुन", harbin: "हार्बिन",
+        hefei: "हेफेई", fuzhou: "फूझोऊ", nanchang: "नानछांग", hainan: "हैनान (बोआओ)"
+      },
+      join: {
+        title: "Health Blueprint एजेंट बनें",
+        subtitle: "हम चीन में रहने वाले ऐसे लोगों की तलाश कर रहे हैं जो अंतरराष्ट्रीय मरीज़ों के साथ व्यक्तिगत रूप से जा सकें — अस्पताल विज़िट, अनुवाद और यात्रा सहायता। हमें अपने बारे में थोड़ा बताएं, उपयुक्त अवसर होने पर हम संपर्क करेंगे।",
+        name: "पूरा नाम",
+        birthYear: "जन्म वर्ष",
+        phone: "फ़ोन / WeChat नंबर",
+        email: "ईमेल पता",
+        resume: "रिज़्यूमे / सीवी",
+        resumeHint: "PDF या Word दस्तावेज़",
+        submit: "आवेदन जमा करें",
+        success: "धन्यवाद! आपका आवेदन प्राप्त हो गया है। उपयुक्त अवसर होने पर हमारी टीम संपर्क करेगी।",
+        requiredNote: "* आवश्यक फ़ील्ड"
+      },
+      trip: {
+        title: "अपनी चीन यात्रा की योजना बनाएं",
+        subtitle: "अपनी अस्पताल यात्रा को अनुशंसित यात्रा मार्ग के साथ जोड़ें — यहां रहते हुए देश को थोड़ा देखें।",
+        startRegion: "गंतव्य से शुरू करें",
+        startHospital: "अस्पताल से शुरू करें",
+        chooseRegion: "क्षेत्र चुनें",
+        chooseHospitalFirst: "अस्पताल चुनें",
+        recommendedHospitals: "इस क्षेत्र में अनुशंसित अस्पताल",
+        recommendedRoutes: "अनुशंसित यात्रा मार्ग",
+        anyRegion: "कोई भी क्षेत्र — मार्ग अलग से चुनें",
+        viewRoute: "मार्ग देखें",
+        days: "{n} दिन",
+        highlights: "मुख्य आकर्षण",
+        selectThisRoute: "यह मार्ग चुनें",
+        summaryTitle: "अब तक की आपकी योजना",
+        changeRegion: "क्षेत्र बदलें",
+        changeHospital: "अस्पताल बदलें",
+        changeRoute: "मार्ग बदलें",
+        continueToAgents: "एजेंट चुनने हेतु आगे बढ़ें",
+        noRoute: "अभी तक कोई मार्ग नहीं चुना गया",
+        noHospital: "अभी तक कोई अस्पताल नहीं चुना गया"
       }
     }
   },

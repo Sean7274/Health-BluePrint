@@ -45,9 +45,12 @@
     document.getElementById("brandNameFooter").textContent = t("brand.name");
     document.title = t("brand.name") + " — " + t("brand.tagline");
 
+    document.getElementById("tripNavLabel").textContent = t("nav.trip");
+    document.getElementById("joinNavLabel").textContent = t("nav.joinUs");
+
     document.getElementById("footerAboutTitle").textContent = t("footer.aboutTitle");
     document.getElementById("footerAboutText").textContent = t("footer.aboutText");
-    document.getElementById("footerContactTitle").textContent = t("contact.title") === "Request a Consultation" ? t("footer.contactUs") : t("footer.contactUs");
+    document.getElementById("footerContactTitle").textContent = t("footer.contactUs");
     document.getElementById("footerDisclaimer").textContent = t("footer.disclaimer");
     document.getElementById("footerRights").textContent = t("footer.rights");
     document.getElementById("footerYear").textContent = String(new Date().getFullYear());
@@ -97,11 +100,15 @@
     } else if (r.segments[0] === "hospitals") {
       renderHospitalList(r.query);
     } else if (r.segments[0] === "hospital" && r.segments[1]) {
-      renderHospitalDetail(r.segments[1]);
+      renderHospitalDetail(r.segments[1], r.query);
     } else if (r.segments[0] === "program" && r.segments[1]) {
-      renderProgramDetail(r.segments[1]);
+      renderProgramDetail(r.segments[1], r.query);
     } else if (r.segments[0] === "agent" && r.segments[1]) {
-      renderContact(r.segments[1], r.query.program);
+      renderContact(r.segments[1], r.query);
+    } else if (r.segments[0] === "join") {
+      renderJoin();
+    } else if (r.segments[0] === "trip") {
+      renderTrip(r.query);
     } else {
       renderHome();
     }
@@ -114,21 +121,47 @@
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
     });
   }
+  function qs(obj) {
+    var parts = Object.keys(obj).filter(function (k) { return obj[k]; }).map(function (k) {
+      return encodeURIComponent(k) + "=" + encodeURIComponent(obj[k]);
+    });
+    return parts.length ? "?" + parts.join("&") : "";
+  }
   function specialtyLabel(id) { return t("specialties." + id); }
   function areaLabel(id) { return t("areas." + id); }
   function hospitalById(id) { return D.hospitals.filter(function (h) { return h.id === id; })[0]; }
-  function programById(id) { return D.programs.filter(function (p) { return p.id === id; })[0]; }
   function agentById(id) { return D.agents.filter(function (a) { return a.id === id; })[0]; }
-  function programsForHospital(hid) { return D.programs.filter(function (p) { return p.hospitalId === hid; }); }
+  function routeById(id) { return D.routes.filter(function (r) { return r.id === id; })[0]; }
   function agentsForSpecialty(cat) { return D.agents.filter(function (a) { return a.specialties.indexOf(cat) !== -1; }); }
-
-  function areaIcon(id) {
-    var icons = { beijing: "🏛️", shanghai: "🌆", hangzhou: "🌊", guangzhou: "🌴", shenzhen: "🏙️", hainan: "🏝️", chengdu: "🐼", xian: "🏯" };
-    return icons[id] || "📍";
+  function hospitalsForArea(area) {
+    return D.hospitals.filter(function (h) { return h.area === area; })
+      .sort(function (a, b) { return D.tierOrder.indexOf(a.tier) - D.tierOrder.indexOf(b.tier); });
   }
-  function specialtyIcon(id) {
-    var icons = { checkup: "🩺", oncology: "🎗️", tcm: "🌿", cosmetic: "✨", dental: "🦷", fertility: "👶", orthopedics: "🦴", cardiology: "❤️" };
-    return icons[id] || "🏥";
+  function makeProgramId(hospitalId, tag) { return hospitalId + "-" + tag; }
+  function parseProgramId(pid) {
+    var dash = pid.indexOf("-");
+    return { hospitalId: pid.slice(0, dash), tag: pid.slice(dash + 1) };
+  }
+
+  var AREA_ICONS = {
+    beijing: "🏛️", shanghai: "🌆", tianjin: "🌉", chongqing: "🏔️", guangzhou: "🌴",
+    shenzhen: "🏙️", hangzhou: "🌊", wenzhou: "⛰️", nanjing: "🏯", suzhou: "🌸",
+    chengdu: "🐼", xian: "🗿", wuhan: "🌉", changsha: "🌶️", zhengzhou: "🏺",
+    jinan: "💧", qingdao: "⚓", shenyang: "🏰", changchun: "🌳", harbin: "❄️",
+    hefei: "🏞️", fuzhou: "🍵", nanchang: "📖"
+  };
+  function areaIcon(id) { return AREA_ICONS[id] || "📍"; }
+
+  var SPECIALTY_ICONS = {
+    checkup: "🩺", oncology: "🎗️", cardiology: "❤️", orthopedics: "🦴", dental: "🦷",
+    pediatrics: "🧸", obgyn: "👶", ophthalmology: "👁️", neurology: "🧠",
+    psychiatry: "💭", respiratory: "🫁", hematology: "🩸"
+  };
+  function specialtyIcon(id) { return SPECIALTY_ICONS[id] || "🏥"; }
+
+  var TIER_CLASS_COLOR = { "A++++": "#b8860b", "A+++": "#c8622a", "A++": "#0f6b5c", "A+": "#2a6ec8", "A": "#6b6b6b" };
+  function tierBadgeHtml(tier) {
+    return '<span class="tier-badge" style="color:' + TIER_CLASS_COLOR[tier] + '">🏅 ' + esc(tier) + "</span>";
   }
 
   /* ---------------- HOME ---------------- */
@@ -158,11 +191,11 @@
       "</section>";
 
     var areaGrid = document.getElementById("areaGrid");
-    D.areas.forEach(function (a) {
+    D.areas.forEach(function (id) {
       var link = document.createElement("a");
-      link.href = "#/hospitals?area=" + a.id;
+      link.href = "#/hospitals?area=" + id;
       link.className = "area-card";
-      link.innerHTML = '<span class="icon" aria-hidden="true">' + areaIcon(a.id) + "</span><span>" + esc(areaLabel(a.id)) + "</span>";
+      link.innerHTML = '<span class="icon" aria-hidden="true">' + areaIcon(id) + "</span><span>" + esc(areaLabel(id)) + "</span>";
       areaGrid.appendChild(link);
     });
 
@@ -205,7 +238,7 @@
 
     var areaSel = document.getElementById("filterArea");
     areaSel.innerHTML = '<option value="">' + esc(t("filters.allAreas")) + "</option>" +
-      D.areas.map(function (a) { return '<option value="' + a.id + '">' + esc(areaLabel(a.id)) + "</option>"; }).join("");
+      D.areas.map(function (id) { return '<option value="' + id + '">' + esc(areaLabel(id)) + "</option>"; }).join("");
     areaSel.value = query.area || "";
 
     var specSel = document.getElementById("filterSpecialty");
@@ -221,11 +254,11 @@
         if (area && h.area !== area) return false;
         if (specialty && h.tags.indexOf(specialty) === -1) return false;
         if (term) {
-          var hay = (h.name + " " + h.localName + " " + D.text(h.desc, state.lang)).toLowerCase();
+          var hay = (h.name + " " + h.nameEn).toLowerCase();
           if (hay.indexOf(term) === -1) return false;
         }
         return true;
-      });
+      }).sort(function (a, b) { return D.tierOrder.indexOf(a.tier) - D.tierOrder.indexOf(b.tier); });
       document.getElementById("resultsCount").textContent = t("filters.resultsCount", { n: list.length });
       var resultsEl = document.getElementById("hospitalResults");
       if (list.length === 0) {
@@ -242,92 +275,79 @@
   }
 
   function hospitalCardHtml(h) {
-    var progCount = programsForHospital(h.id).length;
     return '<a class="card card-clickable" href="#/hospital/' + h.id + '">' +
-      '<div class="card-tags">' + h.tags.map(function (tag) { return '<span class="tag">' + esc(specialtyLabel(tag)) + "</span>"; }).join("") + "</div>" +
+      '<div class="card-tags">' + tierBadgeHtml(h.tier) + h.tags.map(function (tag) { return '<span class="tag">' + esc(specialtyLabel(tag)) + "</span>"; }).join("") + "</div>" +
       "<h3>" + esc(h.name) + "</h3>" +
+      '<p style="color:var(--color-text-muted);font-size:0.9em;margin:0;">' + esc(h.nameEn) + "</p>" +
       '<div class="card-meta">' +
         '<span>📍 ' + esc(areaLabel(h.area)) + "</span>" +
-        '<span class="rating-badge">★ ' + h.rating + "</span>" +
       "</div>" +
-      "<p>" + esc(D.text(h.desc, state.lang)) + "</p>" +
-      '<div class="card-meta"><span>' + esc(t("hospital.programsAvailable", { n: progCount })) + "</span></div>" +
     "</a>";
   }
 
   /* ---------------- HOSPITAL DETAIL ---------------- */
-  function renderHospitalDetail(id) {
+  function renderHospitalDetail(id, query) {
     var h = hospitalById(id);
     if (!h) { renderHome(); return; }
-    var programs = programsForHospital(id);
+    var routeId = query && query.route;
+    var sel = routeId ? routeById(routeId) : null;
 
     mainEl.innerHTML =
       '<section class="section container">' +
         '<a class="btn-back" href="#/hospitals"><span class="arrow" aria-hidden="true">←</span>' + esc(t("common.back")) + "</a>" +
+        (sel ? '<div class="plan-summary"><span><strong>' + esc(t("contact.summaryRoute")) + '</strong>' + esc(D.text(sel.name, state.lang)) + "</span></div>" : "") +
         '<div class="detail-header" style="margin-top:14px;">' +
           '<div class="detail-title-block">' +
             "<h1>" + esc(h.name) + "</h1>" +
-            '<div class="local-name">' + esc(h.localName) + "</div>" +
-            '<div class="card-tags">' + h.tags.map(function (tag) { return '<span class="tag">' + esc(specialtyLabel(tag)) + "</span>"; }).join("") + "</div>" +
+            '<div class="local-name">' + esc(h.nameEn) + "</div>" +
+            '<div class="card-tags">' + tierBadgeHtml(h.tier) + h.tags.map(function (tag) { return '<span class="tag">' + esc(specialtyLabel(tag)) + "</span>"; }).join("") + "</div>" +
           "</div>" +
         "</div>" +
         '<div class="info-strip">' +
           "<span>📍 <strong>" + esc(areaLabel(h.area)) + "</strong></span>" +
-          "<span>★ <strong>" + h.rating + "</strong></span>" +
-          "<span>🏥 <strong>" + h.beds + "</strong> beds</span>" +
-          "<span>👥 <strong>" + h.intlPatientsPerYear.toLocaleString() + "</strong>/yr intl. patients</span>" +
+          "<span>" + esc(t("hospital.tierLabel")) + ": <strong>" + esc(h.tier) + "</strong></span>" +
         "</div>" +
-        "<h2>" + esc(t("hospital.aboutTitle")) + "</h2>" +
-        "<p>" + esc(D.text(h.desc, state.lang)) + "</p>" +
+        (h.website
+          ? '<p><a class="official-link" href="' + esc(h.website) + '" target="_blank" rel="noopener noreferrer">🔗 ' + esc(t("hospital.officialWebsite")) + "</a></p>"
+          : '<p class="no-website-note">' + esc(t("hospital.officialWebsite")) + ": —</p>") +
         '<div class="step-indicator" style="margin-top:24px;">' + esc(t("steps.program")) + "</div>" +
         "<h2>" + esc(t("hospital.programsTitle")) + "</h2>" +
-        '<div class="card-grid">' + programs.map(programCardHtml).join("") + "</div>" +
+        '<div class="card-grid">' + h.tags.map(function (tag) { return specialtyCardHtml(h, tag, routeId); }).join("") + "</div>" +
       "</section>";
   }
 
-  function programCardHtml(p) {
-    return '<a class="card card-clickable" href="#/program/' + p.id + '">' +
-      '<div class="card-tags"><span class="tag">' + esc(specialtyLabel(p.category)) + "</span></div>" +
-      "<h3>" + esc(D.text(p.name, state.lang)) + "</h3>" +
-      "<p>" + esc(D.text(p.desc, state.lang)) + "</p>" +
-      '<div class="card-meta">' +
-        "<span>⏱ " + esc(D.text(p.duration, state.lang)) + "</span>" +
-        "<span>💰 " + esc(p.price) + "</span>" +
-      "</div>" +
+  function specialtyCardHtml(h, tag, routeId) {
+    var href = "#/program/" + makeProgramId(h.id, tag) + qs({ route: routeId || "" });
+    return '<a class="card card-clickable" href="' + href + '">' +
+      '<div class="card-tags"><span class="tag">' + esc(specialtyIcon(tag)) + " " + esc(specialtyLabel(tag)) + "</span></div>" +
+      "<h3>" + esc(specialtyLabel(tag)) + "</h3>" +
       '<span class="btn btn-secondary btn-block">' + esc(t("program.viewDetails")) + "</span>" +
     "</a>";
   }
 
-  /* ---------------- PROGRAM DETAIL ---------------- */
-  function renderProgramDetail(id) {
-    var p = programById(id);
-    if (!p) { renderHome(); return; }
-    var h = hospitalById(p.hospitalId);
-    var agents = agentsForSpecialty(p.category);
-    var includes = D.textList(p.includes, state.lang);
+  /* ---------------- PROGRAM (SPECIALTY) DETAIL ---------------- */
+  function renderProgramDetail(pid, query) {
+    var parsed = parseProgramId(pid);
+    var h = hospitalById(parsed.hospitalId);
+    if (!h || h.tags.indexOf(parsed.tag) === -1) { renderHome(); return; }
+    var tag = parsed.tag;
+    var routeId = query && query.route;
+    var agents = agentsForSpecialty(tag);
 
     mainEl.innerHTML =
       '<section class="section container">' +
-        '<a class="btn-back" href="#/hospital/' + h.id + '"><span class="arrow" aria-hidden="true">←</span>' + esc(t("common.back")) + "</a>" +
+        '<a class="btn-back" href="#/hospital/' + h.id + qs({ route: routeId || "" }) + '"><span class="arrow" aria-hidden="true">←</span>' + esc(t("common.back")) + "</a>" +
         '<div class="detail-title-block" style="margin-top:14px;">' +
-          '<div class="card-tags">' +
-            '<span class="tag">' + esc(specialtyLabel(p.category)) + "</span>" +
-          "</div>" +
-          "<h1>" + esc(D.text(p.name, state.lang)) + "</h1>" +
+          '<div class="card-tags">' + tierBadgeHtml(h.tier) + '<span class="tag">' + esc(specialtyLabel(tag)) + "</span></div>" +
+          "<h1>" + esc(specialtyLabel(tag)) + "</h1>" +
           '<p class="local-name">' + esc(h.name) + " · " + esc(areaLabel(h.area)) + "</p>" +
         "</div>" +
-        '<div class="info-strip">' +
-          "<span>" + esc(t("program.duration")) + ": <strong>" + esc(D.text(p.duration, state.lang)) + "</strong></span>" +
-          "<span>" + esc(t("program.priceRange")) + ": <strong>" + esc(p.price) + "</strong></span>" +
-        "</div>" +
-        "<p>" + esc(D.text(p.desc, state.lang)) + "</p>" +
-        "<h2>" + esc(t("program.included")) + "</h2>" +
-        '<ul class="included-list">' + includes.map(function (i) { return "<li>" + esc(i) + "</li>"; }).join("") + "</ul>" +
+        "<p>" + esc(t("program.genericNote")) + "</p>" +
 
         '<div class="step-indicator" style="margin-top:28px;">' + esc(t("steps.agent")) + "</div>" +
         "<h2>" + esc(t("program.agentsTitle")) + "</h2>" +
         "<p>" + esc(t("program.agentsSubtitle")) + "</p>" +
-        '<div class="card-grid">' + agents.map(function (a) { return agentCardHtml(a, p.id); }).join("") + "</div>" +
+        '<div class="card-grid">' + agents.map(function (a) { return agentCardHtml(a, pid, routeId); }).join("") + "</div>" +
       "</section>";
   }
 
@@ -335,9 +355,10 @@
     return name.split(" ").map(function (part) { return part.charAt(0); }).slice(0, 2).join("").toUpperCase();
   }
 
-  function agentCardHtml(a, programId) {
+  function agentCardHtml(a, programId, routeId) {
     var services = D.textList(a.services, state.lang);
     var langLabels = a.languages.map(function (code) { return (I18N.meta[code] || {}).label || code; });
+    var href = "#/agent/" + a.id + qs({ program: programId, route: routeId || "" });
     return '<div class="card agent-card">' +
       '<div class="agent-top">' +
         '<div class="agent-avatar" aria-hidden="true">' + esc(agentInitials(a.name)) + "</div>" +
@@ -351,16 +372,19 @@
         '<div class="agent-langs">' + langLabels.map(function (l) { return '<span class="lang-pill">' + esc(l) + "</span>"; }).join("") + "</div>" +
       "</div>" +
       '<ul class="included-list">' + services.slice(0, 4).map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ul>" +
-      '<a class="btn btn-primary btn-block" href="#/agent/' + a.id + "?program=" + programId + '">' + esc(t("agent.selectAgent")) + "</a>" +
+      '<a class="btn btn-primary btn-block" href="' + href + '">' + esc(t("agent.selectAgent")) + "</a>" +
     "</div>";
   }
 
   /* ---------------- CONTACT / BOOKING ---------------- */
-  function renderContact(agentId, programId) {
+  function renderContact(agentId, query) {
     var a = agentById(agentId);
     if (!a) { renderHome(); return; }
-    var p = programId ? programById(programId) : null;
-    var h = p ? hospitalById(p.hospitalId) : null;
+    var programId = query && query.program;
+    var parsed = programId ? parseProgramId(programId) : null;
+    var h = parsed ? hospitalById(parsed.hospitalId) : null;
+    var routeId = query && query.route;
+    var sel = routeId ? routeById(routeId) : null;
 
     var langOptions = SUPPORTED_LANGS.map(function (code) {
       return '<option value="' + code + '"' + (code === state.lang ? " selected" : "") + ">" + I18N.meta[code].label + "</option>";
@@ -368,13 +392,14 @@
 
     mainEl.innerHTML =
       '<section class="section container">' +
-        '<a class="btn-back" href="' + (p ? "#/program/" + p.id : "#/") + '"><span class="arrow" aria-hidden="true">←</span>' + esc(t("common.back")) + "</a>" +
+        '<a class="btn-back" href="' + (programId ? "#/program/" + programId + qs({ route: routeId || "" }) : "#/") + '"><span class="arrow" aria-hidden="true">←</span>' + esc(t("common.back")) + "</a>" +
         '<div class="form-card" style="margin-top:14px;">' +
           "<h1>" + esc(t("contact.title")) + "</h1>" +
           "<p>" + esc(t("contact.subtitle")) + "</p>" +
           '<div class="form-summary">' +
             (h ? "<span><strong>" + esc(t("contact.summaryHospital")) + "</strong>" + esc(h.name) + "</span>" : "") +
-            (p ? "<span><strong>" + esc(t("contact.summaryProgram")) + "</strong>" + esc(D.text(p.name, state.lang)) + "</span>" : "") +
+            (parsed ? "<span><strong>" + esc(t("contact.summaryProgram")) + "</strong>" + esc(specialtyLabel(parsed.tag)) + "</span>" : "") +
+            (sel ? "<span><strong>" + esc(t("contact.summaryRoute")) + "</strong>" + esc(D.text(sel.name, state.lang)) + "</span>" : "") +
             "<span><strong>" + esc(t("contact.summaryAgent")) + "</strong>" + esc(a.name) + "</span>" +
           "</div>" +
           '<div id="formArea">' +
@@ -409,8 +434,9 @@
         preferredLanguage: fd.get("preferredLanguage"),
         message: fd.get("message") || "",
         hospital: h ? h.name : "",
-        program: p ? D.text(p.name, "en") : "",
-        agent: a.name
+        program: parsed ? specialtyLabel(parsed.tag) : "",
+        agent: a.name,
+        route: sel ? D.text(sel.name, "en") : ""
       };
       var body = Object.keys(payload).map(function (k) {
         return encodeURIComponent(k) + "=" + encodeURIComponent(payload[k]);
@@ -423,6 +449,150 @@
 
     function showSuccess() {
       document.getElementById("formArea").innerHTML = '<div class="success-box">✓ ' + esc(t("contact.success")) + "</div>";
+    }
+  }
+
+  /* ---------------- JOIN AS AGENT ---------------- */
+  function renderJoin() {
+    mainEl.innerHTML =
+      '<section class="section container">' +
+        '<a class="btn-back" href="#/"><span class="arrow" aria-hidden="true">←</span>' + esc(t("common.back")) + "</a>" +
+        '<div class="form-card" style="margin-top:14px;">' +
+          "<h1>" + esc(t("join.title")) + "</h1>" +
+          "<p>" + esc(t("join.subtitle")) + "</p>" +
+          '<div id="joinFormArea">' +
+          '<form id="joinForm">' +
+            '<p class="required-note">' + esc(t("join.requiredNote")) + "</p>" +
+            '<div class="field-row">' +
+              '<div class="field"><label for="jName">' + esc(t("join.name")) + ' *</label><input id="jName" name="name" required></div>' +
+              '<div class="field"><label for="jYear">' + esc(t("join.birthYear")) + ' *</label><input id="jYear" name="birthYear" type="number" min="1930" max="2015" required></div>' +
+            "</div>" +
+            '<div class="field-row">' +
+              '<div class="field"><label for="jPhone">' + esc(t("join.phone")) + ' *</label><input id="jPhone" name="phone" required></div>' +
+              '<div class="field"><label for="jEmail">' + esc(t("join.email")) + " (" + esc(t("common.optional")) + ')</label><input id="jEmail" type="email" name="email"></div>' +
+            "</div>" +
+            '<div class="field"><label for="jResume">' + esc(t("join.resume")) + " (" + esc(t("common.optional")) + ')</label>' +
+              '<input id="jResume" type="file" name="resume" accept=".pdf,.doc,.docx">' +
+              '<span style="color:var(--color-text-muted);font-size:0.85em;">' + esc(t("join.resumeHint")) + "</span>" +
+            "</div>" +
+            '<button type="submit" class="btn btn-primary btn-block">' + esc(t("join.submit")) + "</button>" +
+          "</form>" +
+          "</div>" +
+        "</div>" +
+      "</section>";
+
+    var form = document.getElementById("joinForm");
+    form.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var fd = new FormData(form);
+      fd.set("form-name", "agent-application");
+      fetch("/", { method: "POST", body: fd })
+        .then(function () { showJoinSuccess(); })
+        .catch(function () { showJoinSuccess(); });
+    });
+
+    function showJoinSuccess() {
+      document.getElementById("joinFormArea").innerHTML = '<div class="success-box">✓ ' + esc(t("join.success")) + "</div>";
+    }
+  }
+
+  /* ---------------- TRIP PLANNER ---------------- */
+  function tripHref(query, patch) {
+    var merged = {};
+    Object.keys(query || {}).forEach(function (k) { if (query[k]) merged[k] = query[k]; });
+    Object.keys(patch).forEach(function (k) { if (patch[k]) { merged[k] = patch[k]; } else { delete merged[k]; } });
+    return "#/trip" + qs(merged);
+  }
+
+  function renderTrip(query) {
+    query = query || {};
+    var area = query.area || "";
+    var hospitalId = query.hospital || "";
+    var routeId = query.route || "";
+    var selHospital = hospitalId ? hospitalById(hospitalId) : null;
+    var selRoute = routeId ? routeById(routeId) : null;
+
+    var html = '<section class="section container">';
+    html += "<h1>" + esc(t("trip.title")) + "</h1><p>" + esc(t("trip.subtitle")) + "</p>";
+
+    html += '<div class="plan-summary">';
+    html += "<span><strong>" + esc(t("contact.summaryHospital")) + "</strong>" +
+      (selHospital ? esc(selHospital.name) : '<span class="muted">' + esc(t("trip.noHospital")) + "</span>") + "</span>";
+    if (selHospital) html += '<a class="link-btn" href="' + tripHref(query, { hospital: null }) + '">✕ ' + esc(t("trip.changeHospital")) + "</a>";
+    html += "<span><strong>" + esc(t("contact.summaryRoute")) + "</strong>" +
+      (selRoute ? esc(D.text(selRoute.name, state.lang)) : '<span class="muted">' + esc(t("trip.noRoute")) + "</span>") + "</span>";
+    if (selRoute) html += '<a class="link-btn" href="' + tripHref(query, { route: null }) + '">✕ ' + esc(t("trip.changeRoute")) + "</a>";
+    if (selHospital) {
+      html += '<a class="btn btn-primary" href="#/hospital/' + selHospital.id + qs({ route: routeId }) + '">' + esc(t("trip.continueToAgents")) + "</a>";
+    }
+    html += "</div>";
+
+    html += '<h2 style="margin-top:30px;">' + esc(t("trip.chooseRegion")) + "</h2>";
+    html += '<div class="area-grid">';
+    D.areas.forEach(function (id) {
+      var active = id === area;
+      html += '<a class="area-card' + (active ? " active" : "") + '" href="' + tripHref(query, { area: id }) + '">' +
+        '<span class="icon" aria-hidden="true">' + areaIcon(id) + "</span><span>" + esc(areaLabel(id)) + "</span></a>";
+    });
+    html += "</div>";
+
+    if (area) {
+      var hospitalsInArea = hospitalsForArea(area).slice(0, 9);
+      html += '<h2 style="margin-top:30px;">' + esc(t("trip.recommendedHospitals")) + " — " + esc(areaLabel(area)) + "</h2>";
+      html += '<div class="card-grid">';
+      hospitalsInArea.forEach(function (h) {
+        var active = h.id === hospitalId;
+        html += '<a class="card card-clickable' + (active ? " active" : "") + '" href="' + tripHref(query, { hospital: h.id }) + '">' +
+          '<div class="card-tags">' + tierBadgeHtml(h.tier) + "</div>" +
+          "<h3>" + esc(h.name) + "</h3>" +
+          '<p style="color:var(--color-text-muted);font-size:0.9em;margin:0;">' + esc(h.nameEn) + "</p>" +
+        "</a>";
+      });
+      html += "</div>";
+    } else {
+      html += '<h2 style="margin-top:30px;">' + esc(t("trip.chooseHospitalFirst")) + "</h2>";
+      html += '<div class="filter-group" style="max-width:420px;"><input type="search" id="tripHospitalSearch" placeholder="' + esc(t("filters.searchPlaceholder")) + '"></div>';
+      html += '<div class="card-grid" id="tripHospitalResults" style="margin-top:14px;"></div>';
+    }
+
+    var routesToShow = area ? D.routes.filter(function (r) { return r.area === area; }) : D.routes;
+    html += '<h2 style="margin-top:30px;">' + esc(t("trip.recommendedRoutes")) + (area ? "" : " — " + esc(t("trip.anyRegion"))) + "</h2>";
+    html += '<div class="card-grid">';
+    routesToShow.forEach(function (r) {
+      var active = r.id === routeId;
+      html += '<div class="card route-card' + (active ? " active" : "") + '">' +
+        "<h3>" + esc(D.text(r.name, state.lang)) + "</h3>" +
+        '<div class="route-days">' + esc(t("trip.days", { n: r.days })) + "</div>" +
+        '<strong style="font-size:0.85em;">' + esc(t("trip.highlights")) + ":</strong>" +
+        '<ul class="included-list">' + D.textList(r.highlights, state.lang).map(function (hl) { return "<li>" + esc(hl) + "</li>"; }).join("") + "</ul>" +
+        (active
+          ? '<span class="btn btn-secondary btn-block" aria-current="true">✓ ' + esc(t("trip.selectThisRoute")) + "</span>"
+          : '<a class="btn btn-primary btn-block" href="' + tripHref(query, { route: r.id }) + '">' + esc(t("trip.selectThisRoute")) + "</a>") +
+      "</div>";
+    });
+    html += "</div>";
+
+    html += "</section>";
+    mainEl.innerHTML = html;
+
+    if (!area) {
+      var searchInput = document.getElementById("tripHospitalSearch");
+      var resultsEl = document.getElementById("tripHospitalResults");
+      function updateHospitalSearch() {
+        var term = searchInput.value.trim().toLowerCase();
+        if (!term) { resultsEl.innerHTML = ""; return; }
+        var list = D.hospitals.filter(function (h) {
+          return (h.name + " " + h.nameEn).toLowerCase().indexOf(term) !== -1;
+        }).slice(0, 12);
+        resultsEl.innerHTML = list.map(function (h) {
+          return '<a class="card card-clickable" href="' + tripHref(query, { hospital: h.id }) + '">' +
+            '<div class="card-tags">' + tierBadgeHtml(h.tier) + "</div>" +
+            "<h3>" + esc(h.name) + "</h3>" +
+            '<p style="color:var(--color-text-muted);font-size:0.9em;margin:0;">' + esc(h.nameEn) + "</p>" +
+          "</a>";
+        }).join("");
+      }
+      searchInput.oninput = updateHospitalSearch;
     }
   }
 
