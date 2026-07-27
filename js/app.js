@@ -441,6 +441,7 @@
         return;
       }
       resultsEl.innerHTML = list.map(function (h) { return hospitalCardHtml(h, specSel.value); }).join("");
+      wireHospitalPhotoFallbacks(resultsEl);
     }
 
     areaSel.onchange = update;
@@ -449,8 +450,14 @@
     update();
   }
 
+  // Only real photos/logos are shown here — no decorative placeholder when
+  // neither is available, per product decision to avoid generic illustrations.
   function hospitalCardHtml(h, specialty) {
+    var media = h.photo
+      ? '<div class="hospital-card-media"><img class="hospital-card-photo" src="' + esc(h.photo) + '" alt="" loading="lazy"></div>'
+      : (h.logo ? '<div class="hospital-card-media"><img class="hospital-card-photo" src="' + esc(h.logo) + '" alt="" loading="lazy"></div>' : "");
     return '<a class="card card-clickable" href="#/hospital/' + h.id + qs({ specialty: specialty || "" }) + '">' +
+      media +
       '<div class="card-tags">' + tierBadgeHtml(h.tier) + h.tags.map(function (tag) { return '<span class="tag">' + esc(specialtyLabel(tag)) + "</span>"; }).join("") + "</div>" +
       "<h3>" + esc(h.name) + "</h3>" +
       '<p style="color:var(--color-text-muted);font-size:0.9em;margin:0;">' + esc(h.nameEn) + "</p>" +
@@ -458,6 +465,12 @@
         "<span>" + Icons.html("location", { size: 14 }) + esc(areaLabel(h.area)) + "</span>" +
       "</div>" +
     "</a>";
+  }
+
+  function wireHospitalPhotoFallbacks(container) {
+    container.querySelectorAll(".hospital-card-media img").forEach(function (img) {
+      img.onerror = function () { img.parentElement.remove(); };
+    });
   }
 
   /* ---------------- HOSPITAL DETAIL ---------------- */
@@ -495,27 +508,31 @@
         '<div class="card-grid">' + orderedTags.map(function (tag) { return specialtyCardHtml(h, tag, rq, tag === wantedSpecialty); }).join("") + "</div>" +
       "</section>";
 
-    var photoBlock = mainEl.querySelector(".hospital-photo-block[data-tier]");
+    var photoBlock = mainEl.querySelector(".hospital-photo-block");
     if (photoBlock) {
       var photoImg = photoBlock.querySelector("img");
-      photoImg.onerror = function () {
-        var tier = photoBlock.getAttribute("data-tier");
-        photoBlock.innerHTML = Icons.hospitalIllustration(tier) + '<p class="illustration-note">' + esc(t("hospital.illustrationNote")) + "</p>";
-      };
+      // Real photos/logos are hotlinked from external sources we can't
+      // guarantee stay up — if one fails to load, remove the block entirely
+      // rather than showing a generic placeholder illustration.
+      photoImg.onerror = function () { photoBlock.remove(); };
     }
   }
 
-  // Real photos are optional (h.photo) and hotlinked from external sources
-  // we can't guarantee stay up — if one fails to load, onerror below swaps
-  // the whole block to our reliable illustrated fallback automatically.
+  // Only a real photo or a real hospital logo is shown — if neither is
+  // available, nothing is rendered here (no decorative placeholder).
   function hospitalPhotoBlockHtml(h) {
     if (h.photo) {
-      return '<div class="hospital-photo-block" data-tier="' + esc(h.tier) + '">' +
+      return '<div class="hospital-photo-block">' +
         '<img class="hospital-illustration" src="' + esc(h.photo) + '" alt="' + esc(h.name) + '" loading="lazy">' +
         '<p class="illustration-note">' + esc(t("hospital.photoNote")) + (h.photoSource ? " (" + esc(h.photoSource) + ")" : "") + "</p>" +
       "</div>";
     }
-    return '<div class="hospital-photo-block">' + Icons.hospitalIllustration(h.tier) + '<p class="illustration-note">' + esc(t("hospital.illustrationNote")) + "</p></div>";
+    if (h.logo) {
+      return '<div class="hospital-photo-block">' +
+        '<img class="hospital-illustration" src="' + esc(h.logo) + '" alt="' + esc(h.name) + '" loading="lazy">' +
+      "</div>";
+    }
+    return "";
   }
 
   function specialtyCardHtml(h, tag, rq, isRecommended) {
