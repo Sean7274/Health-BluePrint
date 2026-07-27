@@ -341,8 +341,26 @@
 
   function slug(i) { return "h" + String(i + 1).padStart(3, "0"); }
 
+  // Real exterior photos for a small curated set of flagship hospitals,
+  // sourced from Wikimedia Commons via its documented stable hotlink
+  // pattern (Special:FilePath redirects to the current upload URL). Every
+  // other hospital uses the illustrated fallback; onerror in app.js swaps
+  // to it automatically if one of these ever fails to load too.
+  var PHOTOS = {
+    "中国人民解放军总医院": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/PLA_General_Hospital_at_dusk_(20211011175558).jpg", source: "Wikimedia Commons" },
+    "中国医学科学院北京协和医院": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Old_building_of_Peking_Union_Medical_College_Hospital_(20180821142741).jpg", source: "Wikimedia Commons" },
+    "四川大学华西医院": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/West_China_Hospital_01_2014-09.JPG", source: "Wikimedia Commons" },
+    "中国医学科学院阜外医院": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Fuwai_Hospital_(20201218164122).jpg", source: "Wikimedia Commons" },
+    "中南大学湘雅医院": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Xiangya_Hospital_of_Central_South_University_1.jpg", source: "Wikimedia Commons" },
+    "复旦大学附属中山医院": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Building_of_Shanghai_Zhongshan_Hospital.jpg", source: "Wikimedia Commons" },
+    "上海交通大学医学院附属瑞金医院": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Out-patient_Department_of_Ruijin_Hospital_shanghai,_Jun_2020.jpg", source: "Wikimedia Commons" },
+    "北京积水潭医院": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Beijing_Jishuitan_Hospital,_Xinjiekou_(20211222135230).jpg", source: "Wikimedia Commons" },
+    "首都医科大学附属北京天坛医院": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Inpatient_buildings_of_Beijing_Tiantan_Hospital_(20211210143431).jpg", source: "Wikimedia Commons" }
+  };
+
   var hospitals = RAW_HOSPITALS.map(function (row, i) {
     var tier = row[0], name = row[1], nameEn = row[2], area = row[3];
+    var photo = Object.prototype.hasOwnProperty.call(PHOTOS, name) ? PHOTOS[name] : null;
     return {
       id: slug(i),
       tier: tier,
@@ -350,6 +368,8 @@
       nameEn: nameEn,
       area: area,
       website: Object.prototype.hasOwnProperty.call(WEBSITES, name) ? WEBSITES[name] : null,
+      photo: photo ? photo.url : null,
+      photoSource: photo ? photo.source : null,
       tags: inferTags(name)
     };
   });
@@ -499,21 +519,25 @@
             name: { en: "White Cut Chicken", "zh-CN": "白切鸡", "zh-TW": "白切雞" },
             desc: { en: "Poached chicken served with ginger-scallion sauce — a Cantonese classic.", "zh-CN": "白切鸡配姜葱酱，粤菜经典。", "zh-TW": "白切雞配薑蔥醬，粵菜經典。" } },
           { id: "d-hargow", region: "food-dimsum", icon: "food-dimsum", tags: ["seafood"],
+            photo: "https://commons.wikimedia.org/wiki/Special:FilePath/Ha_Gow_(Cantonese_Shrimp_Dumplings).jpeg",
             name: { en: "Har Gow (Shrimp Dumplings)", "zh-CN": "虾饺", "zh-TW": "蝦餃" },
             desc: { en: "Steamed translucent dumplings filled with shrimp, a dim sum staple.", "zh-CN": "晶莹剔透的虾肉蒸饺，点心必点。", "zh-TW": "晶瑩剔透的蝦肉蒸餃，點心必點。" } },
           { id: "d-siugo", region: "food-dimsum", icon: "food-dimsum", tags: ["poultry"],
             name: { en: "Roast Goose", "zh-CN": "烧鹅", "zh-TW": "燒鵝" },
             desc: { en: "Crisp-skinned roast goose, a Guangzhou specialty.", "zh-CN": "皮脆肉嫩，广州名菜。", "zh-TW": "皮脆肉嫩，廣州名菜。" } },
           { id: "d-hotpot", region: "food-spicy", icon: "food-spicy", tags: ["beef", "spicy", "vegOption"],
+            photo: "https://commons.wikimedia.org/wiki/Special:FilePath/Chengdu_Hotpot.jpg",
             name: { en: "Sichuan Hot Pot", "zh-CN": "火锅", "zh-TW": "火鍋" },
             desc: { en: "Communal simmering pot; broth and ingredients (meat, tofu, vegetables) are fully customizable.", "zh-CN": "共享火锅，汤底与食材（肉类、豆腐、蔬菜）可自由搭配。", "zh-TW": "共享火鍋，湯底與食材（肉類、豆腐、蔬菜）可自由搭配。" } },
           { id: "d-mapotofu", region: "food-spicy", icon: "food-spicy", tags: ["pork", "spicy", "vegOption"],
+            photo: "https://commons.wikimedia.org/wiki/Special:FilePath/Mapo_tofu.JPG",
             name: { en: "Mapo Tofu", "zh-CN": "麻婆豆腐", "zh-TW": "麻婆豆腐" },
             desc: { en: "Silken tofu in a spicy sauce, traditionally with a little minced pork.", "zh-CN": "麻辣豆腐，传统做法加少量肉末。", "zh-TW": "麻辣豆腐，傳統做法加少量肉末。" } },
           { id: "d-dandan", region: "food-spicy", icon: "food-spicy", tags: ["pork", "spicy"],
             name: { en: "Dan Dan Noodles", "zh-CN": "担担面", "zh-TW": "擔擔麵" },
             desc: { en: "Spicy noodles topped with preserved vegetables and minced pork.", "zh-CN": "辣味面条，配芽菜与肉末。", "zh-TW": "辣味麵條，配芽菜與肉末。" } },
           { id: "d-pekingduck", region: "food-wheat", icon: "food-wheat", tags: ["poultry"],
+            photo: "https://commons.wikimedia.org/wiki/Special:FilePath/Sliced_Peking_Duck_with_traditional_condiments.jpg",
             name: { en: "Peking Duck", "zh-CN": "北京烤鸭", "zh-TW": "北京烤鴨" },
             desc: { en: "Roast duck carved tableside, wrapped in thin pancakes with scallion and sauce.", "zh-CN": "现场片鸭，薄饼卷葱丝蘸酱。", "zh-TW": "現場片鴨，薄餅捲蔥絲沾醬。" } },
           { id: "d-yangroupaomo", region: "food-wheat", icon: "food-wheat", tags: ["lamb"],
@@ -523,14 +547,37 @@
             name: { en: "Jiaozi (Dumplings)", "zh-CN": "饺子", "zh-TW": "餃子" },
             desc: { en: "Boiled or pan-fried dumplings; pork-and-cabbage is classic, vegetable-only is common too.", "zh-CN": "水饺或煎饺，猪肉白菜馅经典，素馅也很常见。", "zh-TW": "水餃或煎餃，豬肉白菜餡經典，素餡也很常見。" } },
           { id: "d-xihuyu", region: "food-fish", icon: "food-fish", tags: ["seafood"],
+            photo: "https://commons.wikimedia.org/wiki/Special:FilePath/West_Lake_Fish_in_Vinegar_Gravy.jpg",
             name: { en: "West Lake Fish", "zh-CN": "西湖醋鱼", "zh-TW": "西湖醋魚" },
             desc: { en: "Freshwater fish in a sweet-and-sour sauce, a Hangzhou signature.", "zh-CN": "糖醋风味淡水鱼，杭州名菜。", "zh-TW": "糖醋風味淡水魚，杭州名菜。" } },
           { id: "d-xiaolongbao", region: "food-fish", icon: "food-fish", tags: ["pork", "vegOption"],
+            photo: "https://commons.wikimedia.org/wiki/Special:FilePath/Xiao_Long_Bao_at_Nanxiang_Mantou_Dian_1.jpg",
             name: { en: "Xiaolongbao (Soup Dumplings)", "zh-CN": "小笼包", "zh-TW": "小籠包" },
             desc: { en: "Delicate steamed dumplings filled with broth and pork; vegetarian versions exist.", "zh-CN": "汤汁鲜美的蒸饺，传统猪肉馅，也有素馅可选。", "zh-TW": "湯汁鮮美的蒸餃，傳統豬肉餡，也有素餡可選。" } },
           { id: "d-dongpo", region: "food-fish", icon: "food-fish", tags: ["pork", "alcohol"],
             name: { en: "Dongpo Pork", "zh-CN": "东坡肉", "zh-TW": "東坡肉" },
-            desc: { en: "Braised pork belly slow-cooked with Shaoxing wine — a Hangzhou classic.", "zh-CN": "用绍兴黄酒慢炖的东坡肉，杭州经典。", "zh-TW": "用紹興黃酒慢燉的東坡肉，杭州經典。" } }
+            desc: { en: "Braised pork belly slow-cooked with Shaoxing wine — a Hangzhou classic.", "zh-CN": "用绍兴黄酒慢炖的东坡肉，杭州经典。", "zh-TW": "用紹興黃酒慢燉的東坡肉，杭州經典。" } },
+          { id: "d-longjing", region: "food-fish", icon: "drink-tea", tags: [],
+            name: { en: "West Lake Longjing Tea", "zh-CN": "西湖龙井茶", "zh-TW": "西湖龍井茶" },
+            desc: { en: "Pan-fired green tea from Hangzhou, prized for its delicate, fresh flavor.", "zh-CN": "产自杭州的炒制绿茶，滋味清新淡雅。", "zh-TW": "產自杭州的炒製綠茶，滋味清新淡雅。" } },
+          { id: "d-huangjiu", region: "food-fish", icon: "drink-spirit", tags: ["alcohol"],
+            name: { en: "Shaoxing Yellow Wine", "zh-CN": "绍兴黄酒", "zh-TW": "紹興黃酒" },
+            desc: { en: "A warm, mellow fermented rice wine, often served slightly heated.", "zh-CN": "温润醇厚的米酒，常温热后饮用。", "zh-TW": "溫潤醇厚的米酒，常溫熱後飲用。" } },
+          { id: "d-liangcha", region: "food-dimsum", icon: "drink-tea", tags: [],
+            name: { en: "Cantonese Herbal Tea", "zh-CN": "广式凉茶", "zh-TW": "廣式涼茶" },
+            desc: { en: "A bitter herbal infusion Cantonese people drink for general wellness.", "zh-CN": "广东人日常饮用的清热养生凉茶。", "zh-TW": "廣東人日常飲用的清熱養生涼茶。" } },
+          { id: "d-baijiu", region: "food-wheat", icon: "drink-spirit", tags: ["alcohol"],
+            name: { en: "Baijiu (Chinese Liquor)", "zh-CN": "白酒", "zh-TW": "白酒" },
+            desc: { en: "A strong distilled spirit, common at celebratory banquets across China.", "zh-CN": "高度蒸馏酒，中国宴席上常见的饮品。", "zh-TW": "高度蒸餾酒，中國宴席上常見的飲品。" } },
+          { id: "d-ejiao", region: "food-wheat", icon: "herb-root", tags: [],
+            name: { en: "Ejiao (Donkey-Hide Gelatin Tonic)", "zh-CN": "阿胶", "zh-TW": "阿膠" },
+            desc: { en: "A traditional tonic believed to support blood health, often taken as a paste or in soup.", "zh-CN": "传统滋补品，常制成膏方或炖入汤中食用。", "zh-TW": "傳統滋補品，常製成膏方或燉入湯中食用。" } },
+          { id: "d-renshen", region: "area-changchun", icon: "herb-root", tags: [],
+            name: { en: "Ginseng", "zh-CN": "人参", "zh-TW": "人參" },
+            desc: { en: "A prized root from Northeast China, used in tea, soup, or eaten sliced.", "zh-CN": "产自中国东北的名贵药材，可泡茶、炖汤或切片食用。", "zh-TW": "產自中國東北的名貴藥材，可泡茶、燉湯或切片食用。" } },
+          { id: "d-gouqi", region: "food-dimsum", icon: "herb-leaf", tags: [],
+            name: { en: "Goji Berries", "zh-CN": "枸杞", "zh-TW": "枸杞" },
+            desc: { en: "Dried red berries added to tea, soup, and congee for everyday wellness.", "zh-CN": "常加入茶饮、汤品与粥中的养生食材。", "zh-TW": "常加入茶飲、湯品與粥中的養生食材。" } }
         ]
       },
       safety: {

@@ -47,6 +47,8 @@
 
     document.getElementById("tripNavLabel").textContent = t("nav.trip");
     document.getElementById("joinNavLabel").textContent = t("nav.joinUs");
+    document.getElementById("tripNavIcon").innerHTML = Icons.html("compass", { size: 17 });
+    document.getElementById("joinNavIcon").innerHTML = Icons.html("handshake", { size: 17 });
 
     document.getElementById("footerAboutTitle").textContent = t("footer.aboutTitle");
     document.getElementById("footerAboutText").textContent = t("footer.aboutText");
@@ -340,12 +342,24 @@
   var DISH_TAG_LABEL_KEYS = { pork: "tagPork", beef: "tagBeef", lamb: "tagLamb", poultry: "tagPoultry", seafood: "tagSeafood", alcohol: "tagAlcohol", spicy: "tagSpicy", vegOption: "tagVegOption" };
 
   function dishCardHtml(d) {
+    var media = d.photo
+      ? '<div class="dish-media" data-icon="' + esc(d.icon) + '" data-key="' + esc(d.id) + '"><img class="dish-photo" src="' + esc(d.photo) + '" alt="" loading="lazy"></div>'
+      : '<div class="dish-media">' + iconBadge(d.icon, d.id, { small: true }) + "</div>";
     return '<div class="card">' +
-      iconBadge(d.icon, d.id, { small: true }) +
+      media +
       "<h3>" + esc(D.text(d.name, state.lang)) + "</h3>" +
       "<p>" + esc(D.text(d.desc, state.lang)) + "</p>" +
       '<div class="card-tags">' + d.tags.map(function (tg) { return '<span class="tag">' + esc(t("food." + DISH_TAG_LABEL_KEYS[tg])) + "</span>"; }).join("") + "</div>" +
     "</div>";
+  }
+
+  function wireDishPhotoFallbacks(container) {
+    container.querySelectorAll(".dish-media[data-icon] img").forEach(function (img) {
+      img.onerror = function () {
+        var el = img.parentElement;
+        el.outerHTML = '<div class="dish-media">' + iconBadge(el.getAttribute("data-icon"), el.getAttribute("data-key"), { small: true }) + "</div>";
+      };
+    });
   }
 
   function initDishFilters(dishes) {
@@ -367,6 +381,7 @@
         return true;
       });
       resultsEl.innerHTML = list.length ? list.map(dishCardHtml).join("") : '<div class="empty-state">' + esc(t("food.noDishesMatch")) + "</div>";
+      wireDishPhotoFallbacks(resultsEl);
     }
     checks.forEach(function (c) { c.onchange = update; });
     update();
@@ -461,8 +476,7 @@
       '<section class="section container">' +
         '<a class="btn-back" href="#/hospitals">' + Icons.html("arrow-left", { size: 18 }) + '' + esc(t("common.back")) + "</a>" +
         (sel ? '<div class="plan-summary"><span><strong>' + esc(t("contact.summaryRoute")) + '</strong>' + esc(routeDisplayName(sel)) + "</span></div>" : "") +
-        Icons.hospitalIllustration(h.tier) +
-        '<p class="illustration-note">' + esc(t("hospital.illustrationNote")) + "</p>" +
+        hospitalPhotoBlockHtml(h) +
         '<div class="detail-header">' +
           '<div class="detail-title-block">' +
             "<h1>" + esc(h.name) + "</h1>" +
@@ -480,6 +494,28 @@
         '<h2 style="margin-top:24px;">' + esc(t("hospital.programsTitle")) + "</h2>" +
         '<div class="card-grid">' + orderedTags.map(function (tag) { return specialtyCardHtml(h, tag, rq, tag === wantedSpecialty); }).join("") + "</div>" +
       "</section>";
+
+    var photoBlock = mainEl.querySelector(".hospital-photo-block[data-tier]");
+    if (photoBlock) {
+      var photoImg = photoBlock.querySelector("img");
+      photoImg.onerror = function () {
+        var tier = photoBlock.getAttribute("data-tier");
+        photoBlock.innerHTML = Icons.hospitalIllustration(tier) + '<p class="illustration-note">' + esc(t("hospital.illustrationNote")) + "</p>";
+      };
+    }
+  }
+
+  // Real photos are optional (h.photo) and hotlinked from external sources
+  // we can't guarantee stay up — if one fails to load, onerror below swaps
+  // the whole block to our reliable illustrated fallback automatically.
+  function hospitalPhotoBlockHtml(h) {
+    if (h.photo) {
+      return '<div class="hospital-photo-block" data-tier="' + esc(h.tier) + '">' +
+        '<img class="hospital-illustration" src="' + esc(h.photo) + '" alt="' + esc(h.name) + '" loading="lazy">' +
+        '<p class="illustration-note">' + esc(t("hospital.photoNote")) + (h.photoSource ? " (" + esc(h.photoSource) + ")" : "") + "</p>" +
+      "</div>";
+    }
+    return '<div class="hospital-photo-block">' + Icons.hospitalIllustration(h.tier) + '<p class="illustration-note">' + esc(t("hospital.illustrationNote")) + "</p></div>";
   }
 
   function specialtyCardHtml(h, tag, rq, isRecommended) {
@@ -828,7 +864,19 @@
     renderStopsList();
   }
 
+  /* ---------------- scroll-to-top ---------------- */
+  function initScrollTop() {
+    var btn = document.getElementById("scrollTopBtn");
+    if (!btn) return;
+    btn.innerHTML = Icons.html("arrow-up", { size: 22 });
+    btn.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: "smooth" }); });
+    window.addEventListener("scroll", function () {
+      btn.classList.toggle("visible", window.scrollY > 400);
+    }, { passive: true });
+  }
+
   /* ---------------- init ---------------- */
   renderChrome();
   route();
+  initScrollTop();
 })();

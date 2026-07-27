@@ -54,6 +54,7 @@ window.I18N = {
         programsTitle: "Specialties Offered",
         officialWebsite: "Official hospital website",
         illustrationNote: "Illustration, not an actual photo — visit the official website above for real photos.",
+        photoNote: "Photo sourced externally — may not always load reliably.",
         tierLabel: "2023 China Hospital Ranking"
       },
       program: {
@@ -182,7 +183,7 @@ window.I18N = {
         safetyDesc: "Licensed hospitals, vetted agents, support at every step"
       },
       food: {
-        dishesTitle: "Regional Specialty Dishes",
+        dishesTitle: "Regional Specialties: Dishes, Drinks & Herbal Tonics",
         filterTitle: "Filter by dietary needs",
         filterNoPork: "No pork", filterNoBeef: "No beef", filterNoSeafood: "No seafood",
         filterNoAlcohol: "No alcohol", filterVegetarian: "Vegetarian-friendly only", filterNoSpicy: "Not spicy",
@@ -227,6 +228,7 @@ window.I18N = {
         programsTitle: "开设专科",
         officialWebsite: "医院官方网站",
         illustrationNote: "示意图，并非实景照片——如需查看真实照片，请访问上方官方网站。",
+        photoNote: "图片来自外部来源，可能无法始终稳定加载。",
         tierLabel: "2023年度中国医院排行"
       },
       program: {
@@ -355,7 +357,7 @@ window.I18N = {
         safetyDesc: "正规医院、审核合格的服务人员，全程保驾护航"
       },
       food: {
-        dishesTitle: "地方特色菜",
+        dishesTitle: "地方特色：菜品、饮品与药膳",
         filterTitle: "按饮食需求筛选",
         filterNoPork: "不含猪肉", filterNoBeef: "不含牛肉", filterNoSeafood: "不含海鲜",
         filterNoAlcohol: "不含酒精", filterVegetarian: "仅显示素食友好", filterNoSpicy: "不辣",
@@ -400,6 +402,7 @@ window.I18N = {
         programsTitle: "開設專科",
         officialWebsite: "醫院官方網站",
         illustrationNote: "示意圖，並非實景照片——如需查看真實照片，請造訪上方官方網站。",
+        photoNote: "圖片來自外部來源，可能無法始終穩定載入。",
         tierLabel: "2023年度中國醫院排行"
       },
       program: {
@@ -528,7 +531,7 @@ window.I18N = {
         safetyDesc: "合法醫院、審核合格的服務人員，全程保駕護航"
       },
       food: {
-        dishesTitle: "地方特色菜",
+        dishesTitle: "地方特色：菜品、飲品與藥膳",
         filterTitle: "按飲食需求篩選",
         filterNoPork: "不含豬肉", filterNoBeef: "不含牛肉", filterNoSeafood: "不含海鮮",
         filterNoAlcohol: "不含酒精", filterVegetarian: "僅顯示素食友好", filterNoSpicy: "不辣",
@@ -573,6 +576,7 @@ window.I18N = {
         programsTitle: "Especialidades ofrecidas",
         officialWebsite: "Sitio web oficial del hospital",
         illustrationNote: "Ilustración, no una fotografía real — visite el sitio web oficial arriba para ver fotos reales.",
+        photoNote: "Foto obtenida de una fuente externa — puede que no siempre cargue correctamente.",
         tierLabel: "Ranking de hospitales de China 2023"
       },
       program: {
@@ -701,7 +705,7 @@ window.I18N = {
         safetyDesc: "Hospitales certificados, agentes verificados, apoyo en cada paso"
       },
       food: {
-        dishesTitle: "Platos regionales típicos",
+        dishesTitle: "Especialidades regionales: platos, bebidas y tónicos herbales",
         filterTitle: "Filtrar por necesidades dietéticas",
         filterNoPork: "Sin cerdo", filterNoBeef: "Sin ternera", filterNoSeafood: "Sin marisco",
         filterNoAlcohol: "Sin alcohol", filterVegetarian: "Solo apto para vegetarianos", filterNoSpicy: "No picante",
@@ -746,6 +750,7 @@ window.I18N = {
         programsTitle: "Spécialités proposées",
         officialWebsite: "Site officiel de l'hôpital",
         illustrationNote: "Illustration, pas une photo réelle — consultez le site officiel ci-dessus pour de vraies photos.",
+        photoNote: "Photo provenant d'une source externe — peut ne pas toujours se charger correctement.",
         tierLabel: "Classement des hôpitaux chinois 2023"
       },
       program: {
@@ -874,7 +879,7 @@ window.I18N = {
         safetyDesc: "Hôpitaux agréés, agents vérifiés, accompagnement à chaque étape"
       },
       food: {
-        dishesTitle: "Plats régionaux emblématiques",
+        dishesTitle: "Spécialités régionales : plats, boissons et toniques à base de plantes",
         filterTitle: "Filtrer selon vos besoins alimentaires",
         filterNoPork: "Sans porc", filterNoBeef: "Sans bœuf", filterNoSeafood: "Sans fruits de mer",
         filterNoAlcohol: "Sans alcool", filterVegetarian: "Végétarien uniquement", filterNoSpicy: "Pas épicé",
@@ -919,6 +924,7 @@ window.I18N = {
         programsTitle: "Angebotene Fachbereiche",
         officialWebsite: "Offizielle Website des Krankenhauses",
         illustrationNote: "Illustration, kein echtes Foto — echte Fotos finden Sie auf der offiziellen Website oben.",
+        photoNote: "Foto aus externer Quelle — lädt möglicherweise nicht immer zuverlässig.",
         tierLabel: "Chinesisches Krankenhausranking 2023"
       },
       program: {
@@ -1047,7 +1053,7 @@ window.I18N = {
         safetyDesc: "Zugelassene Krankenhäuser, geprüfte Betreuer, Unterstützung bei jedem Schritt"
       },
       food: {
-        dishesTitle: "Regionale Spezialitäten",
+        dishesTitle: "Regionale Spezialitäten: Gerichte, Getränke und Kräutertonika",
         filterTitle: "Nach Ernährungsbedürfnissen filtern",
         filterNoPork: "Ohne Schweinefleisch", filterNoBeef: "Ohne Rindfleisch", filterNoSeafood: "Ohne Meeresfrüchte",
         filterNoAlcohol: "Ohne Alkohol", filterVegetarian: "Nur vegetarisch geeignet", filterNoSpicy: "Nicht scharf",
@@ -1092,6 +1098,7 @@ window.I18N = {
         programsTitle: "Especialidades oferecidas",
         officialWebsite: "Site oficial do hospital",
         illustrationNote: "Ilustração, não é uma foto real — visite o site oficial acima para ver fotos reais.",
+        photoNote: "Foto de fonte externa — pode nem sempre carregar corretamente.",
         tierLabel: "Ranking de Hospitais da China 2023"
       },
       program: {
@@ -1220,7 +1227,7 @@ window.I18N = {
         safetyDesc: "Hospitais licenciados, agentes verificados, apoio a cada passo"
       },
       food: {
-        dishesTitle: "Pratos regionais típicos",
+        dishesTitle: "Especialidades regionais: pratos, bebidas e tônicos à base de ervas",
         filterTitle: "Filtrar por necessidades alimentares",
         filterNoPork: "Sem carne de porco", filterNoBeef: "Sem carne bovina", filterNoSeafood: "Sem frutos do mar",
         filterNoAlcohol: "Sem álcool", filterVegetarian: "Somente vegetariano", filterNoSpicy: "Não picante",
@@ -1265,6 +1272,7 @@ window.I18N = {
         programsTitle: "Доступные направления",
         officialWebsite: "Официальный сайт больницы",
         illustrationNote: "Иллюстрация, а не реальное фото — настоящие фотографии смотрите на официальном сайте выше.",
+        photoNote: "Фото из внешнего источника — может загружаться нестабильно.",
         tierLabel: "Рейтинг больниц Китая 2023"
       },
       program: {
@@ -1393,7 +1401,7 @@ window.I18N = {
         safetyDesc: "Лицензированные больницы, проверенные агенты, поддержка на каждом шаге"
       },
       food: {
-        dishesTitle: "Региональные фирменные блюда",
+        dishesTitle: "Региональные особенности: блюда, напитки и травяные тоники",
         filterTitle: "Фильтр по диетическим потребностям",
         filterNoPork: "Без свинины", filterNoBeef: "Без говядины", filterNoSeafood: "Без морепродуктов",
         filterNoAlcohol: "Без алкоголя", filterVegetarian: "Только вегетарианское", filterNoSpicy: "Не острое",
@@ -1438,6 +1446,7 @@ window.I18N = {
         programsTitle: "التخصصات المتاحة",
         officialWebsite: "الموقع الرسمي للمستشفى",
         illustrationNote: "رسم توضيحي وليس صورة حقيقية — لمشاهدة صور حقيقية، يُرجى زيارة الموقع الرسمي أعلاه.",
+        photoNote: "صورة من مصدر خارجي — قد لا يتم تحميلها دائمًا بشكل موثوق.",
         tierLabel: "تصنيف المستشفيات الصينية 2023"
       },
       program: {
@@ -1566,7 +1575,7 @@ window.I18N = {
         safetyDesc: "مستشفيات مرخصة، وكلاء تم التحقق منهم، ودعم في كل خطوة"
       },
       food: {
-        dishesTitle: "أطباق إقليمية مميزة",
+        dishesTitle: "خصائص إقليمية: أطباق ومشروبات ومقويات عشبية",
         filterTitle: "تصفية حسب الاحتياجات الغذائية",
         filterNoPork: "بدون لحم خنزير", filterNoBeef: "بدون لحم بقري", filterNoSeafood: "بدون مأكولات بحرية",
         filterNoAlcohol: "بدون كحول", filterVegetarian: "نباتي فقط", filterNoSpicy: "غير حار",
@@ -1611,6 +1620,7 @@ window.I18N = {
         programsTitle: "診療科目",
         officialWebsite: "病院公式サイト",
         illustrationNote: "イメージ図であり実際の写真ではありません——実際の写真は上記の公式サイトでご確認ください。",
+        photoNote: "外部ソースの写真です——正常に読み込まれない場合があります。",
         tierLabel: "2023年版 中国病院ランキング"
       },
       program: {
@@ -1739,7 +1749,7 @@ window.I18N = {
         safetyDesc: "認可病院、審査済みエージェント、各段階でのサポート"
       },
       food: {
-        dishesTitle: "地方の名物料理",
+        dishesTitle: "地方の名物：料理・飲み物・薬膳",
         filterTitle: "食事制限で絞り込む",
         filterNoPork: "豚肉なし", filterNoBeef: "牛肉なし", filterNoSeafood: "魚介類なし",
         filterNoAlcohol: "アルコールなし", filterVegetarian: "ベジタリアン対応のみ", filterNoSpicy: "辛くない",
@@ -1784,6 +1794,7 @@ window.I18N = {
         programsTitle: "운영 중인 진료과",
         officialWebsite: "병원 공식 웹사이트",
         illustrationNote: "실제 사진이 아닌 이미지입니다 — 실제 사진은 위의 공식 웹사이트에서 확인하세요.",
+        photoNote: "외부 출처의 사진입니다 — 항상 안정적으로 로드되지 않을 수 있습니다.",
         tierLabel: "2023 중국 병원 순위"
       },
       program: {
@@ -1912,7 +1923,7 @@ window.I18N = {
         safetyDesc: "인증된 병원, 검증된 에이전트, 모든 단계의 지원"
       },
       food: {
-        dishesTitle: "지역 대표 요리",
+        dishesTitle: "지역 특산품: 요리, 음료, 약선차",
         filterTitle: "식단 요구 사항으로 필터링",
         filterNoPork: "돼지고기 제외", filterNoBeef: "소고기 제외", filterNoSeafood: "해산물 제외",
         filterNoAlcohol: "알코올 제외", filterVegetarian: "채식 가능 요리만", filterNoSpicy: "맵지 않음",
@@ -1957,6 +1968,7 @@ window.I18N = {
         programsTitle: "उपलब्ध विभाग",
         officialWebsite: "अस्पताल की आधिकारिक वेबसाइट",
         illustrationNote: "यह एक चित्रण है, वास्तविक तस्वीर नहीं — वास्तविक तस्वीरों के लिए ऊपर दी गई आधिकारिक वेबसाइट देखें।",
+        photoNote: "फोटो बाहरी स्रोत से ली गई है — हमेशा सही ढंग से लोड नहीं हो सकती।",
         tierLabel: "2023 चीन अस्पताल रैंकिंग"
       },
       program: {
@@ -2085,7 +2097,7 @@ window.I18N = {
         safetyDesc: "लाइसेंस प्राप्त अस्पताल, सत्यापित एजेंट, हर कदम पर सहायता"
       },
       food: {
-        dishesTitle: "क्षेत्रीय विशेष व्यंजन",
+        dishesTitle: "क्षेत्रीय विशेषताएं: व्यंजन, पेय और हर्बल टॉनिक",
         filterTitle: "आहार आवश्यकताओं के अनुसार फ़िल्टर करें",
         filterNoPork: "सूअर का मांस नहीं", filterNoBeef: "गोमांस नहीं", filterNoSeafood: "समुद्री भोजन नहीं",
         filterNoAlcohol: "शराब नहीं", filterVegetarian: "केवल शाकाहारी-अनुकूल", filterNoSpicy: "तीखा नहीं",
