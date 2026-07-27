@@ -71,11 +71,7 @@ img { max-width: 100%; display: block; }
   display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
 }
 .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--color-text); }
-.brand-mark {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 40px; height: 40px; border-radius: 10px; background: var(--color-primary);
-  color: #fff; font-size: 1.3em; font-weight: bold;
-}
+.brand-mark { width: 38px; height: 38px; color: var(--color-primary); flex-shrink: 0; }
 .brand-name { font-size: 1.25em; font-weight: 700; }
 
 .header-controls { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
@@ -124,12 +120,13 @@ img { max-width: 100%; display: block; }
 
 /* ---------- Hero ---------- */
 .hero {
-  background: linear-gradient(180deg, var(--color-primary-light), var(--color-bg));
-  padding: 56px 0 40px;
+  background: linear-gradient(180deg, var(--color-primary-light), #fbfdfc);
+  padding: 56px 0 0; overflow: hidden;
 }
-.hero-inner { max-width: 780px; margin: 0 auto; text-align: center; padding: 0 20px; }
+.hero-inner { max-width: 780px; margin: 0 auto; text-align: center; padding: 0 20px 20px; }
 .hero h1 { font-size: 2.2em; margin-bottom: 0.4em; }
 .hero p.subtitle { font-size: 1.1em; color: var(--color-text-muted); margin-bottom: 1.6em; }
+.hero-skyline { display: block; width: 100%; aspect-ratio: 1440 / 220; height: auto; margin-top: 20px; }
 .trust-row {
   display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 24px; margin-top: 28px;
   color: var(--color-text-muted); font-size: 0.95em;
@@ -149,6 +146,11 @@ img { max-width: 100%; display: block; }
   padding: 18px;
 }
 .filter-group { display: flex; flex-direction: column; gap: 6px; flex: 1 1 200px; min-width: 160px; }
+.filter-check {
+  display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 0.95em;
+  background: #fff; border: 1px solid var(--color-border); border-radius: 999px; padding: 9px 16px; cursor: pointer;
+}
+.filter-check input { width: 18px; height: 18px; accent-color: var(--color-primary); cursor: pointer; }
 .filter-group label { font-weight: 700; font-size: 0.95em; }
 .filter-group select, .filter-group input[type="search"] {
   padding: 12px 14px; font-size: 1em; border-radius: 10px; border: 1px solid var(--color-border);
