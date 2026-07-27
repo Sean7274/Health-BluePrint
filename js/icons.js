@@ -65,6 +65,10 @@ window.Icons = (function () {
     "food-fish": '<path d="M3 12c3.5-4 8-5.5 12-3.5 2 1 3.5 2.3 5 3.5-1.5 1.2-3 2.5-5 3.5-4 2-8.5.5-12-3.5z"/><path d="M3 12L1.5 9M3 12l-1.5 3"/><circle cx="15" cy="10.7" r=".8" fill="currentColor" stroke="none"/>',
     "food-western": '<path d="M6 3v9a2 2 0 0 0 4 0V3M8 3v18M8 12V3"/><path d="M16 3c-1.2 0-2 1.5-2 4s.8 4 2 4v10"/>',
     "food-tray": '<rect x="3" y="13" width="18" height="3" rx="1"/><path d="M12 13V9a4 4 0 0 1 4-4"/><path d="M8 13c0-3 1.8-5 4-5"/>',
+    "drink-tea": '<path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M17 10h2a2 2 0 0 1 0 4h-2"/><path d="M8 5c0-1 .8-1 .8-2M12 5c0-1 .8-1 .8-2"/>',
+    "drink-spirit": '<path d="M10 3h4v3l2 3v10a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2V9l2-3z"/><path d="M9 13h6"/>',
+    "herb-root": '<path d="M12 3c-1 3 0 5-2 6-2 1-3 3-2 5M12 3c1 3 0 5 2 6 2 1 3 3 2 5"/><path d="M12 3v5"/><path d="M9 21c0-4 1-6 3-7 2 1 3 3 3 7"/>',
+    "herb-leaf": '<path d="M12 21V9"/><path d="M12 9c-4 0-7-2-7-6 4 0 7 2 7 6zM12 9c4 0 7-2 7-6-4 0-7 2-7 6z"/><circle cx="12" cy="21" r="1.5" fill="currentColor" stroke="none"/>',
 
     // ---- safety ----
     "safety-shield": '<path d="M12 3l7 3v5.2c0 4.6-3 8.3-7 9.8-4-1.5-7-5.2-7-9.8V6z"/><path d="M9 12l2.2 2.2L15.5 9.5"/>',
@@ -80,6 +84,7 @@ window.Icons = (function () {
     check: '<path d="M4.5 12.5l5 5 10-11"/>',
     close: '<path d="M5 5l14 14M19 5L5 19"/>',
     "arrow-left": '<path d="M19 12H5M11 6l-6 6 6 6"/>',
+    "arrow-up": '<path d="M12 19V5M6 11l6-6 6 6"/>',
     link: '<path d="M9.5 14.5l5-5"/><path d="M13 5.5h3a4 4 0 0 1 0 8h-2M11 18.5H8a4 4 0 0 1 0-8h2"/>',
     handshake: '<path d="M2.5 12l4-3.5 3 2 2.5-2 3 2 3-2.5 3.5 3"/><path d="M6.5 8.5l4 4.5-2 2a1.6 1.6 0 0 1-2.3 0 1.6 1.6 0 0 1 0-2.3"/><path d="M17.5 8.5l-4 4.5 2 2a1.6 1.6 0 0 0 2.3 0 1.6 1.6 0 0 0 0-2.3"/>',
     compass: '<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>',
