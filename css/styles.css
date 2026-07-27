@@ -246,6 +246,9 @@ img { max-width: 100%; display: block; }
 /* ---------- Join Us / Trip Planner shared blocks ---------- */
 .choice-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 20px 0 30px; }
 @media (max-width: 640px) { .choice-row { grid-template-columns: 1fr; } }
+.pillar-row { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 860px) { .pillar-row { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .pillar-row { grid-template-columns: 1fr; } }
 .choice-card {
   border: 2px solid var(--color-border); border-radius: var(--radius); padding: 24px; text-align: center;
   background: var(--color-bg); cursor: pointer; font-weight: 700; font-size: 1.1em;

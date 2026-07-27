@@ -374,6 +374,48 @@
         highlights: { en: ["Tengwang Pavilion", "August 1st Uprising Memorial"], "zh-CN": ["滕王阁", "八一起义纪念馆"], "zh-TW": ["滕王閣", "八一起義紀念館"] } }
     ],
 
+    // Long-form content for the Food and Safety pages. Authored in
+    // en / zh-CN / zh-TW; other interface languages fall back to English,
+    // same convention as hospital and route text above.
+    pages: {
+      food: {
+        intro: {
+          en: "Traveling for medical care shouldn't mean giving up food you can trust. Here's how meals are handled during your trip.",
+          "zh-CN": "赴华就医不代表要将就饮食。以下是您在旅途中饮食方面可以获得的帮助。",
+          "zh-TW": "赴中就醫不代表要將就飲食。以下是您在旅途中飲食方面可以獲得的協助。"
+        },
+        items: [
+          { icon: "🕌", title: { en: "Halal Meals", "zh-CN": "清真餐食", "zh-TW": "清真餐食" },
+            desc: { en: "Agents can arrange halal-certified meals near your hospital and hotel.", "zh-CN": "服务人员可为您安排医院及酒店附近的清真认证餐食。", "zh-TW": "服務人員可為您安排醫院及飯店附近的清真認證餐食。" } },
+          { icon: "🥦", title: { en: "Vegetarian & Vegan Options", "zh-CN": "素食与纯素选择", "zh-TW": "素食與純素選擇" },
+            desc: { en: "Many hospital cafeterias and nearby restaurants offer vegetarian menus — your agent can point you to them.", "zh-CN": "许多医院食堂及周边餐厅均提供素食菜单，服务人员可为您推荐。", "zh-TW": "許多醫院食堂及周邊餐廳均提供素食菜單，服務人員可為您推薦。" } },
+          { icon: "⚠️", title: { en: "Allergies & Medical Diets", "zh-CN": "过敏与医嘱饮食", "zh-TW": "過敏與醫囑飲食" },
+            desc: { en: "Tell your agent about any food allergies or doctor-prescribed diet — they'll relay this to hotel and restaurant staff in Chinese.", "zh-CN": "请提前告知服务人员您的食物过敏情况或医嘱饮食要求，他们会用中文与酒店及餐厅沟通。", "zh-TW": "請提前告知服務人員您的食物過敏情況或醫囑飲食要求，他們會用中文與飯店及餐廳溝通。" } },
+          { icon: "🥢", title: { en: "Try Local Cuisine", "zh-CN": "品尝地方美食", "zh-TW": "品嚐地方美食" },
+            desc: { en: "Each region has its own specialties — from Cantonese dim sum to Sichuan hot pot. Ask your agent for recommendations near your hospital.", "zh-CN": "各地美食各具特色——从粤式点心到川味火锅。可向服务人员咨询医院附近的推荐餐厅。", "zh-TW": "各地美食各具特色——從粵式點心到川味火鍋。可向服務人員諮詢醫院附近的推薦餐廳。" } }
+        ]
+      },
+      safety: {
+        intro: {
+          en: "Your safety — medical and personal — is central to how Health Blueprint works.",
+          "zh-CN": "医疗安全与人身安全，是健康蓝图一切服务的核心。",
+          "zh-TW": "醫療安全與人身安全，是健康藍圖一切服務的核心。"
+        },
+        items: [
+          { icon: "🏅", title: { en: "Published Hospital Rankings", "zh-CN": "公开的医院排名", "zh-TW": "公開的醫院排名" },
+            desc: { en: "Every hospital listed comes from the publicly published 2023 China Hospital Ranking, so you can see its national standing before you choose.", "zh-CN": "所有上榜医院均来自公开发布的2023年度中国医院综合排行榜，方便您在选择前了解其全国排名情况。", "zh-TW": "所有上榜醫院均來自公開發布的2023年度中國醫院綜合排行榜，方便您在選擇前了解其全國排名情況。" } },
+          { icon: "🧑‍🤝‍🧑", title: { en: "Reviewed Agents", "zh-CN": "经审核的服务人员", "zh-TW": "經審核的服務人員" },
+            desc: { en: "Agents who support you in person are reviewed before joining our network, and rated after every trip.", "zh-CN": "为您提供全程陪同服务的人员在加入平台前均经过审核，并在每次行程后接受评分。", "zh-TW": "為您提供全程陪同服務的人員在加入平台前均經過審核，並在每次行程後接受評分。" } },
+          { icon: "📞", title: { en: "Support Every Step", "zh-CN": "全程支持", "zh-TW": "全程支援" },
+            desc: { en: "Your agent stays reachable throughout your trip — from airport pickup to your safe return home.", "zh-CN": "服务人员在您整个行程中都可随时联系——从机场接机到您平安返程。", "zh-TW": "服務人員在您整個行程中都可隨時聯繫——從機場接機到您平安返程。" } },
+          { icon: "🧳", title: { en: "Travel & Medical Insurance", "zh-CN": "旅行与医疗保险", "zh-TW": "旅遊與醫療保險" },
+            desc: { en: "We recommend arranging travel/medical insurance before your trip; your agent can help you understand local requirements.", "zh-CN": "建议您在出行前安排好旅行/医疗保险，服务人员可协助您了解当地相关要求。", "zh-TW": "建議您在出行前安排好旅遊/醫療保險，服務人員可協助您了解當地相關要求。" } },
+          { icon: "🚨", title: { en: "Embassy & Emergency Contacts", "zh-CN": "使领馆与紧急联系方式", "zh-TW": "使領館與緊急聯絡方式" },
+            desc: { en: "Keep your country's embassy or consulate contact information with you, along with China's national emergency numbers (110 police, 120 medical).", "zh-CN": "请随身携带您所在国家使领馆的联系方式，并留意中国的全国紧急电话（110报警、120急救）。", "zh-TW": "請隨身攜帶您所在國家使領館的聯絡方式，並留意中國的全國緊急電話（110報警、120急救）。" } }
+        ]
+      }
+    },
+
     /* Look up localized text with graceful fallback to English. */
     text: function (field, lang) {
       if (!field) return "";
