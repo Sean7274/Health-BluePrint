@@ -226,30 +226,117 @@
     "空军军医大学第二附属医院(唐都医院)": "https://tdwww.fmmu.edu.cn/"
   };
 
-  // Manual overrides for specialty focus that can't be inferred from the
-  // name alone. Everything else is tagged by keyword matching below.
-  var TAG_OVERRIDES = {
-    "北京大学第六医院": ["psychiatry"],
-    "北京积水潭医院": ["orthopedics"],
-    "中国医学科学院阜外医院": ["cardiology"],
-    "首都医科大学附属北京安贞医院": ["cardiology"],
-    "首都医科大学附属北京天坛医院": ["neurology"],
-    "首都医科大学宣武医院": ["neurology", "checkup"]
+  // Real strong/featured clinical departments per hospital, researched from
+  // public sources (Fudan China Hospital Specialty Reputation Rankings,
+  // National Clinical Key Specialty designations, and well-established
+  // institutional reputation), mapped to our 12 specialty categories.
+  // Every hospital includes "checkup" since general health screening is a
+  // near-universal service at this tier of hospital.
+  var SPECIALTY_TAGS = {
+    "中国人民解放军总医院": ["checkup", "cardiology", "oncology", "orthopedics", "neurology", "respiratory"],
+    "中国医学科学院北京协和医院": ["checkup", "oncology", "cardiology", "obgyn", "neurology", "hematology", "ophthalmology", "respiratory"],
+    "北京大学第一医院": ["checkup", "obgyn", "pediatrics", "cardiology"],
+    "北京大学第三医院": ["checkup", "obgyn", "orthopedics"],
+    "中国医科大学附属第一医院": ["checkup", "oncology", "cardiology", "neurology"],
+    "上海交通大学医学院附属仁济医院": ["checkup", "obgyn"],
+    "上海交通大学医学院附属瑞金医院": ["checkup", "hematology", "neurology", "oncology"],
+    "复旦大学附属中山医院": ["checkup", "cardiology", "oncology", "respiratory"],
+    "复旦大学附属华山医院": ["checkup", "neurology", "orthopedics"],
+    "浙江大学医学院附属第一医院": ["checkup", "oncology"],
+    "浙江大学医学院附属第二医院": ["checkup", "ophthalmology", "cardiology", "orthopedics"],
+    "郑州大学第一附属医院": ["checkup", "cardiology", "oncology", "orthopedics", "neurology"],
+    "华中科技大学同济医学院附属协和医院": ["checkup", "hematology", "cardiology", "oncology"],
+    "华中科技大学同济医学院附属同济医院": ["checkup", "obgyn", "cardiology", "oncology"],
+    "中南大学湘雅二医院": ["checkup", "psychiatry"],
+    "中南大学湘雅医院": ["checkup", "oncology", "cardiology", "orthopedics", "neurology"],
+    "中山大学附属第一医院": ["checkup", "oncology", "orthopedics", "ophthalmology", "neurology"],
+    "南方医科大学南方医院": ["checkup", "hematology"],
+    "四川大学华西医院": ["checkup", "psychiatry", "respiratory", "oncology", "cardiology", "orthopedics", "neurology"],
+    "空军军医大学第一附属医院（西京医院）": ["checkup", "oncology", "neurology", "cardiology"],
+    "中日友好医院": ["checkup", "respiratory"],
+    "中国医学科学院阜外医院": ["checkup", "cardiology"],
+    "中国医学科学院肿瘤医院": ["checkup", "oncology"],
+    "北京大学人民医院": ["checkup", "hematology", "orthopedics", "ophthalmology"],
+    "首都医科大学附属北京儿童医院": ["checkup", "pediatrics"],
+    "首都医科大学附属北京天坛医院": ["checkup", "neurology"],
+    "首都医科大学附属北京同仁医院": ["checkup", "ophthalmology"],
+    "上海市第六人民医院": ["checkup", "orthopedics"],
+    "上海交通大学医学院附属第九人民医院": ["checkup", "dental", "ophthalmology"],
+    "复旦大学附属儿科医院": ["checkup", "pediatrics"],
+    "复旦大学附属肿瘤医院": ["checkup", "oncology"],
+    "海军军医大学第一附属医院": ["checkup", "oncology", "orthopedics"],
+    "江苏省人民医院（南京医科大学第一附属医院）": ["checkup", "obgyn", "oncology", "cardiology"],
+    "南京大学医学院附属鼓楼医院": ["checkup", "obgyn", "orthopedics"],
+    "山东大学齐鲁医院": ["checkup", "cardiology", "oncology"],
+    "广东省人民医院": ["checkup", "cardiology", "oncology"],
+    "广州医科大学附属第一医院": ["checkup", "respiratory"],
+    "中山大学肿瘤防治中心": ["checkup", "oncology"],
+    "陆军军医大学第一附属医院": ["checkup", "oncology"],
+    "四川省人民医院": ["checkup", "cardiology"],
+    "北京积水潭医院": ["checkup", "orthopedics"],
+    "首都医科大学附属北京安贞医院": ["checkup", "cardiology"],
+    "首都医科大学宣武医院": ["checkup", "neurology"],
+    "中国医科大学附属盛京医院": ["checkup", "obgyn", "pediatrics"],
+    "上海市肺科医院": ["checkup", "respiratory", "oncology"],
+    "上海交通大学医学院附属新华医院": ["checkup", "pediatrics"],
+    "复旦大学附属眼耳鼻喉科医院": ["checkup", "ophthalmology"],
+    "中国人民解放军东部战区总医院": ["checkup", "oncology"],
+    "东南大学附属中大医院": ["checkup", "respiratory"],
+    "苏州大学附属第一医院": ["checkup", "hematology"],
+    "浙江大学医学院附属邵逸夫医院": ["checkup", "oncology", "obgyn"],
+    "福建医科大学附属第一医院": ["checkup", "oncology"],
+    "南昌大学第一附属医院": ["checkup"],
+    "山东第一医科大学附属省立医院（山东省立医院）": ["checkup", "cardiology"],
+    "青岛大学附属医院": ["checkup"],
+    "武汉大学人民医院": ["checkup", "psychiatry", "cardiology"],
+    "武汉大学中南医院": ["checkup", "oncology", "obgyn"],
+    "中山大学附属第三医院": ["checkup", "neurology"],
+    "重庆医科大学附属第一医院": ["checkup", "cardiology"],
+    "四川大学华西口腔医院": ["checkup", "dental"],
+    "北京大学口腔医院": ["checkup", "dental"],
+    "北京大学肿瘤医院": ["checkup", "oncology"],
+    "北京医院": ["checkup", "cardiology"],
+    "首都医科大学附属北京友谊医院": ["checkup", "oncology"],
+    "首都医科大学附属北京朝阳医院": ["checkup", "respiratory"],
+    "天津医科大学肿瘤医院": ["checkup", "oncology"],
+    "天津医科大学总医院": ["checkup", "neurology"],
+    "吉林大学第一医院": ["checkup"],
+    "哈尔滨医科大学附属第二医院": ["checkup", "cardiology"],
+    "浙江大学医学院附属儿童医院": ["checkup", "pediatrics"],
+    "中国科学技术大学附属第一医院（安徽省立医院）": ["checkup"],
+    "安徽医科大学第一附属医院": ["checkup"],
+    "中南大学湘雅三医院": ["checkup", "oncology"],
+    "广州市妇女儿童医疗中心": ["checkup", "pediatrics", "obgyn"],
+    "中山大学中山眼科中心": ["checkup", "ophthalmology"],
+    "中山大学孙逸仙纪念医院": ["checkup", "oncology"],
+    "南方医科大学珠江医院": ["checkup"],
+    "重庆医科大学附属儿童医院": ["checkup", "pediatrics"],
+    "四川大学华西第二医院": ["checkup", "obgyn", "pediatrics"],
+    "西安交通大学第一附属医院": ["checkup", "psychiatry"],
+    "北京大学第六医院": ["checkup", "psychiatry"],
+    "首都医科大学附属北京世纪坛医院": ["checkup", "oncology"],
+    "中国医学科学院血液病医院（研究所）": ["checkup", "hematology"],
+    "中国人民解放军北部战区总医院": ["checkup", "cardiology"],
+    "哈尔滨医科大学附属第一医院": ["checkup", "cardiology"],
+    "上海市胸科医院（暨上海交通大学医学院附属胸科医院）": ["checkup", "cardiology", "respiratory", "oncology"],
+    "上海市第一人民医院": ["checkup", "ophthalmology"],
+    "上海市精神卫生中心": ["checkup", "psychiatry"],
+    "上海交通大学医学院附属上海儿童医学中心": ["checkup", "pediatrics", "cardiology"],
+    "复旦大学附属妇产科医院": ["checkup", "obgyn"],
+    "海军军医大学第二附属医院": ["checkup", "orthopedics"],
+    "浙江大学医学院附属妇产科医院": ["checkup", "obgyn"],
+    "温州医科大学附属眼视光医院": ["checkup", "ophthalmology"],
+    "福建医科大学附属协和医院": ["checkup", "hematology"],
+    "河南省人民医院": ["checkup", "neurology", "cardiology"],
+    "武汉大学口腔医院": ["checkup", "dental"],
+    "深圳市人民医院": ["checkup"],
+    "陆军军医大学第二附属医院": ["checkup", "cardiology"],
+    "西安交通大学第二附属医院": ["checkup"],
+    "空军军医大学第二附属医院(唐都医院)": ["checkup", "neurology", "orthopedics"]
   };
 
   function inferTags(name) {
-    if (TAG_OVERRIDES[name]) return TAG_OVERRIDES[name];
-    var tags = [];
-    if (/肿瘤|癌/.test(name)) tags.push("oncology");
-    if (/儿童|儿科/.test(name)) tags.push("pediatrics");
-    if (/妇产|妇幼|妇女儿童|女第二/.test(name)) tags.push("obgyn");
-    if (/口腔/.test(name)) tags.push("dental");
-    if (/眼科|眼耳鼻喉|眼视光/.test(name)) tags.push("ophthalmology");
-    if (/精神卫生|精神心理/.test(name)) tags.push("psychiatry");
-    if (/胸科|肺科/.test(name)) tags.push("respiratory");
-    if (/血液病/.test(name)) tags.push("hematology");
-    if (tags.length === 0) tags.push("checkup");
-    return tags;
+    return SPECIALTY_TAGS[name] || ["checkup"];
   }
 
   function slug(i) { return "h" + String(i + 1).padStart(3, "0"); }
@@ -380,39 +467,93 @@
     pages: {
       food: {
         intro: {
-          en: "Traveling for medical care shouldn't mean giving up food you can trust. Here's how meals are handled during your trip.",
-          "zh-CN": "赴华就医不代表要将就饮食。以下是您在旅途中饮食方面可以获得的帮助。",
-          "zh-TW": "赴中就醫不代表要將就飲食。以下是您在旅途中飲食方面可以獲得的協助。"
+          en: "Traveling for medical care shouldn't mean giving up food you can trust. Here's how meals are handled during your trip, region by region.",
+          "zh-CN": "赴华就医不代表要将就饮食。以下是您在旅途中各地饮食方面可以获得的帮助。",
+          "zh-TW": "赴中就醫不代表要將就飲食。以下是您在旅途中各地飲食方面可以獲得的協助。"
         },
         items: [
-          { icon: "🕌", title: { en: "Halal Meals", "zh-CN": "清真餐食", "zh-TW": "清真餐食" },
-            desc: { en: "Agents can arrange halal-certified meals near your hospital and hotel.", "zh-CN": "服务人员可为您安排医院及酒店附近的清真认证餐食。", "zh-TW": "服務人員可為您安排醫院及飯店附近的清真認證餐食。" } },
-          { icon: "🥦", title: { en: "Vegetarian & Vegan Options", "zh-CN": "素食与纯素选择", "zh-TW": "素食與純素選擇" },
-            desc: { en: "Many hospital cafeterias and nearby restaurants offer vegetarian menus — your agent can point you to them.", "zh-CN": "许多医院食堂及周边餐厅均提供素食菜单，服务人员可为您推荐。", "zh-TW": "許多醫院食堂及周邊餐廳均提供素食菜單，服務人員可為您推薦。" } },
-          { icon: "⚠️", title: { en: "Allergies & Medical Diets", "zh-CN": "过敏与医嘱饮食", "zh-TW": "過敏與醫囑飲食" },
-            desc: { en: "Tell your agent about any food allergies or doctor-prescribed diet — they'll relay this to hotel and restaurant staff in Chinese.", "zh-CN": "请提前告知服务人员您的食物过敏情况或医嘱饮食要求，他们会用中文与酒店及餐厅沟通。", "zh-TW": "請提前告知服務人員您的食物過敏情況或醫囑飲食要求，他們會用中文與飯店及餐廳溝通。" } },
-          { icon: "🥢", title: { en: "Try Local Cuisine", "zh-CN": "品尝地方美食", "zh-TW": "品嚐地方美食" },
-            desc: { en: "Each region has its own specialties — from Cantonese dim sum to Sichuan hot pot. Ask your agent for recommendations near your hospital.", "zh-CN": "各地美食各具特色——从粤式点心到川味火锅。可向服务人员咨询医院附近的推荐餐厅。", "zh-TW": "各地美食各具特色——從粵式點心到川味火鍋。可向服務人員諮詢醫院附近的推薦餐廳。" } }
+          { icon: "food-halal", title: { en: "Halal", "zh-CN": "清真餐食", "zh-TW": "清真餐食" },
+            desc: { en: "Certified halal meals near your hospital and hotel, arranged by your agent.", "zh-CN": "服务人员可安排医院及酒店附近的清真认证餐食。", "zh-TW": "服務人員可安排醫院及飯店附近的清真認證餐食。" } },
+          { icon: "food-veg", title: { en: "Vegetarian & Vegan", "zh-CN": "素食与纯素", "zh-TW": "素食與純素" },
+            desc: { en: "Most hospital cafeterias and nearby restaurants offer vegetarian menus.", "zh-CN": "多数医院食堂及周边餐厅均提供素食菜单。", "zh-TW": "多數醫院食堂及周邊餐廳均提供素食菜單。" } },
+          { icon: "food-allergy", title: { en: "Allergies & Medical Diets", "zh-CN": "过敏与医嘱饮食", "zh-TW": "過敏與醫囑飲食" },
+            desc: { en: "Tell your agent about allergies or a prescribed diet — they'll relay it to staff in Chinese.", "zh-CN": "请提前告知服务人员您的过敏情况或医嘱饮食，他们会用中文与相关人员沟通。", "zh-TW": "請提前告知服務人員您的過敏情況或醫囑飲食，他們會用中文與相關人員溝通。" } },
+          { icon: "food-dimsum", title: { en: "Cantonese (Guangzhou, Shenzhen)", "zh-CN": "粤菜（广州、深圳）", "zh-TW": "粵菜（廣州、深圳）" },
+            desc: { en: "Light, delicate flavors — dim sum, congee, steamed seafood.", "zh-CN": "清淡精致——点心、粥品、清蒸海鲜。", "zh-TW": "清淡精緻——點心、粥品、清蒸海鮮。" } },
+          { icon: "food-spicy", title: { en: "Sichuan (Chengdu)", "zh-CN": "川菜（成都）", "zh-TW": "川菜（成都）" },
+            desc: { en: "Bold and spicy — hot pot and mala dishes; mild versions available on request.", "zh-CN": "麻辣鲜香——火锅与川味小炒，可要求微辣或不辣。", "zh-TW": "麻辣鮮香——火鍋與川味小炒，可要求微辣或不辣。" } },
+          { icon: "food-wheat", title: { en: "Northern (Beijing, Xi'an, Tianjin)", "zh-CN": "北方菜（北京、西安、天津）", "zh-TW": "北方菜（北京、西安、天津）" },
+            desc: { en: "Wheat-based — noodles, dumplings, and Peking duck.", "zh-CN": "以面食为主——面条、饺子、北京烤鸭。", "zh-TW": "以麵食為主——麵條、餃子、北京烤鴨。" } },
+          { icon: "food-fish", title: { en: "Jiangnan (Shanghai, Hangzhou, Suzhou)", "zh-CN": "江南菜（上海、杭州、苏州）", "zh-TW": "江南菜（上海、杭州、蘇州）" },
+            desc: { en: "Slightly sweet river-and-lake cuisine — fish, rice, and delicate braises.", "zh-CN": "略带甜味的江南水乡菜——鱼鲜、米饭与精致炖菜。", "zh-TW": "略帶甜味的江南水鄉菜——魚鮮、米飯與精緻燉菜。" } },
+          { icon: "food-western", title: { en: "Western & International", "zh-CN": "西餐及国际餐饮", "zh-TW": "西餐及國際餐飲" },
+            desc: { en: "Available near major hospitals in most cities we cover, especially Beijing, Shanghai, and Shenzhen.", "zh-CN": "我们覆盖的大多数城市的主要医院附近均可找到，尤以北京、上海、深圳为多。", "zh-TW": "我們覆蓋的大多數城市的主要醫院附近均可找到，尤以北京、上海、深圳為多。" } },
+          { icon: "food-tray", title: { en: "Hospital Cafeteria & Delivery", "zh-CN": "医院食堂与外卖", "zh-TW": "醫院食堂與外送" },
+            desc: { en: "Most large hospitals have an on-site cafeteria; food delivery apps cover nearly every hospital in China.", "zh-CN": "大多数大型医院设有院内食堂；外卖平台几乎覆盖中国所有医院周边。", "zh-TW": "大多數大型醫院設有院內食堂；外送平台幾乎覆蓋中國所有醫院周邊。" } }
         ]
       },
       safety: {
         intro: {
-          en: "Your safety — medical and personal — is central to how Health Blueprint works.",
-          "zh-CN": "医疗安全与人身安全，是健康蓝图一切服务的核心。",
-          "zh-TW": "醫療安全與人身安全，是健康藍圖一切服務的核心。"
+          en: "Your safety — medical and personal — is central to how Health Blueprint works. We only publish safety information we can actually verify.",
+          "zh-CN": "医疗安全与人身安全，是健康蓝图一切服务的核心。我们只发布确实可核实的安全信息。",
+          "zh-TW": "醫療安全與人身安全，是健康藍圖一切服務的核心。我們只發布確實可核實的安全資訊。"
         },
         items: [
-          { icon: "🏅", title: { en: "Published Hospital Rankings", "zh-CN": "公开的医院排名", "zh-TW": "公開的醫院排名" },
+          { icon: "star", title: { en: "Published Hospital Rankings", "zh-CN": "公开的医院排名", "zh-TW": "公開的醫院排名" },
             desc: { en: "Every hospital listed comes from the publicly published 2023 China Hospital Ranking, so you can see its national standing before you choose.", "zh-CN": "所有上榜医院均来自公开发布的2023年度中国医院综合排行榜，方便您在选择前了解其全国排名情况。", "zh-TW": "所有上榜醫院均來自公開發布的2023年度中國醫院綜合排行榜，方便您在選擇前了解其全國排名情況。" } },
-          { icon: "🧑‍🤝‍🧑", title: { en: "Reviewed Agents", "zh-CN": "经审核的服务人员", "zh-TW": "經審核的服務人員" },
+          { icon: "handshake", title: { en: "Reviewed Agents", "zh-CN": "经审核的服务人员", "zh-TW": "經審核的服務人員" },
             desc: { en: "Agents who support you in person are reviewed before joining our network, and rated after every trip.", "zh-CN": "为您提供全程陪同服务的人员在加入平台前均经过审核，并在每次行程后接受评分。", "zh-TW": "為您提供全程陪同服務的人員在加入平台前均經過審核，並在每次行程後接受評分。" } },
-          { icon: "📞", title: { en: "Support Every Step", "zh-CN": "全程支持", "zh-TW": "全程支援" },
+          { icon: "safety-phone", title: { en: "Support Every Step", "zh-CN": "全程支持", "zh-TW": "全程支援" },
             desc: { en: "Your agent stays reachable throughout your trip — from airport pickup to your safe return home.", "zh-CN": "服务人员在您整个行程中都可随时联系——从机场接机到您平安返程。", "zh-TW": "服務人員在您整個行程中都可隨時聯繫——從機場接機到您平安返程。" } },
-          { icon: "🧳", title: { en: "Travel & Medical Insurance", "zh-CN": "旅行与医疗保险", "zh-TW": "旅遊與醫療保險" },
+          { icon: "safety-shield", title: { en: "Travel & Medical Insurance", "zh-CN": "旅行与医疗保险", "zh-TW": "旅遊與醫療保險" },
             desc: { en: "We recommend arranging travel/medical insurance before your trip; your agent can help you understand local requirements.", "zh-CN": "建议您在出行前安排好旅行/医疗保险，服务人员可协助您了解当地相关要求。", "zh-TW": "建議您在出行前安排好旅遊/醫療保險，服務人員可協助您了解當地相關要求。" } },
-          { icon: "🚨", title: { en: "Embassy & Emergency Contacts", "zh-CN": "使领馆与紧急联系方式", "zh-TW": "使領館與緊急聯絡方式" },
-            desc: { en: "Keep your country's embassy or consulate contact information with you, along with China's national emergency numbers (110 police, 120 medical).", "zh-CN": "请随身携带您所在国家使领馆的联系方式，并留意中国的全国紧急电话（110报警、120急救）。", "zh-TW": "請隨身攜帶您所在國家使領館的聯絡方式，並留意中國的全國緊急電話（110報警、120急救）。" } }
-        ]
+          { icon: "safety-embassy", title: { en: "Embassy Contacts", "zh-CN": "使领馆联系方式", "zh-TW": "使領館聯絡方式" },
+            desc: { en: "Keep your country's embassy or consulate contact information with you throughout your trip.", "zh-CN": "请在行程中随身携带您所在国家使领馆的联系方式。", "zh-TW": "請在行程中隨身攜帶您所在國家使領館的聯絡方式。" } }
+        ],
+        emergencyTitle: { en: "Emergency Numbers", "zh-CN": "紧急联系电话", "zh-TW": "緊急聯絡電話" },
+        emergencyContacts: [
+          { icon: "safety-phone", number: "110", label: { en: "Police", "zh-CN": "报警", "zh-TW": "報警" } },
+          { icon: "safety-phone", number: "120", label: { en: "Medical Emergency / Ambulance", "zh-CN": "急救", "zh-TW": "急救" } },
+          { icon: "safety-phone", number: "119", label: { en: "Fire", "zh-CN": "火警", "zh-TW": "火警" } },
+          { icon: "safety-phone", number: "122", label: { en: "Traffic Accident", "zh-CN": "交通事故", "zh-TW": "交通事故" } }
+        ],
+        cityData: {
+          title: { en: "What we can verify about city safety", "zh-CN": "关于城市安全，我们能核实到的信息", "zh-TW": "關於城市安全，我們能核實到的資訊" },
+          disclaimer: {
+            en: "You asked for a safety ranking of all our cities. We looked, honestly: there is no single official, authoritative index that ranks all 23 of them, so we won't invent one. Below is exactly what independent sources do and don't cover.",
+            "zh-CN": "您希望我们提供所有城市的安全排名。我们认真查证后发现：目前没有一个官方权威指数能覆盖全部23个城市，因此我们不会编造数据。以下是各独立信息来源实际能覆盖和无法覆盖的内容。",
+            "zh-TW": "您希望我們提供所有城市的安全排名。我們認真查證後發現：目前沒有一個官方權威指數能涵蓋全部23個城市，因此我們不會編造資料。以下是各獨立資訊來源實際能涵蓋和無法涵蓋的內容。"
+          },
+          eiu: {
+            en: "The Economist Intelligence Unit's Safe Cities Index tracks about 60 major cities worldwide. Of our 23 cities, only Beijing has a confirmed placement: 31st of 60 in the 2019 edition. This is a global index (not China-specific), and the other 22 cities are not included.",
+            "zh-CN": "英国经济学人智库（EIU）发布的\"安全城市指数\"覆盖全球约60个主要城市。在我们的23个城市中，仅北京有确认排名：2019年版位列第31位（共60个城市）。该指数为全球性指数（非专门针对中国），其余22个城市均未被纳入。",
+            "zh-TW": "英國經濟學人智庫（EIU）發布的「安全城市指數」涵蓋全球約60個主要城市。在我們的23個城市中，僅北京有確認排名：2019年版位列第31位（共60個城市）。該指數為全球性指數（非專門針對中國），其餘22個城市均未被納入。"
+          },
+          numbeoCaveat: {
+            en: "Numbeo publishes a crowdsourced \"Safety Index\" based on user-submitted surveys — not an official or academic source, and sample sizes per city are often small. With that caveat, here's what it shows for the cities with usable data (0–100 scale, higher = safer):",
+            "zh-CN": "Numbeo 网站发布的\"安全指数\"基于用户自行提交的问卷调查，并非官方或学术数据来源，且各城市样本量往往较小。在此前提下，以下是有可用数据的城市情况（0-100分，分数越高越安全）：",
+            "zh-TW": "Numbeo 網站發布的「安全指數」基於使用者自行提交的問卷調查，並非官方或學術資料來源，且各城市樣本量往往較小。在此前提下，以下是有可用資料的城市情況（0-100分，分數越高越安全）："
+          },
+          numbeo: [
+            { area: "beijing", score: 74.7 },
+            { area: "shanghai", score: 73.5 },
+            { area: "shenzhen", score: 75.2 },
+            { area: "chengdu", score: 79.9 },
+            { area: "chongqing", score: 77.2 },
+            { area: "harbin", score: 79.3 },
+            { area: "nanchang", score: 79.2 }
+          ],
+          uncoveredNote: {
+            en: "The remaining 16 cities in our directory (Tianjin, Guangzhou, Hangzhou, Wenzhou, Nanjing, Suzhou, Xi'an, Wuhan, Changsha, Zhengzhou, Jinan, Qingdao, Shenyang, Changchun, Hefei, Fuzhou) don't have a reliable published safety score we could verify — that's not a red flag, just a data gap.",
+            "zh-CN": "我们名录中其余16个城市（天津、广州、杭州、温州、南京、苏州、西安、武汉、长沙、郑州、济南、青岛、沈阳、长春、合肥、福州）目前没有可核实的公开安全评分——这并不代表存在风险，只是数据空缺。",
+            "zh-TW": "我們名錄中其餘16個城市（天津、廣州、杭州、溫州、南京、蘇州、西安、武漢、長沙、鄭州、濟南、青島、瀋陽、長春、合肥、福州）目前沒有可核實的公開安全評分——這並不代表存在風險，只是資料空缺。"
+          },
+          generalNote: {
+            en: "For general context: major Western governments' travel advisories typically place mainland China at a standard/moderate caution level overall, not an elevated crime warning — but advisory levels change over time, so check your own government's current guidance before you travel.",
+            "zh-CN": "作为一般参考：西方主要国家政府发布的旅行提醒通常将中国大陆列为标准/中等谨慎级别，并未因治安问题发布高等级警示——但提醒等级会随时间变化，出行前请务必查阅您所在国家政府的最新指南。",
+            "zh-TW": "作為一般參考：西方主要國家政府發布的旅遊提醒通常將中國大陸列為標準/中等謹慎等級，並未因治安問題發布高等級警示——但提醒等級會隨時間變化，出行前請務必查閱您所在國家政府的最新指南。"
+          }
+        }
       }
     },
 

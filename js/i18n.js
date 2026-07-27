@@ -53,6 +53,7 @@ window.I18N = {
         aboutTitle: "About this hospital",
         programsTitle: "Specialties Offered",
         officialWebsite: "Official hospital website",
+        illustrationNote: "Illustration, not an actual photo — visit the official website above for real photos.",
         tierLabel: "2023 China Hospital Ranking"
       },
       program: {
@@ -77,6 +78,7 @@ window.I18N = {
       contact: {
         title: "Request a Consultation",
         subtitle: "Tell us a bit about yourself and we'll connect you with your selected agent within 1 business day.",
+        subtitleGeneral: "Tell us a bit about yourself and we'll connect you with the right agent within 1 business day.",
         name: "Full name",
         email: "Email address",
         phone: "Phone / WhatsApp number",
@@ -206,6 +208,7 @@ window.I18N = {
         aboutTitle: "医院简介",
         programsTitle: "开设专科",
         officialWebsite: "医院官方网站",
+        illustrationNote: "示意图，并非实景照片——如需查看真实照片，请访问上方官方网站。",
         tierLabel: "2023年度中国医院排行"
       },
       program: {
@@ -230,6 +233,7 @@ window.I18N = {
       contact: {
         title: "预约咨询",
         subtitle: "请留下您的基本信息，我们会在1个工作日内为您联系所选的服务人员。",
+        subtitleGeneral: "请留下您的基本信息，我们会在1个工作日内为您匹配合适的服务人员。",
         name: "姓名",
         email: "电子邮箱",
         phone: "电话 / WhatsApp 号码",
@@ -359,6 +363,7 @@ window.I18N = {
         aboutTitle: "醫院簡介",
         programsTitle: "開設專科",
         officialWebsite: "醫院官方網站",
+        illustrationNote: "示意圖，並非實景照片——如需查看真實照片，請造訪上方官方網站。",
         tierLabel: "2023年度中國醫院排行"
       },
       program: {
@@ -383,6 +388,7 @@ window.I18N = {
       contact: {
         title: "預約諮詢",
         subtitle: "請留下您的基本資料，我們會在1個工作日內為您聯繫所選的服務人員。",
+        subtitleGeneral: "請留下您的基本資料，我們會在1個工作日內為您媒合合適的服務人員。",
         name: "姓名",
         email: "電子郵箱",
         phone: "電話 / WhatsApp 號碼",
@@ -512,6 +518,7 @@ window.I18N = {
         aboutTitle: "Sobre este hospital",
         programsTitle: "Especialidades ofrecidas",
         officialWebsite: "Sitio web oficial del hospital",
+        illustrationNote: "Ilustración, no una fotografía real — visite el sitio web oficial arriba para ver fotos reales.",
         tierLabel: "Ranking de hospitales de China 2023"
       },
       program: {
@@ -536,6 +543,7 @@ window.I18N = {
       contact: {
         title: "Solicitar una consulta",
         subtitle: "Cuéntenos un poco sobre usted y le pondremos en contacto con su agente en un plazo de 1 día hábil.",
+        subtitleGeneral: "Cuéntenos un poco sobre usted y le pondremos en contacto con el agente adecuado en un plazo de 1 día hábil.",
         name: "Nombre completo",
         email: "Correo electrónico",
         phone: "Teléfono / WhatsApp",
@@ -665,6 +673,7 @@ window.I18N = {
         aboutTitle: "À propos de cet hôpital",
         programsTitle: "Spécialités proposées",
         officialWebsite: "Site officiel de l'hôpital",
+        illustrationNote: "Illustration, pas une photo réelle — consultez le site officiel ci-dessus pour de vraies photos.",
         tierLabel: "Classement des hôpitaux chinois 2023"
       },
       program: {
@@ -689,6 +698,7 @@ window.I18N = {
       contact: {
         title: "Demander une consultation",
         subtitle: "Parlez-nous un peu de vous et nous vous mettrons en contact avec votre agent sous 1 jour ouvré.",
+        subtitleGeneral: "Parlez-nous un peu de vous et nous vous mettrons en contact avec l'agent adapté sous 1 jour ouvré.",
         name: "Nom complet",
         email: "Adresse e-mail",
         phone: "Téléphone / WhatsApp",
@@ -818,6 +828,7 @@ window.I18N = {
         aboutTitle: "Über dieses Krankenhaus",
         programsTitle: "Angebotene Fachbereiche",
         officialWebsite: "Offizielle Website des Krankenhauses",
+        illustrationNote: "Illustration, kein echtes Foto — echte Fotos finden Sie auf der offiziellen Website oben.",
         tierLabel: "Chinesisches Krankenhausranking 2023"
       },
       program: {
@@ -842,6 +853,7 @@ window.I18N = {
       contact: {
         title: "Beratung anfragen",
         subtitle: "Erzählen Sie uns etwas über sich und wir verbinden Sie innerhalb eines Werktags mit Ihrem Betreuer.",
+        subtitleGeneral: "Erzählen Sie uns etwas über sich und wir verbinden Sie innerhalb eines Werktags mit dem passenden Betreuer.",
         name: "Vollständiger Name",
         email: "E-Mail-Adresse",
         phone: "Telefon / WhatsApp-Nummer",
@@ -971,6 +983,7 @@ window.I18N = {
         aboutTitle: "Sobre este hospital",
         programsTitle: "Especialidades oferecidas",
         officialWebsite: "Site oficial do hospital",
+        illustrationNote: "Ilustração, não é uma foto real — visite o site oficial acima para ver fotos reais.",
         tierLabel: "Ranking de Hospitais da China 2023"
       },
       program: {
@@ -995,6 +1008,7 @@ window.I18N = {
       contact: {
         title: "Solicitar uma consulta",
         subtitle: "Conte-nos um pouco sobre você e conectaremos você ao seu agente em até 1 dia útil.",
+        subtitleGeneral: "Conte-nos um pouco sobre você e conectaremos você ao agente certo em até 1 dia útil.",
         name: "Nome completo",
         email: "Endereço de e-mail",
         phone: "Telefone / WhatsApp",
@@ -1124,6 +1138,7 @@ window.I18N = {
         aboutTitle: "О больнице",
         programsTitle: "Доступные направления",
         officialWebsite: "Официальный сайт больницы",
+        illustrationNote: "Иллюстрация, а не реальное фото — настоящие фотографии смотрите на официальном сайте выше.",
         tierLabel: "Рейтинг больниц Китая 2023"
       },
       program: {
@@ -1148,6 +1163,7 @@ window.I18N = {
       contact: {
         title: "Запросить консультацию",
         subtitle: "Расскажите немного о себе, и мы свяжем вас с выбранным агентом в течение 1 рабочего дня.",
+        subtitleGeneral: "Расскажите немного о себе, и мы подберём для вас подходящего агента в течение 1 рабочего дня.",
         name: "Полное имя",
         email: "Адрес электронной почты",
         phone: "Телефон / WhatsApp",
@@ -1277,6 +1293,7 @@ window.I18N = {
         aboutTitle: "عن هذا المستشفى",
         programsTitle: "التخصصات المتاحة",
         officialWebsite: "الموقع الرسمي للمستشفى",
+        illustrationNote: "رسم توضيحي وليس صورة حقيقية — لمشاهدة صور حقيقية، يُرجى زيارة الموقع الرسمي أعلاه.",
         tierLabel: "تصنيف المستشفيات الصينية 2023"
       },
       program: {
@@ -1301,6 +1318,7 @@ window.I18N = {
       contact: {
         title: "طلب استشارة",
         subtitle: "أخبرنا قليلاً عن نفسك وسنقوم بربطك بوكيلك المختار خلال يوم عمل واحد.",
+        subtitleGeneral: "أخبرنا قليلاً عن نفسك وسنقوم بربطك بالوكيل المناسب خلال يوم عمل واحد.",
         name: "الاسم الكامل",
         email: "البريد الإلكتروني",
         phone: "رقم الهاتف / واتساب",
@@ -1430,6 +1448,7 @@ window.I18N = {
         aboutTitle: "この病院について",
         programsTitle: "診療科目",
         officialWebsite: "病院公式サイト",
+        illustrationNote: "イメージ図であり実際の写真ではありません——実際の写真は上記の公式サイトでご確認ください。",
         tierLabel: "2023年版 中国病院ランキング"
       },
       program: {
@@ -1454,6 +1473,7 @@ window.I18N = {
       contact: {
         title: "相談を申し込む",
         subtitle: "簡単な情報をご入力いただければ、1営業日以内に選択したエージェントよりご連絡いたします。",
+        subtitleGeneral: "簡単な情報をご入力いただければ、1営業日以内に最適なエージェントよりご連絡いたします。",
         name: "お名前",
         email: "メールアドレス",
         phone: "電話番号 / WhatsApp番号",
@@ -1583,6 +1603,7 @@ window.I18N = {
         aboutTitle: "병원 소개",
         programsTitle: "운영 중인 진료과",
         officialWebsite: "병원 공식 웹사이트",
+        illustrationNote: "실제 사진이 아닌 이미지입니다 — 실제 사진은 위의 공식 웹사이트에서 확인하세요.",
         tierLabel: "2023 중국 병원 순위"
       },
       program: {
@@ -1607,6 +1628,7 @@ window.I18N = {
       contact: {
         title: "상담 신청",
         subtitle: "간단한 정보를 남겨주시면 영업일 기준 1일 이내에 선택하신 에이전트와 연결해 드립니다.",
+        subtitleGeneral: "간단한 정보를 남겨주시면 영업일 기준 1일 이내에 적합한 에이전트와 연결해 드립니다.",
         name: "성명",
         email: "이메일 주소",
         phone: "전화 / WhatsApp 번호",
@@ -1736,6 +1758,7 @@ window.I18N = {
         aboutTitle: "इस अस्पताल के बारे में",
         programsTitle: "उपलब्ध विभाग",
         officialWebsite: "अस्पताल की आधिकारिक वेबसाइट",
+        illustrationNote: "यह एक चित्रण है, वास्तविक तस्वीर नहीं — वास्तविक तस्वीरों के लिए ऊपर दी गई आधिकारिक वेबसाइट देखें।",
         tierLabel: "2023 चीन अस्पताल रैंकिंग"
       },
       program: {
@@ -1760,6 +1783,7 @@ window.I18N = {
       contact: {
         title: "परामर्श का अनुरोध करें",
         subtitle: "हमें अपने बारे में थोड़ा बताएं और हम 1 कार्य दिवस के भीतर आपको आपके चुने हुए एजेंट से जोड़ देंगे।",
+        subtitleGeneral: "हमें अपने बारे में थोड़ा बताएं और हम 1 कार्य दिवस के भीतर आपको सही एजेंट से जोड़ देंगे।",
         name: "पूरा नाम",
         email: "ईमेल पता",
         phone: "फ़ोन / WhatsApp नंबर",
