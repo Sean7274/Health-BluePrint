@@ -159,6 +159,14 @@ window.I18N = {
         changeHospital: "Change hospital",
         changeRoute: "Change route",
         continueToAgents: "Continue to Choose an Agent",
+        buildCustomRoute: "Build Your Own Route",
+        buildCustomRouteDesc: "Add as many stops as you like — we'll pass your list straight to your agent.",
+        stopPlaceholder: "e.g. Great Wall, a specific restaurant, a friend's address...",
+        addStop: "Add Stop",
+        useCustomRoute: "Use This Custom Route",
+        noStopsYet: "No stops added yet.",
+        customRouteLabel: "Custom route ({n} stops)",
+        removeStop: "Remove",
         noRoute: "No route selected yet",
         noHospital: "No hospital selected yet"
       },
@@ -172,6 +180,16 @@ window.I18N = {
         foodDesc: "Dietary needs and local cuisine, taken care of",
         safetyTitle: "Safety",
         safetyDesc: "Licensed hospitals, vetted agents, support at every step"
+      },
+      food: {
+        dishesTitle: "Regional Specialty Dishes",
+        filterTitle: "Filter by dietary needs",
+        filterNoPork: "No pork", filterNoBeef: "No beef", filterNoSeafood: "No seafood",
+        filterNoAlcohol: "No alcohol", filterVegetarian: "Vegetarian-friendly only", filterNoSpicy: "Not spicy",
+        noDishesMatch: "No dishes match your filters.",
+        tagPork: "Contains pork", tagBeef: "Contains beef", tagLamb: "Contains lamb",
+        tagPoultry: "Poultry", tagSeafood: "Contains seafood", tagAlcohol: "Contains alcohol",
+        tagSpicy: "Spicy", tagVegOption: "Vegetarian option available"
       }
     },
 
@@ -314,6 +332,14 @@ window.I18N = {
         changeHospital: "更改医院",
         changeRoute: "更改路线",
         continueToAgents: "继续选择服务人员",
+        buildCustomRoute: "自定义路线",
+        buildCustomRouteDesc: "可添加任意数量的地点，我们会将您的清单直接转达给服务人员。",
+        stopPlaceholder: "例如：长城、某家餐厅、朋友的地址……",
+        addStop: "添加地点",
+        useCustomRoute: "使用此自定义路线",
+        noStopsYet: "尚未添加任何地点。",
+        customRouteLabel: "自定义路线（{n}个地点）",
+        removeStop: "移除",
         noRoute: "尚未选择路线",
         noHospital: "尚未选择医院"
       },
@@ -327,6 +353,16 @@ window.I18N = {
         foodDesc: "饮食需求与当地美食，为您安排妥当",
         safetyTitle: "安全",
         safetyDesc: "正规医院、审核合格的服务人员，全程保驾护航"
+      },
+      food: {
+        dishesTitle: "地方特色菜",
+        filterTitle: "按饮食需求筛选",
+        filterNoPork: "不含猪肉", filterNoBeef: "不含牛肉", filterNoSeafood: "不含海鲜",
+        filterNoAlcohol: "不含酒精", filterVegetarian: "仅显示素食友好", filterNoSpicy: "不辣",
+        noDishesMatch: "没有符合筛选条件的菜品。",
+        tagPork: "含猪肉", tagBeef: "含牛肉", tagLamb: "含羊肉",
+        tagPoultry: "禽肉", tagSeafood: "含海鲜", tagAlcohol: "含酒精",
+        tagSpicy: "辛辣", tagVegOption: "提供素食选项"
       }
     },
 
@@ -469,6 +505,14 @@ window.I18N = {
         changeHospital: "更改醫院",
         changeRoute: "更改路線",
         continueToAgents: "繼續選擇服務人員",
+        buildCustomRoute: "自訂路線",
+        buildCustomRouteDesc: "可新增任意數量的地點，我們會將您的清單直接轉達給服務人員。",
+        stopPlaceholder: "例如：長城、某家餐廳、朋友的地址……",
+        addStop: "新增地點",
+        useCustomRoute: "使用此自訂路線",
+        noStopsYet: "尚未新增任何地點。",
+        customRouteLabel: "自訂路線（{n}個地點）",
+        removeStop: "移除",
         noRoute: "尚未選擇路線",
         noHospital: "尚未選擇醫院"
       },
@@ -482,6 +526,16 @@ window.I18N = {
         foodDesc: "飲食需求與當地美食，為您安排妥當",
         safetyTitle: "安全",
         safetyDesc: "合法醫院、審核合格的服務人員，全程保駕護航"
+      },
+      food: {
+        dishesTitle: "地方特色菜",
+        filterTitle: "按飲食需求篩選",
+        filterNoPork: "不含豬肉", filterNoBeef: "不含牛肉", filterNoSeafood: "不含海鮮",
+        filterNoAlcohol: "不含酒精", filterVegetarian: "僅顯示素食友好", filterNoSpicy: "不辣",
+        noDishesMatch: "沒有符合篩選條件的菜品。",
+        tagPork: "含豬肉", tagBeef: "含牛肉", tagLamb: "含羊肉",
+        tagPoultry: "禽肉", tagSeafood: "含海鮮", tagAlcohol: "含酒精",
+        tagSpicy: "辛辣", tagVegOption: "提供素食選項"
       }
     },
 
@@ -624,6 +678,14 @@ window.I18N = {
         changeHospital: "Cambiar hospital",
         changeRoute: "Cambiar ruta",
         continueToAgents: "Continuar para elegir un agente",
+        buildCustomRoute: "Cree su propia ruta",
+        buildCustomRouteDesc: "Añada tantas paradas como quiera; enviaremos su lista directamente a su agente.",
+        stopPlaceholder: "ej. la Gran Muralla, un restaurante concreto, la dirección de un amigo...",
+        addStop: "Añadir parada",
+        useCustomRoute: "Usar esta ruta personalizada",
+        noStopsYet: "Aún no ha añadido ninguna parada.",
+        customRouteLabel: "Ruta personalizada ({n} paradas)",
+        removeStop: "Eliminar",
         noRoute: "Aún no ha seleccionado una ruta",
         noHospital: "Aún no ha seleccionado un hospital"
       },
@@ -637,6 +699,16 @@ window.I18N = {
         foodDesc: "Necesidades dietéticas y cocina local, resueltas",
         safetyTitle: "Seguridad",
         safetyDesc: "Hospitales certificados, agentes verificados, apoyo en cada paso"
+      },
+      food: {
+        dishesTitle: "Platos regionales típicos",
+        filterTitle: "Filtrar por necesidades dietéticas",
+        filterNoPork: "Sin cerdo", filterNoBeef: "Sin ternera", filterNoSeafood: "Sin marisco",
+        filterNoAlcohol: "Sin alcohol", filterVegetarian: "Solo apto para vegetarianos", filterNoSpicy: "No picante",
+        noDishesMatch: "Ningún plato coincide con sus filtros.",
+        tagPork: "Contiene cerdo", tagBeef: "Contiene ternera", tagLamb: "Contiene cordero",
+        tagPoultry: "Ave", tagSeafood: "Contiene marisco", tagAlcohol: "Contiene alcohol",
+        tagSpicy: "Picante", tagVegOption: "Opción vegetariana disponible"
       }
     },
 
@@ -779,6 +851,14 @@ window.I18N = {
         changeHospital: "Changer d'hôpital",
         changeRoute: "Changer d'itinéraire",
         continueToAgents: "Continuer pour choisir un agent",
+        buildCustomRoute: "Créez votre propre itinéraire",
+        buildCustomRouteDesc: "Ajoutez autant d'étapes que vous voulez ; nous transmettrons votre liste directement à votre agent.",
+        stopPlaceholder: "ex. la Grande Muraille, un restaurant précis, l'adresse d'un ami...",
+        addStop: "Ajouter une étape",
+        useCustomRoute: "Utiliser cet itinéraire personnalisé",
+        noStopsYet: "Aucune étape ajoutée pour l'instant.",
+        customRouteLabel: "Itinéraire personnalisé ({n} étapes)",
+        removeStop: "Supprimer",
         noRoute: "Aucun itinéraire sélectionné pour l'instant",
         noHospital: "Aucun hôpital sélectionné pour l'instant"
       },
@@ -792,6 +872,16 @@ window.I18N = {
         foodDesc: "Besoins alimentaires et cuisine locale, pris en charge",
         safetyTitle: "Sécurité",
         safetyDesc: "Hôpitaux agréés, agents vérifiés, accompagnement à chaque étape"
+      },
+      food: {
+        dishesTitle: "Plats régionaux emblématiques",
+        filterTitle: "Filtrer selon vos besoins alimentaires",
+        filterNoPork: "Sans porc", filterNoBeef: "Sans bœuf", filterNoSeafood: "Sans fruits de mer",
+        filterNoAlcohol: "Sans alcool", filterVegetarian: "Végétarien uniquement", filterNoSpicy: "Pas épicé",
+        noDishesMatch: "Aucun plat ne correspond à vos filtres.",
+        tagPork: "Contient du porc", tagBeef: "Contient du bœuf", tagLamb: "Contient de l'agneau",
+        tagPoultry: "Volaille", tagSeafood: "Contient des fruits de mer", tagAlcohol: "Contient de l'alcool",
+        tagSpicy: "Épicé", tagVegOption: "Option végétarienne disponible"
       }
     },
 
@@ -934,6 +1024,14 @@ window.I18N = {
         changeHospital: "Krankenhaus ändern",
         changeRoute: "Route ändern",
         continueToAgents: "Weiter zur Betreuerauswahl",
+        buildCustomRoute: "Eigene Route zusammenstellen",
+        buildCustomRouteDesc: "Fügen Sie beliebig viele Stopps hinzu — wir leiten Ihre Liste direkt an Ihren Betreuer weiter.",
+        stopPlaceholder: "z. B. Große Mauer, ein bestimmtes Restaurant, die Adresse eines Freundes...",
+        addStop: "Stopp hinzufügen",
+        useCustomRoute: "Diese individuelle Route verwenden",
+        noStopsYet: "Noch keine Stopps hinzugefügt.",
+        customRouteLabel: "Individuelle Route ({n} Stopps)",
+        removeStop: "Entfernen",
         noRoute: "Noch keine Route ausgewählt",
         noHospital: "Noch kein Krankenhaus ausgewählt"
       },
@@ -947,6 +1045,16 @@ window.I18N = {
         foodDesc: "Ernährungsbedürfnisse und lokale Küche, für Sie geregelt",
         safetyTitle: "Sicherheit",
         safetyDesc: "Zugelassene Krankenhäuser, geprüfte Betreuer, Unterstützung bei jedem Schritt"
+      },
+      food: {
+        dishesTitle: "Regionale Spezialitäten",
+        filterTitle: "Nach Ernährungsbedürfnissen filtern",
+        filterNoPork: "Ohne Schweinefleisch", filterNoBeef: "Ohne Rindfleisch", filterNoSeafood: "Ohne Meeresfrüchte",
+        filterNoAlcohol: "Ohne Alkohol", filterVegetarian: "Nur vegetarisch geeignet", filterNoSpicy: "Nicht scharf",
+        noDishesMatch: "Keine Gerichte entsprechen Ihren Filtern.",
+        tagPork: "Enthält Schweinefleisch", tagBeef: "Enthält Rindfleisch", tagLamb: "Enthält Lammfleisch",
+        tagPoultry: "Geflügel", tagSeafood: "Enthält Meeresfrüchte", tagAlcohol: "Enthält Alkohol",
+        tagSpicy: "Scharf", tagVegOption: "Vegetarische Option verfügbar"
       }
     },
 
@@ -1089,6 +1197,14 @@ window.I18N = {
         changeHospital: "Mudar hospital",
         changeRoute: "Mudar roteiro",
         continueToAgents: "Continuar para escolher um agente",
+        buildCustomRoute: "Monte seu próprio roteiro",
+        buildCustomRouteDesc: "Adicione quantas paradas quiser; enviaremos sua lista diretamente ao seu agente.",
+        stopPlaceholder: "ex.: Grande Muralha, um restaurante específico, o endereço de um amigo...",
+        addStop: "Adicionar parada",
+        useCustomRoute: "Usar este roteiro personalizado",
+        noStopsYet: "Nenhuma parada adicionada ainda.",
+        customRouteLabel: "Roteiro personalizado ({n} paradas)",
+        removeStop: "Remover",
         noRoute: "Nenhum roteiro selecionado ainda",
         noHospital: "Nenhum hospital selecionado ainda"
       },
@@ -1102,6 +1218,16 @@ window.I18N = {
         foodDesc: "Necessidades alimentares e culinária local, resolvidas",
         safetyTitle: "Segurança",
         safetyDesc: "Hospitais licenciados, agentes verificados, apoio a cada passo"
+      },
+      food: {
+        dishesTitle: "Pratos regionais típicos",
+        filterTitle: "Filtrar por necessidades alimentares",
+        filterNoPork: "Sem carne de porco", filterNoBeef: "Sem carne bovina", filterNoSeafood: "Sem frutos do mar",
+        filterNoAlcohol: "Sem álcool", filterVegetarian: "Somente vegetariano", filterNoSpicy: "Não picante",
+        noDishesMatch: "Nenhum prato corresponde aos seus filtros.",
+        tagPork: "Contém carne de porco", tagBeef: "Contém carne bovina", tagLamb: "Contém cordeiro",
+        tagPoultry: "Aves", tagSeafood: "Contém frutos do mar", tagAlcohol: "Contém álcool",
+        tagSpicy: "Picante", tagVegOption: "Opção vegetariana disponível"
       }
     },
 
@@ -1244,6 +1370,14 @@ window.I18N = {
         changeHospital: "Изменить больницу",
         changeRoute: "Изменить маршрут",
         continueToAgents: "Перейти к выбору агента",
+        buildCustomRoute: "Составьте свой маршрут",
+        buildCustomRouteDesc: "Добавьте сколько угодно остановок — мы передадим ваш список прямо вашему агенту.",
+        stopPlaceholder: "например: Великая стена, конкретный ресторан, адрес друга...",
+        addStop: "Добавить остановку",
+        useCustomRoute: "Использовать этот маршрут",
+        noStopsYet: "Остановки ещё не добавлены.",
+        customRouteLabel: "Свой маршрут ({n} остановок)",
+        removeStop: "Удалить",
         noRoute: "Маршрут ещё не выбран",
         noHospital: "Больница ещё не выбрана"
       },
@@ -1257,6 +1391,16 @@ window.I18N = {
         foodDesc: "Особые потребности в питании и местная кухня — всё продумано",
         safetyTitle: "Безопасность",
         safetyDesc: "Лицензированные больницы, проверенные агенты, поддержка на каждом шаге"
+      },
+      food: {
+        dishesTitle: "Региональные фирменные блюда",
+        filterTitle: "Фильтр по диетическим потребностям",
+        filterNoPork: "Без свинины", filterNoBeef: "Без говядины", filterNoSeafood: "Без морепродуктов",
+        filterNoAlcohol: "Без алкоголя", filterVegetarian: "Только вегетарианское", filterNoSpicy: "Не острое",
+        noDishesMatch: "Нет блюд, соответствующих вашим фильтрам.",
+        tagPork: "Содержит свинину", tagBeef: "Содержит говядину", tagLamb: "Содержит баранину",
+        tagPoultry: "Птица", tagSeafood: "Содержит морепродукты", tagAlcohol: "Содержит алкоголь",
+        tagSpicy: "Острое", tagVegOption: "Есть вегетарианский вариант"
       }
     },
 
@@ -1399,6 +1543,14 @@ window.I18N = {
         changeHospital: "تغيير المستشفى",
         changeRoute: "تغيير المسار",
         continueToAgents: "متابعة لاختيار وكيل",
+        buildCustomRoute: "أنشئ مسارك الخاص",
+        buildCustomRouteDesc: "أضف أي عدد تريده من المحطات — سنرسل قائمتك مباشرة إلى وكيلك.",
+        stopPlaceholder: "مثال: سور الصين العظيم، مطعم معين، عنوان صديق...",
+        addStop: "إضافة محطة",
+        useCustomRoute: "استخدام هذا المسار المخصص",
+        noStopsYet: "لم تتم إضافة أي محطات بعد.",
+        customRouteLabel: "مسار مخصص ({n} محطات)",
+        removeStop: "إزالة",
         noRoute: "لم يتم اختيار مسار بعد",
         noHospital: "لم يتم اختيار مستشفى بعد"
       },
@@ -1412,6 +1564,16 @@ window.I18N = {
         foodDesc: "الاحتياجات الغذائية والمأكولات المحلية، بعناية تامة",
         safetyTitle: "السلامة",
         safetyDesc: "مستشفيات مرخصة، وكلاء تم التحقق منهم، ودعم في كل خطوة"
+      },
+      food: {
+        dishesTitle: "أطباق إقليمية مميزة",
+        filterTitle: "تصفية حسب الاحتياجات الغذائية",
+        filterNoPork: "بدون لحم خنزير", filterNoBeef: "بدون لحم بقري", filterNoSeafood: "بدون مأكولات بحرية",
+        filterNoAlcohol: "بدون كحول", filterVegetarian: "نباتي فقط", filterNoSpicy: "غير حار",
+        noDishesMatch: "لا توجد أطباق مطابقة لعوامل التصفية.",
+        tagPork: "يحتوي على لحم خنزير", tagBeef: "يحتوي على لحم بقري", tagLamb: "يحتوي على لحم ضأن",
+        tagPoultry: "دواجن", tagSeafood: "يحتوي على مأكولات بحرية", tagAlcohol: "يحتوي على كحول",
+        tagSpicy: "حار", tagVegOption: "يتوفر خيار نباتي"
       }
     },
 
@@ -1554,6 +1716,14 @@ window.I18N = {
         changeHospital: "病院を変更",
         changeRoute: "ルートを変更",
         continueToAgents: "エージェント選択に進む",
+        buildCustomRoute: "オリジナルルートを作成",
+        buildCustomRouteDesc: "訪問先はいくつでも追加できます。リストはそのままエージェントにお伝えします。",
+        stopPlaceholder: "例：万里の長城、特定のレストラン、友人の住所など...",
+        addStop: "訪問先を追加",
+        useCustomRoute: "このオリジナルルートを使用",
+        noStopsYet: "まだ訪問先が追加されていません。",
+        customRouteLabel: "オリジナルルート（{n}か所）",
+        removeStop: "削除",
         noRoute: "まだルートが選択されていません",
         noHospital: "まだ病院が選択されていません"
       },
@@ -1567,6 +1737,16 @@ window.I18N = {
         foodDesc: "食事のご要望やご当地グルメも安心",
         safetyTitle: "安全",
         safetyDesc: "認可病院、審査済みエージェント、各段階でのサポート"
+      },
+      food: {
+        dishesTitle: "地方の名物料理",
+        filterTitle: "食事制限で絞り込む",
+        filterNoPork: "豚肉なし", filterNoBeef: "牛肉なし", filterNoSeafood: "魚介類なし",
+        filterNoAlcohol: "アルコールなし", filterVegetarian: "ベジタリアン対応のみ", filterNoSpicy: "辛くない",
+        noDishesMatch: "条件に一致する料理がありません。",
+        tagPork: "豚肉を含む", tagBeef: "牛肉を含む", tagLamb: "羊肉を含む",
+        tagPoultry: "鶏肉", tagSeafood: "魚介類を含む", tagAlcohol: "アルコールを含む",
+        tagSpicy: "辛い", tagVegOption: "ベジタリアン対応あり"
       }
     },
 
@@ -1709,6 +1889,14 @@ window.I18N = {
         changeHospital: "병원 변경",
         changeRoute: "경로 변경",
         continueToAgents: "에이전트 선택으로 이동",
+        buildCustomRoute: "나만의 경로 만들기",
+        buildCustomRouteDesc: "원하는 만큼 방문지를 추가하세요. 목록을 그대로 에이전트에게 전달합니다.",
+        stopPlaceholder: "예: 만리장성, 특정 식당, 지인의 주소 등...",
+        addStop: "방문지 추가",
+        useCustomRoute: "이 맞춤 경로 사용하기",
+        noStopsYet: "아직 추가된 방문지가 없습니다.",
+        customRouteLabel: "맞춤 경로 ({n}곳)",
+        removeStop: "삭제",
         noRoute: "아직 선택된 경로가 없습니다",
         noHospital: "아직 선택된 병원이 없습니다"
       },
@@ -1722,6 +1910,16 @@ window.I18N = {
         foodDesc: "식단 요구 사항과 현지 음식까지 챙겨 드립니다",
         safetyTitle: "안전",
         safetyDesc: "인증된 병원, 검증된 에이전트, 모든 단계의 지원"
+      },
+      food: {
+        dishesTitle: "지역 대표 요리",
+        filterTitle: "식단 요구 사항으로 필터링",
+        filterNoPork: "돼지고기 제외", filterNoBeef: "소고기 제외", filterNoSeafood: "해산물 제외",
+        filterNoAlcohol: "알코올 제외", filterVegetarian: "채식 가능 요리만", filterNoSpicy: "맵지 않음",
+        noDishesMatch: "필터에 맞는 요리가 없습니다.",
+        tagPork: "돼지고기 포함", tagBeef: "소고기 포함", tagLamb: "양고기 포함",
+        tagPoultry: "가금류", tagSeafood: "해산물 포함", tagAlcohol: "알코올 포함",
+        tagSpicy: "매운맛", tagVegOption: "채식 옵션 있음"
       }
     },
 
@@ -1864,6 +2062,14 @@ window.I18N = {
         changeHospital: "अस्पताल बदलें",
         changeRoute: "मार्ग बदलें",
         continueToAgents: "एजेंट चुनने हेतु आगे बढ़ें",
+        buildCustomRoute: "अपना खुद का मार्ग बनाएं",
+        buildCustomRouteDesc: "जितने चाहें उतने पड़ाव जोड़ें — हम आपकी सूची सीधे आपके एजेंट तक पहुंचाएंगे।",
+        stopPlaceholder: "जैसे: चीन की महान दीवार, कोई खास रेस्तरां, किसी मित्र का पता...",
+        addStop: "पड़ाव जोड़ें",
+        useCustomRoute: "यह कस्टम मार्ग उपयोग करें",
+        noStopsYet: "अभी तक कोई पड़ाव नहीं जोड़ा गया।",
+        customRouteLabel: "कस्टम मार्ग ({n} पड़ाव)",
+        removeStop: "हटाएं",
         noRoute: "अभी तक कोई मार्ग नहीं चुना गया",
         noHospital: "अभी तक कोई अस्पताल नहीं चुना गया"
       },
@@ -1877,6 +2083,16 @@ window.I18N = {
         foodDesc: "आहार संबंधी आवश्यकताएं और स्थानीय व्यंजन, सब संभाला हुआ",
         safetyTitle: "सुरक्षा",
         safetyDesc: "लाइसेंस प्राप्त अस्पताल, सत्यापित एजेंट, हर कदम पर सहायता"
+      },
+      food: {
+        dishesTitle: "क्षेत्रीय विशेष व्यंजन",
+        filterTitle: "आहार आवश्यकताओं के अनुसार फ़िल्टर करें",
+        filterNoPork: "सूअर का मांस नहीं", filterNoBeef: "गोमांस नहीं", filterNoSeafood: "समुद्री भोजन नहीं",
+        filterNoAlcohol: "शराब नहीं", filterVegetarian: "केवल शाकाहारी-अनुकूल", filterNoSpicy: "तीखा नहीं",
+        noDishesMatch: "आपके फ़िल्टर से मेल खाने वाला कोई व्यंजन नहीं मिला।",
+        tagPork: "सूअर का मांस शामिल", tagBeef: "गोमांस शामिल", tagLamb: "भेड़ का मांस शामिल",
+        tagPoultry: "पॉल्ट्री", tagSeafood: "समुद्री भोजन शामिल", tagAlcohol: "शराब शामिल",
+        tagSpicy: "तीखा", tagVegOption: "शाकाहारी विकल्प उपलब्ध"
       }
     }
   },

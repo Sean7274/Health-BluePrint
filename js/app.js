@@ -138,6 +138,28 @@
   function hospitalById(id) { return D.hospitals.filter(function (h) { return h.id === id; })[0]; }
   function agentById(id) { return D.agents.filter(function (a) { return a.id === id; })[0]; }
   function routeById(id) { return D.routes.filter(function (r) { return r.id === id; })[0]; }
+  // A "route" can be one of our curated D.routes entries, or a rider-built
+  // custom itinerary (id "custom") whose stops are carried in the
+  // "waypoints" query param, pipe-delimited. resolveRoute() normalizes both
+  // into the same shape so downstream pages don't need to know the difference.
+  function resolveRoute(routeId, waypointsRaw) {
+    if (!routeId) return null;
+    if (routeId === "custom") {
+      var stops = [];
+      if (waypointsRaw) {
+        try { stops = JSON.parse(waypointsRaw).filter(Boolean); } catch (e) { stops = []; }
+      }
+      if (stops.length === 0) return null;
+      return { id: "custom", custom: true, stops: stops };
+    }
+    return routeById(routeId) || null;
+  }
+  function routeDisplayName(r) {
+    return r.custom ? t("trip.customRouteLabel", { n: r.stops.length }) : D.text(r.name, state.lang);
+  }
+  function routeQS(query) {
+    return { route: (query && query.route) || "", waypoints: (query && query.waypoints) || "" };
+  }
   function agentsForSpecialty(cat) { return D.agents.filter(function (a) { return a.specialties.indexOf(cat) !== -1; }); }
   function hospitalsForArea(area) {
     return D.hospitals.filter(function (h) { return h.area === area; })
@@ -149,15 +171,7 @@
     return { hospitalId: pid.slice(0, dash), tag: pid.slice(dash + 1) };
   }
 
-  var AREA_ICONS = {
-    beijing: "area-landmark", shanghai: "area-skyline", tianjin: "area-skyline", chongqing: "area-mountain",
-    guangzhou: "area-skyline", shenzhen: "area-skyline", hangzhou: "area-lake", wenzhou: "area-coastal",
-    nanjing: "area-landmark", suzhou: "area-lake", chengdu: "area-mountain", xian: "area-landmark",
-    wuhan: "area-river", changsha: "area-river", zhengzhou: "area-landmark", jinan: "area-lake",
-    qingdao: "area-coastal", shenyang: "area-landmark", changchun: "area-snow", harbin: "area-snow",
-    hefei: "area-lake", fuzhou: "area-coastal", nanchang: "area-lake"
-  };
-  function areaIconName(id) { return AREA_ICONS[id] || "location"; }
+  function areaIconName(id) { return Icons.has("area-" + id) ? "area-" + id : "location"; }
 
   var SPECIALTY_ICON_NAMES = ["checkup", "oncology", "cardiology", "orthopedics", "dental", "pediatrics", "obgyn", "ophthalmology", "neurology", "psychiatry", "respiratory", "hematology"];
   function specialtyIconName(id) { return SPECIALTY_ICON_NAMES.indexOf(id) !== -1 ? id : "checkup"; }
@@ -193,6 +207,7 @@
             trustItem("handshake", t("hero.trust3")) +
           "</div>" +
         "</div>" +
+        Icons.heroSkyline() +
       "</section>" +
 
       '<section class="section container">' +
@@ -292,6 +307,16 @@
       "</div>";
     }
 
+    if (key === "food") {
+      html += '<h2 style="margin-top:34px;">' + esc(t("food.dishesTitle")) + "</h2>";
+      html += '<div class="filters-bar" id="dishFilters">' +
+        DIET_FILTERS.map(function (f) {
+          return '<label class="filter-check"><input type="checkbox" data-filter="' + f.key + '"> ' + esc(t("food." + f.labelKey)) + "</label>";
+        }).join("") +
+      "</div>";
+      html += '<div class="card-grid" id="dishResults" style="margin-top:16px;"></div>';
+    }
+
     html += '<div class="form-card" style="margin-top:34px;text-align:center;">' +
       "<h2>" + esc(t("contact.title")) + "</h2>" +
       "<p>" + esc(t(key === "food" ? "pillars.foodDesc" : "pillars.safetyDesc")) + "</p>" +
@@ -300,6 +325,51 @@
 
     html += "</section>";
     mainEl.innerHTML = html;
+
+    if (key === "food") initDishFilters(page.dishes);
+  }
+
+  var DIET_FILTERS = [
+    { key: "pork", labelKey: "filterNoPork" },
+    { key: "beef", labelKey: "filterNoBeef" },
+    { key: "seafood", labelKey: "filterNoSeafood" },
+    { key: "alcohol", labelKey: "filterNoAlcohol" },
+    { key: "spicy", labelKey: "filterNoSpicy" },
+    { key: "vegetarian", labelKey: "filterVegetarian" }
+  ];
+  var DISH_TAG_LABEL_KEYS = { pork: "tagPork", beef: "tagBeef", lamb: "tagLamb", poultry: "tagPoultry", seafood: "tagSeafood", alcohol: "tagAlcohol", spicy: "tagSpicy", vegOption: "tagVegOption" };
+
+  function dishCardHtml(d) {
+    return '<div class="card">' +
+      iconBadge(d.icon, d.id, { small: true }) +
+      "<h3>" + esc(D.text(d.name, state.lang)) + "</h3>" +
+      "<p>" + esc(D.text(d.desc, state.lang)) + "</p>" +
+      '<div class="card-tags">' + d.tags.map(function (tg) { return '<span class="tag">' + esc(t("food." + DISH_TAG_LABEL_KEYS[tg])) + "</span>"; }).join("") + "</div>" +
+    "</div>";
+  }
+
+  function initDishFilters(dishes) {
+    var checks = document.querySelectorAll("#dishFilters input[type=checkbox]");
+    var resultsEl = document.getElementById("dishResults");
+    function update() {
+      var active = {};
+      checks.forEach(function (c) { if (c.checked) active[c.getAttribute("data-filter")] = true; });
+      var list = dishes.filter(function (d) {
+        if (active.pork && d.tags.indexOf("pork") !== -1) return false;
+        if (active.beef && d.tags.indexOf("beef") !== -1) return false;
+        if (active.seafood && d.tags.indexOf("seafood") !== -1) return false;
+        if (active.alcohol && d.tags.indexOf("alcohol") !== -1) return false;
+        if (active.spicy && d.tags.indexOf("spicy") !== -1) return false;
+        if (active.vegetarian) {
+          var meaty = ["pork", "beef", "lamb", "poultry", "seafood"].some(function (m) { return d.tags.indexOf(m) !== -1; });
+          if (meaty && d.tags.indexOf("vegOption") === -1) return false;
+        }
+        return true;
+      });
+      resultsEl.innerHTML = list.length ? list.map(dishCardHtml).join("") : '<div class="empty-state">' + esc(t("food.noDishesMatch")) + "</div>";
+    }
+    checks.forEach(function (c) { c.onchange = update; });
+    update();
   }
 
   /* ---------------- HOSPITAL LIST ---------------- */
@@ -379,8 +449,8 @@
   function renderHospitalDetail(id, query) {
     var h = hospitalById(id);
     if (!h) { renderHome(); return; }
-    var routeId = query && query.route;
-    var sel = routeId ? routeById(routeId) : null;
+    var rq = routeQS(query);
+    var sel = resolveRoute(rq.route, rq.waypoints);
     var wantedSpecialty = query && query.specialty;
     var orderedTags = h.tags.slice();
     if (wantedSpecialty && orderedTags.indexOf(wantedSpecialty) !== -1) {
@@ -390,7 +460,7 @@
     mainEl.innerHTML =
       '<section class="section container">' +
         '<a class="btn-back" href="#/hospitals">' + Icons.html("arrow-left", { size: 18 }) + '' + esc(t("common.back")) + "</a>" +
-        (sel ? '<div class="plan-summary"><span><strong>' + esc(t("contact.summaryRoute")) + '</strong>' + esc(D.text(sel.name, state.lang)) + "</span></div>" : "") +
+        (sel ? '<div class="plan-summary"><span><strong>' + esc(t("contact.summaryRoute")) + '</strong>' + esc(routeDisplayName(sel)) + "</span></div>" : "") +
         Icons.hospitalIllustration(h.tier) +
         '<p class="illustration-note">' + esc(t("hospital.illustrationNote")) + "</p>" +
         '<div class="detail-header">' +
@@ -408,12 +478,12 @@
           ? '<p><a class="official-link" href="' + esc(h.website) + '" target="_blank" rel="noopener noreferrer">' + Icons.html("link", { size: 16 }) + esc(t("hospital.officialWebsite")) + "</a></p>"
           : '<p class="no-website-note">' + esc(t("hospital.officialWebsite")) + ": —</p>") +
         '<h2 style="margin-top:24px;">' + esc(t("hospital.programsTitle")) + "</h2>" +
-        '<div class="card-grid">' + orderedTags.map(function (tag) { return specialtyCardHtml(h, tag, routeId, tag === wantedSpecialty); }).join("") + "</div>" +
+        '<div class="card-grid">' + orderedTags.map(function (tag) { return specialtyCardHtml(h, tag, rq, tag === wantedSpecialty); }).join("") + "</div>" +
       "</section>";
   }
 
-  function specialtyCardHtml(h, tag, routeId, isRecommended) {
-    var href = "#/program/" + makeProgramId(h.id, tag) + qs({ route: routeId || "" });
+  function specialtyCardHtml(h, tag, rq, isRecommended) {
+    var href = "#/program/" + makeProgramId(h.id, tag) + qs(rq);
     return '<a class="card card-clickable' + (isRecommended ? " active" : "") + '" href="' + href + '">' +
       iconBadge(specialtyIconName(tag), tag, { small: true }) +
       "<h3>" + esc(specialtyLabel(tag)) + (isRecommended ? " " + Icons.html("star", { size: 15, className: "icon-accent" }) : "") + "</h3>" +
@@ -427,12 +497,12 @@
     var h = hospitalById(parsed.hospitalId);
     if (!h || h.tags.indexOf(parsed.tag) === -1) { renderHome(); return; }
     var tag = parsed.tag;
-    var routeId = query && query.route;
+    var rq = routeQS(query);
     var agents = agentsForSpecialty(tag);
 
     mainEl.innerHTML =
       '<section class="section container">' +
-        '<a class="btn-back" href="#/hospital/' + h.id + qs({ route: routeId || "" }) + '">' + Icons.html("arrow-left", { size: 18 }) + '' + esc(t("common.back")) + "</a>" +
+        '<a class="btn-back" href="#/hospital/' + h.id + qs(rq) + '">' + Icons.html("arrow-left", { size: 18 }) + '' + esc(t("common.back")) + "</a>" +
         '<div class="detail-title-block" style="margin-top:14px;">' +
           '<div class="card-tags">' + tierBadgeHtml(h.tier) + '<span class="tag">' + esc(specialtyLabel(tag)) + "</span></div>" +
           "<h1>" + esc(specialtyLabel(tag)) + "</h1>" +
@@ -443,7 +513,7 @@
         '<div class="step-indicator" style="margin-top:28px;">' + esc(t("steps.agent")) + "</div>" +
         "<h2>" + esc(t("program.agentsTitle")) + "</h2>" +
         "<p>" + esc(t("program.agentsSubtitle")) + "</p>" +
-        '<div class="card-grid">' + agents.map(function (a) { return agentCardHtml(a, pid, routeId); }).join("") + "</div>" +
+        '<div class="card-grid">' + agents.map(function (a) { return agentCardHtml(a, pid, rq); }).join("") + "</div>" +
       "</section>";
   }
 
@@ -451,10 +521,10 @@
     return name.split(" ").map(function (part) { return part.charAt(0); }).slice(0, 2).join("").toUpperCase();
   }
 
-  function agentCardHtml(a, programId, routeId) {
+  function agentCardHtml(a, programId, rq) {
     var services = D.textList(a.services, state.lang);
     var langLabels = a.languages.map(function (code) { return (I18N.meta[code] || {}).label || code; });
-    var href = "#/agent/" + a.id + qs({ program: programId, route: routeId || "" });
+    var href = "#/agent/" + a.id + qs(Object.assign({ program: programId }, rq));
     return '<div class="card agent-card">' +
       '<div class="agent-top">' +
         '<div class="agent-avatar" aria-hidden="true">' + esc(agentInitials(a.name)) + "</div>" +
@@ -478,16 +548,16 @@
     var programId = query && query.program;
     var parsed = programId ? parseProgramId(programId) : null;
     var h = parsed ? hospitalById(parsed.hospitalId) : null;
-    var routeId = query && query.route;
-    var sel = routeId ? routeById(routeId) : null;
+    var rq = routeQS(query);
+    var sel = resolveRoute(rq.route, rq.waypoints);
     var topic = query && query.topic;
 
     var langOptions = SUPPORTED_LANGS.map(function (code) {
       return '<option value="' + code + '"' + (code === state.lang ? " selected" : "") + ">" + I18N.meta[code].label + "</option>";
     }).join("");
 
-    var backHref = programId ? "#/program/" + programId + qs({ route: routeId || "" })
-      : topic === "food" ? "#/food" : topic === "safety" ? "#/safety" : (routeId ? "#/trip" + qs({ route: routeId }) : "#/");
+    var backHref = programId ? "#/program/" + programId + qs(rq)
+      : topic === "food" ? "#/food" : topic === "safety" ? "#/safety" : (sel ? "#/trip" + qs(rq) : "#/");
 
     mainEl.innerHTML =
       '<section class="section container">' +
@@ -498,11 +568,12 @@
           '<div class="form-summary">' +
             (h ? "<span><strong>" + esc(t("contact.summaryHospital")) + "</strong>" + esc(h.name) + "</span>" : "") +
             (parsed ? "<span><strong>" + esc(t("contact.summaryProgram")) + "</strong>" + esc(specialtyLabel(parsed.tag)) + "</span>" : "") +
-            (sel ? "<span><strong>" + esc(t("contact.summaryRoute")) + "</strong>" + esc(D.text(sel.name, state.lang)) + "</span>" : "") +
+            (sel ? "<span><strong>" + esc(t("contact.summaryRoute")) + "</strong>" + esc(routeDisplayName(sel)) + "</span>" : "") +
             (topic === "food" ? "<span><strong>" + esc(t("contact.summaryProgram")) + "</strong>" + esc(t("pillars.foodTitle")) + "</span>" : "") +
             (topic === "safety" ? "<span><strong>" + esc(t("contact.summaryProgram")) + "</strong>" + esc(t("pillars.safetyTitle")) + "</span>" : "") +
             (a ? "<span><strong>" + esc(t("contact.summaryAgent")) + "</strong>" + esc(a.name) + "</span>" : "") +
           "</div>" +
+          (sel && sel.custom ? '<ul class="included-list">' + sel.stops.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ul>" : "") +
           '<div id="formArea">' +
           '<form id="inquiryForm">' +
             '<p class="required-note">' + esc(t("contact.requiredNote")) + "</p>" +
@@ -537,7 +608,7 @@
         hospital: h ? h.name : "",
         program: parsed ? specialtyLabel(parsed.tag) : (topic || ""),
         agent: a ? a.name : "General inquiry",
-        route: sel ? D.text(sel.name, "en") : ""
+        route: sel ? (sel.custom ? "Custom: " + sel.stops.join(" | ") : D.text(sel.name, "en")) : ""
       };
       var body = Object.keys(payload).map(function (k) {
         return encodeURIComponent(k) + "=" + encodeURIComponent(payload[k]);
@@ -609,22 +680,27 @@
     query = query || {};
     var area = query.area || "";
     var hospitalId = query.hospital || "";
-    var routeId = query.route || "";
+    var rq = routeQS(query);
     var selHospital = hospitalId ? hospitalById(hospitalId) : null;
-    var selRoute = routeId ? routeById(routeId) : null;
+    var selRoute = resolveRoute(rq.route, rq.waypoints);
+    // In-memory draft list for the custom-route builder. Seeded from the
+    // URL if a custom route is already active, so editing an existing
+    // custom route (rather than starting over) works too.
+    var customStops = (selRoute && selRoute.custom) ? selRoute.stops.slice() : [];
 
     var html = '<section class="section container">';
-    html += "<h1>" + esc(t("trip.title")) + "</h1><p>" + esc(t("trip.subtitle")) + "</p>";
+    html += '<a class="btn-back" href="#/">' + Icons.html("arrow-left", { size: 18 }) + esc(t("common.back")) + "</a>";
+    html += '<h1 style="margin-top:14px;">' + esc(t("trip.title")) + "</h1><p>" + esc(t("trip.subtitle")) + "</p>";
 
     html += '<div class="plan-summary">';
     html += "<span><strong>" + esc(t("contact.summaryHospital")) + "</strong>" +
       (selHospital ? esc(selHospital.name) : '<span class="muted">' + esc(t("trip.noHospital")) + "</span>") + "</span>";
     if (selHospital) html += '<a class="link-btn" href="' + tripHref(query, { hospital: null }) + '">' + Icons.html("close", { size: 14 }) + esc(t("trip.changeHospital")) + "</a>";
     html += "<span><strong>" + esc(t("contact.summaryRoute")) + "</strong>" +
-      (selRoute ? esc(D.text(selRoute.name, state.lang)) : '<span class="muted">' + esc(t("trip.noRoute")) + "</span>") + "</span>";
-    if (selRoute) html += '<a class="link-btn" href="' + tripHref(query, { route: null }) + '">' + Icons.html("close", { size: 14 }) + esc(t("trip.changeRoute")) + "</a>";
+      (selRoute ? esc(routeDisplayName(selRoute)) : '<span class="muted">' + esc(t("trip.noRoute")) + "</span>") + "</span>";
+    if (selRoute) html += '<a class="link-btn" href="' + tripHref(query, { route: null, waypoints: null }) + '">' + Icons.html("close", { size: 14 }) + esc(t("trip.changeRoute")) + "</a>";
     if (selHospital || selRoute) {
-      html += '<a class="btn btn-primary" href="' + (selHospital ? "#/hospital/" + selHospital.id + qs({ route: routeId }) : "#/request" + qs({ route: routeId })) + '">' + esc(t("trip.continueToAgents")) + "</a>";
+      html += '<a class="btn btn-primary" href="' + (selHospital ? "#/hospital/" + selHospital.id + qs(rq) : "#/request" + qs(rq)) + '">' + esc(t("trip.continueToAgents")) + "</a>";
     }
     html += "</div>";
 
@@ -636,6 +712,8 @@
         iconBadge(areaIconName(id), id) + "<span>" + esc(areaLabel(id)) + "</span></a>";
     });
     html += "</div>";
+
+    html += '<div id="tripResults">';
 
     if (area) {
       var hospitalsInArea = hospitalsForArea(area).slice(0, 9);
@@ -660,7 +738,7 @@
     html += '<h2 style="margin-top:30px;">' + esc(t("trip.recommendedRoutes")) + (area ? "" : " — " + esc(t("trip.anyRegion"))) + "</h2>";
     html += '<div class="card-grid">';
     routesToShow.forEach(function (r) {
-      var active = r.id === routeId;
+      var active = r.id === rq.route;
       html += '<div class="card route-card' + (active ? " active" : "") + '">' +
         "<h3>" + esc(D.text(r.name, state.lang)) + "</h3>" +
         '<div class="route-days">' + esc(t("trip.days", { n: r.days })) + "</div>" +
@@ -668,13 +746,30 @@
         '<ul class="included-list">' + D.textList(r.highlights, state.lang).map(function (hl) { return "<li>" + esc(hl) + "</li>"; }).join("") + "</ul>" +
         (active
           ? '<span class="btn btn-secondary btn-block" aria-current="true">' + Icons.html("check", { size: 16 }) + esc(t("trip.selectThisRoute")) + "</span>"
-          : '<a class="btn btn-primary btn-block" href="' + tripHref(query, { route: r.id }) + '">' + esc(t("trip.selectThisRoute")) + "</a>") +
+          : '<a class="btn btn-primary btn-block" href="' + tripHref(query, { route: r.id, waypoints: null }) + '">' + esc(t("trip.selectThisRoute")) + "</a>") +
       "</div>";
     });
     html += "</div>";
 
+    html += '<div class="form-card" style="margin-top:20px;max-width:560px;">' +
+      "<h3>" + esc(t("trip.buildCustomRoute")) + "</h3>" +
+      "<p>" + esc(t("trip.buildCustomRouteDesc")) + "</p>" +
+      '<div class="field-row" style="align-items:flex-end;">' +
+        '<div class="field" style="margin-bottom:0;flex:1;"><input type="text" id="customStopInput" placeholder="' + esc(t("trip.stopPlaceholder")) + '"></div>' +
+        '<button type="button" class="btn btn-secondary" id="addStopBtn" style="margin-bottom:16px;">' + esc(t("trip.addStop")) + "</button>" +
+      "</div>" +
+      '<ul class="included-list" id="customStopsList"></ul>' +
+      '<a class="btn btn-primary btn-block" id="useCustomRouteBtn" style="margin-top:10px;">' + esc(t("trip.useCustomRoute")) + "</a>" +
+    "</div>";
+
+    html += "</div>"; // #tripResults
     html += "</section>";
     mainEl.innerHTML = html;
+
+    if (area) {
+      var resultsSection = document.getElementById("tripResults");
+      if (resultsSection) resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
 
     if (!area) {
       var searchInput = document.getElementById("tripHospitalSearch");
@@ -695,6 +790,42 @@
       }
       searchInput.oninput = updateHospitalSearch;
     }
+
+    // Custom route builder: add/remove stops purely client-side (no
+    // navigation) so typing doesn't get interrupted by a full re-render;
+    // only "Use This Custom Route" commits the list to the URL.
+    var stopInput = document.getElementById("customStopInput");
+    var stopsListEl = document.getElementById("customStopsList");
+    var useBtn = document.getElementById("useCustomRouteBtn");
+
+    function renderStopsList() {
+      stopsListEl.innerHTML = customStops.length
+        ? customStops.map(function (s, i) {
+            return '<li style="display:flex;justify-content:space-between;align-items:center;gap:10px;">' +
+              "<span>" + esc(s) + "</span>" +
+              '<button type="button" class="link-btn" data-remove-stop="' + i + '">' + Icons.html("close", { size: 14 }) + esc(t("trip.removeStop")) + "</button>" +
+            "</li>";
+          }).join("")
+        : '<li class="muted">' + esc(t("trip.noStopsYet")) + "</li>";
+      useBtn.href = customStops.length ? tripHref(query, { route: "custom", waypoints: JSON.stringify(customStops) }) : "#";
+      stopsListEl.querySelectorAll("[data-remove-stop]").forEach(function (btn) {
+        btn.onclick = function () {
+          customStops.splice(parseInt(btn.getAttribute("data-remove-stop"), 10), 1);
+          renderStopsList();
+        };
+      });
+    }
+    function addStop() {
+      var val = stopInput.value.trim();
+      if (!val) return;
+      customStops.push(val);
+      stopInput.value = "";
+      renderStopsList();
+      stopInput.focus();
+    }
+    document.getElementById("addStopBtn").onclick = addStop;
+    stopInput.addEventListener("keydown", function (ev) { if (ev.key === "Enter") { ev.preventDefault(); addStop(); } });
+    renderStopsList();
   }
 
   /* ---------------- init ---------------- */
