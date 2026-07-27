@@ -114,7 +114,8 @@ img { max-width: 100%; display: block; }
   background: none; border: none; color: var(--color-primary); font-weight: 700;
   font-size: 1em; padding: 10px 4px; display: inline-flex; align-items: center; gap: 6px;
 }
-[dir="rtl"] .btn-back .arrow { transform: scaleX(-1); }
+[dir="rtl"] .btn-back .icon-svg { transform: scaleX(-1); }
+[dir="rtl"] .official-link .icon-svg { transform: scaleX(-1); }
 
 /* ---------- Layout helpers ---------- */
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
@@ -134,7 +135,7 @@ img { max-width: 100%; display: block; }
   color: var(--color-text-muted); font-size: 0.95em;
 }
 .trust-item { display: flex; align-items: center; gap: 8px; }
-.trust-item .icon { color: var(--color-primary); font-size: 1.2em; }
+.trust-item .icon-svg { color: var(--color-primary); }
 
 /* ---------- Step indicator ---------- */
 .step-indicator {
@@ -163,6 +164,7 @@ img { max-width: 100%; display: block; }
   background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius);
   padding: 20px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 10px;
   transition: box-shadow .15s ease, transform .1s ease;
+  text-decoration: none; color: var(--color-text);
 }
 .card.card-clickable { cursor: pointer; }
 .card.card-clickable:hover, .card.card-clickable:focus-visible { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
@@ -180,15 +182,18 @@ img { max-width: 100%; display: block; }
   border: 2px solid var(--color-border); border-radius: var(--radius); padding: 20px 14px;
   text-align: center; background: var(--color-bg); font-weight: 700; font-size: 1.05em;
   display: flex; flex-direction: column; align-items: center; gap: 10px;
+  text-decoration: none; color: var(--color-text);
 }
 .area-card .icon { font-size: 1.8em; }
 .area-card:hover, .area-card:focus-visible { border-color: var(--color-primary); background: var(--color-primary-light); }
+.area-card.active { border-color: var(--color-primary); background: var(--color-primary-light); }
 
 /* Specialty chips */
 .chip-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 8px 0 4px; }
 .chip {
   border: 1px solid var(--color-border); background: #fff; border-radius: 999px;
   padding: 8px 16px; font-size: 0.95em; font-weight: 600; color: var(--color-text);
+  text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
 }
 .chip[aria-pressed="true"] { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
 
@@ -233,6 +238,33 @@ img { max-width: 100%; display: block; }
   padding: 22px; font-weight: 600; font-size: 1.05em;
 }
 
+/* ---------- Icon system ---------- */
+.icon-svg { display: block; flex-shrink: 0; }
+
+.icon-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 52px; height: 52px; border-radius: 16px; flex-shrink: 0;
+}
+.icon-badge.icon-badge-sm { width: 40px; height: 40px; border-radius: 12px; }
+.icon-badge .icon-svg { width: 26px; height: 26px; }
+.icon-badge.icon-badge-sm .icon-svg { width: 20px; height: 20px; }
+
+.icon-badge-1 { background: #e6f3f0; color: var(--color-primary-dark); }
+.icon-badge-2 { background: #fdeee3; color: #a3521a; }
+.icon-badge-3 { background: #eef0fb; color: #3d4aa8; }
+.icon-badge-4 { background: #fbe9ef; color: #a3305e; }
+.icon-badge-5 { background: #eaf6e9; color: #2f7a3d; }
+.icon-badge-6 { background: #fff6e0; color: #9a7100; }
+
+.btn .icon-svg { vertical-align: -4px; margin-inline-end: 4px; }
+.card-meta .icon-svg, .info-strip .icon-svg { vertical-align: -3px; margin-inline-end: 3px; }
+
+.hospital-illustration {
+  width: 100%; max-width: 420px; height: auto; display: block; margin: 6px 0 20px;
+  border-radius: var(--radius); box-shadow: var(--shadow);
+}
+.illustration-note { color: var(--color-text-muted); font-size: 0.82em; margin-top: -14px; margin-bottom: 20px; }
+
 /* ---------- Tier badge / official site link ---------- */
 .tier-badge {
   display: inline-flex; align-items: center; gap: 6px; background: #fff4e6; color: #9a5a12;
@@ -266,7 +298,10 @@ img { max-width: 100%; display: block; }
 }
 .plan-summary span strong { display: block; font-size: 0.8em; color: var(--color-text-muted); font-weight: 700; }
 .plan-summary .muted { color: var(--color-text-muted); font-style: italic; }
-.link-btn { background: none; border: none; color: var(--color-primary); font-weight: 700; text-decoration: underline; cursor: pointer; padding: 0; font-size: 0.95em; }
+.link-btn { background: none; border: none; color: var(--color-primary); font-weight: 700; text-decoration: underline; cursor: pointer; padding: 0; font-size: 0.95em; display: inline-flex; align-items: center; gap: 4px; }
+.icon-accent { color: var(--color-accent); }
+.official-link, .no-website-note { display: inline-flex; align-items: center; gap: 6px; }
+.tier-badge { display: inline-flex; align-items: center; gap: 4px; }
 
 /* ---------- Empty / no-results ---------- */
 .empty-state { text-align: center; padding: 50px 20px; color: var(--color-text-muted); }

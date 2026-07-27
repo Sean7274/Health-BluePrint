@@ -105,6 +105,8 @@
       renderProgramDetail(r.segments[1], r.query);
     } else if (r.segments[0] === "agent" && r.segments[1]) {
       renderContact(r.segments[1], r.query);
+    } else if (r.segments[0] === "request") {
+      renderContact(r.query.agent || null, r.query);
     } else if (r.segments[0] === "join") {
       renderJoin();
     } else if (r.segments[0] === "trip") {
@@ -148,24 +150,33 @@
   }
 
   var AREA_ICONS = {
-    beijing: "🏛️", shanghai: "🌆", tianjin: "🌉", chongqing: "🏔️", guangzhou: "🌴",
-    shenzhen: "🏙️", hangzhou: "🌊", wenzhou: "⛰️", nanjing: "🏯", suzhou: "🌸",
-    chengdu: "🐼", xian: "🗿", wuhan: "🌉", changsha: "🌶️", zhengzhou: "🏺",
-    jinan: "💧", qingdao: "⚓", shenyang: "🏰", changchun: "🌳", harbin: "❄️",
-    hefei: "🏞️", fuzhou: "🍵", nanchang: "📖"
+    beijing: "area-landmark", shanghai: "area-skyline", tianjin: "area-skyline", chongqing: "area-mountain",
+    guangzhou: "area-skyline", shenzhen: "area-skyline", hangzhou: "area-lake", wenzhou: "area-coastal",
+    nanjing: "area-landmark", suzhou: "area-lake", chengdu: "area-mountain", xian: "area-landmark",
+    wuhan: "area-river", changsha: "area-river", zhengzhou: "area-landmark", jinan: "area-lake",
+    qingdao: "area-coastal", shenyang: "area-landmark", changchun: "area-snow", harbin: "area-snow",
+    hefei: "area-lake", fuzhou: "area-coastal", nanchang: "area-lake"
   };
-  function areaIcon(id) { return AREA_ICONS[id] || "📍"; }
+  function areaIconName(id) { return AREA_ICONS[id] || "location"; }
 
-  var SPECIALTY_ICONS = {
-    checkup: "🩺", oncology: "🎗️", cardiology: "❤️", orthopedics: "🦴", dental: "🦷",
-    pediatrics: "🧸", obgyn: "👶", ophthalmology: "👁️", neurology: "🧠",
-    psychiatry: "💭", respiratory: "🫁", hematology: "🩸"
-  };
-  function specialtyIcon(id) { return SPECIALTY_ICONS[id] || "🏥"; }
+  var SPECIALTY_ICON_NAMES = ["checkup", "oncology", "cardiology", "orthopedics", "dental", "pediatrics", "obgyn", "ophthalmology", "neurology", "psychiatry", "respiratory", "hematology"];
+  function specialtyIconName(id) { return SPECIALTY_ICON_NAMES.indexOf(id) !== -1 ? id : "checkup"; }
+
+  // Deterministic hue index (1-6) so a given category always gets the same badge color.
+  function hueFor(str) {
+    var hash = 0;
+    for (var i = 0; i < str.length; i++) hash = (hash * 31 + str.charCodeAt(i)) >>> 0;
+    return (hash % 6) + 1;
+  }
+  function iconBadge(iconName, key, opts) {
+    opts = opts || {};
+    var size = opts.small ? " icon-badge-sm" : "";
+    return '<span class="icon-badge icon-badge-' + hueFor(key) + size + '">' + Icons.html(iconName, { size: opts.small ? 20 : 26 }) + "</span>";
+  }
 
   var TIER_CLASS_COLOR = { "A++++": "#b8860b", "A+++": "#c8622a", "A++": "#0f6b5c", "A+": "#2a6ec8", "A": "#6b6b6b" };
   function tierBadgeHtml(tier) {
-    return '<span class="tier-badge" style="color:' + TIER_CLASS_COLOR[tier] + '">🏅 ' + esc(tier) + "</span>";
+    return '<span class="tier-badge" style="color:' + TIER_CLASS_COLOR[tier] + '">' + Icons.html("star", { size: 14 }) + " " + esc(tier) + "</span>";
   }
 
   /* ---------------- HOME ---------------- */
@@ -177,9 +188,9 @@
           '<p class="subtitle">' + esc(t("hero.subtitle")) + "</p>" +
           '<a class="btn btn-primary" href="#/hospitals">' + esc(t("hero.ctaStart")) + "</a>" +
           '<div class="trust-row">' +
-            trustItem("✓", t("hero.trust1")) +
-            trustItem("🌐", t("hero.trust2")) +
-            trustItem("🤝", t("hero.trust3")) +
+            trustItem("check", t("hero.trust1")) +
+            trustItem("globe", t("hero.trust2")) +
+            trustItem("handshake", t("hero.trust3")) +
           "</div>" +
         "</div>" +
       "</section>" +
@@ -187,10 +198,10 @@
       '<section class="section container">' +
         "<h2>" + esc(t("pillars.sectionTitle")) + "</h2>" +
         '<div class="choice-row pillar-row">' +
-          pillarCardHtml("🏥", t("pillars.medicalTitle"), t("pillars.medicalDesc"), "#/hospitals") +
-          pillarCardHtml("🧭", t("pillars.travelTitle"), t("pillars.travelDesc"), "#/trip") +
-          pillarCardHtml("🥢", t("pillars.foodTitle"), t("pillars.foodDesc"), "#/food") +
-          pillarCardHtml("🛡️", t("pillars.safetyTitle"), t("pillars.safetyDesc"), "#/safety") +
+          pillarCardHtml("medical", "pillar-1", t("pillars.medicalTitle"), t("pillars.medicalDesc"), "#/hospitals") +
+          pillarCardHtml("travel", "pillar-2", t("pillars.travelTitle"), t("pillars.travelDesc"), "#/trip") +
+          pillarCardHtml("food", "pillar-3", t("pillars.foodTitle"), t("pillars.foodDesc"), "#/food") +
+          pillarCardHtml("safety", "pillar-4", t("pillars.safetyTitle"), t("pillars.safetyDesc"), "#/safety") +
         "</div>" +
       "</section>" +
 
@@ -209,7 +220,7 @@
       var link = document.createElement("a");
       link.href = "#/hospitals?specialty=" + s;
       link.className = "area-card";
-      link.innerHTML = '<span class="icon" aria-hidden="true">' + specialtyIcon(s) + "</span><span>" + esc(specialtyLabel(s)) + "</span>";
+      link.innerHTML = iconBadge(specialtyIconName(s), s) + "<span>" + esc(specialtyLabel(s)) + "</span>";
       specialtyGrid.appendChild(link);
     });
 
@@ -218,16 +229,16 @@
       var link = document.createElement("a");
       link.href = "#/hospitals?area=" + id;
       link.className = "chip";
-      link.textContent = areaIcon(id) + " " + areaLabel(id);
+      link.innerHTML = Icons.html(areaIconName(id), { size: 16 }) + " " + esc(areaLabel(id));
       areaChips.appendChild(link);
     });
   }
-  function trustItem(icon, label) {
-    return '<span class="trust-item"><span class="icon" aria-hidden="true">' + icon + "</span>" + esc(label) + "</span>";
+  function trustItem(iconName, label) {
+    return '<span class="trust-item">' + Icons.html(iconName, { size: 18 }) + esc(label) + "</span>";
   }
-  function pillarCardHtml(icon, title, desc, href) {
+  function pillarCardHtml(iconName, key, title, desc, href) {
     return '<a class="choice-card" href="' + href + '">' +
-      '<span class="icon" aria-hidden="true">' + icon + "</span>" +
+      iconBadge(iconName, key) +
       "<span>" + esc(title) + "</span>" +
       '<span style="font-weight:400;font-size:0.85em;color:var(--color-text-muted);">' + esc(desc) + "</span>" +
     "</a>";
@@ -237,28 +248,65 @@
   function renderInfoPage(key) {
     var page = D.pages[key];
     var titleKey = key === "food" ? "pillars.foodTitle" : "pillars.safetyTitle";
-    mainEl.innerHTML =
+    var html =
       '<section class="section container">' +
-        '<a class="btn-back" href="#/"><span class="arrow" aria-hidden="true">←</span>' + esc(t("common.back")) + "</a>" +
+        '<a class="btn-back" href="#/">' + Icons.html("arrow-left", { size: 18 }) + esc(t("common.back")) + "</a>" +
         '<h1 style="margin-top:14px;">' + esc(t(titleKey)) + "</h1>" +
         "<p>" + esc(D.text(page.intro, state.lang)) + "</p>" +
         '<div class="card-grid" style="margin-top:20px;">' +
           page.items.map(function (item) {
             return '<div class="card">' +
-              '<div style="font-size:1.6em;">' + item.icon + "</div>" +
+              iconBadge(item.icon, item.icon) +
               "<h3>" + esc(D.text(item.title, state.lang)) + "</h3>" +
               "<p>" + esc(D.text(item.desc, state.lang)) + "</p>" +
             "</div>";
           }).join("") +
+        "</div>";
+
+    if (key === "safety") {
+      html += '<h2 style="margin-top:34px;">' + Icons.html("safety-phone", { size: 20, className: "icon-accent" }) + " " + esc(D.text(page.emergencyTitle, state.lang)) + "</h2>";
+      html += '<div class="card-grid">' + page.emergencyContacts.map(function (c) {
+        return '<div class="card" style="text-align:center;">' +
+          iconBadge(c.icon, c.number, { small: true }) +
+          '<div style="font-size:1.6em;font-weight:800;color:var(--color-primary-dark);">' + esc(c.number) + "</div>" +
+          "<div>" + esc(D.text(c.label, state.lang)) + "</div>" +
+        "</div>";
+      }).join("") + "</div>";
+
+      var cd = page.cityData;
+      html += '<div class="card" style="margin-top:34px;padding:26px;">' +
+        "<h2>" + esc(D.text(cd.title, state.lang)) + "</h2>" +
+        "<p>" + esc(D.text(cd.disclaimer, state.lang)) + "</p>" +
+        "<p>" + esc(D.text(cd.eiu, state.lang)) + "</p>" +
+        "<p>" + esc(D.text(cd.numbeoCaveat, state.lang)) + "</p>" +
+        '<div class="card-grid" style="margin:16px 0;">' +
+          cd.numbeo.map(function (row) {
+            return '<div class="card" style="text-align:center;padding:14px;">' +
+              "<strong>" + esc(areaLabel(row.area)) + "</strong>" +
+              '<div style="font-size:1.4em;font-weight:800;color:var(--color-primary-dark);">' + row.score + "</div>" +
+            "</div>";
+          }).join("") +
         "</div>" +
-      "</section>";
+        '<p class="required-note">' + esc(D.text(cd.uncoveredNote, state.lang)) + "</p>" +
+        "<p>" + esc(D.text(cd.generalNote, state.lang)) + "</p>" +
+      "</div>";
+    }
+
+    html += '<div class="form-card" style="margin-top:34px;text-align:center;">' +
+      "<h2>" + esc(t("contact.title")) + "</h2>" +
+      "<p>" + esc(t(key === "food" ? "pillars.foodDesc" : "pillars.safetyDesc")) + "</p>" +
+      '<a class="btn btn-primary" href="#/request' + qs({ topic: key }) + '">' + esc(t("contact.submit")) + "</a>" +
+    "</div>";
+
+    html += "</section>";
+    mainEl.innerHTML = html;
   }
 
   /* ---------------- HOSPITAL LIST ---------------- */
   function renderHospitalList(query) {
     mainEl.innerHTML =
       '<section class="section container">' +
-        '<a class="btn-back" href="#/"><span class="arrow" aria-hidden="true">←</span>' + esc(t("common.back")) + "</a>" +
+        '<a class="btn-back" href="#/">' + Icons.html("arrow-left", { size: 18 }) + '' + esc(t("common.back")) + "</a>" +
         '<div class="step-indicator" style="margin-top:10px;">' + esc(t("steps.hospital")) + "</div>" +
         '<div class="filters-bar">' +
           '<div class="filter-group">' +
@@ -322,7 +370,7 @@
       "<h3>" + esc(h.name) + "</h3>" +
       '<p style="color:var(--color-text-muted);font-size:0.9em;margin:0;">' + esc(h.nameEn) + "</p>" +
       '<div class="card-meta">' +
-        '<span>📍 ' + esc(areaLabel(h.area)) + "</span>" +
+        "<span>" + Icons.html("location", { size: 14 }) + esc(areaLabel(h.area)) + "</span>" +
       "</div>" +
     "</a>";
   }
@@ -341,9 +389,11 @@
 
     mainEl.innerHTML =
       '<section class="section container">' +
-        '<a class="btn-back" href="#/hospitals"><span class="arrow" aria-hidden="true">←</span>' + esc(t("common.back")) + "</a>" +
+        '<a class="btn-back" href="#/hospitals">' + Icons.html("arrow-left", { size: 18 }) + '' + esc(t("common.back")) + "</a>" +
         (sel ? '<div class="plan-summary"><span><strong>' + esc(t("contact.summaryRoute")) + '</strong>' + esc(D.text(sel.name, state.lang)) + "</span></div>" : "") +
-        '<div class="detail-header" style="margin-top:14px;">' +
+        Icons.hospitalIllustration(h.tier) +
+        '<p class="illustration-note">' + esc(t("hospital.illustrationNote")) + "</p>" +
+        '<div class="detail-header">' +
           '<div class="detail-title-block">' +
             "<h1>" + esc(h.name) + "</h1>" +
             '<div class="local-name">' + esc(h.nameEn) + "</div>" +
@@ -351,11 +401,11 @@
           "</div>" +
         "</div>" +
         '<div class="info-strip">' +
-          "<span>📍 <strong>" + esc(areaLabel(h.area)) + "</strong></span>" +
+          "<span>" + Icons.html("location", { size: 14 }) + "<strong>" + esc(areaLabel(h.area)) + "</strong></span>" +
           "<span>" + esc(t("hospital.tierLabel")) + ": <strong>" + esc(h.tier) + "</strong></span>" +
         "</div>" +
         (h.website
-          ? '<p><a class="official-link" href="' + esc(h.website) + '" target="_blank" rel="noopener noreferrer">🔗 ' + esc(t("hospital.officialWebsite")) + "</a></p>"
+          ? '<p><a class="official-link" href="' + esc(h.website) + '" target="_blank" rel="noopener noreferrer">' + Icons.html("link", { size: 16 }) + esc(t("hospital.officialWebsite")) + "</a></p>"
           : '<p class="no-website-note">' + esc(t("hospital.officialWebsite")) + ": —</p>") +
         '<h2 style="margin-top:24px;">' + esc(t("hospital.programsTitle")) + "</h2>" +
         '<div class="card-grid">' + orderedTags.map(function (tag) { return specialtyCardHtml(h, tag, routeId, tag === wantedSpecialty); }).join("") + "</div>" +
@@ -365,8 +415,8 @@
   function specialtyCardHtml(h, tag, routeId, isRecommended) {
     var href = "#/program/" + makeProgramId(h.id, tag) + qs({ route: routeId || "" });
     return '<a class="card card-clickable' + (isRecommended ? " active" : "") + '" href="' + href + '">' +
-      '<div class="card-tags"><span class="tag">' + esc(specialtyIcon(tag)) + " " + esc(specialtyLabel(tag)) + (isRecommended ? " ★" : "") + "</span></div>" +
-      "<h3>" + esc(specialtyLabel(tag)) + "</h3>" +
+      iconBadge(specialtyIconName(tag), tag, { small: true }) +
+      "<h3>" + esc(specialtyLabel(tag)) + (isRecommended ? " " + Icons.html("star", { size: 15, className: "icon-accent" }) : "") + "</h3>" +
       '<span class="btn btn-secondary btn-block">' + esc(t("program.viewDetails")) + "</span>" +
     "</a>";
   }
@@ -382,7 +432,7 @@
 
     mainEl.innerHTML =
       '<section class="section container">' +
-        '<a class="btn-back" href="#/hospital/' + h.id + qs({ route: routeId || "" }) + '"><span class="arrow" aria-hidden="true">←</span>' + esc(t("common.back")) + "</a>" +
+        '<a class="btn-back" href="#/hospital/' + h.id + qs({ route: routeId || "" }) + '">' + Icons.html("arrow-left", { size: 18 }) + '' + esc(t("common.back")) + "</a>" +
         '<div class="detail-title-block" style="margin-top:14px;">' +
           '<div class="card-tags">' + tierBadgeHtml(h.tier) + '<span class="tag">' + esc(specialtyLabel(tag)) + "</span></div>" +
           "<h1>" + esc(specialtyLabel(tag)) + "</h1>" +
@@ -410,7 +460,7 @@
         '<div class="agent-avatar" aria-hidden="true">' + esc(agentInitials(a.name)) + "</div>" +
         "<div>" +
           "<h3 style='margin-bottom:2px;'>" + esc(a.name) + "</h3>" +
-          '<div class="card-meta"><span class="rating-badge">★ ' + a.rating + "</span><span>" + esc(t("agent.yearsExp", { n: a.years })) + "</span></div>" +
+          '<div class="card-meta"><span class="rating-badge">' + Icons.html("star", { size: 13 }) + a.rating + "</span><span>" + esc(t("agent.yearsExp", { n: a.years })) + "</span></div>" +
         "</div>" +
       "</div>" +
       "<p>" + esc(D.text(a.bio, state.lang)) + "</p>" +
@@ -424,29 +474,34 @@
 
   /* ---------------- CONTACT / BOOKING ---------------- */
   function renderContact(agentId, query) {
-    var a = agentById(agentId);
-    if (!a) { renderHome(); return; }
+    var a = agentId ? agentById(agentId) : null;
     var programId = query && query.program;
     var parsed = programId ? parseProgramId(programId) : null;
     var h = parsed ? hospitalById(parsed.hospitalId) : null;
     var routeId = query && query.route;
     var sel = routeId ? routeById(routeId) : null;
+    var topic = query && query.topic;
 
     var langOptions = SUPPORTED_LANGS.map(function (code) {
       return '<option value="' + code + '"' + (code === state.lang ? " selected" : "") + ">" + I18N.meta[code].label + "</option>";
     }).join("");
 
+    var backHref = programId ? "#/program/" + programId + qs({ route: routeId || "" })
+      : topic === "food" ? "#/food" : topic === "safety" ? "#/safety" : (routeId ? "#/trip" + qs({ route: routeId }) : "#/");
+
     mainEl.innerHTML =
       '<section class="section container">' +
-        '<a class="btn-back" href="' + (programId ? "#/program/" + programId + qs({ route: routeId || "" }) : "#/") + '"><span class="arrow" aria-hidden="true">←</span>' + esc(t("common.back")) + "</a>" +
+        '<a class="btn-back" href="' + backHref + '">' + Icons.html("arrow-left", { size: 18 }) + '' + esc(t("common.back")) + "</a>" +
         '<div class="form-card" style="margin-top:14px;">' +
           "<h1>" + esc(t("contact.title")) + "</h1>" +
-          "<p>" + esc(t("contact.subtitle")) + "</p>" +
+          "<p>" + esc(a ? t("contact.subtitle") : t("contact.subtitleGeneral")) + "</p>" +
           '<div class="form-summary">' +
             (h ? "<span><strong>" + esc(t("contact.summaryHospital")) + "</strong>" + esc(h.name) + "</span>" : "") +
             (parsed ? "<span><strong>" + esc(t("contact.summaryProgram")) + "</strong>" + esc(specialtyLabel(parsed.tag)) + "</span>" : "") +
             (sel ? "<span><strong>" + esc(t("contact.summaryRoute")) + "</strong>" + esc(D.text(sel.name, state.lang)) + "</span>" : "") +
-            "<span><strong>" + esc(t("contact.summaryAgent")) + "</strong>" + esc(a.name) + "</span>" +
+            (topic === "food" ? "<span><strong>" + esc(t("contact.summaryProgram")) + "</strong>" + esc(t("pillars.foodTitle")) + "</span>" : "") +
+            (topic === "safety" ? "<span><strong>" + esc(t("contact.summaryProgram")) + "</strong>" + esc(t("pillars.safetyTitle")) + "</span>" : "") +
+            (a ? "<span><strong>" + esc(t("contact.summaryAgent")) + "</strong>" + esc(a.name) + "</span>" : "") +
           "</div>" +
           '<div id="formArea">' +
           '<form id="inquiryForm">' +
@@ -480,8 +535,8 @@
         preferredLanguage: fd.get("preferredLanguage"),
         message: fd.get("message") || "",
         hospital: h ? h.name : "",
-        program: parsed ? specialtyLabel(parsed.tag) : "",
-        agent: a.name,
+        program: parsed ? specialtyLabel(parsed.tag) : (topic || ""),
+        agent: a ? a.name : "General inquiry",
         route: sel ? D.text(sel.name, "en") : ""
       };
       var body = Object.keys(payload).map(function (k) {
@@ -494,7 +549,7 @@
     });
 
     function showSuccess() {
-      document.getElementById("formArea").innerHTML = '<div class="success-box">✓ ' + esc(t("contact.success")) + "</div>";
+      document.getElementById("formArea").innerHTML = '<div class="success-box">' + Icons.html("check", { size: 18 }) + esc(t("contact.success")) + "</div>";
     }
   }
 
@@ -502,7 +557,7 @@
   function renderJoin() {
     mainEl.innerHTML =
       '<section class="section container">' +
-        '<a class="btn-back" href="#/"><span class="arrow" aria-hidden="true">←</span>' + esc(t("common.back")) + "</a>" +
+        '<a class="btn-back" href="#/">' + Icons.html("arrow-left", { size: 18 }) + '' + esc(t("common.back")) + "</a>" +
         '<div class="form-card" style="margin-top:14px;">' +
           "<h1>" + esc(t("join.title")) + "</h1>" +
           "<p>" + esc(t("join.subtitle")) + "</p>" +
@@ -538,7 +593,7 @@
     });
 
     function showJoinSuccess() {
-      document.getElementById("joinFormArea").innerHTML = '<div class="success-box">✓ ' + esc(t("join.success")) + "</div>";
+      document.getElementById("joinFormArea").innerHTML = '<div class="success-box">' + Icons.html("check", { size: 18 }) + esc(t("join.success")) + "</div>";
     }
   }
 
@@ -564,12 +619,12 @@
     html += '<div class="plan-summary">';
     html += "<span><strong>" + esc(t("contact.summaryHospital")) + "</strong>" +
       (selHospital ? esc(selHospital.name) : '<span class="muted">' + esc(t("trip.noHospital")) + "</span>") + "</span>";
-    if (selHospital) html += '<a class="link-btn" href="' + tripHref(query, { hospital: null }) + '">✕ ' + esc(t("trip.changeHospital")) + "</a>";
+    if (selHospital) html += '<a class="link-btn" href="' + tripHref(query, { hospital: null }) + '">' + Icons.html("close", { size: 14 }) + esc(t("trip.changeHospital")) + "</a>";
     html += "<span><strong>" + esc(t("contact.summaryRoute")) + "</strong>" +
       (selRoute ? esc(D.text(selRoute.name, state.lang)) : '<span class="muted">' + esc(t("trip.noRoute")) + "</span>") + "</span>";
-    if (selRoute) html += '<a class="link-btn" href="' + tripHref(query, { route: null }) + '">✕ ' + esc(t("trip.changeRoute")) + "</a>";
-    if (selHospital) {
-      html += '<a class="btn btn-primary" href="#/hospital/' + selHospital.id + qs({ route: routeId }) + '">' + esc(t("trip.continueToAgents")) + "</a>";
+    if (selRoute) html += '<a class="link-btn" href="' + tripHref(query, { route: null }) + '">' + Icons.html("close", { size: 14 }) + esc(t("trip.changeRoute")) + "</a>";
+    if (selHospital || selRoute) {
+      html += '<a class="btn btn-primary" href="' + (selHospital ? "#/hospital/" + selHospital.id + qs({ route: routeId }) : "#/request" + qs({ route: routeId })) + '">' + esc(t("trip.continueToAgents")) + "</a>";
     }
     html += "</div>";
 
@@ -578,7 +633,7 @@
     D.areas.forEach(function (id) {
       var active = id === area;
       html += '<a class="area-card' + (active ? " active" : "") + '" href="' + tripHref(query, { area: id }) + '">' +
-        '<span class="icon" aria-hidden="true">' + areaIcon(id) + "</span><span>" + esc(areaLabel(id)) + "</span></a>";
+        iconBadge(areaIconName(id), id) + "<span>" + esc(areaLabel(id)) + "</span></a>";
     });
     html += "</div>";
 
@@ -612,7 +667,7 @@
         '<strong style="font-size:0.85em;">' + esc(t("trip.highlights")) + ":</strong>" +
         '<ul class="included-list">' + D.textList(r.highlights, state.lang).map(function (hl) { return "<li>" + esc(hl) + "</li>"; }).join("") + "</ul>" +
         (active
-          ? '<span class="btn btn-secondary btn-block" aria-current="true">✓ ' + esc(t("trip.selectThisRoute")) + "</span>"
+          ? '<span class="btn btn-secondary btn-block" aria-current="true">' + Icons.html("check", { size: 16 }) + esc(t("trip.selectThisRoute")) + "</span>"
           : '<a class="btn btn-primary btn-block" href="' + tripHref(query, { route: r.id }) + '">' + esc(t("trip.selectThisRoute")) + "</a>") +
       "</div>";
     });
