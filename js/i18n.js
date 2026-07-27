@@ -33,9 +33,9 @@ window.I18N = {
         trust3: "Guidance from arrival to departure"
       },
       steps: {
-        area: "Step 1 · Choose a Region",
-        hospital: "Step 2 · Choose a Hospital",
-        program: "Step 3 · Choose a Specialty",
+        specialty: "Step 1 · Choose a Condition or Specialty",
+        area: "Step 2 · Choose a Region (optional)",
+        hospital: "Step 3 · Choose a Hospital",
         agent: "Step 4 · Choose Your Agent"
       },
       filters: {
@@ -159,6 +159,17 @@ window.I18N = {
         continueToAgents: "Continue to Choose an Agent",
         noRoute: "No route selected yet",
         noHospital: "No hospital selected yet"
+      },
+      pillars: {
+        sectionTitle: "Plan around what matters to you",
+        medicalTitle: "Medical Care",
+        medicalDesc: "Top-ranked hospitals across every specialty",
+        travelTitle: "Travel",
+        travelDesc: "See a bit of China with a recommended route",
+        foodTitle: "Food",
+        foodDesc: "Dietary needs and local cuisine, taken care of",
+        safetyTitle: "Safety",
+        safetyDesc: "Licensed hospitals, vetted agents, support at every step"
       }
     },
 
@@ -175,9 +186,9 @@ window.I18N = {
         trust3: "从抵达到返程全程陪伴"
       },
       steps: {
-        area: "第一步 · 选择地区",
-        hospital: "第二步 · 选择医院",
-        program: "第三步 · 选择专科",
+        specialty: "第一步 · 选择病症或专科",
+        area: "第二步 · 选择地区（可选）",
+        hospital: "第三步 · 选择医院",
         agent: "第四步 · 选择您的服务人员"
       },
       filters: {
@@ -301,6 +312,17 @@ window.I18N = {
         continueToAgents: "继续选择服务人员",
         noRoute: "尚未选择路线",
         noHospital: "尚未选择医院"
+      },
+      pillars: {
+        sectionTitle: "围绕您最关心的事来规划",
+        medicalTitle: "医疗",
+        medicalDesc: "覆盖各专科的顶尖医院",
+        travelTitle: "旅游",
+        travelDesc: "按推荐路线领略中国风光",
+        foodTitle: "美食",
+        foodDesc: "饮食需求与当地美食，为您安排妥当",
+        safetyTitle: "安全",
+        safetyDesc: "正规医院、审核合格的服务人员，全程保驾护航"
       }
     },
 
@@ -317,9 +339,9 @@ window.I18N = {
         trust3: "從抵達到返程全程陪伴"
       },
       steps: {
-        area: "第一步 · 選擇地區",
-        hospital: "第二步 · 選擇醫院",
-        program: "第三步 · 選擇專科",
+        specialty: "第一步 · 選擇病症或專科",
+        area: "第二步 · 選擇地區（可選）",
+        hospital: "第三步 · 選擇醫院",
         agent: "第四步 · 選擇您的服務人員"
       },
       filters: {
@@ -443,6 +465,17 @@ window.I18N = {
         continueToAgents: "繼續選擇服務人員",
         noRoute: "尚未選擇路線",
         noHospital: "尚未選擇醫院"
+      },
+      pillars: {
+        sectionTitle: "圍繞您最關心的事來規劃",
+        medicalTitle: "醫療",
+        medicalDesc: "涵蓋各專科的頂尖醫院",
+        travelTitle: "旅遊",
+        travelDesc: "按推薦路線領略中國風光",
+        foodTitle: "美食",
+        foodDesc: "飲食需求與當地美食，為您安排妥當",
+        safetyTitle: "安全",
+        safetyDesc: "合法醫院、審核合格的服務人員，全程保駕護航"
       }
     },
 
@@ -459,9 +492,9 @@ window.I18N = {
         trust3: "Acompañamiento desde la llegada hasta el regreso"
       },
       steps: {
-        area: "Paso 1 · Elija una región",
-        hospital: "Paso 2 · Elija un hospital",
-        program: "Paso 3 · Elija una especialidad",
+        specialty: "Paso 1 · Elija una afección o especialidad",
+        area: "Paso 2 · Elija una región (opcional)",
+        hospital: "Paso 3 · Elija un hospital",
         agent: "Paso 4 · Elija su agente"
       },
       filters: {
@@ -585,6 +618,17 @@ window.I18N = {
         continueToAgents: "Continuar para elegir un agente",
         noRoute: "Aún no ha seleccionado una ruta",
         noHospital: "Aún no ha seleccionado un hospital"
+      },
+      pillars: {
+        sectionTitle: "Planifique en torno a lo que le importa",
+        medicalTitle: "Atención médica",
+        medicalDesc: "Hospitales mejor calificados en cada especialidad",
+        travelTitle: "Viaje",
+        travelDesc: "Conozca un poco de China con una ruta recomendada",
+        foodTitle: "Gastronomía",
+        foodDesc: "Necesidades dietéticas y cocina local, resueltas",
+        safetyTitle: "Seguridad",
+        safetyDesc: "Hospitales certificados, agentes verificados, apoyo en cada paso"
       }
     },
 
@@ -601,9 +645,9 @@ window.I18N = {
         trust3: "Accompagnement de l'arrivée au départ"
       },
       steps: {
-        area: "Étape 1 · Choisir une région",
-        hospital: "Étape 2 · Choisir un hôpital",
-        program: "Étape 3 · Choisir une spécialité",
+        specialty: "Étape 1 · Choisir une pathologie ou une spécialité",
+        area: "Étape 2 · Choisir une région (facultatif)",
+        hospital: "Étape 3 · Choisir un hôpital",
         agent: "Étape 4 · Choisir votre agent"
       },
       filters: {
@@ -727,6 +771,17 @@ window.I18N = {
         continueToAgents: "Continuer pour choisir un agent",
         noRoute: "Aucun itinéraire sélectionné pour l'instant",
         noHospital: "Aucun hôpital sélectionné pour l'instant"
+      },
+      pillars: {
+        sectionTitle: "Organisez votre projet autour de ce qui compte pour vous",
+        medicalTitle: "Soins médicaux",
+        medicalDesc: "Des hôpitaux les mieux classés dans chaque spécialité",
+        travelTitle: "Voyage",
+        travelDesc: "Découvrez un peu la Chine grâce à un itinéraire recommandé",
+        foodTitle: "Gastronomie",
+        foodDesc: "Besoins alimentaires et cuisine locale, pris en charge",
+        safetyTitle: "Sécurité",
+        safetyDesc: "Hôpitaux agréés, agents vérifiés, accompagnement à chaque étape"
       }
     },
 
@@ -743,9 +798,9 @@ window.I18N = {
         trust3: "Begleitung von der Ankunft bis zur Abreise"
       },
       steps: {
-        area: "Schritt 1 · Region wählen",
-        hospital: "Schritt 2 · Krankenhaus wählen",
-        program: "Schritt 3 · Fachbereich wählen",
+        specialty: "Schritt 1 · Erkrankung oder Fachbereich wählen",
+        area: "Schritt 2 · Region wählen (optional)",
+        hospital: "Schritt 3 · Krankenhaus wählen",
         agent: "Schritt 4 · Ihren Betreuer wählen"
       },
       filters: {
@@ -869,6 +924,17 @@ window.I18N = {
         continueToAgents: "Weiter zur Betreuerauswahl",
         noRoute: "Noch keine Route ausgewählt",
         noHospital: "Noch kein Krankenhaus ausgewählt"
+      },
+      pillars: {
+        sectionTitle: "Planen Sie rund um das, was Ihnen wichtig ist",
+        medicalTitle: "Medizinische Versorgung",
+        medicalDesc: "Bestbewertete Krankenhäuser in jedem Fachbereich",
+        travelTitle: "Reisen",
+        travelDesc: "Lernen Sie China mit einer empfohlenen Route ein wenig kennen",
+        foodTitle: "Essen",
+        foodDesc: "Ernährungsbedürfnisse und lokale Küche, für Sie geregelt",
+        safetyTitle: "Sicherheit",
+        safetyDesc: "Zugelassene Krankenhäuser, geprüfte Betreuer, Unterstützung bei jedem Schritt"
       }
     },
 
@@ -885,9 +951,9 @@ window.I18N = {
         trust3: "Acompanhamento da chegada até a partida"
       },
       steps: {
-        area: "Passo 1 · Escolha uma região",
-        hospital: "Passo 2 · Escolha um hospital",
-        program: "Passo 3 · Escolha uma especialidade",
+        specialty: "Passo 1 · Escolha uma condição ou especialidade",
+        area: "Passo 2 · Escolha uma região (opcional)",
+        hospital: "Passo 3 · Escolha um hospital",
         agent: "Passo 4 · Escolha seu agente"
       },
       filters: {
@@ -1011,6 +1077,17 @@ window.I18N = {
         continueToAgents: "Continuar para escolher um agente",
         noRoute: "Nenhum roteiro selecionado ainda",
         noHospital: "Nenhum hospital selecionado ainda"
+      },
+      pillars: {
+        sectionTitle: "Planeje em torno do que importa para você",
+        medicalTitle: "Cuidados médicos",
+        medicalDesc: "Hospitais mais bem classificados em cada especialidade",
+        travelTitle: "Viagem",
+        travelDesc: "Conheça um pouco da China com um roteiro recomendado",
+        foodTitle: "Gastronomia",
+        foodDesc: "Necessidades alimentares e culinária local, resolvidas",
+        safetyTitle: "Segurança",
+        safetyDesc: "Hospitais licenciados, agentes verificados, apoio a cada passo"
       }
     },
 
@@ -1027,9 +1104,9 @@ window.I18N = {
         trust3: "Сопровождение от прибытия до отъезда"
       },
       steps: {
-        area: "Шаг 1 · Выберите регион",
-        hospital: "Шаг 2 · Выберите больницу",
-        program: "Шаг 3 · Выберите направление",
+        specialty: "Шаг 1 · Выберите заболевание или направление",
+        area: "Шаг 2 · Выберите регион (необязательно)",
+        hospital: "Шаг 3 · Выберите больницу",
         agent: "Шаг 4 · Выберите агента"
       },
       filters: {
@@ -1153,6 +1230,17 @@ window.I18N = {
         continueToAgents: "Перейти к выбору агента",
         noRoute: "Маршрут ещё не выбран",
         noHospital: "Больница ещё не выбрана"
+      },
+      pillars: {
+        sectionTitle: "Планируйте, исходя из того, что важно для вас",
+        medicalTitle: "Медицина",
+        medicalDesc: "Больницы высшего рейтинга по каждому направлению",
+        travelTitle: "Путешествие",
+        travelDesc: "Увидите немного Китая по рекомендованному маршруту",
+        foodTitle: "Еда",
+        foodDesc: "Особые потребности в питании и местная кухня — всё продумано",
+        safetyTitle: "Безопасность",
+        safetyDesc: "Лицензированные больницы, проверенные агенты, поддержка на каждом шаге"
       }
     },
 
@@ -1169,9 +1257,9 @@ window.I18N = {
         trust3: "مرافقة من الوصول حتى المغادرة"
       },
       steps: {
-        area: "الخطوة 1 · اختر منطقة",
-        hospital: "الخطوة 2 · اختر مستشفى",
-        program: "الخطوة 3 · اختر تخصصًا",
+        specialty: "الخطوة 1 · اختر الحالة أو التخصص",
+        area: "الخطوة 2 · اختر منطقة (اختياري)",
+        hospital: "الخطوة 3 · اختر مستشفى",
         agent: "الخطوة 4 · اختر وكيلك"
       },
       filters: {
@@ -1295,6 +1383,17 @@ window.I18N = {
         continueToAgents: "متابعة لاختيار وكيل",
         noRoute: "لم يتم اختيار مسار بعد",
         noHospital: "لم يتم اختيار مستشفى بعد"
+      },
+      pillars: {
+        sectionTitle: "خطّط بناءً على ما يهمك",
+        medicalTitle: "الرعاية الطبية",
+        medicalDesc: "مستشفيات ذات تصنيف عالٍ في كل تخصص",
+        travelTitle: "السفر",
+        travelDesc: "شاهد جزءًا من الصين عبر مسار موصى به",
+        foodTitle: "الطعام",
+        foodDesc: "الاحتياجات الغذائية والمأكولات المحلية، بعناية تامة",
+        safetyTitle: "السلامة",
+        safetyDesc: "مستشفيات مرخصة، وكلاء تم التحقق منهم، ودعم في كل خطوة"
       }
     },
 
@@ -1311,9 +1410,9 @@ window.I18N = {
         trust3: "到着から帰国まで安心サポート"
       },
       steps: {
-        area: "ステップ1・地域を選ぶ",
-        hospital: "ステップ2・病院を選ぶ",
-        program: "ステップ3・診療科を選ぶ",
+        specialty: "ステップ1・症状または診療科を選ぶ",
+        area: "ステップ2・地域を選ぶ（任意）",
+        hospital: "ステップ3・病院を選ぶ",
         agent: "ステップ4・エージェントを選ぶ"
       },
       filters: {
@@ -1437,6 +1536,17 @@ window.I18N = {
         continueToAgents: "エージェント選択に進む",
         noRoute: "まだルートが選択されていません",
         noHospital: "まだ病院が選択されていません"
+      },
+      pillars: {
+        sectionTitle: "大切なことを軸に計画しましょう",
+        medicalTitle: "医療",
+        medicalDesc: "あらゆる診療科で高評価の病院",
+        travelTitle: "旅行",
+        travelDesc: "おすすめルートで少し中国を巡る",
+        foodTitle: "グルメ",
+        foodDesc: "食事のご要望やご当地グルメも安心",
+        safetyTitle: "安全",
+        safetyDesc: "認可病院、審査済みエージェント、各段階でのサポート"
       }
     },
 
@@ -1453,9 +1563,9 @@ window.I18N = {
         trust3: "도착부터 귀국까지 동행"
       },
       steps: {
-        area: "1단계 · 지역 선택",
-        hospital: "2단계 · 병원 선택",
-        program: "3단계 · 진료과 선택",
+        specialty: "1단계 · 질환 또는 진료과 선택",
+        area: "2단계 · 지역 선택(선택 사항)",
+        hospital: "3단계 · 병원 선택",
         agent: "4단계 · 에이전트 선택"
       },
       filters: {
@@ -1579,6 +1689,17 @@ window.I18N = {
         continueToAgents: "에이전트 선택으로 이동",
         noRoute: "아직 선택된 경로가 없습니다",
         noHospital: "아직 선택된 병원이 없습니다"
+      },
+      pillars: {
+        sectionTitle: "가장 중요한 것을 중심으로 계획하세요",
+        medicalTitle: "의료",
+        medicalDesc: "모든 진료과에서 최고 등급의 병원",
+        travelTitle: "여행",
+        travelDesc: "추천 경로로 중국을 조금 둘러보세요",
+        foodTitle: "음식",
+        foodDesc: "식단 요구 사항과 현지 음식까지 챙겨 드립니다",
+        safetyTitle: "안전",
+        safetyDesc: "인증된 병원, 검증된 에이전트, 모든 단계의 지원"
       }
     },
 
@@ -1595,9 +1716,9 @@ window.I18N = {
         trust3: "आगमन से प्रस्थान तक मार्गदर्शन"
       },
       steps: {
-        area: "चरण 1 · क्षेत्र चुनें",
-        hospital: "चरण 2 · अस्पताल चुनें",
-        program: "चरण 3 · विभाग चुनें",
+        specialty: "चरण 1 · बीमारी या विभाग चुनें",
+        area: "चरण 2 · क्षेत्र चुनें (वैकल्पिक)",
+        hospital: "चरण 3 · अस्पताल चुनें",
         agent: "चरण 4 · अपना एजेंट चुनें"
       },
       filters: {
@@ -1721,6 +1842,17 @@ window.I18N = {
         continueToAgents: "एजेंट चुनने हेतु आगे बढ़ें",
         noRoute: "अभी तक कोई मार्ग नहीं चुना गया",
         noHospital: "अभी तक कोई अस्पताल नहीं चुना गया"
+      },
+      pillars: {
+        sectionTitle: "अपने लिए जो मायने रखता है उसके अनुसार योजना बनाएं",
+        medicalTitle: "चिकित्सा देखभाल",
+        medicalDesc: "हर विभाग में शीर्ष रैंक वाले अस्पताल",
+        travelTitle: "यात्रा",
+        travelDesc: "अनुशंसित मार्ग के साथ चीन की थोड़ी झलक देखें",
+        foodTitle: "भोजन",
+        foodDesc: "आहार संबंधी आवश्यकताएं और स्थानीय व्यंजन, सब संभाला हुआ",
+        safetyTitle: "सुरक्षा",
+        safetyDesc: "लाइसेंस प्राप्त अस्पताल, सत्यापित एजेंट, हर कदम पर सहायता"
       }
     }
   },

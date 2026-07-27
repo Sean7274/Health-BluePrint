@@ -109,6 +109,10 @@
       renderJoin();
     } else if (r.segments[0] === "trip") {
       renderTrip(r.query);
+    } else if (r.segments[0] === "food") {
+      renderInfoPage("food");
+    } else if (r.segments[0] === "safety") {
+      renderInfoPage("safety");
     } else {
       renderHome();
     }
@@ -181,35 +185,73 @@
       "</section>" +
 
       '<section class="section container">' +
-        '<div class="step-indicator">' + esc(t("steps.area")) + "</div>" +
-        '<div class="area-grid" id="areaGrid"></div>' +
+        "<h2>" + esc(t("pillars.sectionTitle")) + "</h2>" +
+        '<div class="choice-row pillar-row">' +
+          pillarCardHtml("🏥", t("pillars.medicalTitle"), t("pillars.medicalDesc"), "#/hospitals") +
+          pillarCardHtml("🧭", t("pillars.travelTitle"), t("pillars.travelDesc"), "#/trip") +
+          pillarCardHtml("🥢", t("pillars.foodTitle"), t("pillars.foodDesc"), "#/food") +
+          pillarCardHtml("🛡️", t("pillars.safetyTitle"), t("pillars.safetyDesc"), "#/safety") +
+        "</div>" +
+      "</section>" +
+
+      '<section class="section container">' +
+        '<div class="step-indicator">' + esc(t("steps.specialty")) + "</div>" +
+        '<div class="area-grid" id="specialtyGrid"></div>' +
       "</section>" +
 
       '<section class="section-tight container">' +
-        "<h2>" + esc(t("filters.specialtyLabel")) + "</h2>" +
-        '<div class="chip-row" id="specialtyChips"></div>' +
+        '<div class="step-indicator">' + esc(t("steps.area")) + "</div>" +
+        '<div class="chip-row" id="areaChips"></div>' +
       "</section>";
 
-    var areaGrid = document.getElementById("areaGrid");
-    D.areas.forEach(function (id) {
-      var link = document.createElement("a");
-      link.href = "#/hospitals?area=" + id;
-      link.className = "area-card";
-      link.innerHTML = '<span class="icon" aria-hidden="true">' + areaIcon(id) + "</span><span>" + esc(areaLabel(id)) + "</span>";
-      areaGrid.appendChild(link);
-    });
-
-    var chipRow = document.getElementById("specialtyChips");
+    var specialtyGrid = document.getElementById("specialtyGrid");
     D.specialties.forEach(function (s) {
       var link = document.createElement("a");
       link.href = "#/hospitals?specialty=" + s;
+      link.className = "area-card";
+      link.innerHTML = '<span class="icon" aria-hidden="true">' + specialtyIcon(s) + "</span><span>" + esc(specialtyLabel(s)) + "</span>";
+      specialtyGrid.appendChild(link);
+    });
+
+    var areaChips = document.getElementById("areaChips");
+    D.areas.forEach(function (id) {
+      var link = document.createElement("a");
+      link.href = "#/hospitals?area=" + id;
       link.className = "chip";
-      link.textContent = specialtyIcon(s) + " " + specialtyLabel(s);
-      chipRow.appendChild(link);
+      link.textContent = areaIcon(id) + " " + areaLabel(id);
+      areaChips.appendChild(link);
     });
   }
   function trustItem(icon, label) {
     return '<span class="trust-item"><span class="icon" aria-hidden="true">' + icon + "</span>" + esc(label) + "</span>";
+  }
+  function pillarCardHtml(icon, title, desc, href) {
+    return '<a class="choice-card" href="' + href + '">' +
+      '<span class="icon" aria-hidden="true">' + icon + "</span>" +
+      "<span>" + esc(title) + "</span>" +
+      '<span style="font-weight:400;font-size:0.85em;color:var(--color-text-muted);">' + esc(desc) + "</span>" +
+    "</a>";
+  }
+
+  /* ---------------- FOOD / SAFETY INFO PAGES ---------------- */
+  function renderInfoPage(key) {
+    var page = D.pages[key];
+    var titleKey = key === "food" ? "pillars.foodTitle" : "pillars.safetyTitle";
+    mainEl.innerHTML =
+      '<section class="section container">' +
+        '<a class="btn-back" href="#/"><span class="arrow" aria-hidden="true">←</span>' + esc(t("common.back")) + "</a>" +
+        '<h1 style="margin-top:14px;">' + esc(t(titleKey)) + "</h1>" +
+        "<p>" + esc(D.text(page.intro, state.lang)) + "</p>" +
+        '<div class="card-grid" style="margin-top:20px;">' +
+          page.items.map(function (item) {
+            return '<div class="card">' +
+              '<div style="font-size:1.6em;">' + item.icon + "</div>" +
+              "<h3>" + esc(D.text(item.title, state.lang)) + "</h3>" +
+              "<p>" + esc(D.text(item.desc, state.lang)) + "</p>" +
+            "</div>";
+          }).join("") +
+        "</div>" +
+      "</section>";
   }
 
   /* ---------------- HOSPITAL LIST ---------------- */
@@ -265,7 +307,7 @@
         resultsEl.innerHTML = '<div class="empty-state">' + esc(t("filters.noResults")) + "</div>";
         return;
       }
-      resultsEl.innerHTML = list.map(hospitalCardHtml).join("");
+      resultsEl.innerHTML = list.map(function (h) { return hospitalCardHtml(h, specSel.value); }).join("");
     }
 
     areaSel.onchange = update;
@@ -274,8 +316,8 @@
     update();
   }
 
-  function hospitalCardHtml(h) {
-    return '<a class="card card-clickable" href="#/hospital/' + h.id + '">' +
+  function hospitalCardHtml(h, specialty) {
+    return '<a class="card card-clickable" href="#/hospital/' + h.id + qs({ specialty: specialty || "" }) + '">' +
       '<div class="card-tags">' + tierBadgeHtml(h.tier) + h.tags.map(function (tag) { return '<span class="tag">' + esc(specialtyLabel(tag)) + "</span>"; }).join("") + "</div>" +
       "<h3>" + esc(h.name) + "</h3>" +
       '<p style="color:var(--color-text-muted);font-size:0.9em;margin:0;">' + esc(h.nameEn) + "</p>" +
@@ -291,6 +333,11 @@
     if (!h) { renderHome(); return; }
     var routeId = query && query.route;
     var sel = routeId ? routeById(routeId) : null;
+    var wantedSpecialty = query && query.specialty;
+    var orderedTags = h.tags.slice();
+    if (wantedSpecialty && orderedTags.indexOf(wantedSpecialty) !== -1) {
+      orderedTags = [wantedSpecialty].concat(orderedTags.filter(function (tg) { return tg !== wantedSpecialty; }));
+    }
 
     mainEl.innerHTML =
       '<section class="section container">' +
@@ -310,16 +357,15 @@
         (h.website
           ? '<p><a class="official-link" href="' + esc(h.website) + '" target="_blank" rel="noopener noreferrer">🔗 ' + esc(t("hospital.officialWebsite")) + "</a></p>"
           : '<p class="no-website-note">' + esc(t("hospital.officialWebsite")) + ": —</p>") +
-        '<div class="step-indicator" style="margin-top:24px;">' + esc(t("steps.program")) + "</div>" +
-        "<h2>" + esc(t("hospital.programsTitle")) + "</h2>" +
-        '<div class="card-grid">' + h.tags.map(function (tag) { return specialtyCardHtml(h, tag, routeId); }).join("") + "</div>" +
+        '<h2 style="margin-top:24px;">' + esc(t("hospital.programsTitle")) + "</h2>" +
+        '<div class="card-grid">' + orderedTags.map(function (tag) { return specialtyCardHtml(h, tag, routeId, tag === wantedSpecialty); }).join("") + "</div>" +
       "</section>";
   }
 
-  function specialtyCardHtml(h, tag, routeId) {
+  function specialtyCardHtml(h, tag, routeId, isRecommended) {
     var href = "#/program/" + makeProgramId(h.id, tag) + qs({ route: routeId || "" });
-    return '<a class="card card-clickable" href="' + href + '">' +
-      '<div class="card-tags"><span class="tag">' + esc(specialtyIcon(tag)) + " " + esc(specialtyLabel(tag)) + "</span></div>" +
+    return '<a class="card card-clickable' + (isRecommended ? " active" : "") + '" href="' + href + '">' +
+      '<div class="card-tags"><span class="tag">' + esc(specialtyIcon(tag)) + " " + esc(specialtyLabel(tag)) + (isRecommended ? " ★" : "") + "</span></div>" +
       "<h3>" + esc(specialtyLabel(tag)) + "</h3>" +
       '<span class="btn btn-secondary btn-block">' + esc(t("program.viewDetails")) + "</span>" +
     "</a>";
