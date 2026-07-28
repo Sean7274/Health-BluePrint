@@ -376,7 +376,7 @@
       return refreshProfile().then(function () {
         authState.ready = true;
         renderAuthControls();
-        location.hash = "#/account";
+        location.hash = "#/";
       });
     }
 
