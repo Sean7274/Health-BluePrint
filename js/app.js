@@ -71,6 +71,8 @@
     document.getElementById("fontDecrease").onclick = function () { changeFontStep(-1); };
     document.getElementById("fontIncrease").onclick = function () { changeFontStep(1); };
     document.getElementById("fontReset").onclick = function () { state.fontStepIndex = 1; saveFontStepIndex(1); renderChrome(); };
+
+    renderAuthControls();
   }
   function changeFontStep(delta) {
     state.fontStepIndex = Math.min(Math.max(state.fontStepIndex + delta, 0), FONT_STEPS.length - 1);
@@ -117,6 +119,14 @@
       renderInfoPage("food");
     } else if (r.segments[0] === "safety") {
       renderInfoPage("safety");
+    } else if (r.segments[0] === "login") {
+      renderLogin();
+    } else if (r.segments[0] === "signup") {
+      renderSignup();
+    } else if (r.segments[0] === "account") {
+      renderAccount();
+    } else if (r.segments[0] === "admin") {
+      renderAdmin();
     } else {
       renderHome();
     }
@@ -193,6 +203,282 @@
   var TIER_CLASS_COLOR = { "A++++": "#b8860b", "A+++": "#c8622a", "A++": "#0f6b5c", "A+": "#2a6ec8", "A": "#6b6b6b" };
   function tierBadgeHtml(tier) {
     return '<span class="tier-badge" style="color:' + TIER_CLASS_COLOR[tier] + '">' + Icons.html("star", { size: 14 }) + " " + esc(tier) + "</span>";
+  }
+
+  /* ---------------- AUTH ---------------- */
+  var authState = { user: null, profile: null, ready: false };
+  function isAdmin() { return !!(authState.profile && authState.profile.role === "admin"); }
+
+  function refreshProfile() {
+    if (!authState.user) { authState.profile = null; return Promise.resolve(); }
+    return window.sb.from("profiles").select("*").eq("id", authState.user.id).single()
+      .then(function (res) { authState.profile = res.data || null; })
+      .catch(function () { authState.profile = null; });
+  }
+
+  // Auth state is loaded asynchronously (a network round trip to Supabase),
+  // so the header renders without login controls first, then fills in once
+  // ready. If the visitor lands directly on #/account or #/admin (e.g. a
+  // page refresh while already logged in), we re-run the router once that
+  // first resolution completes so the page reflects real auth state instead
+  // of permanently showing "please log in".
+  function initAuth() {
+    if (!window.sb) { authState.ready = true; renderAuthControls(); return; }
+    var firstResolve = true;
+    window.sb.auth.onAuthStateChange(function (event, session) {
+      authState.user = session ? session.user : null;
+      refreshProfile().then(function () {
+        authState.ready = true;
+        renderAuthControls();
+        if (firstResolve) {
+          firstResolve = false;
+          var seg = parseHash().segments[0];
+          if (seg === "account" || seg === "admin") route();
+        }
+      });
+    });
+  }
+
+  function renderAuthControls() {
+    var el = document.getElementById("authControls");
+    if (!el) return;
+    if (!authState.ready) { el.innerHTML = ""; return; }
+    if (!authState.user) {
+      el.innerHTML = '<a href="#/login" class="btn btn-secondary btn-nav">' + esc(t("auth.logIn")) + "</a>";
+      return;
+    }
+    el.innerHTML =
+      '<span class="auth-menu">' +
+        '<a href="#/account" class="btn btn-secondary btn-nav">' + esc(t("auth.myRequests")) + "</a>" +
+        (isAdmin() ? '<a href="#/admin" class="btn btn-secondary btn-nav">' + esc(t("auth.admin")) + "</a>" : "") +
+        '<button type="button" class="btn btn-secondary btn-nav" id="logoutBtn">' + esc(t("auth.logOut")) + "</button>" +
+      "</span>";
+    document.getElementById("logoutBtn").onclick = function () {
+      window.sb.auth.signOut().then(function () {
+        authState.user = null;
+        authState.profile = null;
+        renderAuthControls();
+        location.hash = "#/";
+      });
+    };
+  }
+
+  function formErrorHtml() { return '<div class="form-error" id="authFormError" hidden></div>'; }
+  function showFormError(id, message) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = message;
+    el.hidden = false;
+  }
+
+  function renderLogin() {
+    mainEl.innerHTML =
+      '<section class="section container">' +
+        '<a class="btn-back" href="#/">' + Icons.html("arrow-left", { size: 18 }) + esc(t("common.back")) + "</a>" +
+        '<div class="form-card" style="margin-top:14px;max-width:480px;">' +
+          "<h1>" + esc(t("auth.loginTitle")) + "</h1>" +
+          "<p>" + esc(t("auth.loginSubtitle")) + "</p>" +
+          '<div id="loginFormArea">' +
+          '<form id="loginForm">' +
+            '<div class="field"><label for="lEmail">' + esc(t("auth.emailLabel")) + '</label><input id="lEmail" type="email" name="email" required></div>' +
+            '<div class="field"><label for="lPassword">' + esc(t("auth.passwordLabel")) + '</label><input id="lPassword" type="password" name="password" required minlength="6"></div>' +
+            formErrorHtml() +
+            '<button type="submit" class="btn btn-primary btn-block">' + esc(t("auth.submitLogin")) + "</button>" +
+          "</form>" +
+          '<p style="margin-top:14px;">' + esc(t("auth.noAccountPrompt")) + ' <a href="#/signup">' + esc(t("auth.createOne")) + "</a></p>" +
+          "</div>" +
+        "</div>" +
+      "</section>";
+
+    var form = document.getElementById("loginForm");
+    form.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      if (!window.sb) { showFormError("authFormError", t("auth.genericError")); return; }
+      var fd = new FormData(form);
+      window.sb.auth.signInWithPassword({ email: fd.get("email"), password: fd.get("password") })
+        .then(function (res) {
+          if (res.error || !res.data.session) { showFormError("authFormError", t("auth.loginError")); return; }
+          authState.user = res.data.session.user;
+          return refreshProfile().then(function () {
+            authState.ready = true;
+            renderAuthControls();
+            location.hash = "#/account";
+          });
+        })
+        .catch(function () { showFormError("authFormError", t("auth.genericError")); });
+    });
+  }
+
+  function renderSignup() {
+    mainEl.innerHTML =
+      '<section class="section container">' +
+        '<a class="btn-back" href="#/">' + Icons.html("arrow-left", { size: 18 }) + esc(t("common.back")) + "</a>" +
+        '<div class="form-card" style="margin-top:14px;max-width:480px;">' +
+          "<h1>" + esc(t("auth.signupTitle")) + "</h1>" +
+          "<p>" + esc(t("auth.signupSubtitle")) + "</p>" +
+          '<div id="signupFormArea">' +
+          '<form id="signupForm">' +
+            '<div class="field"><label for="sName">' + esc(t("auth.nameLabel")) + '</label><input id="sName" name="name" required></div>' +
+            '<div class="field"><label for="sEmail">' + esc(t("auth.emailLabel")) + '</label><input id="sEmail" type="email" name="email" required></div>' +
+            '<div class="field"><label for="sPassword">' + esc(t("auth.passwordLabel")) + '</label><input id="sPassword" type="password" name="password" required minlength="6"></div>' +
+            formErrorHtml() +
+            '<button type="submit" class="btn btn-primary btn-block">' + esc(t("auth.submitSignup")) + "</button>" +
+          "</form>" +
+          '<p style="margin-top:14px;">' + esc(t("auth.haveAccountPrompt")) + ' <a href="#/login">' + esc(t("auth.logInInstead")) + "</a></p>" +
+          "</div>" +
+        "</div>" +
+      "</section>";
+
+    var form = document.getElementById("signupForm");
+    form.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      if (!window.sb) { showFormError("authFormError", t("auth.genericError")); return; }
+      var fd = new FormData(form);
+      window.sb.auth.signUp({
+        email: fd.get("email"),
+        password: fd.get("password"),
+        options: { data: { full_name: fd.get("name") } }
+      }).then(function (res) {
+        if (res.error) { showFormError("authFormError", t("auth.signupError")); return; }
+        document.getElementById("signupFormArea").innerHTML = '<div class="success-box">' + Icons.html("check", { size: 18 }) + esc(t("auth.signupSuccess")) + "</div>";
+      }).catch(function () { showFormError("authFormError", t("auth.genericError")); });
+    });
+  }
+
+  var ACCOUNT_STATUS_KEYS = { pending: "statusPending", assigned: "statusAssigned", confirmed: "statusConfirmed", completed: "statusCompleted", cancelled: "statusCancelled" };
+
+  function bookingCardHtml(b) {
+    var dateStr = b.created_at ? new Date(b.created_at).toLocaleDateString(state.lang) : "";
+    var statusKey = ACCOUNT_STATUS_KEYS[b.status] || "statusPending";
+    var hospital = b.hospital_id ? hospitalById(b.hospital_id) : null;
+    return '<div class="card">' +
+      '<div class="card-tags"><span class="tag">' + esc(t("account." + statusKey)) + "</span></div>" +
+      "<h3>" + esc(hospital ? hospital.name : (b.specialty ? specialtyLabel(b.specialty) : t("contact.title"))) + "</h3>" +
+      '<p style="color:var(--color-text-muted);font-size:0.85em;">' + esc(t("account.submittedOn", { date: dateStr })) + "</p>" +
+    "</div>";
+  }
+
+  function renderAccount() {
+    mainEl.innerHTML =
+      '<section class="section container">' +
+        '<a class="btn-back" href="#/">' + Icons.html("arrow-left", { size: 18 }) + esc(t("common.back")) + "</a>" +
+        '<h1 style="margin-top:14px;">' + esc(t("account.title")) + "</h1>" +
+        "<p>" + esc(t("account.subtitle")) + "</p>" +
+        '<div id="accountResults" class="card-grid" style="margin-top:16px;"></div>' +
+      "</section>";
+
+    var el = document.getElementById("accountResults");
+    if (!authState.ready) { el.innerHTML = ""; return; }
+    if (!authState.user) {
+      el.innerHTML = '<div class="empty-state">' + esc(t("account.loginRequired")) + ' <a href="#/login">' + esc(t("auth.logIn")) + "</a></div>";
+      return;
+    }
+    if (!window.sb) { el.innerHTML = '<div class="empty-state">' + esc(t("auth.genericError")) + "</div>"; return; }
+    window.sb.from("bookings").select("*").eq("user_id", authState.user.id).order("created_at", { ascending: false })
+      .then(function (res) {
+        var rows = res.data || [];
+        if (rows.length === 0) { el.innerHTML = '<div class="empty-state">' + esc(t("account.noRequests")) + "</div>"; return; }
+        el.innerHTML = rows.map(bookingCardHtml).join("");
+      })
+      .catch(function () { el.innerHTML = '<div class="empty-state">' + esc(t("auth.genericError")) + "</div>"; });
+  }
+
+  /* ---------------- ADMIN ---------------- */
+  function renderAdmin() {
+    mainEl.innerHTML =
+      '<section class="section container">' +
+        '<a class="btn-back" href="#/">' + Icons.html("arrow-left", { size: 18 }) + esc(t("common.back")) + "</a>" +
+        '<h1 style="margin-top:14px;">' + esc(t("admin.title")) + "</h1>" +
+        '<div id="adminBody"></div>' +
+      "</section>";
+
+    var body = document.getElementById("adminBody");
+    if (!authState.ready) { body.innerHTML = ""; return; }
+    if (!authState.user || !isAdmin()) {
+      body.innerHTML = '<div class="empty-state">' + esc(t("admin.notAuthorized")) + "</div>";
+      return;
+    }
+    if (!window.sb) { body.innerHTML = '<div class="empty-state">' + esc(t("auth.genericError")) + "</div>"; return; }
+
+    body.innerHTML =
+      '<div class="filters-bar" style="margin-top:10px;">' +
+        '<button type="button" class="btn btn-secondary" id="tabRequests">' + esc(t("admin.requestsTab")) + "</button>" +
+        '<button type="button" class="btn btn-secondary" id="tabAgentApps">' + esc(t("admin.agentAppsTab")) + "</button>" +
+      "</div>" +
+      '<div id="adminTabContent" style="margin-top:16px;"></div>';
+
+    document.getElementById("tabRequests").onclick = loadAdminRequests;
+    document.getElementById("tabAgentApps").onclick = loadAdminAgentApps;
+    loadAdminRequests();
+  }
+
+  function loadAdminRequests() {
+    var content = document.getElementById("adminTabContent");
+    content.innerHTML = "";
+    window.sb.from("bookings").select("*").order("created_at", { ascending: false })
+      .then(function (res) {
+        var rows = res.data || [];
+        if (rows.length === 0) { content.innerHTML = '<div class="empty-state">' + esc(t("admin.noRequests")) + "</div>"; return; }
+        content.innerHTML = '<div class="card-grid">' + rows.map(adminBookingCardHtml).join("") + "</div>";
+        content.querySelectorAll("[data-status-select]").forEach(function (sel) {
+          sel.onchange = function () {
+            window.sb.from("bookings").update({ status: sel.value, updated_at: new Date().toISOString() }).eq("id", sel.getAttribute("data-status-select"))
+              .then(function () { loadAdminRequests(); });
+          };
+        });
+      })
+      .catch(function () { content.innerHTML = '<div class="empty-state">' + esc(t("auth.genericError")) + "</div>"; });
+  }
+
+  function adminBookingCardHtml(b) {
+    var opts = ["pending", "assigned", "confirmed", "completed", "cancelled"].map(function (s) {
+      return '<option value="' + s + '"' + (s === b.status ? " selected" : "") + ">" + esc(t("account." + ACCOUNT_STATUS_KEYS[s])) + "</option>";
+    }).join("");
+    var hospital = b.hospital_id ? hospitalById(b.hospital_id) : null;
+    return '<div class="card">' +
+      "<h3>" + esc(b.full_name) + "</h3>" +
+      '<p style="font-size:0.85em;color:var(--color-text-muted);">' + esc(b.email) + (b.phone ? " · " + esc(b.phone) : "") + "</p>" +
+      (hospital ? "<p><strong>" + esc(t("contact.summaryHospital")) + "</strong>" + esc(hospital.name) + "</p>" : "") +
+      (b.specialty ? "<p><strong>" + esc(t("contact.summaryProgram")) + "</strong>" + esc(specialtyLabel(b.specialty)) + "</p>" : "") +
+      (b.message ? '<p style="white-space:pre-line;">' + esc(b.message) + "</p>" : "") +
+      '<div class="field"><label>' + esc(t("admin.statusLabel")) + '</label><select data-status-select="' + esc(b.id) + '">' + opts + "</select></div>" +
+    "</div>";
+  }
+
+  function loadAdminAgentApps() {
+    var content = document.getElementById("adminTabContent");
+    content.innerHTML = "";
+    window.sb.from("agent_applications").select("*").order("created_at", { ascending: false })
+      .then(function (res) {
+        var rows = res.data || [];
+        if (rows.length === 0) { content.innerHTML = '<div class="empty-state">' + esc(t("admin.noApplications")) + "</div>"; return; }
+        content.innerHTML = '<div class="card-grid">' + rows.map(adminAgentAppCardHtml).join("") + "</div>";
+        content.querySelectorAll("[data-approve]").forEach(function (btn) {
+          btn.onclick = function () { setAgentAppStatus(btn.getAttribute("data-approve"), "approved"); };
+        });
+        content.querySelectorAll("[data-reject]").forEach(function (btn) {
+          btn.onclick = function () { setAgentAppStatus(btn.getAttribute("data-reject"), "rejected"); };
+        });
+      })
+      .catch(function () { content.innerHTML = '<div class="empty-state">' + esc(t("auth.genericError")) + "</div>"; });
+  }
+
+  function setAgentAppStatus(id, status) {
+    window.sb.from("agent_applications").update({ status: status }).eq("id", id).then(function () { loadAdminAgentApps(); });
+  }
+
+  function adminAgentAppCardHtml(a) {
+    var statusLabel = a.status === "approved" ? t("admin.approved") : a.status === "rejected" ? t("admin.rejected") : t("account.statusPending");
+    return '<div class="card">' +
+      '<div class="card-tags"><span class="tag">' + esc(statusLabel) + "</span></div>" +
+      "<h3>" + esc(a.full_name) + "</h3>" +
+      '<p style="font-size:0.85em;color:var(--color-text-muted);">' + esc(a.email) + (a.phone ? " · " + esc(a.phone) : "") + "</p>" +
+      (a.city ? "<p>" + esc(a.city) + "</p>" : "") +
+      (a.message ? '<p style="white-space:pre-line;">' + esc(a.message) + "</p>" : "") +
+      (a.status === "pending"
+        ? '<div class="field-row"><button type="button" class="btn btn-primary" data-approve="' + esc(a.id) + '">' + esc(t("admin.approve")) + '</button><button type="button" class="btn btn-secondary" data-reject="' + esc(a.id) + '">' + esc(t("admin.reject")) + "</button></div>"
+        : "") +
+    "</div>";
   }
 
   /* ---------------- HOME ---------------- */
@@ -640,6 +926,7 @@
             "</div>" +
             '<div class="field"><label for="cLang">' + esc(t("contact.preferredLanguage")) + '</label><select id="cLang" name="preferredLanguage">' + langOptions + "</select></div>" +
             '<div class="field"><label for="cMessage">' + esc(t("contact.message")) + '</label><textarea id="cMessage" name="message" placeholder="' + esc(t("contact.messagePlaceholder")) + '"></textarea></div>' +
+            '<div class="form-error" id="bookingFormError" hidden></div>' +
             '<button type="submit" class="btn btn-primary btn-block">' + esc(t("contact.submit")) + "</button>" +
           "</form>" +
           "</div>" +
@@ -649,32 +936,49 @@
     var form = document.getElementById("inquiryForm");
     form.addEventListener("submit", function (ev) {
       ev.preventDefault();
+      var submitBtn = form.querySelector("button[type=submit]");
       var fd = new FormData(form);
       var payload = {
-        "form-name": "inquiry",
-        name: fd.get("name"),
+        user_id: authState.user ? authState.user.id : null,
+        full_name: fd.get("name"),
         email: fd.get("email"),
         phone: fd.get("phone"),
-        country: fd.get("country") || "",
-        preferredLanguage: fd.get("preferredLanguage"),
-        message: fd.get("message") || "",
-        hospital: h ? h.name : "",
-        program: parsed ? specialtyLabel(parsed.tag) : (topic || ""),
-        agent: a ? a.name : "General inquiry",
-        route: sel ? (sel.custom ? "Custom: " + sel.stops.join(" | ") : D.text(sel.name, "en")) : ""
+        hospital_id: h ? h.id : null,
+        specialty: parsed ? parsed.tag : (topic || null),
+        route_data: sel || null,
+        message: buildBookingMessage(fd, a, sel, topic)
       };
-      var body = Object.keys(payload).map(function (k) {
-        return encodeURIComponent(k) + "=" + encodeURIComponent(payload[k]);
-      }).join("&");
-
-      fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: body })
-        .then(function () { showSuccess(); })
-        .catch(function () { showSuccess(); }); // static hosting: treat as best-effort, still confirm to user
+      if (!window.sb) { showFormError("bookingFormError", t("auth.genericError")); return; }
+      submitBtn.disabled = true;
+      window.sb.from("bookings").insert(payload)
+        .then(function (res) {
+          submitBtn.disabled = false;
+          if (res.error) { showFormError("bookingFormError", t("auth.genericError")); return; }
+          showSuccess();
+        })
+        .catch(function () { submitBtn.disabled = false; showFormError("bookingFormError", t("auth.genericError")); });
     });
 
     function showSuccess() {
       document.getElementById("formArea").innerHTML = '<div class="success-box">' + Icons.html("check", { size: 18 }) + esc(t("contact.success")) + "</div>";
     }
+  }
+
+  // The bookings table keeps only structured columns (hospital/specialty);
+  // everything else useful for a human reviewing the request — which demo
+  // agent they picked, the trip route, their country/preferred language —
+  // gets folded into the free-text message so no schema change is needed.
+  function buildBookingMessage(fd, a, sel, topic) {
+    var parts = [];
+    var userMsg = fd.get("message");
+    if (userMsg) parts.push(userMsg);
+    if (a) parts.push("Requested agent: " + a.name);
+    if (sel) parts.push("Route: " + (sel.custom ? "Custom (" + sel.stops.join(", ") + ")" : D.text(sel.name, "en")));
+    if (topic === "food") parts.push("Topic: Food & Dining");
+    if (topic === "safety") parts.push("Topic: Safety");
+    var country = fd.get("country"); if (country) parts.push("Country: " + country);
+    var lang = fd.get("preferredLanguage"); if (lang) parts.push("Preferred language: " + lang);
+    return parts.join("\n");
   }
 
   /* ---------------- JOIN AS AGENT ---------------- */
@@ -700,6 +1004,7 @@
               '<input id="jResume" type="file" name="resume" accept=".pdf,.doc,.docx">' +
               '<span style="color:var(--color-text-muted);font-size:0.85em;">' + esc(t("join.resumeHint")) + "</span>" +
             "</div>" +
+            '<div class="form-error" id="joinFormError" hidden></div>' +
             '<button type="submit" class="btn btn-primary btn-block">' + esc(t("join.submit")) + "</button>" +
           "</form>" +
           "</div>" +
@@ -709,11 +1014,32 @@
     var form = document.getElementById("joinForm");
     form.addEventListener("submit", function (ev) {
       ev.preventDefault();
+      var submitBtn = form.querySelector("button[type=submit]");
       var fd = new FormData(form);
+      var resumeFile = fd.get("resume");
+      var hasResume = !!(resumeFile && resumeFile.name);
+
+      // The resume file itself still goes through Netlify Forms (it already
+      // handles file storage + emailing it to us, so there's no need to set
+      // up Supabase Storage for this yet). The structured fields also go
+      // into Supabase so the application shows up in the admin dashboard
+      // and can be approved/rejected and tracked.
       fd.set("form-name", "agent-application");
-      fetch("/", { method: "POST", body: fd })
-        .then(function () { showJoinSuccess(); })
-        .catch(function () { showJoinSuccess(); });
+      var netlifySubmit = fetch("/", { method: "POST", body: fd }).catch(function () {});
+
+      var dbPayload = {
+        user_id: authState.user ? authState.user.id : null,
+        full_name: fd.get("name"),
+        email: fd.get("email") || "",
+        phone: fd.get("phone"),
+        message: "Birth year: " + (fd.get("birthYear") || "—") + (hasResume ? " · Resume attached (see email notification)" : " · No resume attached")
+      };
+      var dbSubmit = window.sb ? window.sb.from("agent_applications").insert(dbPayload) : Promise.resolve();
+
+      submitBtn.disabled = true;
+      Promise.all([netlifySubmit, dbSubmit])
+        .then(function () { submitBtn.disabled = false; showJoinSuccess(); })
+        .catch(function () { submitBtn.disabled = false; showJoinSuccess(); });
     });
 
     function showJoinSuccess() {
@@ -896,4 +1222,5 @@
   renderChrome();
   route();
   initScrollTop();
+  initAuth();
 })();
