@@ -473,6 +473,13 @@
               "</div>" +
               '<div class="field"><label for="sFoodPreference">' + esc(t("auth.foodPreferenceLabel")) + " (" + esc(t("common.optional")) + ')</label><input id="sFoodPreference" name="foodPreference"></div>' +
 
+              '<label class="agree-check"><input type="checkbox" id="sAgreeTerms" required><span>' +
+                t("auth.agreeToTerms", {
+                  terms: '<a href="#/terms" target="_blank" rel="noopener noreferrer">' + esc(t("legal.termsTitle")) + "</a>",
+                  privacy: '<a href="#/privacy" target="_blank" rel="noopener noreferrer">' + esc(t("legal.privacyTitle")) + "</a>"
+                }) +
+              "</span></label>" +
+
               formErrorHtml() +
               '<button type="submit" class="btn btn-primary btn-block">' + esc(t("auth.submitSignup")) + "</button>" +
             "</form>" +
