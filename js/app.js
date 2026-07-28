@@ -276,6 +276,40 @@
     el.hidden = false;
   }
 
+  // Shared "Email / Phone" identifier toggle used on signup and login: a
+  // single input that switches type/label/placeholder instead of showing
+  // two separate fields, since a person only ever signs up/in with one.
+  function identifierToggleHtml(prefix) {
+    return '<div class="method-toggle" role="tablist">' +
+      '<button type="button" class="method-btn active" id="' + prefix + 'MethodEmail">' + esc(t("auth.emailMethod")) + "</button>" +
+      '<button type="button" class="method-btn" id="' + prefix + 'MethodPhone">' + esc(t("auth.phoneMethod")) + "</button>" +
+    "</div>" +
+    '<div class="field"><label for="' + prefix + 'Identifier" id="' + prefix + 'IdentifierLabel">' + esc(t("auth.emailLabel")) + '</label>' +
+      '<input id="' + prefix + 'Identifier" type="email" required>' +
+      '<span id="' + prefix + 'IdentifierHint" style="color:var(--color-text-muted);font-size:0.85em;" hidden>' + esc(t("auth.phoneHint")) + "</span>" +
+    "</div>";
+  }
+  function wireIdentifierToggle(prefix) {
+    var method = "email";
+    var emailBtn = document.getElementById(prefix + "MethodEmail");
+    var phoneBtn = document.getElementById(prefix + "MethodPhone");
+    var input = document.getElementById(prefix + "Identifier");
+    var label = document.getElementById(prefix + "IdentifierLabel");
+    var hint = document.getElementById(prefix + "IdentifierHint");
+    function setMethod(m) {
+      method = m;
+      emailBtn.classList.toggle("active", m === "email");
+      phoneBtn.classList.toggle("active", m === "phone");
+      input.type = m === "email" ? "email" : "tel";
+      label.textContent = m === "email" ? t("auth.emailLabel") : t("auth.phoneLabel");
+      hint.hidden = m === "email";
+      input.value = "";
+    }
+    emailBtn.onclick = function () { setMethod("email"); };
+    phoneBtn.onclick = function () { setMethod("phone"); };
+    return { getMethod: function () { return method; }, getValue: function () { return input.value.trim(); } };
+  }
+
   function renderLogin(query) {
     query = query || {};
     mainEl.innerHTML =
@@ -289,8 +323,8 @@
           '<div id="loginPasswordStep">' +
             '<div id="loginFormArea">' +
             '<form id="loginForm">' +
-              '<div class="field"><label for="lEmail">' + esc(t("auth.emailLabel")) + '</label><input id="lEmail" type="email" name="email" required></div>' +
-              '<div class="field"><label for="lPassword">' + esc(t("auth.passwordLabel")) + '</label><input id="lPassword" type="password" name="password" required minlength="6"></div>' +
+              identifierToggleHtml("lPw") +
+              '<div class="field"><label for="lPassword">' + esc(t("auth.passwordLabel")) + '</label><input id="lPassword" type="password" required minlength="6"></div>' +
               formErrorHtml() +
               '<button type="submit" class="btn btn-primary btn-block">' + esc(t("auth.submitLogin")) + "</button>" +
             "</form>" +
@@ -302,7 +336,7 @@
           '<div id="loginCodeStep" hidden>' +
             '<div id="loginCodeRequest">' +
               "<p>" + esc(t("auth.loginWithCodeSubtitle")) + "</p>" +
-              '<div class="field"><label for="lcEmail">' + esc(t("auth.emailLabel")) + '</label><input id="lcEmail" type="email"></div>' +
+              identifierToggleHtml("lCode") +
               '<div class="form-error" id="loginCodeError" hidden></div>' +
               '<button type="button" class="btn btn-primary btn-block" id="sendCodeBtn">' + esc(t("auth.sendCode")) + "</button>" +
               '<p style="margin-top:14px;"><button type="button" class="link-btn" id="backToPasswordBtn">' + esc(t("auth.backToPassword")) + "</button></p>" +
@@ -326,12 +360,15 @@
       });
     }
 
+    var pwIdentifier = wireIdentifierToggle("lPw");
     var form = document.getElementById("loginForm");
     form.addEventListener("submit", function (ev) {
       ev.preventDefault();
       if (!window.sb) { showFormError("authFormError", t("auth.genericError")); return; }
-      var fd = new FormData(form);
-      window.sb.auth.signInWithPassword({ email: fd.get("email"), password: fd.get("password") })
+      var value = pwIdentifier.getValue();
+      var password = document.getElementById("lPassword").value;
+      var creds = pwIdentifier.getMethod() === "email" ? { email: value, password: password } : { phone: value, password: password };
+      window.sb.auth.signInWithPassword(creds)
         .then(function (res) {
           if (res.error || !res.data.session) { showFormError("authFormError", t("auth.loginError")); return; }
           return completeLogin(res.data.session);
@@ -339,6 +376,7 @@
         .catch(function () { showFormError("authFormError", t("auth.genericError")); });
     });
 
+    var codeIdentifier = wireIdentifierToggle("lCode");
     document.getElementById("showCodeLoginBtn").onclick = function () {
       document.getElementById("loginPasswordStep").hidden = true;
       document.getElementById("loginCodeStep").hidden = false;
@@ -348,19 +386,25 @@
       document.getElementById("loginPasswordStep").hidden = false;
     };
 
-    var codeEmail = "";
+    var codeMethod = "email";
+    var codeValue = "";
     document.getElementById("sendCodeBtn").onclick = function () {
       if (!window.sb) { showFormError("loginCodeError", t("auth.genericError")); return; }
-      codeEmail = document.getElementById("lcEmail").value.trim();
-      if (!codeEmail) { showFormError("loginCodeError", t("auth.genericError")); return; }
+      codeMethod = codeIdentifier.getMethod();
+      codeValue = codeIdentifier.getValue();
+      if (!codeValue) { showFormError("loginCodeError", t("auth.genericError")); return; }
       // shouldCreateUser:false so this "alternative sign-in" path can only
       // be used to log in to an existing account, not silently create one.
-      window.sb.auth.signInWithOtp({ email: codeEmail, options: { shouldCreateUser: false } })
+      var opts = { options: { shouldCreateUser: false } };
+      opts[codeMethod] = codeValue;
+      window.sb.auth.signInWithOtp(opts)
         .then(function (res) {
           if (res.error) { showFormError("loginCodeError", t("auth.genericError")); return; }
           document.getElementById("loginCodeRequest").hidden = true;
           document.getElementById("loginCodeVerify").hidden = false;
-          document.getElementById("loginCodeSentSubtitle").textContent = t("auth.codeSentSubtitle", { email: codeEmail });
+          var subtitleKey = codeMethod === "email" ? "auth.codeSentSubtitle" : "auth.codeSentSubtitlePhone";
+          var vars = codeMethod === "email" ? { email: codeValue } : { phone: codeValue };
+          document.getElementById("loginCodeSentSubtitle").textContent = t(subtitleKey, vars);
         })
         .catch(function () { showFormError("loginCodeError", t("auth.genericError")); });
     };
@@ -368,7 +412,9 @@
     document.getElementById("verifyCodeBtn").onclick = function () {
       var code = document.getElementById("lcCode").value.trim();
       if (!code) { showFormError("loginCodeVerifyError", t("auth.codeRequired")); return; }
-      window.sb.auth.verifyOtp({ email: codeEmail, token: code, type: "email" })
+      var verifyOpts = { token: code, type: codeMethod === "email" ? "email" : "sms" };
+      verifyOpts[codeMethod] = codeValue;
+      window.sb.auth.verifyOtp(verifyOpts)
         .then(function (res) {
           if (res.error || !res.data.session) { showFormError("loginCodeVerifyError", t("auth.verifyError")); return; }
           return completeLogin(res.data.session);
@@ -389,8 +435,24 @@
             '<div id="signupFormArea">' +
             '<form id="signupForm">' +
               '<div class="field"><label for="sName">' + esc(t("auth.nameLabel")) + '</label><input id="sName" name="name" required></div>' +
-              '<div class="field"><label for="sEmail">' + esc(t("auth.emailLabel")) + '</label><input id="sEmail" type="email" name="email" required></div>' +
+              identifierToggleHtml("s") +
               '<div class="field"><label for="sPassword">' + esc(t("auth.passwordLabel")) + '</label><input id="sPassword" type="password" name="password" required minlength="6"></div>' +
+
+              '<div class="field"><label for="sResidenceCountry">' + esc(t("auth.residenceCountryLabel")) + ' *</label><input id="sResidenceCountry" name="residenceCountry" required></div>' +
+              '<div class="field"><label for="sGender">' + esc(t("auth.genderLabel")) + " (" + esc(t("common.optional")) + ')</label>' +
+                '<select id="sGender" name="gender">' +
+                  '<option value="">' + esc(t("auth.genderPreferNotToSay")) + "</option>" +
+                  '<option value="male">' + esc(t("auth.genderMale")) + "</option>" +
+                  '<option value="female">' + esc(t("auth.genderFemale")) + "</option>" +
+                  '<option value="other">' + esc(t("auth.genderOther")) + "</option>" +
+                "</select>" +
+              "</div>" +
+              '<div class="field-row">' +
+                '<div class="field"><label for="sAge">' + esc(t("auth.ageLabel")) + " (" + esc(t("common.optional")) + ')</label><input id="sAge" name="age" type="number" min="0" max="120"></div>' +
+                '<div class="field"><label for="sFamilySize">' + esc(t("auth.familySizeLabel")) + " (" + esc(t("common.optional")) + ')</label><input id="sFamilySize" name="familySize" type="number" min="1" max="20"></div>' +
+              "</div>" +
+              '<div class="field"><label for="sFoodPreference">' + esc(t("auth.foodPreferenceLabel")) + " (" + esc(t("common.optional")) + ')</label><input id="sFoodPreference" name="foodPreference"></div>' +
+
               formErrorHtml() +
               '<button type="submit" class="btn btn-primary btn-block">' + esc(t("auth.submitSignup")) + "</button>" +
             "</form>" +
@@ -413,22 +475,36 @@
         "</div>" +
       "</section>";
 
-    var signedUpEmail = "";
+    var signedUpMethod = "email";
+    var signedUpValue = "";
+    var signupIdentifier = wireIdentifierToggle("s");
     var form = document.getElementById("signupForm");
     form.addEventListener("submit", function (ev) {
       ev.preventDefault();
       if (!window.sb) { showFormError("authFormError", t("auth.genericError")); return; }
       var fd = new FormData(form);
-      signedUpEmail = fd.get("email");
-      window.sb.auth.signUp({
-        email: signedUpEmail,
+      signedUpMethod = signupIdentifier.getMethod();
+      signedUpValue = signupIdentifier.getValue();
+      var profileData = {
+        full_name: fd.get("name"),
+        gender: fd.get("gender") || null,
+        age: fd.get("age") || null,
+        residence_country: fd.get("residenceCountry"),
+        family_size: fd.get("familySize") || null,
+        food_preference: fd.get("foodPreference") || null
+      };
+      var signUpArgs = {
         password: fd.get("password"),
-        options: { data: { full_name: fd.get("name") } }
-      }).then(function (res) {
+        options: { data: profileData }
+      };
+      signUpArgs[signedUpMethod] = signedUpValue;
+      window.sb.auth.signUp(signUpArgs).then(function (res) {
         if (res.error) { showFormError("authFormError", t("auth.signupError")); return; }
         document.getElementById("signupStep1").hidden = true;
         document.getElementById("signupStep2").hidden = false;
-        document.getElementById("signupVerifySubtitle").textContent = t("auth.verifySubtitle", { email: signedUpEmail });
+        var subtitleKey = signedUpMethod === "email" ? "auth.verifySubtitle" : "auth.verifySubtitlePhone";
+        var vars = signedUpMethod === "email" ? { email: signedUpValue } : { phone: signedUpValue };
+        document.getElementById("signupVerifySubtitle").textContent = t(subtitleKey, vars);
       }).catch(function () { showFormError("authFormError", t("auth.genericError")); });
     });
 
@@ -439,7 +515,9 @@
       var code = (new FormData(verifyForm)).get("code");
       code = code ? code.trim() : "";
       if (!code) { showFormError("signupVerifyError", t("auth.codeRequired")); return; }
-      window.sb.auth.verifyOtp({ email: signedUpEmail, token: code, type: "signup" })
+      var verifyOpts = { token: code, type: signedUpMethod === "email" ? "signup" : "sms" };
+      verifyOpts[signedUpMethod] = signedUpValue;
+      window.sb.auth.verifyOtp(verifyOpts)
         .then(function (res) {
           if (res.error) { showFormError("signupVerifyError", t("auth.verifyError")); return; }
           // Verifying via code logs the user in immediately, but per the
@@ -455,8 +533,10 @@
     });
 
     document.getElementById("resendCodeBtn").onclick = function () {
-      if (!signedUpEmail || !window.sb) return;
-      window.sb.auth.resend({ type: "signup", email: signedUpEmail });
+      if (!signedUpValue || !window.sb) return;
+      var resendOpts = { type: signedUpMethod === "email" ? "signup" : "sms" };
+      resendOpts[signedUpMethod] = signedUpValue;
+      window.sb.auth.resend(resendOpts);
     };
   }
 
@@ -874,6 +954,12 @@
     });
   }
 
+  function wireRoutePhotoFallbacks(container) {
+    container.querySelectorAll(".route-card-media img").forEach(function (img) {
+      img.onerror = function () { img.parentElement.remove(); };
+    });
+  }
+
   /* ---------------- HOSPITAL DETAIL ---------------- */
   function renderHospitalDetail(id, query) {
     var h = hospitalById(id);
@@ -1240,12 +1326,16 @@
     }
 
     var routesToShow = area ? D.routes.filter(function (r) { return r.area === area; }) : D.routes;
-    html += '<h2 style="margin-top:30px;">' + esc(t("trip.recommendedRoutes")) + (area ? "" : " — " + esc(t("trip.anyRegion"))) + "</h2>";
+    html += '<h2 id="recommendedRoutesHeading" style="margin-top:30px;">' + esc(t("trip.recommendedRoutes")) + (area ? "" : " — " + esc(t("trip.anyRegion"))) + "</h2>";
     html += '<div class="card-grid">';
     routesToShow.forEach(function (r) {
       var active = selectedRouteIds.indexOf(r.id) !== -1;
       var toggledIds = active ? selectedRouteIds.filter(function (id) { return id !== r.id; }) : selectedRouteIds.concat([r.id]);
+      var media = r.photo
+        ? '<div class="route-card-media"><img class="route-card-photo" src="' + esc(r.photo) + '" alt="" loading="lazy"></div>'
+        : "";
       html += '<div class="card route-card' + (active ? " active" : "") + '">' +
+        media +
         "<h3>" + esc(D.text(r.name, state.lang)) + "</h3>" +
         '<div class="route-days">' + esc(t("trip.days", { n: r.days })) + "</div>" +
         '<strong style="font-size:0.85em;">' + esc(t("trip.highlights")) + ":</strong>" +
@@ -1271,10 +1361,11 @@
     html += "</div>"; // #tripResults
     html += "</section>";
     mainEl.innerHTML = html;
+    wireRoutePhotoFallbacks(mainEl);
 
     if (area) {
-      var resultsSection = document.getElementById("tripResults");
-      if (resultsSection) resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      var routesHeading = document.getElementById("recommendedRoutesHeading");
+      if (routesHeading) routesHeading.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
     if (!area) {

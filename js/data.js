@@ -374,6 +374,126 @@
     };
   });
 
+  // Recommended sightseeing routes, one per city plus a handful of extra
+  // themed alternatives for the most touristically significant cities, so
+  // riders picking a region get real choice rather than a single option.
+  var RAW_ROUTES = [
+    { id: "r-beijing", area: "beijing", days: 3, name: { en: "Imperial Beijing", "zh-CN": "北京皇城之旅", "zh-TW": "北京皇城之旅" },
+      highlights: { en: ["Great Wall (Mutianyu or Badaling)", "Forbidden City", "Temple of Heaven", "Summer Palace"], "zh-CN": ["长城（慕田峪或八达岭）", "故宫", "天坛", "颐和园"], "zh-TW": ["長城（慕田峪或八達嶺）", "故宮", "天壇", "頤和園"] } },
+    { id: "r-beijing-hutong", area: "beijing", days: 2, name: { en: "Beijing Hutongs & Modern Art", "zh-CN": "北京胡同与当代艺术之旅", "zh-TW": "北京胡同與當代藝術之旅" },
+      highlights: { en: ["Nanluoguxiang Hutong", "Houhai Lake", "Drum and Bell Towers", "798 Art District"], "zh-CN": ["南锣鼓巷", "后海", "钟鼓楼", "798艺术区"], "zh-TW": ["南鑼鼓巷", "後海", "鐘鼓樓", "798藝術區"] } },
+    { id: "r-shanghai", area: "shanghai", days: 2, name: { en: "Shanghai City & Water Towns", "zh-CN": "上海都市与水乡之旅", "zh-TW": "上海都市與水鄉之旅" },
+      highlights: { en: ["The Bund", "Yu Garden", "Zhujiajiao Water Town", "Shanghai Museum"], "zh-CN": ["外滩", "豫园", "朱家角古镇", "上海博物馆"], "zh-TW": ["外灘", "豫園", "朱家角古鎮", "上海博物館"] } },
+    { id: "r-shanghai-concession", area: "shanghai", days: 2, name: { en: "Shanghai French Concession & Art Deco", "zh-CN": "上海法租界与摩登建筑之旅", "zh-TW": "上海法租界與摩登建築之旅" },
+      highlights: { en: ["Wukang Road (Former French Concession)", "Tianzifang", "Xintiandi", "M50 Creative Park"], "zh-CN": ["武康路（原法租界）", "田子坊", "新天地", "M50创意园"], "zh-TW": ["武康路（原法租界）", "田子坊", "新天地", "M50創意園"] } },
+    { id: "r-tianjin", area: "tianjin", days: 1, name: { en: "Tianjin Heritage Walk", "zh-CN": "天津历史文化漫步", "zh-TW": "天津歷史文化漫步" },
+      highlights: { en: ["Five Great Avenues", "Ancient Culture Street", "Tianjin Eye Ferris Wheel"], "zh-CN": ["五大道", "古文化街", "天津之眼摩天轮"], "zh-TW": ["五大道", "古文化街", "天津之眼摩天輪"] } },
+    { id: "r-chongqing", area: "chongqing", days: 2, name: { en: "Chongqing Mountain City", "zh-CN": "重庆山城之旅", "zh-TW": "重慶山城之旅" },
+      highlights: { en: ["Hongyadong", "Ciqikou Ancient Town", "Yangtze River night cruise"], "zh-CN": ["洪崖洞", "磁器口古镇", "长江夜游"], "zh-TW": ["洪崖洞", "磁器口古鎮", "長江夜遊"] } },
+    { id: "r-chongqing-skyline", area: "chongqing", days: 1, name: { en: "Chongqing Cable Cars & Night Skyline", "zh-CN": "重庆缆车与夜景之旅", "zh-TW": "重慶纜車與夜景之旅" },
+      highlights: { en: ["Eling Park Viewpoint", "Liziba Light Rail (train through the building)", "Chaotianmen Square", "Yangtze River Cableway"], "zh-CN": ["鹅岭公园观景台", "李子坝轻轨穿楼", "朝天门广场", "长江索道"], "zh-TW": ["鵝嶺公園觀景台", "李子壩輕軌穿樓", "朝天門廣場", "長江索道"] } },
+    { id: "r-guangzhou", area: "guangzhou", days: 2, name: { en: "Guangzhou & the Pearl River", "zh-CN": "广州珠江之旅", "zh-TW": "廣州珠江之旅" },
+      highlights: { en: ["Canton Tower", "Shamian Island", "Chen Clan Academy"], "zh-CN": ["广州塔", "沙面岛", "陈家祠"], "zh-TW": ["廣州塔", "沙面島", "陳家祠"] } },
+    { id: "r-guangzhou-lingnan", area: "guangzhou", days: 1, name: { en: "Baiyun Mountain & Lingnan Heritage", "zh-CN": "白云山与岭南文化之旅", "zh-TW": "白雲山與嶺南文化之旅" },
+      highlights: { en: ["Baiyun Mountain", "Yuexiu Park & Five Rams Statue", "Guangxiao Temple", "Guangzhou Museum (Zhenhai Tower)"], "zh-CN": ["白云山", "越秀公园与五羊石像", "光孝寺", "广州博物馆（镇海楼）"], "zh-TW": ["白雲山", "越秀公園與五羊石像", "光孝寺", "廣州博物館（鎮海樓）"] } },
+    { id: "r-shenzhen", area: "shenzhen", days: 2, name: { en: "Shenzhen Modern China", "zh-CN": "深圳现代之旅", "zh-TW": "深圳現代之旅" },
+      highlights: { en: ["Window of the World", "Shenzhen Bay Park", "Dafen Art Village"], "zh-CN": ["世界之窗", "深圳湾公园", "大芬油画村"], "zh-TW": ["世界之窗", "深圳灣公園", "大芬油畫村"] } },
+    { id: "r-hangzhou", area: "hangzhou", days: 2, name: { en: "West Lake Scenery", "zh-CN": "西湖风光之旅", "zh-TW": "西湖風光之旅" },
+      highlights: { en: ["West Lake", "Lingyin Temple", "Xixi Wetland"], "zh-CN": ["西湖", "灵隐寺", "西溪湿地"], "zh-TW": ["西湖", "靈隱寺", "西溪濕地"] } },
+    { id: "r-hangzhou-tea", area: "hangzhou", days: 1, name: { en: "Grand Canal & Tea Culture", "zh-CN": "京杭大运河与茶文化之旅", "zh-TW": "京杭大運河與茶文化之旅" },
+      highlights: { en: ["Beijing-Hangzhou Grand Canal", "China National Tea Museum", "Longjing Tea Plantations", "Meijiawu Tea Village"], "zh-CN": ["京杭大运河", "中国茶叶博物馆", "龙井茶园", "梅家坞茶村"], "zh-TW": ["京杭大運河", "中國茶葉博物館", "龍井茶園", "梅家塢茶村"] } },
+    { id: "r-wenzhou", area: "wenzhou", days: 2, name: { en: "Wenzhou Coast & Mountains", "zh-CN": "温州山海之旅", "zh-TW": "溫州山海之旅" },
+      highlights: { en: ["Yandang Mountain", "Jiangxin Island"], "zh-CN": ["雁荡山", "江心屿"], "zh-TW": ["雁蕩山", "江心嶼"] } },
+    { id: "r-nanjing", area: "nanjing", days: 2, name: { en: "Nanjing Historic Capital", "zh-CN": "南京古都之旅", "zh-TW": "南京古都之旅" },
+      highlights: { en: ["Sun Yat-sen Mausoleum", "Confucius Temple", "Ming City Wall"], "zh-CN": ["中山陵", "夫子庙", "明城墙"], "zh-TW": ["中山陵", "夫子廟", "明城牆"] } },
+    { id: "r-nanjing-republican", area: "nanjing", days: 1, name: { en: "Republican-Era Nanjing", "zh-CN": "南京民国印记之旅", "zh-TW": "南京民國印記之旅" },
+      highlights: { en: ["Presidential Palace of the Republic of China", "1912 Bar Street", "Nanjing Yangtze River Bridge", "Xuanwu Lake"], "zh-CN": ["总统府", "1912街区", "南京长江大桥", "玄武湖"], "zh-TW": ["總統府", "1912街區", "南京長江大橋", "玄武湖"] } },
+    { id: "r-suzhou", area: "suzhou", days: 2, name: { en: "Suzhou Classical Gardens", "zh-CN": "苏州园林之旅", "zh-TW": "蘇州園林之旅" },
+      highlights: { en: ["Humble Administrator's Garden", "Tiger Hill", "Pingjiang Road"], "zh-CN": ["拙政园", "虎丘", "平江路"], "zh-TW": ["拙政園", "虎丘", "平江路"] } },
+    { id: "r-suzhou-water", area: "suzhou", days: 1, name: { en: "Zhouzhuang Water Town & Silk", "zh-CN": "周庄水乡与丝绸之旅", "zh-TW": "周莊水鄉與絲綢之旅" },
+      highlights: { en: ["Zhouzhuang Water Town", "Suzhou Silk Museum", "Shantang Street", "Precious Belt Bridge"], "zh-CN": ["周庄古镇", "苏州丝绸博物馆", "山塘街", "宝带桥"], "zh-TW": ["周莊古鎮", "蘇州絲綢博物館", "山塘街", "寶帶橋"] } },
+    { id: "r-chengdu", area: "chengdu", days: 2, name: { en: "Chengdu Pandas & Culture", "zh-CN": "成都熊猫文化之旅", "zh-TW": "成都熊貓文化之旅" },
+      highlights: { en: ["Chengdu Panda Base", "Kuanzhai Alley", "Jinli Ancient Street"], "zh-CN": ["成都大熊猫基地", "宽窄巷子", "锦里古街"], "zh-TW": ["成都大熊貓基地", "寬窄巷子", "錦里古街"] } },
+    { id: "r-chengdu-leshan", area: "chengdu", days: 2, name: { en: "Leshan Giant Buddha & Mount Emei", "zh-CN": "乐山大佛与峨眉山之旅", "zh-TW": "樂山大佛與峨眉山之旅" },
+      highlights: { en: ["Leshan Giant Buddha", "Mount Emei Golden Summit", "Baoguo Temple", "Wuyou Temple"], "zh-CN": ["乐山大佛", "峨眉山金顶", "报国寺", "乌尤寺"], "zh-TW": ["樂山大佛", "峨眉山金頂", "報國寺", "烏尤寺"] } },
+    { id: "r-xian", area: "xian", days: 3, name: { en: "Xi'an Ancient Capital", "zh-CN": "西安古都之旅", "zh-TW": "西安古都之旅" },
+      highlights: { en: ["Terracotta Army", "Xi'an City Wall", "Muslim Quarter"], "zh-CN": ["兵马俑", "西安城墙", "回民街"], "zh-TW": ["兵馬俑", "西安城牆", "回民街"] } },
+    { id: "r-xian-food", area: "xian", days: 1, name: { en: "Xi'an Street Food & Tang Nights", "zh-CN": "西安美食与大唐夜色之旅", "zh-TW": "西安美食與大唐夜色之旅" },
+      highlights: { en: ["Muslim Quarter Food Street", "Yongxingfang", "Big Wild Goose Pagoda & Tang Paradise Night Show", "Great Mosque of Xi'an"], "zh-CN": ["回民街美食街", "永兴坊", "大雁塔与大唐芙蓉园夜景", "西安大清真寺"], "zh-TW": ["回民街美食街", "永興坊", "大雁塔與大唐芙蓉園夜景", "西安大清真寺"] } },
+    { id: "r-wuhan", area: "wuhan", days: 2, name: { en: "Wuhan Yangtze Crossroads", "zh-CN": "武汉江城之旅", "zh-TW": "武漢江城之旅" },
+      highlights: { en: ["Yellow Crane Tower", "East Lake", "Hubu Alley"], "zh-CN": ["黄鹤楼", "东湖", "户部巷"], "zh-TW": ["黃鶴樓", "東湖", "戶部巷"] } },
+    { id: "r-wuhan-museum", area: "wuhan", days: 1, name: { en: "Wuhan Museums & Guiyuan Temple", "zh-CN": "武汉博物馆与归元禅寺之旅", "zh-TW": "武漢博物館與歸元禪寺之旅" },
+      highlights: { en: ["Hubei Provincial Museum", "Guiyuan Temple", "Jianghan Road Pedestrian Street", "Wuchang Uprising Memorial (Red Building)"], "zh-CN": ["湖北省博物馆", "归元禅寺", "江汉路步行街", "武昌起义纪念馆（红楼）"], "zh-TW": ["湖北省博物館", "歸元禪寺", "江漢路步行街", "武昌起義紀念館（紅樓）"] } },
+    { id: "r-changsha", area: "changsha", days: 2, name: { en: "Changsha & Hunan Culture", "zh-CN": "长沙湖湘文化之旅", "zh-TW": "長沙湖湘文化之旅" },
+      highlights: { en: ["Orange Isle", "Yuelu Academy", "Hunan Museum"], "zh-CN": ["橘子洲", "岳麓书院", "湖南省博物馆"], "zh-TW": ["橘子洲", "嶽麓書院", "湖南省博物館"] } },
+    { id: "r-zhengzhou", area: "zhengzhou", days: 2, name: { en: "Zhengzhou & Shaolin", "zh-CN": "郑州少林之旅", "zh-TW": "鄭州少林之旅" },
+      highlights: { en: ["Shaolin Temple (Dengfeng)", "Henan Museum"], "zh-CN": ["少林寺（登封）", "河南博物院"], "zh-TW": ["少林寺（登封）", "河南博物院"] } },
+    { id: "r-jinan", area: "jinan", days: 1, name: { en: "Jinan Spring City", "zh-CN": "济南泉城之旅", "zh-TW": "濟南泉城之旅" },
+      highlights: { en: ["Baotu Spring", "Daming Lake", "Thousand Buddha Mountain"], "zh-CN": ["趵突泉", "大明湖", "千佛山"], "zh-TW": ["趵突泉", "大明湖", "千佛山"] } },
+    { id: "r-qingdao", area: "qingdao", days: 2, name: { en: "Qingdao Coastal Breeze", "zh-CN": "青岛海滨之旅", "zh-TW": "青島海濱之旅" },
+      highlights: { en: ["Badaguan", "Zhanqiao Pier", "Qingdao Old Town"], "zh-CN": ["八大关", "栈桥", "青岛老城区"], "zh-TW": ["八大關", "棧橋", "青島老城區"] } },
+    { id: "r-shenyang", area: "shenyang", days: 2, name: { en: "Shenyang Imperial Heritage", "zh-CN": "沈阳清代皇家之旅", "zh-TW": "瀋陽清代皇家之旅" },
+      highlights: { en: ["Shenyang Imperial Palace", "Zhaoling Tomb"], "zh-CN": ["沈阳故宫", "昭陵"], "zh-TW": ["瀋陽故宮", "昭陵"] } },
+    { id: "r-changchun", area: "changchun", days: 1, name: { en: "Changchun Green City", "zh-CN": "长春绿城之旅", "zh-TW": "長春綠城之旅" },
+      highlights: { en: ["Puppet Emperor's Palace", "Nanhu Park"], "zh-CN": ["伪满皇宫", "南湖公园"], "zh-TW": ["偽滿皇宮", "南湖公園"] } },
+    { id: "r-harbin", area: "harbin", days: 2, name: { en: "Harbin Ice & Russian Heritage", "zh-CN": "哈尔滨冰城与欧陆风情之旅", "zh-TW": "哈爾濱冰城與歐陸風情之旅" },
+      highlights: { en: ["Saint Sophia Cathedral", "Central Street", "Ice-Snow World (winter)"], "zh-CN": ["圣索菲亚教堂", "中央大街", "冰雪大世界（冬季）"], "zh-TW": ["聖索菲亞教堂", "中央大街", "冰雪大世界（冬季）"] } },
+    { id: "r-hefei", area: "hefei", days: 2, name: { en: "Hefei & Huangshan Gateway", "zh-CN": "合肥及黄山门户之旅", "zh-TW": "合肥及黃山門戶之旅" },
+      highlights: { en: ["Baohe Park", "Sanhe Ancient Town", "Gateway to Huangshan"], "zh-CN": ["包河公园", "三河古镇", "黄山门户"], "zh-TW": ["包河公園", "三河古鎮", "黃山門戶"] } },
+    { id: "r-fuzhou", area: "fuzhou", days: 2, name: { en: "Fuzhou Old Town", "zh-CN": "福州古城之旅", "zh-TW": "福州古城之旅" },
+      highlights: { en: ["Sanfang Qixiang", "West Lake Park", "Gushan Mountain"], "zh-CN": ["三坊七巷", "西湖公园", "鼓山"], "zh-TW": ["三坊七巷", "西湖公園", "鼓山"] } },
+    { id: "r-nanchang", area: "nanchang", days: 2, name: { en: "Nanchang Riverside & Revolutionary Sites", "zh-CN": "南昌滨江与红色文化之旅", "zh-TW": "南昌濱江與紅色文化之旅" },
+      highlights: { en: ["Tengwang Pavilion", "August 1st Uprising Memorial"], "zh-CN": ["滕王阁", "八一起义纪念馆"], "zh-TW": ["滕王閣", "八一起義紀念館"] } }
+  ];
+
+  // Real photos of a famous landmark from each route, sourced from
+  // Wikimedia Commons via the same stable Special:FilePath hotlink pattern
+  // used for hospitals above. Routes without a confidently-verified photo
+  // are simply left out of this map; app.js falls back to an icon badge.
+  var ROUTE_PHOTOS = {
+    "r-beijing": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Great_Wall_of_China_at_Mutianyu.JPG", source: "Wikimedia Commons" },
+    "r-shanghai": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/The_Bund_of_Shanghai.jpg", source: "Wikimedia Commons" },
+    "r-tianjin": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Tianjin_Eye.jpg", source: "Wikimedia Commons" },
+    "r-chongqing": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/202308_Hongya_Cave_at_night_from_Qiansimen_Bridge.jpg", source: "Wikimedia Commons" },
+    "r-guangzhou": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Canton_Tower.jpg", source: "Wikimedia Commons" },
+    "r-shenzhen": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Window_of_the_World_SZ.JPG", source: "Wikimedia Commons" },
+    "r-hangzhou": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/West_Lake,_Hangzhou.jpg", source: "Wikimedia Commons" },
+    "r-wenzhou": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/China2011_Zhejiang_YandangShan.jpg", source: "Wikimedia Commons" },
+    "r-nanjing": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Sun_yatse_mausoleum.jpg", source: "Wikimedia Commons" },
+    "r-suzhou": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Suzhou_-_humble_administrators_garden_-_overcast.jpg", source: "Wikimedia Commons" },
+    "r-chengdu": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Chengdu_Panda_base.jpg", source: "Wikimedia Commons" },
+    "r-xian": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/The_Terracotta_Warriors.JPG", source: "Wikimedia Commons" },
+    "r-wuhan": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Yellow_Crane_Tower_in_20060430.jpg", source: "Wikimedia Commons" },
+    "r-changsha": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Orange_Isle,_Changsha_3.jpg", source: "Wikimedia Commons" },
+    "r-zhengzhou": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Shaolin_Temple_15375-Dengfeng_(48757383478).jpg", source: "Wikimedia Commons" },
+    "r-jinan": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Baotuquan,_Jinan_banner.jpg", source: "Wikimedia Commons" },
+    "r-qingdao": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Zhanqiao_pier_with_Little_Qingdao_Isle.jpg", source: "Wikimedia Commons" },
+    "r-shenyang": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Mukden_Palace_in_Shenyang.jpg", source: "Wikimedia Commons" },
+    "r-changchun": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/25238-Changchun,_Museum_of_the_Imperial_Palace_of_Manchukuo.jpg", source: "Wikimedia Commons" },
+    "r-harbin": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Saint_Sophia_Cathedral_Harbin.JPG", source: "Wikimedia Commons" },
+    "r-hefei": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Bao_He_Park_59609-Hefei_(49222528247).jpg", source: "Wikimedia Commons" },
+    "r-fuzhou": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Fuzhou_Three_Lanes_and_Seven_Alleys_Nightview.jpg", source: "Wikimedia Commons" },
+    "r-nanchang": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Pavilion_of_Prince_Teng,_Nanchang,_China1.jpg", source: "Wikimedia Commons" },
+    "r-beijing-hutong": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Beijing_798_Art_District.jpg", source: "Wikimedia Commons" },
+    "r-shanghai-concession": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Wukang_Road,_Shanghai,_May_2016.JPG", source: "Wikimedia Commons" },
+    "r-xian-food": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Great_wild_goose_pagoda_by_night.JPG", source: "Wikimedia Commons" },
+    "r-chengdu-leshan": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Leshan_Giant_Buddha_1.jpg", source: "Wikimedia Commons" },
+    "r-hangzhou-tea": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Tea_plantation_in_hangzhou.JPG", source: "Wikimedia Commons" },
+    "r-suzhou-water": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Zhouzhuang_2.jpg", source: "Wikimedia Commons" },
+    "r-nanjing-republican": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Main_gate_of_the_Presidential_Palace,_Nanjing_1.jpg", source: "Wikimedia Commons" },
+    "r-chongqing-skyline": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Liziba_Station.jpg", source: "Wikimedia Commons" },
+    "r-wuhan-museum": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Hubei_Provincial_Museum.JPG", source: "Wikimedia Commons" }
+  };
+
+  var routes = RAW_ROUTES.map(function (r) {
+    var photo = Object.prototype.hasOwnProperty.call(ROUTE_PHOTOS, r.id) ? ROUTE_PHOTOS[r.id] : null;
+    return {
+      id: r.id, area: r.area, days: r.days, name: r.name, highlights: r.highlights,
+      photo: photo ? photo.url : null,
+      photoSource: photo ? photo.source : null
+    };
+  });
+
   var TIER_ORDER = ["A++++", "A+++", "A++", "A+", "A"];
 
   window.DATA = {
@@ -432,54 +552,7 @@
 
     // Recommended sightseeing routes per region, for the trip planner.
     // General, well-known tourism highlights — not bookings.
-    routes: [
-      { id: "r-beijing", area: "beijing", days: 3, name: { en: "Imperial Beijing", "zh-CN": "北京皇城之旅", "zh-TW": "北京皇城之旅" },
-        highlights: { en: ["Great Wall (Mutianyu or Badaling)", "Forbidden City", "Temple of Heaven", "Summer Palace"], "zh-CN": ["长城（慕田峪或八达岭）", "故宫", "天坛", "颐和园"], "zh-TW": ["長城（慕田峪或八達嶺）", "故宮", "天壇", "頤和園"] } },
-      { id: "r-shanghai", area: "shanghai", days: 2, name: { en: "Shanghai City & Water Towns", "zh-CN": "上海都市与水乡之旅", "zh-TW": "上海都市與水鄉之旅" },
-        highlights: { en: ["The Bund", "Yu Garden", "Zhujiajiao Water Town", "Shanghai Museum"], "zh-CN": ["外滩", "豫园", "朱家角古镇", "上海博物馆"], "zh-TW": ["外灘", "豫園", "朱家角古鎮", "上海博物館"] } },
-      { id: "r-tianjin", area: "tianjin", days: 1, name: { en: "Tianjin Heritage Walk", "zh-CN": "天津历史文化漫步", "zh-TW": "天津歷史文化漫步" },
-        highlights: { en: ["Five Great Avenues", "Ancient Culture Street", "Tianjin Eye Ferris Wheel"], "zh-CN": ["五大道", "古文化街", "天津之眼摩天轮"], "zh-TW": ["五大道", "古文化街", "天津之眼摩天輪"] } },
-      { id: "r-chongqing", area: "chongqing", days: 2, name: { en: "Chongqing Mountain City", "zh-CN": "重庆山城之旅", "zh-TW": "重慶山城之旅" },
-        highlights: { en: ["Hongyadong", "Ciqikou Ancient Town", "Yangtze River night cruise"], "zh-CN": ["洪崖洞", "磁器口古镇", "长江夜游"], "zh-TW": ["洪崖洞", "磁器口古鎮", "長江夜遊"] } },
-      { id: "r-guangzhou", area: "guangzhou", days: 2, name: { en: "Guangzhou & the Pearl River", "zh-CN": "广州珠江之旅", "zh-TW": "廣州珠江之旅" },
-        highlights: { en: ["Canton Tower", "Shamian Island", "Chen Clan Academy"], "zh-CN": ["广州塔", "沙面岛", "陈家祠"], "zh-TW": ["廣州塔", "沙面島", "陳家祠"] } },
-      { id: "r-shenzhen", area: "shenzhen", days: 2, name: { en: "Shenzhen Modern China", "zh-CN": "深圳现代之旅", "zh-TW": "深圳現代之旅" },
-        highlights: { en: ["Window of the World", "Shenzhen Bay Park", "Dafen Art Village"], "zh-CN": ["世界之窗", "深圳湾公园", "大芬油画村"], "zh-TW": ["世界之窗", "深圳灣公園", "大芬油畫村"] } },
-      { id: "r-hangzhou", area: "hangzhou", days: 2, name: { en: "West Lake Scenery", "zh-CN": "西湖风光之旅", "zh-TW": "西湖風光之旅" },
-        highlights: { en: ["West Lake", "Lingyin Temple", "Xixi Wetland"], "zh-CN": ["西湖", "灵隐寺", "西溪湿地"], "zh-TW": ["西湖", "靈隱寺", "西溪濕地"] } },
-      { id: "r-wenzhou", area: "wenzhou", days: 2, name: { en: "Wenzhou Coast & Mountains", "zh-CN": "温州山海之旅", "zh-TW": "溫州山海之旅" },
-        highlights: { en: ["Yandang Mountain", "Jiangxin Island"], "zh-CN": ["雁荡山", "江心屿"], "zh-TW": ["雁蕩山", "江心嶼"] } },
-      { id: "r-nanjing", area: "nanjing", days: 2, name: { en: "Nanjing Historic Capital", "zh-CN": "南京古都之旅", "zh-TW": "南京古都之旅" },
-        highlights: { en: ["Sun Yat-sen Mausoleum", "Confucius Temple", "Ming City Wall"], "zh-CN": ["中山陵", "夫子庙", "明城墙"], "zh-TW": ["中山陵", "夫子廟", "明城牆"] } },
-      { id: "r-suzhou", area: "suzhou", days: 2, name: { en: "Suzhou Classical Gardens", "zh-CN": "苏州园林之旅", "zh-TW": "蘇州園林之旅" },
-        highlights: { en: ["Humble Administrator's Garden", "Tiger Hill", "Pingjiang Road"], "zh-CN": ["拙政园", "虎丘", "平江路"], "zh-TW": ["拙政園", "虎丘", "平江路"] } },
-      { id: "r-chengdu", area: "chengdu", days: 2, name: { en: "Chengdu Pandas & Culture", "zh-CN": "成都熊猫文化之旅", "zh-TW": "成都熊貓文化之旅" },
-        highlights: { en: ["Chengdu Panda Base", "Kuanzhai Alley", "Jinli Ancient Street"], "zh-CN": ["成都大熊猫基地", "宽窄巷子", "锦里古街"], "zh-TW": ["成都大熊貓基地", "寬窄巷子", "錦里古街"] } },
-      { id: "r-xian", area: "xian", days: 3, name: { en: "Xi'an Ancient Capital", "zh-CN": "西安古都之旅", "zh-TW": "西安古都之旅" },
-        highlights: { en: ["Terracotta Army", "Xi'an City Wall", "Muslim Quarter"], "zh-CN": ["兵马俑", "西安城墙", "回民街"], "zh-TW": ["兵馬俑", "西安城牆", "回民街"] } },
-      { id: "r-wuhan", area: "wuhan", days: 2, name: { en: "Wuhan Yangtze Crossroads", "zh-CN": "武汉江城之旅", "zh-TW": "武漢江城之旅" },
-        highlights: { en: ["Yellow Crane Tower", "East Lake", "Hubu Alley"], "zh-CN": ["黄鹤楼", "东湖", "户部巷"], "zh-TW": ["黃鶴樓", "東湖", "戶部巷"] } },
-      { id: "r-changsha", area: "changsha", days: 2, name: { en: "Changsha & Hunan Culture", "zh-CN": "长沙湖湘文化之旅", "zh-TW": "長沙湖湘文化之旅" },
-        highlights: { en: ["Orange Isle", "Yuelu Academy", "Hunan Museum"], "zh-CN": ["橘子洲", "岳麓书院", "湖南省博物馆"], "zh-TW": ["橘子洲", "嶽麓書院", "湖南省博物館"] } },
-      { id: "r-zhengzhou", area: "zhengzhou", days: 2, name: { en: "Zhengzhou & Shaolin", "zh-CN": "郑州少林之旅", "zh-TW": "鄭州少林之旅" },
-        highlights: { en: ["Shaolin Temple (Dengfeng)", "Henan Museum"], "zh-CN": ["少林寺（登封）", "河南博物院"], "zh-TW": ["少林寺（登封）", "河南博物院"] } },
-      { id: "r-jinan", area: "jinan", days: 1, name: { en: "Jinan Spring City", "zh-CN": "济南泉城之旅", "zh-TW": "濟南泉城之旅" },
-        highlights: { en: ["Baotu Spring", "Daming Lake", "Thousand Buddha Mountain"], "zh-CN": ["趵突泉", "大明湖", "千佛山"], "zh-TW": ["趵突泉", "大明湖", "千佛山"] } },
-      { id: "r-qingdao", area: "qingdao", days: 2, name: { en: "Qingdao Coastal Breeze", "zh-CN": "青岛海滨之旅", "zh-TW": "青島海濱之旅" },
-        highlights: { en: ["Badaguan", "Zhanqiao Pier", "Qingdao Old Town"], "zh-CN": ["八大关", "栈桥", "青岛老城区"], "zh-TW": ["八大關", "棧橋", "青島老城區"] } },
-      { id: "r-shenyang", area: "shenyang", days: 2, name: { en: "Shenyang Imperial Heritage", "zh-CN": "沈阳清代皇家之旅", "zh-TW": "瀋陽清代皇家之旅" },
-        highlights: { en: ["Shenyang Imperial Palace", "Zhaoling Tomb"], "zh-CN": ["沈阳故宫", "昭陵"], "zh-TW": ["瀋陽故宮", "昭陵"] } },
-      { id: "r-changchun", area: "changchun", days: 1, name: { en: "Changchun Green City", "zh-CN": "长春绿城之旅", "zh-TW": "長春綠城之旅" },
-        highlights: { en: ["Puppet Emperor's Palace", "Nanhu Park"], "zh-CN": ["伪满皇宫", "南湖公园"], "zh-TW": ["偽滿皇宮", "南湖公園"] } },
-      { id: "r-harbin", area: "harbin", days: 2, name: { en: "Harbin Ice & Russian Heritage", "zh-CN": "哈尔滨冰城与欧陆风情之旅", "zh-TW": "哈爾濱冰城與歐陸風情之旅" },
-        highlights: { en: ["Saint Sophia Cathedral", "Central Street", "Ice-Snow World (winter)"], "zh-CN": ["圣索菲亚教堂", "中央大街", "冰雪大世界（冬季）"], "zh-TW": ["聖索菲亞教堂", "中央大街", "冰雪大世界（冬季）"] } },
-      { id: "r-hefei", area: "hefei", days: 2, name: { en: "Hefei & Huangshan Gateway", "zh-CN": "合肥及黄山门户之旅", "zh-TW": "合肥及黃山門戶之旅" },
-        highlights: { en: ["Baohe Park", "Sanhe Ancient Town", "Gateway to Huangshan"], "zh-CN": ["包河公园", "三河古镇", "黄山门户"], "zh-TW": ["包河公園", "三河古鎮", "黃山門戶"] } },
-      { id: "r-fuzhou", area: "fuzhou", days: 2, name: { en: "Fuzhou Old Town", "zh-CN": "福州古城之旅", "zh-TW": "福州古城之旅" },
-        highlights: { en: ["Sanfang Qixiang", "West Lake Park", "Gushan Mountain"], "zh-CN": ["三坊七巷", "西湖公园", "鼓山"], "zh-TW": ["三坊七巷", "西湖公園", "鼓山"] } },
-      { id: "r-nanchang", area: "nanchang", days: 2, name: { en: "Nanchang Riverside & Revolutionary Sites", "zh-CN": "南昌滨江与红色文化之旅", "zh-TW": "南昌濱江與紅色文化之旅" },
-        highlights: { en: ["Tengwang Pavilion", "August 1st Uprising Memorial"], "zh-CN": ["滕王阁", "八一起义纪念馆"], "zh-TW": ["滕王閣", "八一起義紀念館"] } }
-    ],
+    routes: routes,
 
     // Long-form content for the Food and Safety pages. Authored in
     // en / zh-CN / zh-TW; other interface languages fall back to English,
