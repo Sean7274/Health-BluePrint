@@ -276,10 +276,21 @@
     el.hidden = false;
   }
 
+  // Phone sign-in needs an SMS provider (e.g. Twilio) configured in
+  // Supabase, which costs money and hasn't been set up yet — hidden until
+  // that's ready. Flip this back on once it is; no other code changes
+  // needed, identifierToggleHtml/wireIdentifierToggle handle both cases.
+  var PHONE_AUTH_ENABLED = false;
+
   // Shared "Email / Phone" identifier toggle used on signup and login: a
   // single input that switches type/label/placeholder instead of showing
   // two separate fields, since a person only ever signs up/in with one.
   function identifierToggleHtml(prefix) {
+    if (!PHONE_AUTH_ENABLED) {
+      return '<div class="field"><label for="' + prefix + 'Identifier">' + esc(t("auth.emailLabel")) + '</label>' +
+        '<input id="' + prefix + 'Identifier" type="email" required>' +
+      "</div>";
+    }
     return '<div class="method-toggle" role="tablist">' +
       '<button type="button" class="method-btn active" id="' + prefix + 'MethodEmail">' + esc(t("auth.emailMethod")) + "</button>" +
       '<button type="button" class="method-btn" id="' + prefix + 'MethodPhone">' + esc(t("auth.phoneMethod")) + "</button>" +
@@ -290,10 +301,13 @@
     "</div>";
   }
   function wireIdentifierToggle(prefix) {
+    var input = document.getElementById(prefix + "Identifier");
+    if (!PHONE_AUTH_ENABLED) {
+      return { getMethod: function () { return "email"; }, getValue: function () { return input.value.trim(); } };
+    }
     var method = "email";
     var emailBtn = document.getElementById(prefix + "MethodEmail");
     var phoneBtn = document.getElementById(prefix + "MethodPhone");
-    var input = document.getElementById(prefix + "Identifier");
     var label = document.getElementById(prefix + "IdentifierLabel");
     var hint = document.getElementById(prefix + "IdentifierHint");
     function setMethod(m) {
