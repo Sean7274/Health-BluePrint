@@ -6,6 +6,14 @@
   <title>Health Blueprint — Find Trusted Healthcare in China</title>
   <meta name="description" content="Health Blueprint helps international patients find licensed hospitals in China, compare care programs, and connect with trusted local agents for their entire trip.">
   <link rel="icon" type="image/png" href="img/favicon.png">
+  <!-- Hospital/dish/route/city photos are hotlinked from Wikimedia; these
+       hints let the browser resolve DNS and open the connection before the
+       first image request actually fires, shaving latency off every photo
+       load on the page. -->
+  <link rel="preconnect" href="https://commons.wikimedia.org" crossorigin>
+  <link rel="dns-prefetch" href="https://commons.wikimedia.org">
+  <link rel="preconnect" href="https://upload.wikimedia.org" crossorigin>
+  <link rel="dns-prefetch" href="https://upload.wikimedia.org">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>

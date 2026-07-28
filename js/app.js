@@ -836,10 +836,65 @@
   ];
   var DISH_TAG_LABEL_KEYS = { pork: "tagPork", beef: "tagBeef", lamb: "tagLamb", poultry: "tagPoultry", seafood: "tagSeafood", alcohol: "tagAlcohol", spicy: "tagSpicy", vegOption: "tagVegOption" };
 
+  // ---- Reusable photo carousel (hospitals, dishes, routes, cities) ----
+  // Only the currently-shown photo is ever fetched: additional photos for
+  // the same subject load on demand as a visitor clicks through, so a card
+  // with 3 photos costs exactly the same as 1 on initial page load — this
+  // is deliberate, since hotlinked photos are the site's biggest load-time
+  // cost and eagerly fetching every slide of every carousel would multiply
+  // that cost by however many photos each subject has.
+  function carouselHtml(photos, wrapperClass, imgClass, altText, extraAttrs) {
+    var urls = (photos || []).map(function (p) { return p.url; });
+    if (urls.length === 0) return "";
+    var html = '<div class="' + wrapperClass + ' photo-carousel"' + (extraAttrs || "") +
+      ' data-photos=\'' + esc(JSON.stringify(urls)) + '\' data-idx="0">' +
+      '<img class="' + imgClass + '" src="' + esc(urls[0]) + '" alt="' + esc(altText || "") + '" loading="lazy">';
+    if (urls.length > 1) {
+      html += '<button type="button" class="carousel-arrow carousel-prev" aria-label="' + esc(t("common.prevPhoto")) + '">' + Icons.html("arrow-left", { size: 14 }) + "</button>" +
+        '<button type="button" class="carousel-arrow carousel-next" aria-label="' + esc(t("common.nextPhoto")) + '">' + Icons.html("arrow-right", { size: 14 }) + "</button>" +
+        '<div class="carousel-dots">' + urls.map(function (_, i) { return '<span class="carousel-dot' + (i === 0 ? " active" : "") + '"></span>'; }).join("") + "</div>";
+    }
+    return html + "</div>";
+  }
+
+  // onExhausted(el) runs once every photo for that carousel has failed to
+  // load; defaults to just removing the block. Individual failures before
+  // that just advance to the next photo automatically.
+  function wireCarousels(container, onExhausted) {
+    container.querySelectorAll(".photo-carousel").forEach(function (el) {
+      var photos;
+      try { photos = JSON.parse(el.getAttribute("data-photos")); } catch (e) { photos = []; }
+      var img = el.querySelector("img");
+
+      function finish() { if (onExhausted) onExhausted(el); else el.remove(); }
+      function show(i) {
+        if (photos.length === 0) { finish(); return; }
+        var idx = ((i % photos.length) + photos.length) % photos.length;
+        img.src = photos[idx];
+        el.setAttribute("data-idx", String(idx));
+        el.querySelectorAll(".carousel-dot").forEach(function (d, di) { d.classList.toggle("active", di === idx); });
+      }
+      img.onerror = function () {
+        var idx = parseInt(el.getAttribute("data-idx"), 10) || 0;
+        photos.splice(idx, 1);
+        if (photos.length === 0) { finish(); return; }
+        var dotsWrap = el.querySelector(".carousel-dots");
+        if (dotsWrap) dotsWrap.remove();
+        show(idx);
+      };
+      var prevBtn = el.querySelector(".carousel-prev");
+      var nextBtn = el.querySelector(".carousel-next");
+      if (prevBtn) prevBtn.onclick = function (ev) { ev.preventDefault(); ev.stopPropagation(); show(parseInt(el.getAttribute("data-idx"), 10) - 1); };
+      if (nextBtn) nextBtn.onclick = function (ev) { ev.preventDefault(); ev.stopPropagation(); show(parseInt(el.getAttribute("data-idx"), 10) + 1); };
+      el.querySelectorAll(".carousel-dot").forEach(function (dot, di) {
+        dot.onclick = function (ev) { ev.preventDefault(); ev.stopPropagation(); show(di); };
+      });
+    });
+  }
+
   function dishCardHtml(d) {
-    var media = d.photo
-      ? '<div class="dish-media" data-icon="' + esc(d.icon) + '" data-key="' + esc(d.id) + '"><img class="dish-photo" src="' + esc(d.photo) + '" alt="" loading="lazy"></div>'
-      : '<div class="dish-media">' + iconBadge(d.icon, d.id, { small: true }) + "</div>";
+    var carousel = carouselHtml(d.photos, "dish-media", "dish-photo", "", ' data-icon="' + esc(d.icon) + '" data-key="' + esc(d.id) + '"');
+    var media = carousel || ('<div class="dish-media">' + iconBadge(d.icon, d.id, { small: true }) + "</div>");
     return '<div class="card">' +
       media +
       "<h3>" + esc(D.text(d.name, state.lang)) + "</h3>" +
@@ -848,12 +903,9 @@
     "</div>";
   }
 
-  function wireDishPhotoFallbacks(container) {
-    container.querySelectorAll(".dish-media[data-icon] img").forEach(function (img) {
-      img.onerror = function () {
-        var el = img.parentElement;
-        el.outerHTML = '<div class="dish-media">' + iconBadge(el.getAttribute("data-icon"), el.getAttribute("data-key"), { small: true }) + "</div>";
-      };
+  function wireDishCarousels(container) {
+    wireCarousels(container, function (el) {
+      el.outerHTML = '<div class="dish-media">' + iconBadge(el.getAttribute("data-icon"), el.getAttribute("data-key"), { small: true }) + "</div>";
     });
   }
 
@@ -876,7 +928,7 @@
         return true;
       });
       resultsEl.innerHTML = list.length ? list.map(dishCardHtml).join("") : '<div class="empty-state">' + esc(t("food.noDishesMatch")) + "</div>";
-      wireDishPhotoFallbacks(resultsEl);
+      wireDishCarousels(resultsEl);
     }
     checks.forEach(function (c) { c.onchange = update; });
     update();
@@ -936,7 +988,7 @@
         return;
       }
       resultsEl.innerHTML = list.map(function (h) { return hospitalCardHtml(h, specSel.value); }).join("");
-      wireHospitalPhotoFallbacks(resultsEl);
+      wireCarousels(resultsEl);
     }
 
     areaSel.onchange = update;
@@ -948,9 +1000,8 @@
   // Only real photos/logos are shown here — no decorative placeholder when
   // neither is available, per product decision to avoid generic illustrations.
   function hospitalCardHtml(h, specialty) {
-    var media = h.photo
-      ? '<div class="hospital-card-media"><img class="hospital-card-photo" src="' + esc(h.photo) + '" alt="" loading="lazy"></div>'
-      : (h.logo ? '<div class="hospital-card-media"><img class="hospital-card-photo" src="' + esc(h.logo) + '" alt="" loading="lazy"></div>' : "");
+    var media = carouselHtml(h.photos, "hospital-card-media", "hospital-card-photo", "") ||
+      (h.logo ? '<div class="hospital-card-media"><img class="hospital-card-photo" src="' + esc(h.logo) + '" alt="" loading="lazy"></div>' : "");
     return '<a class="card card-clickable" href="#/hospital/' + h.id + qs({ specialty: specialty || "" }) + '">' +
       media +
       '<div class="card-tags">' + tierBadgeHtml(h.tier) + h.tags.map(function (tag) { return '<span class="tag">' + esc(specialtyLabel(tag)) + "</span>"; }).join("") + "</div>" +
@@ -960,18 +1011,6 @@
         "<span>" + Icons.html("location", { size: 14 }) + esc(areaLabel(h.area)) + "</span>" +
       "</div>" +
     "</a>";
-  }
-
-  function wireHospitalPhotoFallbacks(container) {
-    container.querySelectorAll(".hospital-card-media img").forEach(function (img) {
-      img.onerror = function () { img.parentElement.remove(); };
-    });
-  }
-
-  function wireRoutePhotoFallbacks(container) {
-    container.querySelectorAll(".route-card-media img").forEach(function (img) {
-      img.onerror = function () { img.parentElement.remove(); };
-    });
   }
 
   /* ---------------- HOSPITAL DETAIL ---------------- */
@@ -1016,29 +1055,28 @@
         '<div class="card-grid">' + orderedTags.map(function (tag) { return specialtyCardHtml(h, tag, rq, tag === wantedSpecialty); }).join("") + "</div>" +
       "</section>";
 
-    var photoBlock = mainEl.querySelector(".hospital-photo-block");
-    if (photoBlock) {
-      var photoImg = photoBlock.querySelector("img");
-      // Real photos/logos are hotlinked from external sources we can't
-      // guarantee stay up — if one fails to load, remove the block entirely
-      // rather than showing a generic placeholder illustration.
-      photoImg.onerror = function () { photoBlock.remove(); };
-    }
+    // Real photos/logos are hotlinked from external sources we can't
+    // guarantee stay up — wireCarousels tries every remaining photo before
+    // giving up; if all of them fail, remove the whole wrap (carousel +
+    // caption) rather than showing a generic placeholder illustration.
+    wireCarousels(mainEl, function (el) { el.parentElement.remove(); });
+    var logoImg = mainEl.querySelector(".hospital-photo-wrap .hospital-photo-block:not(.photo-carousel) img");
+    if (logoImg) logoImg.onerror = function () { logoImg.closest(".hospital-photo-wrap").remove(); };
   }
 
-  // Only a real photo or a real hospital logo is shown — if neither is
-  // available, nothing is rendered here (no decorative placeholder).
+  // Only a real photo (or, failing that, a real hospital logo) is shown —
+  // if neither is available, nothing is rendered here (no decorative
+  // placeholder illustration).
   function hospitalPhotoBlockHtml(h) {
-    if (h.photo) {
-      return '<div class="hospital-photo-block">' +
-        '<img class="hospital-illustration" src="' + esc(h.photo) + '" alt="' + esc(h.name) + '" loading="lazy">' +
-        '<p class="illustration-note">' + esc(t("hospital.photoNote")) + (h.photoSource ? " (" + esc(h.photoSource) + ")" : "") + "</p>" +
+    var carousel = carouselHtml(h.photos, "hospital-photo-block", "hospital-illustration", h.name);
+    if (carousel) {
+      var source = h.photos && h.photos[0] ? h.photos[0].source : "";
+      return '<div class="hospital-photo-wrap">' + carousel +
+        '<p class="illustration-note">' + esc(t("hospital.photoNote")) + (source ? " (" + esc(source) + ")" : "") + "</p>" +
       "</div>";
     }
     if (h.logo) {
-      return '<div class="hospital-photo-block">' +
-        '<img class="hospital-illustration" src="' + esc(h.logo) + '" alt="' + esc(h.name) + '" loading="lazy">' +
-      "</div>";
+      return '<div class="hospital-photo-wrap"><div class="hospital-photo-block"><img class="hospital-illustration" src="' + esc(h.logo) + '" alt="' + esc(h.name) + '" loading="lazy"></div></div>';
     }
     return "";
   }
@@ -1321,6 +1359,8 @@
     html += '<div id="tripResults">';
 
     if (area) {
+      var cityPhotos = (D.cityPhotos && D.cityPhotos[area]) || [];
+      html += carouselHtml(cityPhotos, "city-photo-block", "city-photo", areaLabel(area));
       var hospitalsInArea = hospitalsForArea(area).slice(0, 9);
       html += '<h2 style="margin-top:30px;">' + esc(t("trip.recommendedHospitals")) + " — " + esc(areaLabel(area)) + "</h2>";
       html += '<div class="card-grid">';
@@ -1345,9 +1385,7 @@
     routesToShow.forEach(function (r) {
       var active = selectedRouteIds.indexOf(r.id) !== -1;
       var toggledIds = active ? selectedRouteIds.filter(function (id) { return id !== r.id; }) : selectedRouteIds.concat([r.id]);
-      var media = r.photo
-        ? '<div class="route-card-media"><img class="route-card-photo" src="' + esc(r.photo) + '" alt="" loading="lazy"></div>'
-        : "";
+      var media = carouselHtml(r.photos, "route-card-media", "route-card-photo", "");
       html += '<div class="card route-card' + (active ? " active" : "") + '">' +
         media +
         "<h3>" + esc(D.text(r.name, state.lang)) + "</h3>" +
@@ -1375,7 +1413,7 @@
     html += "</div>"; // #tripResults
     html += "</section>";
     mainEl.innerHTML = html;
-    wireRoutePhotoFallbacks(mainEl);
+    wireCarousels(mainEl);
 
     if (area) {
       var routesHeading = document.getElementById("recommendedRoutesHeading");

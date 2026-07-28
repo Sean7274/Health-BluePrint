@@ -84,6 +84,7 @@ window.Icons = (function () {
     check: '<path d="M4.5 12.5l5 5 10-11"/>',
     close: '<path d="M5 5l14 14M19 5L5 19"/>',
     "arrow-left": '<path d="M19 12H5M11 6l-6 6 6 6"/>',
+    "arrow-right": '<path d="M5 12h14M13 6l6 6-6 6"/>',
     "arrow-up": '<path d="M12 19V5M6 11l6-6 6 6"/>',
     link: '<path d="M9.5 14.5l5-5"/><path d="M13 5.5h3a4 4 0 0 1 0 8h-2M11 18.5H8a4 4 0 0 1 0-8h2"/>',
     handshake: '<path d="M2.5 12l4-3.5 3 2 2.5-2 3 2 3-2.5 3.5 3"/><path d="M6.5 8.5l4 4.5-2 2a1.6 1.6 0 0 1-2.3 0 1.6 1.6 0 0 1 0-2.3"/><path d="M17.5 8.5l-4 4.5 2 2a1.6 1.6 0 0 0 2.3 0 1.6 1.6 0 0 0 0-2.3"/>',
