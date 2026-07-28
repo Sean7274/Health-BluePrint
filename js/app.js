@@ -120,7 +120,7 @@
     } else if (r.segments[0] === "safety") {
       renderInfoPage("safety");
     } else if (r.segments[0] === "login") {
-      renderLogin();
+      renderLogin(r.query);
     } else if (r.segments[0] === "signup") {
       renderSignup();
     } else if (r.segments[0] === "account") {
@@ -150,27 +150,32 @@
   function hospitalById(id) { return D.hospitals.filter(function (h) { return h.id === id; })[0]; }
   function agentById(id) { return D.agents.filter(function (a) { return a.id === id; })[0]; }
   function routeById(id) { return D.routes.filter(function (r) { return r.id === id; })[0]; }
-  // A "route" can be one of our curated D.routes entries, or a rider-built
-  // custom itinerary (id "custom") whose stops are carried in the
-  // "waypoints" query param, pipe-delimited. resolveRoute() normalizes both
-  // into the same shape so downstream pages don't need to know the difference.
-  function resolveRoute(routeId, waypointsRaw) {
-    if (!routeId) return null;
-    if (routeId === "custom") {
+  // Riders can select any number of curated D.routes entries at once (ids
+  // carried comma-separated in the "routes" query param), plus at most one
+  // self-built custom itinerary (its stops carried as JSON in "waypoints").
+  // resolveRoutes() normalizes all of that into a single flat list so
+  // downstream pages just deal with an array of route-like objects.
+  function resolveRoutes(routesRaw, waypointsRaw) {
+    var list = [];
+    (routesRaw || "").split(",").filter(Boolean).forEach(function (id) {
+      var r = routeById(id);
+      if (r) list.push(r);
+    });
+    if (waypointsRaw) {
       var stops = [];
-      if (waypointsRaw) {
-        try { stops = JSON.parse(waypointsRaw).filter(Boolean); } catch (e) { stops = []; }
-      }
-      if (stops.length === 0) return null;
-      return { id: "custom", custom: true, stops: stops };
+      try { stops = JSON.parse(waypointsRaw).filter(Boolean); } catch (e) { stops = []; }
+      if (stops.length) list.push({ id: "custom", custom: true, stops: stops });
     }
-    return routeById(routeId) || null;
+    return list;
   }
   function routeDisplayName(r) {
     return r.custom ? t("trip.customRouteLabel", { n: r.stops.length }) : D.text(r.name, state.lang);
   }
+  function routesDisplayNames(list) {
+    return list.map(routeDisplayName).join(", ");
+  }
   function routeQS(query) {
-    return { route: (query && query.route) || "", waypoints: (query && query.waypoints) || "" };
+    return { routes: (query && query.routes) || "", waypoints: (query && query.waypoints) || "" };
   }
   function agentsForSpecialty(cat) { return D.agents.filter(function (a) { return a.specialties.indexOf(cat) !== -1; }); }
   function hospitalsForArea(area) {
@@ -271,24 +276,55 @@
     el.hidden = false;
   }
 
-  function renderLogin() {
+  function renderLogin(query) {
+    query = query || {};
     mainEl.innerHTML =
       '<section class="section container">' +
         '<a class="btn-back" href="#/">' + Icons.html("arrow-left", { size: 18 }) + esc(t("common.back")) + "</a>" +
         '<div class="form-card" style="margin-top:14px;max-width:480px;">' +
           "<h1>" + esc(t("auth.loginTitle")) + "</h1>" +
           "<p>" + esc(t("auth.loginSubtitle")) + "</p>" +
-          '<div id="loginFormArea">' +
-          '<form id="loginForm">' +
-            '<div class="field"><label for="lEmail">' + esc(t("auth.emailLabel")) + '</label><input id="lEmail" type="email" name="email" required></div>' +
-            '<div class="field"><label for="lPassword">' + esc(t("auth.passwordLabel")) + '</label><input id="lPassword" type="password" name="password" required minlength="6"></div>' +
-            formErrorHtml() +
-            '<button type="submit" class="btn btn-primary btn-block">' + esc(t("auth.submitLogin")) + "</button>" +
-          "</form>" +
-          '<p style="margin-top:14px;">' + esc(t("auth.noAccountPrompt")) + ' <a href="#/signup">' + esc(t("auth.createOne")) + "</a></p>" +
+          (query.verified ? '<div class="success-box" style="margin-bottom:16px;">' + Icons.html("check", { size: 18 }) + esc(t("auth.verifiedBanner")) + "</div>" : "") +
+
+          '<div id="loginPasswordStep">' +
+            '<div id="loginFormArea">' +
+            '<form id="loginForm">' +
+              '<div class="field"><label for="lEmail">' + esc(t("auth.emailLabel")) + '</label><input id="lEmail" type="email" name="email" required></div>' +
+              '<div class="field"><label for="lPassword">' + esc(t("auth.passwordLabel")) + '</label><input id="lPassword" type="password" name="password" required minlength="6"></div>' +
+              formErrorHtml() +
+              '<button type="submit" class="btn btn-primary btn-block">' + esc(t("auth.submitLogin")) + "</button>" +
+            "</form>" +
+            '<p style="margin-top:14px;"><button type="button" class="link-btn" id="showCodeLoginBtn">' + esc(t("auth.loginWithCode")) + "</button></p>" +
+            '<p style="margin-top:6px;">' + esc(t("auth.noAccountPrompt")) + ' <a href="#/signup">' + esc(t("auth.createOne")) + "</a></p>" +
+            "</div>" +
+          "</div>" +
+
+          '<div id="loginCodeStep" hidden>' +
+            '<div id="loginCodeRequest">' +
+              "<p>" + esc(t("auth.loginWithCodeSubtitle")) + "</p>" +
+              '<div class="field"><label for="lcEmail">' + esc(t("auth.emailLabel")) + '</label><input id="lcEmail" type="email"></div>' +
+              '<div class="form-error" id="loginCodeError" hidden></div>' +
+              '<button type="button" class="btn btn-primary btn-block" id="sendCodeBtn">' + esc(t("auth.sendCode")) + "</button>" +
+              '<p style="margin-top:14px;"><button type="button" class="link-btn" id="backToPasswordBtn">' + esc(t("auth.backToPassword")) + "</button></p>" +
+            "</div>" +
+            '<div id="loginCodeVerify" hidden>' +
+              '<p id="loginCodeSentSubtitle"></p>' +
+              '<div class="field"><label for="lcCode">' + esc(t("auth.codeLabel")) + '</label><input id="lcCode" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code"></div>' +
+              '<div class="form-error" id="loginCodeVerifyError" hidden></div>' +
+              '<button type="button" class="btn btn-primary btn-block" id="verifyCodeBtn">' + esc(t("auth.verifyCode")) + "</button>" +
+            "</div>" +
           "</div>" +
         "</div>" +
       "</section>";
+
+    function completeLogin(session) {
+      authState.user = session.user;
+      return refreshProfile().then(function () {
+        authState.ready = true;
+        renderAuthControls();
+        location.hash = "#/account";
+      });
+    }
 
     var form = document.getElementById("loginForm");
     form.addEventListener("submit", function (ev) {
@@ -298,15 +334,47 @@
       window.sb.auth.signInWithPassword({ email: fd.get("email"), password: fd.get("password") })
         .then(function (res) {
           if (res.error || !res.data.session) { showFormError("authFormError", t("auth.loginError")); return; }
-          authState.user = res.data.session.user;
-          return refreshProfile().then(function () {
-            authState.ready = true;
-            renderAuthControls();
-            location.hash = "#/account";
-          });
+          return completeLogin(res.data.session);
         })
         .catch(function () { showFormError("authFormError", t("auth.genericError")); });
     });
+
+    document.getElementById("showCodeLoginBtn").onclick = function () {
+      document.getElementById("loginPasswordStep").hidden = true;
+      document.getElementById("loginCodeStep").hidden = false;
+    };
+    document.getElementById("backToPasswordBtn").onclick = function () {
+      document.getElementById("loginCodeStep").hidden = true;
+      document.getElementById("loginPasswordStep").hidden = false;
+    };
+
+    var codeEmail = "";
+    document.getElementById("sendCodeBtn").onclick = function () {
+      if (!window.sb) { showFormError("loginCodeError", t("auth.genericError")); return; }
+      codeEmail = document.getElementById("lcEmail").value.trim();
+      if (!codeEmail) { showFormError("loginCodeError", t("auth.genericError")); return; }
+      // shouldCreateUser:false so this "alternative sign-in" path can only
+      // be used to log in to an existing account, not silently create one.
+      window.sb.auth.signInWithOtp({ email: codeEmail, options: { shouldCreateUser: false } })
+        .then(function (res) {
+          if (res.error) { showFormError("loginCodeError", t("auth.genericError")); return; }
+          document.getElementById("loginCodeRequest").hidden = true;
+          document.getElementById("loginCodeVerify").hidden = false;
+          document.getElementById("loginCodeSentSubtitle").textContent = t("auth.codeSentSubtitle", { email: codeEmail });
+        })
+        .catch(function () { showFormError("loginCodeError", t("auth.genericError")); });
+    };
+
+    document.getElementById("verifyCodeBtn").onclick = function () {
+      var code = document.getElementById("lcCode").value.trim();
+      if (!code) { showFormError("loginCodeVerifyError", t("auth.codeRequired")); return; }
+      window.sb.auth.verifyOtp({ email: codeEmail, token: code, type: "email" })
+        .then(function (res) {
+          if (res.error || !res.data.session) { showFormError("loginCodeVerifyError", t("auth.verifyError")); return; }
+          return completeLogin(res.data.session);
+        })
+        .catch(function () { showFormError("loginCodeVerifyError", t("auth.genericError")); });
+    };
   }
 
   function renderSignup() {
@@ -314,35 +382,82 @@
       '<section class="section container">' +
         '<a class="btn-back" href="#/">' + Icons.html("arrow-left", { size: 18 }) + esc(t("common.back")) + "</a>" +
         '<div class="form-card" style="margin-top:14px;max-width:480px;">' +
-          "<h1>" + esc(t("auth.signupTitle")) + "</h1>" +
-          "<p>" + esc(t("auth.signupSubtitle")) + "</p>" +
-          '<div id="signupFormArea">' +
-          '<form id="signupForm">' +
-            '<div class="field"><label for="sName">' + esc(t("auth.nameLabel")) + '</label><input id="sName" name="name" required></div>' +
-            '<div class="field"><label for="sEmail">' + esc(t("auth.emailLabel")) + '</label><input id="sEmail" type="email" name="email" required></div>' +
-            '<div class="field"><label for="sPassword">' + esc(t("auth.passwordLabel")) + '</label><input id="sPassword" type="password" name="password" required minlength="6"></div>' +
-            formErrorHtml() +
-            '<button type="submit" class="btn btn-primary btn-block">' + esc(t("auth.submitSignup")) + "</button>" +
-          "</form>" +
-          '<p style="margin-top:14px;">' + esc(t("auth.haveAccountPrompt")) + ' <a href="#/login">' + esc(t("auth.logInInstead")) + "</a></p>" +
+
+          '<div id="signupStep1">' +
+            "<h1>" + esc(t("auth.signupTitle")) + "</h1>" +
+            "<p>" + esc(t("auth.signupSubtitle")) + "</p>" +
+            '<div id="signupFormArea">' +
+            '<form id="signupForm">' +
+              '<div class="field"><label for="sName">' + esc(t("auth.nameLabel")) + '</label><input id="sName" name="name" required></div>' +
+              '<div class="field"><label for="sEmail">' + esc(t("auth.emailLabel")) + '</label><input id="sEmail" type="email" name="email" required></div>' +
+              '<div class="field"><label for="sPassword">' + esc(t("auth.passwordLabel")) + '</label><input id="sPassword" type="password" name="password" required minlength="6"></div>' +
+              formErrorHtml() +
+              '<button type="submit" class="btn btn-primary btn-block">' + esc(t("auth.submitSignup")) + "</button>" +
+            "</form>" +
+            '<p style="margin-top:14px;">' + esc(t("auth.haveAccountPrompt")) + ' <a href="#/login">' + esc(t("auth.logInInstead")) + "</a></p>" +
+            "</div>" +
           "</div>" +
+
+          '<div id="signupStep2" hidden>' +
+            "<h1>" + esc(t("auth.verifyTitle")) + "</h1>" +
+            '<p id="signupVerifySubtitle"></p>' +
+            '<form id="signupVerifyForm">' +
+              '<div class="field"><label for="sCode">' + esc(t("auth.codeLabel")) + '</label><input id="sCode" name="code" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code"></div>' +
+              '<div class="form-error" id="signupVerifyError" hidden></div>' +
+              '<button type="submit" class="btn btn-primary btn-block">' + esc(t("auth.verifyCode")) + "</button>" +
+            "</form>" +
+            '<p style="margin-top:14px;"><button type="button" class="link-btn" id="resendCodeBtn">' + esc(t("auth.resendCode")) + "</button></p>" +
+            '<p style="margin-top:6px;">' + esc(t("auth.alreadyVerifiedPrompt")) + ' <a href="#/login">' + esc(t("auth.logInInstead")) + "</a></p>" +
+          "</div>" +
+
         "</div>" +
       "</section>";
 
+    var signedUpEmail = "";
     var form = document.getElementById("signupForm");
     form.addEventListener("submit", function (ev) {
       ev.preventDefault();
       if (!window.sb) { showFormError("authFormError", t("auth.genericError")); return; }
       var fd = new FormData(form);
+      signedUpEmail = fd.get("email");
       window.sb.auth.signUp({
-        email: fd.get("email"),
+        email: signedUpEmail,
         password: fd.get("password"),
         options: { data: { full_name: fd.get("name") } }
       }).then(function (res) {
         if (res.error) { showFormError("authFormError", t("auth.signupError")); return; }
-        document.getElementById("signupFormArea").innerHTML = '<div class="success-box">' + Icons.html("check", { size: 18 }) + esc(t("auth.signupSuccess")) + "</div>";
+        document.getElementById("signupStep1").hidden = true;
+        document.getElementById("signupStep2").hidden = false;
+        document.getElementById("signupVerifySubtitle").textContent = t("auth.verifySubtitle", { email: signedUpEmail });
       }).catch(function () { showFormError("authFormError", t("auth.genericError")); });
     });
+
+    var verifyForm = document.getElementById("signupVerifyForm");
+    verifyForm.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      if (!window.sb) { showFormError("signupVerifyError", t("auth.genericError")); return; }
+      var code = (new FormData(verifyForm)).get("code");
+      code = code ? code.trim() : "";
+      if (!code) { showFormError("signupVerifyError", t("auth.codeRequired")); return; }
+      window.sb.auth.verifyOtp({ email: signedUpEmail, token: code, type: "signup" })
+        .then(function (res) {
+          if (res.error) { showFormError("signupVerifyError", t("auth.verifyError")); return; }
+          // Verifying via code logs the user in immediately, but per the
+          // requested flow we always send people to the login page to sign
+          // in explicitly rather than silently continuing a session here.
+          return window.sb.auth.signOut().then(function () {
+            authState.user = null;
+            authState.profile = null;
+            location.hash = "#/login" + qs({ verified: "1" });
+          });
+        })
+        .catch(function () { showFormError("signupVerifyError", t("auth.genericError")); });
+    });
+
+    document.getElementById("resendCodeBtn").onclick = function () {
+      if (!signedUpEmail || !window.sb) return;
+      window.sb.auth.resend({ type: "signup", email: signedUpEmail });
+    };
   }
 
   var ACCOUNT_STATUS_KEYS = { pending: "statusPending", assigned: "statusAssigned", confirmed: "statusConfirmed", completed: "statusCompleted", cancelled: "statusCancelled" };
@@ -764,17 +879,24 @@
     var h = hospitalById(id);
     if (!h) { renderHome(); return; }
     var rq = routeQS(query);
-    var sel = resolveRoute(rq.route, rq.waypoints);
+    var sel = resolveRoutes(rq.routes, rq.waypoints);
     var wantedSpecialty = query && query.specialty;
     var orderedTags = h.tags.slice();
     if (wantedSpecialty && orderedTags.indexOf(wantedSpecialty) !== -1) {
       orderedTags = [wantedSpecialty].concat(orderedTags.filter(function (tg) { return tg !== wantedSpecialty; }));
     }
 
+    // Hospital and travel routes are independent choices that can still be
+    // combined: this link carries the hospital along to the trip planner so
+    // picking (or changing) routes never loses the hospital already chosen.
+    var routeLinkHref = tripHref(query, { hospital: h.id });
+
     mainEl.innerHTML =
       '<section class="section container">' +
         '<a class="btn-back" href="#/hospitals">' + Icons.html("arrow-left", { size: 18 }) + '' + esc(t("common.back")) + "</a>" +
-        (sel ? '<div class="plan-summary"><span><strong>' + esc(t("contact.summaryRoute")) + '</strong>' + esc(routeDisplayName(sel)) + "</span></div>" : "") +
+        '<div class="plan-summary"><span><strong>' + esc(t("contact.summaryRoute")) + "</strong>" +
+          (sel.length ? esc(routesDisplayNames(sel)) : '<span class="muted">' + esc(t("trip.noRoute")) + "</span>") +
+          '</span><a class="link-btn" href="' + routeLinkHref + '">' + esc(sel.length ? t("trip.changeRoute") : t("trip.addRoute")) + "</a></div>" +
         hospitalPhotoBlockHtml(h) +
         '<div class="detail-header">' +
           '<div class="detail-title-block">' +
@@ -888,7 +1010,7 @@
     var parsed = programId ? parseProgramId(programId) : null;
     var h = parsed ? hospitalById(parsed.hospitalId) : null;
     var rq = routeQS(query);
-    var sel = resolveRoute(rq.route, rq.waypoints);
+    var sel = resolveRoutes(rq.routes, rq.waypoints);
     var topic = query && query.topic;
 
     var langOptions = SUPPORTED_LANGS.map(function (code) {
@@ -896,7 +1018,7 @@
     }).join("");
 
     var backHref = programId ? "#/program/" + programId + qs(rq)
-      : topic === "food" ? "#/food" : topic === "safety" ? "#/safety" : (sel ? "#/trip" + qs(rq) : "#/");
+      : topic === "food" ? "#/food" : topic === "safety" ? "#/safety" : (sel.length ? "#/trip" + qs(rq) : "#/");
 
     mainEl.innerHTML =
       '<section class="section container">' +
@@ -907,12 +1029,14 @@
           '<div class="form-summary">' +
             (h ? "<span><strong>" + esc(t("contact.summaryHospital")) + "</strong>" + esc(h.name) + "</span>" : "") +
             (parsed ? "<span><strong>" + esc(t("contact.summaryProgram")) + "</strong>" + esc(specialtyLabel(parsed.tag)) + "</span>" : "") +
-            (sel ? "<span><strong>" + esc(t("contact.summaryRoute")) + "</strong>" + esc(routeDisplayName(sel)) + "</span>" : "") +
+            (sel.length ? "<span><strong>" + esc(t("contact.summaryRoute")) + "</strong>" + esc(routesDisplayNames(sel)) + "</span>" : "") +
             (topic === "food" ? "<span><strong>" + esc(t("contact.summaryProgram")) + "</strong>" + esc(t("pillars.foodTitle")) + "</span>" : "") +
             (topic === "safety" ? "<span><strong>" + esc(t("contact.summaryProgram")) + "</strong>" + esc(t("pillars.safetyTitle")) + "</span>" : "") +
             (a ? "<span><strong>" + esc(t("contact.summaryAgent")) + "</strong>" + esc(a.name) + "</span>" : "") +
           "</div>" +
-          (sel && sel.custom ? '<ul class="included-list">' + sel.stops.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ul>" : "") +
+          sel.filter(function (r) { return r.custom; }).map(function (r) {
+            return '<ul class="included-list">' + r.stops.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ul>";
+          }).join("") +
           '<div id="formArea">' +
           '<form id="inquiryForm">' +
             '<p class="required-note">' + esc(t("contact.requiredNote")) + "</p>" +
@@ -945,7 +1069,7 @@
         phone: fd.get("phone"),
         hospital_id: h ? h.id : null,
         specialty: parsed ? parsed.tag : (topic || null),
-        route_data: sel || null,
+        route_data: sel.length ? sel : null,
         message: buildBookingMessage(fd, a, sel, topic)
       };
       if (!window.sb) { showFormError("bookingFormError", t("auth.genericError")); return; }
@@ -973,7 +1097,7 @@
     var userMsg = fd.get("message");
     if (userMsg) parts.push(userMsg);
     if (a) parts.push("Requested agent: " + a.name);
-    if (sel) parts.push("Route: " + (sel.custom ? "Custom (" + sel.stops.join(", ") + ")" : D.text(sel.name, "en")));
+    if (sel.length) parts.push("Routes: " + sel.map(function (r) { return r.custom ? "Custom (" + r.stops.join(", ") + ")" : D.text(r.name, "en"); }).join(" | "));
     if (topic === "food") parts.push("Topic: Food & Dining");
     if (topic === "safety") parts.push("Topic: Safety");
     var country = fd.get("country"); if (country) parts.push("Country: " + country);
@@ -1061,11 +1185,13 @@
     var hospitalId = query.hospital || "";
     var rq = routeQS(query);
     var selHospital = hospitalId ? hospitalById(hospitalId) : null;
-    var selRoute = resolveRoute(rq.route, rq.waypoints);
+    var selRoutes = resolveRoutes(rq.routes, rq.waypoints);
+    var selectedRouteIds = (rq.routes || "").split(",").filter(Boolean);
     // In-memory draft list for the custom-route builder. Seeded from the
     // URL if a custom route is already active, so editing an existing
     // custom route (rather than starting over) works too.
-    var customStops = (selRoute && selRoute.custom) ? selRoute.stops.slice() : [];
+    var customRouteEntry = selRoutes.filter(function (r) { return r.custom; })[0];
+    var customStops = customRouteEntry ? customRouteEntry.stops.slice() : [];
 
     var html = '<section class="section container">';
     html += '<a class="btn-back" href="#/">' + Icons.html("arrow-left", { size: 18 }) + esc(t("common.back")) + "</a>";
@@ -1076,9 +1202,9 @@
       (selHospital ? esc(selHospital.name) : '<span class="muted">' + esc(t("trip.noHospital")) + "</span>") + "</span>";
     if (selHospital) html += '<a class="link-btn" href="' + tripHref(query, { hospital: null }) + '">' + Icons.html("close", { size: 14 }) + esc(t("trip.changeHospital")) + "</a>";
     html += "<span><strong>" + esc(t("contact.summaryRoute")) + "</strong>" +
-      (selRoute ? esc(routeDisplayName(selRoute)) : '<span class="muted">' + esc(t("trip.noRoute")) + "</span>") + "</span>";
-    if (selRoute) html += '<a class="link-btn" href="' + tripHref(query, { route: null, waypoints: null }) + '">' + Icons.html("close", { size: 14 }) + esc(t("trip.changeRoute")) + "</a>";
-    if (selHospital || selRoute) {
+      (selRoutes.length ? esc(routesDisplayNames(selRoutes)) : '<span class="muted">' + esc(t("trip.noRoute")) + "</span>") + "</span>";
+    if (selRoutes.length) html += '<a class="link-btn" href="' + tripHref(query, { routes: null, waypoints: null }) + '">' + Icons.html("close", { size: 14 }) + esc(t("trip.changeRoute")) + "</a>";
+    if (selHospital || selRoutes.length) {
       html += '<a class="btn btn-primary" href="' + (selHospital ? "#/hospital/" + selHospital.id + qs(rq) : "#/request" + qs(rq)) + '">' + esc(t("trip.continueToAgents")) + "</a>";
     }
     html += "</div>";
@@ -1117,15 +1243,16 @@
     html += '<h2 style="margin-top:30px;">' + esc(t("trip.recommendedRoutes")) + (area ? "" : " — " + esc(t("trip.anyRegion"))) + "</h2>";
     html += '<div class="card-grid">';
     routesToShow.forEach(function (r) {
-      var active = r.id === rq.route;
+      var active = selectedRouteIds.indexOf(r.id) !== -1;
+      var toggledIds = active ? selectedRouteIds.filter(function (id) { return id !== r.id; }) : selectedRouteIds.concat([r.id]);
       html += '<div class="card route-card' + (active ? " active" : "") + '">' +
         "<h3>" + esc(D.text(r.name, state.lang)) + "</h3>" +
         '<div class="route-days">' + esc(t("trip.days", { n: r.days })) + "</div>" +
         '<strong style="font-size:0.85em;">' + esc(t("trip.highlights")) + ":</strong>" +
         '<ul class="included-list">' + D.textList(r.highlights, state.lang).map(function (hl) { return "<li>" + esc(hl) + "</li>"; }).join("") + "</ul>" +
-        (active
-          ? '<span class="btn btn-secondary btn-block" aria-current="true">' + Icons.html("check", { size: 16 }) + esc(t("trip.selectThisRoute")) + "</span>"
-          : '<a class="btn btn-primary btn-block" href="' + tripHref(query, { route: r.id, waypoints: null }) + '">' + esc(t("trip.selectThisRoute")) + "</a>") +
+        '<a class="btn ' + (active ? "btn-secondary" : "btn-primary") + ' btn-block" href="' + tripHref(query, { routes: toggledIds.join(",") }) + '">' +
+          (active ? Icons.html("check", { size: 16 }) + esc(t("trip.removeRoute")) : esc(t("trip.selectThisRoute"))) +
+        "</a>" +
       "</div>";
     });
     html += "</div>";
@@ -1186,7 +1313,7 @@
             "</li>";
           }).join("")
         : '<li class="muted">' + esc(t("trip.noStopsYet")) + "</li>";
-      useBtn.href = customStops.length ? tripHref(query, { route: "custom", waypoints: JSON.stringify(customStops) }) : "#";
+      useBtn.href = customStops.length ? tripHref(query, { waypoints: JSON.stringify(customStops) }) : "#";
       stopsListEl.querySelectorAll("[data-remove-stop]").forEach(function (btn) {
         btn.onclick = function () {
           customStops.splice(parseInt(btn.getAttribute("data-remove-stop"), 10), 1);
