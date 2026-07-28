@@ -56,6 +56,8 @@
     document.getElementById("footerDisclaimer").textContent = t("footer.disclaimer");
     document.getElementById("footerRights").textContent = t("footer.rights");
     document.getElementById("footerYear").textContent = String(new Date().getFullYear());
+    document.getElementById("footerTermsLink").textContent = t("footer.termsLink");
+    document.getElementById("footerPrivacyLink").textContent = t("footer.privacyLink");
 
     var langSelect = document.getElementById("langSelect");
     langSelect.innerHTML = SUPPORTED_LANGS.map(function (code) {
@@ -127,6 +129,10 @@
       renderAccount();
     } else if (r.segments[0] === "admin") {
       renderAdmin();
+    } else if (r.segments[0] === "terms") {
+      renderLegalPage("terms");
+    } else if (r.segments[0] === "privacy") {
+      renderLegalPage("privacy");
     } else {
       renderHome();
     }
@@ -932,6 +938,146 @@
     }
     checks.forEach(function (c) { c.onchange = update; });
     update();
+  }
+
+  /* ---------------- LEGAL PAGES (Terms / Privacy) ---------------- */
+  // Original drafts, not copied from any other site — deliberately English
+  // only for now (translating legal text accurately needs professional
+  // review, not a template swap). Bracketed [PLACEHOLDER] text marks things
+  // only the site owner can fill in: legal entity name, governing
+  // jurisdiction, and a real contact address. This is a starting point, not
+  // a substitute for a lawyer's review before relying on it with real users.
+  var LEGAL_LAST_UPDATED = "July 28, 2026";
+  var LEGAL_CONTACT_EMAIL = "hello@healthblueprint.example";
+  var LEGAL_ENTITY = "[YOUR LEGAL ENTITY NAME]";
+
+  var LEGAL_CONTENT = {
+    terms: {
+      titleKey: "legal.termsTitle",
+      sections: [
+        { heading: "1. Agreement to Terms", body: [
+          'By creating an account, submitting a request, or otherwise using the Health Blueprint website (the "Service"), you agree to these Terms of Service. If you do not agree, please do not use the Service.'
+        ] },
+        { heading: "2. What Health Blueprint Is (and Isn't)", body: [
+          "Health Blueprint is a directory and facilitation platform. We help international patients find publicly-ranked hospitals in China, browse general information about medical specialties offered, and connect with independent local agents who can assist with logistics, translation, and travel coordination.",
+          "Health Blueprint is not a hospital, clinic, medical provider, or insurance company. We do not employ doctors, nurses, or medical staff, and we do not practice medicine. We do not provide medical advice, diagnosis, or treatment recommendations of any kind."
+        ] },
+        { heading: "3. Eligibility and Accounts", body: [
+          "You must be able to form a legally binding contract to create an account. If you are submitting a request on behalf of a family member (including a minor), you represent that you are their parent, legal guardian, or otherwise authorized to act on their behalf.",
+          "You are responsible for maintaining the confidentiality of your account credentials and for all activity under your account. Please notify us promptly if you suspect unauthorized use of your account."
+        ] },
+        { heading: "4. Independent Agents and Hospitals", body: [
+          "Agents listed on Health Blueprint are independent contractors or independent businesses, not our employees or legal agents. Hospitals listed on Health Blueprint are independent, separately-operated institutions; their inclusion in our directory (including tier rankings sourced from the publicly published 2023 China Hospital Ranking) does not constitute our endorsement, guarantee, or verification of any specific doctor, department, outcome, or service quality.",
+          "You are responsible for independently verifying the credentials, licensing, and suitability of any agent or hospital before relying on their services."
+        ] },
+        { heading: "5. No Medical Advice", body: [
+          "Nothing on this Service constitutes medical advice. Information about specialties, hospitals, and treatment categories is provided for general informational purposes only. Always consult a qualified physician regarding any medical condition, diagnosis, or treatment decision."
+        ] },
+        { heading: "6. Submitting a Request", body: [
+          "Submitting a booking request through Health Blueprint is an expression of interest, not a confirmed booking, appointment, or contract with a hospital or agent. Actual scheduling, pricing, medical evaluation, and terms of service are determined directly between you and the agent/hospital you are connected with. Health Blueprint is not a party to that arrangement."
+        ] },
+        { heading: "7. Fees", body: [
+          "Creating an account and submitting a request through Health Blueprint is currently free of charge. Any fees charged by an agent or hospital for their own services are separate from, and not controlled by, Health Blueprint, and will be disclosed to you directly by that agent or hospital. <mark>[If Health Blueprint later charges platform fees or earns referral commissions, that arrangement should be disclosed here.]</mark>"
+        ] },
+        { heading: "8. User Content and Conduct", body: [
+          "You agree to provide accurate information when creating an account, submitting a request, or applying to become an agent. You agree not to: (a) impersonate any person or entity; (b) submit false, fraudulent, or misleading information; (c) use the Service to harass, abuse, or harm any agent, hospital, or other user; (d) attempt to scrape, reverse-engineer, or interfere with the Service; or (e) use the Service for any unlawful purpose.",
+          "Any information you submit — including messages describing your medical or travel needs — may be shared with the agent or hospital relevant to your request, solely to help fulfill that request."
+        ] },
+        { heading: "9. Third-Party Services and Links", body: [
+          "The Service links to official hospital websites and relies on third-party infrastructure providers — including Supabase for account and data storage, and Netlify for hosting and form processing — to operate. We are not responsible for the content, availability, or practices of third-party websites or services."
+        ] },
+        { heading: "10. Intellectual Property", body: [
+          "The Health Blueprint name, logo, and original site content are owned by <mark>" + LEGAL_ENTITY + "</mark>. Photographs of hospitals, dishes, cities, and travel destinations are sourced from Wikimedia Commons, credited on each page, and remain the property of their original contributors under their respective licenses."
+        ] },
+        { heading: "11. Disclaimers", body: [
+          'THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE," WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED. WE DO NOT WARRANT THAT THE SERVICE WILL BE UNINTERRUPTED OR ERROR-FREE, OR THAT ANY HOSPITAL RANKING, AGENT INFORMATION, OR OTHER CONTENT ON THE SERVICE IS ACCURATE, COMPLETE, OR CURRENT.'
+        ] },
+        { heading: "12. Limitation of Liability", body: [
+          "TO THE MAXIMUM EXTENT PERMITTED BY LAW, <mark>" + LEGAL_ENTITY + "</mark> SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING FROM (A) YOUR USE OF OR INABILITY TO USE THE SERVICE; (B) ANY CONDUCT OR CONTENT OF ANY AGENT, HOSPITAL, OR THIRD PARTY, INCLUDING ANY MEDICAL OUTCOME; OR (C) UNAUTHORIZED ACCESS TO OR ALTERATION OF YOUR TRANSMISSIONS OR CONTENT."
+        ] },
+        { heading: "13. Indemnification", body: [
+          "You agree to indemnify and hold harmless <mark>" + LEGAL_ENTITY + "</mark> from any claims, damages, losses, or expenses (including reasonable legal fees) arising from your violation of these Terms or misuse of the Service."
+        ] },
+        { heading: "14. Termination", body: [
+          "We may suspend or terminate your account at any time if we believe you have violated these Terms. You may stop using the Service and request account deletion at any time by contacting us."
+        ] },
+        { heading: "15. Governing Law and Disputes", body: [
+          "<mark>[These Terms are governed by the laws of [JURISDICTION], without regard to conflict-of-law principles, and disputes will be resolved in [COURTS/ARBITRATION FORUM]. This section needs to be completed based on where your business is legally established — get a lawyer's input here.]</mark>"
+        ] },
+        { heading: "16. Changes to These Terms", body: [
+          'We may update these Terms from time to time. If we make material changes, we will update the "Last updated" date at the top of this page. Continued use of the Service after changes take effect constitutes acceptance of the revised Terms.'
+        ] },
+        { heading: "17. Contact Us", body: [
+          'Questions about these Terms? Contact us at <a href="mailto:' + LEGAL_CONTACT_EMAIL + '">' + LEGAL_CONTACT_EMAIL + "</a> <mark>[replace with your real contact email]</mark>."
+        ] }
+      ]
+    },
+    privacy: {
+      titleKey: "legal.privacyTitle",
+      sections: [
+        { heading: "1. Introduction", body: [
+          "This Privacy Policy explains what personal information Health Blueprint collects, how we use it, and the choices you have. By using the Service, you agree to the practices described here."
+        ] },
+        { heading: "2. Information We Collect", body: [
+          "<strong>Account information:</strong> when you sign up, we collect your email address (or phone number, once that sign-in option is enabled) and a password, stored securely by our authentication provider, Supabase — we never see or store your password in plain text.",
+          "<strong>Profile information:</strong> at sign-up, we ask for your gender, age, country of residence, family size, and food preference. Country of residence is required; the rest are optional.",
+          "<strong>Booking request information:</strong> when you submit a request, we collect your name, email, phone number, your preferred language, and any details you choose to share about your medical or travel needs, plus which hospital/specialty/route the request relates to.",
+          "<strong>Agent application information:</strong> if you apply to become an agent, we collect your name, birth year, phone number, optional email, and an optional resume, transmitted via our form-processing provider, Netlify.",
+          "<strong>Usage preferences:</strong> we store your selected display language and text-size preference in your browser's local storage. This stays on your device and is not sent to our servers."
+        ] },
+        { heading: "3. How We Use Your Information", body: [
+          "We use your information to create and manage your account, process and route your booking requests to the relevant agent, verify your identity when you log in, communicate with you about your requests, and improve the Service.",
+          "We do not sell your personal information."
+        ] },
+        { heading: "4. How We Share Your Information", body: [
+          "<strong>With agents and hospitals:</strong> information relevant to your request — such as your name, contact details, and any message you provide — is shared with the agent or hospital you're connecting with, solely to help fulfill your request.",
+          "<strong>With service providers:</strong> we use Supabase (database and authentication) and Netlify (hosting and form processing) to operate the Service. These providers process data on our behalf.",
+          "<strong>For legal reasons:</strong> we may disclose information if required by law, or to protect the rights, safety, or property of Health Blueprint, our users, or others."
+        ] },
+        { heading: "5. Health-Related Information You Choose to Share", body: [
+          'The free-text fields on our request form (such as "tell us about your needs") may contain health-related information you voluntarily choose to share, to help us connect you with the right hospital and agent. We only share this with the specific agent/hospital relevant to your request. Please avoid including more detail than necessary to describe your care-coordination needs.'
+        ] },
+        { heading: "6. International Data Transfers", body: [
+          "Health Blueprint connects international patients with hospitals and agents based in China. As a result, information you submit may be transferred to and processed by agents, hospitals, or service providers located in China or other countries, which may have different data protection laws than your home country. <mark>[If you operate under GDPR, China's PIPL, or similar cross-border transfer regimes, this section needs a lawyer's review to add the required safeguards.]</mark>"
+        ] },
+        { heading: "7. Data Retention", body: [
+          'We retain your account and request information for as long as your account is active, or as needed to provide the Service, comply with legal obligations, and resolve disputes. You can request deletion of your account and associated data at any time (see "Your Rights" below).'
+        ] },
+        { heading: "8. Your Rights and Choices", body: [
+          'Depending on where you live, you may have the right to access, correct, or delete your personal information, or to object to certain processing. To exercise these rights, contact us at <a href="mailto:' + LEGAL_CONTACT_EMAIL + '">' + LEGAL_CONTACT_EMAIL + '</a> <mark>[replace with your real contact email]</mark>.'
+        ] },
+        { heading: "9. Children's Privacy", body: [
+          'The Service is not directed to children, and we do not knowingly collect account information from anyone under 16. The "family size" field is meant for describing family members traveling with you, not for creating accounts on their behalf. If you believe a child has provided us with personal information, please contact us so we can remove it.'
+        ] },
+        { heading: "10. Cookies and Local Storage", body: [
+          "We use browser local storage — not third-party tracking cookies — to remember your language and text-size preferences. We do not currently use analytics or advertising trackers. <mark>[Update this section if you add analytics, e.g. Google Analytics or Plausible, in the future.]</mark>"
+        ] },
+        { heading: "11. Security", body: [
+          "We rely on Supabase's security infrastructure, including encrypted password storage and row-level access controls, to protect your data. No method of transmission or storage is 100% secure, and we cannot guarantee absolute security."
+        ] },
+        { heading: "12. Changes to This Policy", body: [
+          'We may update this Privacy Policy from time to time. If we make material changes, we will update the "Last updated" date at the top of this page.'
+        ] },
+        { heading: "13. Contact Us", body: [
+          'Questions about this Privacy Policy or your personal information? Contact us at <a href="mailto:' + LEGAL_CONTACT_EMAIL + '">' + LEGAL_CONTACT_EMAIL + '</a> <mark>[replace with your real contact email]</mark>.'
+        ] }
+      ]
+    }
+  };
+
+  function renderLegalPage(key) {
+    var content = LEGAL_CONTENT[key];
+    var html = '<section class="section container legal-page">' +
+      '<a class="btn-back" href="#/">' + Icons.html("arrow-left", { size: 18 }) + esc(t("common.back")) + "</a>" +
+      '<h1 style="margin-top:14px;">' + esc(t(content.titleKey)) + "</h1>" +
+      '<p class="legal-updated">' + esc(t("legal.lastUpdated", { date: LEGAL_LAST_UPDATED })) + "</p>" +
+      '<p class="legal-note">' + esc(t("legal.englishOnlyNote")) + "</p>";
+    content.sections.forEach(function (s) {
+      html += "<h2>" + esc(s.heading) + "</h2>";
+      s.body.forEach(function (p) { html += "<p>" + p + "</p>"; });
+    });
+    html += "</section>";
+    mainEl.innerHTML = html;
   }
 
   /* ---------------- HOSPITAL LIST ---------------- */

@@ -300,6 +300,12 @@ img { max-width: 100%; display: block; }
 .dish-photo { width: 100%; height: 150px; object-fit: cover; display: block; border-radius: var(--radius) var(--radius) 0 0; }
 .dish-media .icon-badge { margin: 20px 0 0 20px; }
 
+.legal-page { max-width: 760px; }
+.legal-page h2 { margin-top: 28px; }
+.legal-page p { line-height: 1.6; }
+.legal-updated, .legal-note { color: var(--color-text-muted); font-size: 0.9em; }
+.legal-page mark { background: #fff3cd; color: #7a5b00; padding: 0 4px; border-radius: 3px; }
+
 .hospital-card-media { margin: -20px -20px 4px; }
 .hospital-card-photo { width: 100%; height: 150px; object-fit: cover; display: block; border-radius: var(--radius) var(--radius) 0 0; }
 

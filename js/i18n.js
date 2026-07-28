@@ -100,9 +100,17 @@ window.I18N = {
         aboutText: "Health Blueprint connects international patients with licensed hospitals and trusted local agents in China, making healthcare travel simple and safe for people of all ages.",
         disclaimer: "Health Blueprint is a directory and concierge-matching service. We do not provide medical advice or perform medical procedures. Always consult a licensed physician. Hospital rankings shown are from the publicly published 2023 China Hospital Ranking; travel routes are general suggestions, not bookings.",
         contactUs: "Contact us",
-        rights: "All rights reserved."
+        rights: "All rights reserved.",
+        termsLink: "Terms of Service",
+        privacyLink: "Privacy Policy"
       },
       common: { back: "Back", learnMore: "Learn more", close: "Close", viewAll: "View all", next: "Next", optional: "optional", prevPhoto: "Previous photo", nextPhoto: "Next photo" },
+      legal: {
+        termsTitle: "Terms of Service",
+        privacyTitle: "Privacy Policy",
+        lastUpdated: "Last updated: {date}",
+        englishOnlyNote: "This document is currently provided in English only."
+      },
       specialties: {
         checkup: "Health Checkup",
         oncology: "Cancer Care",
@@ -354,9 +362,17 @@ window.I18N = {
         aboutText: "健康蓝图为国际患者连接中国的正规医院与值得信赖的本地服务人员，让各年龄段的人都能安心、便捷地赴华就医。",
         disclaimer: "健康蓝图是一个医院信息目录及服务人员匹配平台，不提供医疗建议或医疗操作，请务必咨询执业医师。医院排名信息来自公开发布的2023年度中国医院综合排行榜；旅行路线仅为一般建议，不构成预订。",
         contactUs: "联系我们",
-        rights: "版权所有。"
+        rights: "版权所有。",
+        termsLink: "服务条款",
+        privacyLink: "隐私政策"
       },
       common: { back: "返回", learnMore: "了解更多", close: "关闭", viewAll: "查看全部", next: "下一步", optional: "选填", prevPhoto: "上一张照片", nextPhoto: "下一张照片" },
+      legal: {
+        termsTitle: "服务条款",
+        privacyTitle: "隐私政策",
+        lastUpdated: "最后更新：{date}",
+        englishOnlyNote: "本文件目前仅提供英文版本。"
+      },
       specialties: {
         checkup: "健康体检",
         oncology: "肿瘤治疗",
@@ -608,9 +624,17 @@ window.I18N = {
         aboutText: "健康藍圖為國際患者連接中國的合法醫院與值得信賴的當地服務人員，讓各年齡層的人都能安心、便捷地赴中就醫。",
         disclaimer: "健康藍圖是醫院資訊目錄及服務人員媒合平台，不提供醫療建議或醫療行為，請務必諮詢執業醫師。醫院排名資訊來自公開發布的2023年度中國醫院綜合排行榜；旅行路線僅為一般建議，不構成預訂。",
         contactUs: "聯絡我們",
-        rights: "版權所有。"
+        rights: "版權所有。",
+        termsLink: "服務條款",
+        privacyLink: "隱私政策"
       },
       common: { back: "返回", learnMore: "了解更多", close: "關閉", viewAll: "查看全部", next: "下一步", optional: "選填", prevPhoto: "上一張照片", nextPhoto: "下一張照片" },
+      legal: {
+        termsTitle: "服務條款",
+        privacyTitle: "隱私政策",
+        lastUpdated: "最後更新：{date}",
+        englishOnlyNote: "本文件目前僅提供英文版本。"
+      },
       specialties: {
         checkup: "健康檢查",
         oncology: "腫瘤治療",
@@ -862,9 +886,17 @@ window.I18N = {
         aboutText: "Health Blueprint conecta a pacientes internacionales con hospitales certificados y agentes locales de confianza en China, haciendo que viajar por motivos de salud sea simple y seguro para personas de todas las edades.",
         disclaimer: "Health Blueprint es un directorio y servicio de conserjería. No brindamos asesoramiento médico ni realizamos procedimientos médicos. Consulte siempre a un médico certificado. La clasificación hospitalaria mostrada proviene del Ranking de Hospitales de China 2023, publicado públicamente; las rutas de viaje son sugerencias generales, no reservas.",
         contactUs: "Contáctenos",
-        rights: "Todos los derechos reservados."
+        rights: "Todos los derechos reservados.",
+        termsLink: "Términos de Servicio",
+        privacyLink: "Política de Privacidad"
       },
       common: { back: "Atrás", learnMore: "Saber más", close: "Cerrar", viewAll: "Ver todo", next: "Siguiente", optional: "opcional", prevPhoto: "Foto anterior", nextPhoto: "Foto siguiente" },
+      legal: {
+        termsTitle: "Términos de Servicio",
+        privacyTitle: "Política de Privacidad",
+        lastUpdated: "Última actualización: {date}",
+        englishOnlyNote: "Este documento está disponible actualmente solo en inglés."
+      },
       specialties: {
         checkup: "Chequeo médico",
         oncology: "Oncología",
@@ -1116,9 +1148,17 @@ window.I18N = {
         aboutText: "Health Blueprint met en relation les patients internationaux avec des hôpitaux agréés et des agents locaux de confiance en Chine, rendant le voyage médical simple et sûr pour les personnes de tous âges.",
         disclaimer: "Health Blueprint est un annuaire et un service de mise en relation. Nous ne fournissons pas de conseils médicaux et ne réalisons pas d'actes médicaux. Consultez toujours un médecin agréé. Le classement des hôpitaux affiché provient du classement national chinois des hôpitaux 2023, publié publiquement ; les itinéraires de voyage sont des suggestions générales, pas des réservations.",
         contactUs: "Nous contacter",
-        rights: "Tous droits réservés."
+        rights: "Tous droits réservés.",
+        termsLink: "Conditions d'utilisation",
+        privacyLink: "Politique de confidentialité"
       },
       common: { back: "Retour", learnMore: "En savoir plus", close: "Fermer", viewAll: "Voir tout", next: "Suivant", optional: "facultatif", prevPhoto: "Photo précédente", nextPhoto: "Photo suivante" },
+      legal: {
+        termsTitle: "Conditions d'utilisation",
+        privacyTitle: "Politique de confidentialité",
+        lastUpdated: "Dernière mise à jour : {date}",
+        englishOnlyNote: "Ce document est actuellement disponible uniquement en anglais."
+      },
       specialties: {
         checkup: "Bilan de santé",
         oncology: "Oncologie",
@@ -1370,9 +1410,17 @@ window.I18N = {
         aboutText: "Health Blueprint verbindet internationale Patienten mit zugelassenen Krankenhäusern und vertrauenswürdigen lokalen Betreuern in China und macht medizinische Reisen für Menschen jeden Alters einfach und sicher.",
         disclaimer: "Health Blueprint ist ein Verzeichnis- und Vermittlungsdienst. Wir bieten keine medizinische Beratung und führen keine medizinischen Eingriffe durch. Konsultieren Sie immer einen zugelassenen Arzt. Die angezeigte Krankenhausrangliste stammt aus dem öffentlich veröffentlichten chinesischen Krankenhausranking 2023; Reiserouten sind allgemeine Vorschläge, keine Buchungen.",
         contactUs: "Kontaktieren Sie uns",
-        rights: "Alle Rechte vorbehalten."
+        rights: "Alle Rechte vorbehalten.",
+        termsLink: "Nutzungsbedingungen",
+        privacyLink: "Datenschutzerklärung"
       },
       common: { back: "Zurück", learnMore: "Mehr erfahren", close: "Schließen", viewAll: "Alle anzeigen", next: "Weiter", optional: "optional", prevPhoto: "Vorheriges Foto", nextPhoto: "Nächstes Foto" },
+      legal: {
+        termsTitle: "Nutzungsbedingungen",
+        privacyTitle: "Datenschutzerklärung",
+        lastUpdated: "Zuletzt aktualisiert: {date}",
+        englishOnlyNote: "Dieses Dokument liegt derzeit nur auf Englisch vor."
+      },
       specialties: {
         checkup: "Gesundheits-Check-up",
         oncology: "Onkologie",
@@ -1624,9 +1672,17 @@ window.I18N = {
         aboutText: "A Health Blueprint conecta pacientes internacionais a hospitais licenciados e agentes locais de confiança na China, tornando as viagens de saúde simples e seguras para pessoas de todas as idades.",
         disclaimer: "A Health Blueprint é um diretório e serviço de intermediação. Não fornecemos aconselhamento médico nem realizamos procedimentos médicos. Consulte sempre um médico licenciado. O ranking hospitalar exibido vem do Ranking de Hospitais da China 2023, publicado publicamente; os roteiros de viagem são sugestões gerais, não reservas.",
         contactUs: "Fale conosco",
-        rights: "Todos os direitos reservados."
+        rights: "Todos os direitos reservados.",
+        termsLink: "Termos de Serviço",
+        privacyLink: "Política de Privacidade"
       },
       common: { back: "Voltar", learnMore: "Saiba mais", close: "Fechar", viewAll: "Ver tudo", next: "Próximo", optional: "opcional", prevPhoto: "Foto anterior", nextPhoto: "Próxima foto" },
+      legal: {
+        termsTitle: "Termos de Serviço",
+        privacyTitle: "Política de Privacidade",
+        lastUpdated: "Última atualização: {date}",
+        englishOnlyNote: "Este documento está atualmente disponível apenas em inglês."
+      },
       specialties: {
         checkup: "Check-up de saúde",
         oncology: "Oncologia",
@@ -1878,9 +1934,17 @@ window.I18N = {
         aboutText: "Health Blueprint соединяет иностранных пациентов с лицензированными больницами и надёжными местными агентами в Китае, делая медицинские поездки простыми и безопасными для людей любого возраста.",
         disclaimer: "Health Blueprint — это каталог и сервис подбора агентов. Мы не даём медицинских консультаций и не проводим медицинские процедуры. Всегда консультируйтесь с лицензированным врачом. Рейтинг больниц взят из опубликованного рейтинга больниц Китая 2023 года; маршруты поездок — это общие рекомендации, а не бронирования.",
         contactUs: "Связаться с нами",
-        rights: "Все права защищены."
+        rights: "Все права защищены.",
+        termsLink: "Условия использования",
+        privacyLink: "Политика конфиденциальности"
       },
       common: { back: "Назад", learnMore: "Узнать больше", close: "Закрыть", viewAll: "Показать все", next: "Далее", optional: "необязательно", prevPhoto: "Предыдущее фото", nextPhoto: "Следующее фото" },
+      legal: {
+        termsTitle: "Условия использования",
+        privacyTitle: "Политика конфиденциальности",
+        lastUpdated: "Последнее обновление: {date}",
+        englishOnlyNote: "В настоящее время этот документ доступен только на английском языке."
+      },
       specialties: {
         checkup: "Медицинский чек-ап",
         oncology: "Онкология",
@@ -2132,9 +2196,17 @@ window.I18N = {
         aboutText: "يربط Health Blueprint المرضى الدوليين بمستشفيات مرخصة ووكلاء محليين موثوقين في الصين، مما يجعل السفر العلاجي بسيطًا وآمنًا للأشخاص من جميع الأعمار.",
         disclaimer: "Health Blueprint هو دليل وخدمة مطابقة، ولا يقدم استشارات طبية ولا يجري إجراءات طبية. يُرجى دائمًا استشارة طبيب مرخّص. تصنيف المستشفيات المعروض مأخوذ من تصنيف المستشفيات الصينية 2023 المنشور علنًا؛ مسارات الرحلات هي اقتراحات عامة وليست حجوزات.",
         contactUs: "تواصل معنا",
-        rights: "جميع الحقوق محفوظة."
+        rights: "جميع الحقوق محفوظة.",
+        termsLink: "شروط الخدمة",
+        privacyLink: "سياسة الخصوصية"
       },
       common: { back: "رجوع", learnMore: "معرفة المزيد", close: "إغلاق", viewAll: "عرض الكل", next: "التالي", optional: "اختياري", prevPhoto: "الصورة السابقة", nextPhoto: "الصورة التالية" },
+      legal: {
+        termsTitle: "شروط الخدمة",
+        privacyTitle: "سياسة الخصوصية",
+        lastUpdated: "آخر تحديث: {date}",
+        englishOnlyNote: "هذا المستند متاح حاليًا باللغة الإنجليزية فقط."
+      },
       specialties: {
         checkup: "الفحص الصحي الشامل",
         oncology: "علاج الأورام",
@@ -2386,9 +2458,17 @@ window.I18N = {
         aboutText: "Health Blueprintは、世界中の患者様を中国の認可病院と信頼できる現地エージェントに繋ぎ、あらゆる年齢層の方が安心して医療渡航できるようサポートします。",
         disclaimer: "Health Blueprintは病院情報の紹介およびエージェントとのマッチングサービスであり、医療アドバイスや医療行為は行いません。必ず認可を受けた医師にご相談ください。掲載の病院ランキングは公開されている2023年版中国病院ランキングによるものです。旅程ルートは一般的な提案であり、予約を意味するものではありません。",
         contactUs: "お問い合わせ",
-        rights: "All rights reserved."
+        rights: "全著作権所有。",
+        termsLink: "利用規約",
+        privacyLink: "プライバシーポリシー"
       },
       common: { back: "戻る", learnMore: "詳しく見る", close: "閉じる", viewAll: "すべて見る", next: "次へ", optional: "任意", prevPhoto: "前の写真", nextPhoto: "次の写真" },
+      legal: {
+        termsTitle: "利用規約",
+        privacyTitle: "プライバシーポリシー",
+        lastUpdated: "最終更新日：{date}",
+        englishOnlyNote: "この文書は現在英語のみで提供されています。"
+      },
       specialties: {
         checkup: "健康診断",
         oncology: "がん治療",
@@ -2640,9 +2720,17 @@ window.I18N = {
         aboutText: "Health Blueprint는 해외 환자를 중국의 인증된 병원과 신뢰할 수 있는 현지 에이전트와 연결하여 모든 연령대의 사람들이 안전하고 간편하게 의료 여행을 할 수 있도록 돕습니다.",
         disclaimer: "Health Blueprint는 병원 정보 안내 및 에이전트 매칭 서비스이며, 의료 자문이나 의료 행위를 제공하지 않습니다. 항상 인증된 의사와 상담하시기 바랍니다. 표시된 병원 순위는 공개된 2023 중국 병원 순위를 기반으로 하며, 여행 경로는 예약이 아닌 일반적인 제안입니다.",
         contactUs: "문의하기",
-        rights: "All rights reserved."
+        rights: "모든 권리 보유.",
+        termsLink: "이용약관",
+        privacyLink: "개인정보처리방침"
       },
       common: { back: "뒤로", learnMore: "자세히 알아보기", close: "닫기", viewAll: "전체 보기", next: "다음", optional: "선택 사항", prevPhoto: "이전 사진", nextPhoto: "다음 사진" },
+      legal: {
+        termsTitle: "이용약관",
+        privacyTitle: "개인정보처리방침",
+        lastUpdated: "최종 업데이트: {date}",
+        englishOnlyNote: "이 문서는 현재 영어로만 제공됩니다."
+      },
       specialties: {
         checkup: "건강검진",
         oncology: "암 치료",
@@ -2894,9 +2982,17 @@ window.I18N = {
         aboutText: "Health Blueprint अंतरराष्ट्रीय मरीज़ों को चीन के लाइसेंस प्राप्त अस्पतालों और भरोसेमंद स्थानीय एजेंटों से जोड़ता है, जिससे हर उम्र के लोगों के लिए स्वास्थ्य यात्रा सरल और सुरक्षित बनती है।",
         disclaimer: "Health Blueprint एक डायरेक्टरी और मिलान सेवा है। हम चिकित्सा सलाह नहीं देते और न ही कोई चिकित्सा प्रक्रिया करते हैं। कृपया हमेशा किसी लाइसेंस प्राप्त चिकित्सक से सलाह लें। दिखाई गई अस्पताल रैंकिंग सार्वजनिक रूप से प्रकाशित 2023 चीन अस्पताल रैंकिंग से ली गई है; यात्रा मार्ग केवल सामान्य सुझाव हैं, बुकिंग नहीं।",
         contactUs: "हमसे संपर्क करें",
-        rights: "सर्वाधिकार सुरक्षित।"
+        rights: "सर्वाधिकार सुरक्षित।",
+        termsLink: "सेवा की शर्तें",
+        privacyLink: "गोपनीयता नीति"
       },
       common: { back: "वापस", learnMore: "और जानें", close: "बंद करें", viewAll: "सभी देखें", next: "अगला", optional: "वैकल्पिक", prevPhoto: "पिछली तस्वीर", nextPhoto: "अगली तस्वीर" },
+      legal: {
+        termsTitle: "सेवा की शर्तें",
+        privacyTitle: "गोपनीयता नीति",
+        lastUpdated: "अंतिम अपडेट: {date}",
+        englishOnlyNote: "यह दस्तावेज़ फ़िलहाल केवल अंग्रेज़ी में उपलब्ध है।"
+      },
       specialties: {
         checkup: "स्वास्थ्य जांच",
         oncology: "कैंसर देखभाल",
