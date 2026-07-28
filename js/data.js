@@ -347,20 +347,102 @@
   // other hospital uses the illustrated fallback; onerror in app.js swaps
   // to it automatically if one of these ever fails to load too.
   var PHOTOS = {
-    "中国人民解放军总医院": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/PLA_General_Hospital_at_dusk_(20211011175558).jpg?width=640", source: "Wikimedia Commons" },
-    "中国医学科学院北京协和医院": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Old_building_of_Peking_Union_Medical_College_Hospital_(20180821142741).jpg?width=640", source: "Wikimedia Commons" },
-    "四川大学华西医院": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/West_China_Hospital_01_2014-09.JPG?width=640", source: "Wikimedia Commons" },
-    "中国医学科学院阜外医院": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Fuwai_Hospital_(20201218164122).jpg?width=640", source: "Wikimedia Commons" },
-    "中南大学湘雅医院": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Xiangya_Hospital_of_Central_South_University_1.jpg?width=640", source: "Wikimedia Commons" },
-    "复旦大学附属中山医院": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Building_of_Shanghai_Zhongshan_Hospital.jpg?width=640", source: "Wikimedia Commons" },
-    "上海交通大学医学院附属瑞金医院": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Out-patient_Department_of_Ruijin_Hospital_shanghai,_Jun_2020.jpg?width=640", source: "Wikimedia Commons" },
-    "北京积水潭医院": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Beijing_Jishuitan_Hospital,_Xinjiekou_(20211222135230).jpg?width=640", source: "Wikimedia Commons" },
-    "首都医科大学附属北京天坛医院": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Inpatient_buildings_of_Beijing_Tiantan_Hospital_(20211210143431).jpg?width=640", source: "Wikimedia Commons" }
+    "中国人民解放军总医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/PLA_General_Hospital_at_dusk_(20211011175558).jpg?width=640", source: "Wikimedia Commons" }
+    ],
+    "中国医学科学院北京协和医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Old_building_of_Peking_Union_Medical_College_Hospital_(20180821142741).jpg?width=640", source: "Wikimedia Commons" }
+    ],
+    "四川大学华西医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/West_China_Hospital_01_2014-09.JPG?width=640", source: "Wikimedia Commons" }
+    ],
+    "中国医学科学院阜外医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Fuwai_Hospital_(20201218164122).jpg?width=640", source: "Wikimedia Commons" }
+    ],
+    "中南大学湘雅医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Xiangya_Hospital_of_Central_South_University_1.jpg?width=640", source: "Wikimedia Commons" }
+    ],
+    "复旦大学附属中山医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Building_of_Shanghai_Zhongshan_Hospital.jpg?width=640", source: "Wikimedia Commons" }
+    ],
+    "上海交通大学医学院附属瑞金医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Out-patient_Department_of_Ruijin_Hospital_shanghai,_Jun_2020.jpg?width=640", source: "Wikimedia Commons" }
+    ],
+    "北京积水潭医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Beijing_Jishuitan_Hospital,_Xinjiekou_(20211222135230).jpg?width=640", source: "Wikimedia Commons" }
+    ],
+    "首都医科大学附属北京天坛医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Inpatient_buildings_of_Beijing_Tiantan_Hospital_(20211210143431).jpg?width=640", source: "Wikimedia Commons" }
+    ],
+    "北京大学第一医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Peking_University_First_Hospital_(20220730172143).jpg?width=640", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Peking_University_First_Hospital_(20220730172251).jpg?width=640", source: "Wikimedia Commons" }
+    ],
+    "北京大学第三医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Peking_University_Third_Hospital_(20200406102006).jpg?width=640", source: "Wikimedia Commons" }
+    ],
+    "中国医科大学附属第一医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/The_First_Affiliated_Hospital_of_China_Medical_University_06_2015-09.JPG?width=640", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/The_First_Hospital_of_China_Medical_University.jpg?width=640", source: "Wikimedia Commons" }
+    ],
+    "上海交通大学医学院附属仁济医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Renji_Hospital_Shanghai.JPG?width=640", source: "Wikimedia Commons" }
+    ],
+    "复旦大学附属华山医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Huashan_Hospital_Shanghai.JPG?width=640", source: "Wikimedia Commons" }
+    ],
+    "浙江大学医学院附属第一医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/The_First_Affiliated_Hospital_of_Zhejiang_University_School_of_Medicine.JPG?width=640", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/The_First_Affiliated_Hospital_of_Zhejiang_University_School_of_Medicine_1.JPG?width=640", source: "Wikimedia Commons" }
+    ],
+    "浙江大学医学院附属第二医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/The_Second_Affiliated_Hospital_of_Zhejiang_University_School_of_Medicine_6.JPG?width=640", source: "Wikimedia Commons" }
+    ],
+    "华中科技大学同济医学院附属协和医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Renji_hospital_in_Wuhan.JPG?width=640", source: "Wikimedia Commons" }
+    ],
+    "华中科技大学同济医学院附属同济医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Wuhan_Tongji_Hospital.jpg?width=640", source: "Wikimedia Commons" }
+    ],
+    "中日友好医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/China-Japan_Friendship_Hospital_1.jpg?width=640", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/China-Japan_Friendship_Hospital_2.jpg?width=640", source: "Wikimedia Commons" }
+    ],
+    "北京大学人民医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Peking_University_People's_Hospital,_Baitasi_(20220731142220).jpg?width=640", source: "Wikimedia Commons" }
+    ],
+    "首都医科大学附属北京儿童医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Beijing_Children's_Hospital_(20211004124523).jpg?width=640", source: "Wikimedia Commons" }
+    ],
+    "首都医科大学附属北京同仁医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Beijing_Tongren_Hospital_(20201224151518).jpg?width=640", source: "Wikimedia Commons" }
+    ],
+    "海军军医大学第一附属医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Changhai_Hospital-20170326.jpg?width=640", source: "Wikimedia Commons" }
+    ],
+    "广州医科大学附属第一医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/1st_Affiliated_Hospital_of_Guangzhou_Medical_University.jpg?width=640", source: "Wikimedia Commons" }
+    ],
+    "首都医科大学宣武医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/East_gate_of_Xuanwu_Hospital_(20201125145450).jpg?width=640", source: "Wikimedia Commons" }
+    ],
+    "武汉大学中南医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Wuhan_University_Zhongnan_Hospital.jpg?width=640", source: "Wikimedia Commons" }
+    ],
+    "浙江大学医学院附属邵逸夫医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Sir_Run_Run_Shaw_Hospital.JPG?width=640", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Sir_Run_Run_Shaw_Hospital_Tower_1.jpg?width=640", source: "Wikimedia Commons" }
+    ],
+    "中国人民解放军东部战区总医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Former_Zhongyang_Hospital_in_Nanjing_2011-03.JPG?width=640", source: "Wikimedia Commons" }
+    ],
+    "首都医科大学附属北京安贞医院": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Beijing_Anzhen_Hospital,_Tongzhou_(20240313115224).jpg?width=640", source: "Wikimedia Commons" }
+    ]
   };
 
   var hospitals = RAW_HOSPITALS.map(function (row, i) {
     var tier = row[0], name = row[1], nameEn = row[2], area = row[3];
-    var photo = Object.prototype.hasOwnProperty.call(PHOTOS, name) ? PHOTOS[name] : null;
     return {
       id: slug(i),
       tier: tier,
@@ -368,8 +450,7 @@
       nameEn: nameEn,
       area: area,
       website: Object.prototype.hasOwnProperty.call(WEBSITES, name) ? WEBSITES[name] : null,
-      photo: photo ? photo.url : null,
-      photoSource: photo ? photo.source : null,
+      photos: Object.prototype.hasOwnProperty.call(PHOTOS, name) ? PHOTOS[name] : [],
       tags: inferTags(name)
     };
   });
@@ -451,54 +532,264 @@
   // used for hospitals above. Routes without a confidently-verified photo
   // are simply left out of this map; app.js falls back to an icon badge.
   var ROUTE_PHOTOS = {
-    "r-beijing": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Great_Wall_of_China_at_Mutianyu.JPG?width=640", source: "Wikimedia Commons" },
-    "r-shanghai": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/The_Bund_of_Shanghai.jpg?width=640", source: "Wikimedia Commons" },
-    "r-tianjin": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Tianjin_Eye.jpg?width=640", source: "Wikimedia Commons" },
-    "r-chongqing": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/202308_Hongya_Cave_at_night_from_Qiansimen_Bridge.jpg?width=640", source: "Wikimedia Commons" },
-    "r-guangzhou": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Canton_Tower.jpg?width=640", source: "Wikimedia Commons" },
-    "r-shenzhen": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Window_of_the_World_SZ.JPG?width=640", source: "Wikimedia Commons" },
-    "r-hangzhou": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/West_Lake,_Hangzhou.jpg?width=640", source: "Wikimedia Commons" },
-    "r-wenzhou": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/China2011_Zhejiang_YandangShan.jpg?width=640", source: "Wikimedia Commons" },
-    "r-nanjing": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Sun_yatse_mausoleum.jpg?width=640", source: "Wikimedia Commons" },
-    "r-suzhou": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Suzhou_-_humble_administrators_garden_-_overcast.jpg?width=640", source: "Wikimedia Commons" },
-    "r-chengdu": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Chengdu_Panda_base.jpg?width=640", source: "Wikimedia Commons" },
-    "r-xian": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/The_Terracotta_Warriors.JPG?width=640", source: "Wikimedia Commons" },
-    "r-wuhan": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Yellow_Crane_Tower_in_20060430.jpg?width=640", source: "Wikimedia Commons" },
-    "r-changsha": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Orange_Isle,_Changsha_3.jpg?width=640", source: "Wikimedia Commons" },
-    "r-zhengzhou": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Shaolin_Temple_15375-Dengfeng_(48757383478).jpg?width=640", source: "Wikimedia Commons" },
-    "r-jinan": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Baotuquan,_Jinan_banner.jpg?width=640", source: "Wikimedia Commons" },
-    "r-qingdao": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Zhanqiao_pier_with_Little_Qingdao_Isle.jpg?width=640", source: "Wikimedia Commons" },
-    "r-shenyang": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Mukden_Palace_in_Shenyang.jpg?width=640", source: "Wikimedia Commons" },
-    "r-changchun": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/25238-Changchun,_Museum_of_the_Imperial_Palace_of_Manchukuo.jpg?width=640", source: "Wikimedia Commons" },
-    "r-harbin": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Saint_Sophia_Cathedral_Harbin.JPG?width=640", source: "Wikimedia Commons" },
-    "r-hefei": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Bao_He_Park_59609-Hefei_(49222528247).jpg?width=640", source: "Wikimedia Commons" },
-    "r-fuzhou": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Fuzhou_Three_Lanes_and_Seven_Alleys_Nightview.jpg?width=640", source: "Wikimedia Commons" },
-    "r-nanchang": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Pavilion_of_Prince_Teng,_Nanchang,_China1.jpg?width=640", source: "Wikimedia Commons" },
-    "r-beijing-hutong": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Beijing_798_Art_District.jpg?width=640", source: "Wikimedia Commons" },
-    "r-shanghai-concession": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Wukang_Road,_Shanghai,_May_2016.JPG?width=640", source: "Wikimedia Commons" },
-    "r-xian-food": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Great_wild_goose_pagoda_by_night.JPG?width=640", source: "Wikimedia Commons" },
-    "r-chengdu-leshan": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Leshan_Giant_Buddha_1.jpg?width=640", source: "Wikimedia Commons" },
-    "r-hangzhou-tea": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Tea_plantation_in_hangzhou.JPG?width=640", source: "Wikimedia Commons" },
-    "r-suzhou-water": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Zhouzhuang_2.jpg?width=640", source: "Wikimedia Commons" },
-    "r-nanjing-republican": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Main_gate_of_the_Presidential_Palace,_Nanjing_1.jpg?width=640", source: "Wikimedia Commons" },
-    "r-chongqing-skyline": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Liziba_Station.jpg?width=640", source: "Wikimedia Commons" },
-    "r-wuhan-museum": { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Hubei_Provincial_Museum.JPG?width=640", source: "Wikimedia Commons" }
+    "r-beijing": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Great_Wall_of_China_at_Mutianyu.JPG?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/The_Meridian_Gate,_the_Forbidden_City,_Beijing_(50589333988).jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Summer_Palace,_Beijing_01.JPG?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-shanghai": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/The_Bund_of_Shanghai.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Yu_Garden_Shanghai_November_2017_010.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Zhujiajiao,_China.JPG?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-tianjin": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Tianjin_Eye.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Five_Great_Avenues_21401-Tianjin_(49063954262).jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-chongqing": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/202308_Hongya_Cave_at_night_from_Qiansimen_Bridge.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/The_night_view_of_Chaotianmen_bridge_acoross_Yangtze_river_in_Chongqing.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-guangzhou": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Canton_Tower.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/ShamianIsland.JPG?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Chen_Clan_Academy.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-guangzhou-lingnan": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Guangzhou_Baiyun_Mountain_20230515.150422.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Zhenhailou.JPG?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Five_Rams_Statue.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-shenzhen": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Window_of_the_World_SZ.JPG?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Shenzhen_Bay_Park.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Dafen_Oil_Painting_Village_(Night).JPG?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-hangzhou": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/West_Lake,_Hangzhou.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Great_statue_of_Sakyamuni_in_the_Mahavira_Hall_of_Lingyin_Temple,_Hangzhou.JPG?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Xixi_Wetland_Park-_love_the_foreground!_(35777314894).jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-wenzhou": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/China2011_Zhejiang_YandangShan.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/%E6%B1%9F%E5%BF%83%E5%85%AC%E5%9B%AD_-_Jiangxin_Island_Park_-_2016.02_-_panoramio.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-nanjing": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Sun_yatse_mausoleum.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Confucius_Sculpture,_Nanjing.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Nanjing_CBD_from_City_Wall.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-suzhou": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Suzhou_-_humble_administrators_garden_-_overcast.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/2024-Apr_Suzhou_-_Tiger_Hill_Pagoda_%E8%99%8E%E4%B8%98%E5%A1%94_(Huqiu_Ta)_-_img_05.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Riverside_of_Pingjiang_Road,_Gusu,_Suzhou,_Jiangsu,_China,_215000.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-chengdu": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Chengdu_Panda_base.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Wide_Alley_-_%E5%AE%BD%E5%B7%B7%E5%AD%90_-_January_2019,_Chengdu,_Sichuan.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Jinli_Street_-_Chengdu,_China_-_DSC05396.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-xian": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/The_Terracotta_Warriors.JPG?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Muslim_Quarter_Xi'an_China.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-wuhan": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Yellow_Crane_Tower_in_20060430.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Wuhan_-_East_Lake_-_Luoyan_Scenic_Area_-_P1530142.JPG?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Hubu_Alley,_Wuchang,_Wuhan,_Hubei,_China,_430000_-_panoramio_(62).jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-changsha": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Orange_Isle,_Changsha_3.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Yuelu-Academy-Gate.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Hunan_Provincial_Museum,_Changsha_(10112446973).jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-zhengzhou": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Shaolin_Temple_15375-Dengfeng_(48757383478).jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-jinan": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Baotuquan,_Jinan_banner.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Chaoran_Tower,_Daming_Lake,_Jinan_in_October_2019.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Jinan_Thousand_Buddha_Mountain-20150520-RM-101311.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-qingdao": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Zhanqiao_pier_with_Little_Qingdao_Isle.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Old_German_Villa_in_Qingdao.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Downtown_Qingdao,_Shandong,_China._-_panoramio.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-shenyang": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Mukden_Palace_in_Shenyang.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Zhao_Mausoleum.JPG?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-changchun": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/25238-Changchun,_Museum_of_the_Imperial_Palace_of_Manchukuo.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Nanhu-See_im_Nanhu-Park,_Changchun.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-harbin": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Saint_Sophia_Cathedral_Harbin.JPG?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Central_Street_(Zhongyang_Dajie),_Harbin_7_Modern_(Madie'er)_ice_scream.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Harbin_Ice_Festival.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-hefei": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Bao_He_Park_59609-Hefei_(49222528247).jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Huangshan,_China_(YELLOW_MOUNTAIN-LANDSCAPE)_V_(1051997868).jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-fuzhou": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Fuzhou_Three_Lanes_and_Seven_Alleys_Nightview.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Yongquan_Temple_in_Gushan_Mountain,_Fuzhou.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-nanchang": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Pavilion_of_Prince_Teng,_Nanchang,_China1.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-beijing-hutong": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Beijing_798_Art_District.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Beijing_Nanluoguxiang_%E5%8D%97%E9%94%A3%E9%BC%93%E5%B7%B7_-_panoramio.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/2014.09.04.154127_Houhai_Lake_Beijing.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-shanghai-concession": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Wukang_Road,_Shanghai,_May_2016.JPG?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Tianzifang_21669-Shanghai_(33070816285).jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Shanghai-Xintandi.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-xian-food": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Great_wild_goose_pagoda_by_night.JPG?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Xi'an_Muslim_Quarter.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Great_Mosque_of_Xi'an,_long_view.JPG?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-chengdu-leshan": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Leshan_Giant_Buddha_1.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-hangzhou-tea": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Tea_plantation_in_hangzhou.JPG?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/%E9%95%87%E6%B1%9F%E4%BA%AC%E6%9D%AD%E5%A4%A7%E8%BF%90%E6%B2%B3_-_Beijing-Hangzhou_Grand_Canal_-_2015.04_-_panoramio.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Longjing_tea_village_Hangzhou.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-suzhou-water": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Zhouzhuang_2.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-nanjing-republican": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Main_gate_of_the_Presidential_Palace,_Nanjing_1.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/First_Nanjing_Yangtze_River_Bridge.JPG?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/%E5%8D%97%E4%BA%AC%E7%AB%99%E5%8D%97%E5%B9%BF%E5%9C%BA%E7%8E%84%E6%AD%A6%E6%B9%96%E8%BE%B9%E8%A5%BF%E5%8D%97%E5%90%91%E5%A4%9C%E6%99%AF.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-chongqing-skyline": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Liziba_Station.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Chongqing_Changjiang_Cableway.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    "r-wuhan-museum": [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Hubei_Provincial_Museum.JPG?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Wuhan_Guiyuan_Temple_-_panoramio_(5).jpg?width=480", source: "Wikimedia Commons" }
+    ]
   };
 
   var routes = RAW_ROUTES.map(function (r) {
-    var photo = Object.prototype.hasOwnProperty.call(ROUTE_PHOTOS, r.id) ? ROUTE_PHOTOS[r.id] : null;
     return {
       id: r.id, area: r.area, days: r.days, name: r.name, highlights: r.highlights,
-      photo: photo ? photo.url : null,
-      photoSource: photo ? photo.source : null
+      photos: Object.prototype.hasOwnProperty.call(ROUTE_PHOTOS, r.id) ? ROUTE_PHOTOS[r.id] : []
     };
   });
 
   var TIER_ORDER = ["A++++", "A+++", "A++", "A+", "A"];
 
+  // Real photos of each city (skyline/landmark), shown as a carousel banner
+  // when a region is selected in the trip planner. Not every city has 2-3
+  // — a few only had one confidently-verified photo, which is fine.
+  var CITY_PHOTOS = {
+    beijing: [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Beijing_skyline.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Beijing_skyline_from_northeast_4th_ring_road.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    shanghai: [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Pudong_Skyline_(39771020425).jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Shanghai_skyline_waterfront_pudong_5166168_69_70.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    tianjin: [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Tianjin_Skyline_(6228618578).jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Tianjin_montage.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    chongqing: [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Chongqing_Nightscape.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/SkylineOfChongqing.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    guangzhou: [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Guangzhou_skyline.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Guangzhou_Opera_House_and_Canton_Tower.JPG?width=480", source: "Wikimedia Commons" }
+    ],
+    shenzhen: [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Shenzhen_Skyline_from_Nanshan.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Skyline_of_Shenzhen_from_Hong_Kong.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/A_spectacular_view_of_Shenzhen_Skyline.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    hangzhou: [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Hangzhou_Skyline_on_West_Lake.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/West_Lake_IMG_8755_hangzhou_panorama.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    wenzhou: [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Wenzhou_banner_skyline.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Skyline_of_Wenzhou_1.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    nanjing: [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Nanjing_Skyline.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Nanjing_Xinjiekou_Skyline.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    suzhou: [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/A_stone_arch_bridge_in_Pingjiang_Road,_Suzhou.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Riverside_of_Pingjiang_Road,_Gusu,_Suzhou,_Jiangsu,_China,_215000.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    chengdu: [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Taikoo_Li_Chengdu_skyline.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    xian: [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Xi'an_Bell_Tower_1.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Xi'an_Drum_Tower_seen_from_Bell_Tower.JPG?width=480", source: "Wikimedia Commons" }
+    ],
+    wuhan: [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Wuhan_Yangtze_River_Bridge.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Second_Wuhan_Yangtze_River_Bridge.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    changsha: [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Xiang_River_in_Changsha.JPG?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Changsha_Tower_(10114874106).jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    zhengzhou: [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Zhengzhou_CBD.JPG?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Zhengzhou_Greenland_Plaza.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    jinan: [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Jinan_Skyline_from_Spring_City_Square.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Jinan_CBD_skyline_June_2023.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    qingdao: [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Downtown_Qingdao,_Shandong,_China._-_panoramio.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/XinHaoShan_Park_of_Qingdao.JPG?width=480", source: "Wikimedia Commons" }
+    ],
+    shenyang: [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Shenyang_Skyline_-_Tiexi.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Skyline_of_Hunnan_District,_Shenyang_drone_view_1.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    changchun: [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Changchun_skyline_with_Ji_Tower_-_panoramio.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    harbin: [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Saint_Sophia_Cathedral,_Harbin_1.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Harbin_nightly_view_by_TroyParfitt.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    hefei: [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Hefeiskyline.jpg?width=480", source: "Wikimedia Commons" },
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Hefei_Banner.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    fuzhou: [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Fuzhou_skyline_2.jpg?width=480", source: "Wikimedia Commons" }
+    ],
+    nanchang: [
+      { url: "https://commons.wikimedia.org/wiki/Special:FilePath/Nanchang_Skyline.jpg?width=480", source: "Wikimedia Commons" }
+    ]
+  };
+
   window.DATA = {
 
     tierOrder: TIER_ORDER,
+
+    cityPhotos: CITY_PHOTOS,
 
     areas: [
       "beijing", "shanghai", "tianjin", "chongqing", "guangzhou", "shenzhen",
@@ -592,25 +883,25 @@
             name: { en: "White Cut Chicken", "zh-CN": "白切鸡", "zh-TW": "白切雞" },
             desc: { en: "Poached chicken served with ginger-scallion sauce — a Cantonese classic.", "zh-CN": "白切鸡配姜葱酱，粤菜经典。", "zh-TW": "白切雞配薑蔥醬，粵菜經典。" } },
           { id: "d-hargow", region: "food-dimsum", icon: "food-dimsum", tags: ["seafood"],
-            photo: "https://commons.wikimedia.org/wiki/Special:FilePath/Ha_Gow_(Cantonese_Shrimp_Dumplings).jpeg?width=640",
+            photos: [{ url: "https://commons.wikimedia.org/wiki/Special:FilePath/Ha_Gow_(Cantonese_Shrimp_Dumplings).jpeg?width=480", source: "Wikimedia Commons" }],
             name: { en: "Har Gow (Shrimp Dumplings)", "zh-CN": "虾饺", "zh-TW": "蝦餃" },
             desc: { en: "Steamed translucent dumplings filled with shrimp, a dim sum staple.", "zh-CN": "晶莹剔透的虾肉蒸饺，点心必点。", "zh-TW": "晶瑩剔透的蝦肉蒸餃，點心必點。" } },
           { id: "d-siugo", region: "food-dimsum", icon: "food-dimsum", tags: ["poultry"],
             name: { en: "Roast Goose", "zh-CN": "烧鹅", "zh-TW": "燒鵝" },
             desc: { en: "Crisp-skinned roast goose, a Guangzhou specialty.", "zh-CN": "皮脆肉嫩，广州名菜。", "zh-TW": "皮脆肉嫩，廣州名菜。" } },
           { id: "d-hotpot", region: "food-spicy", icon: "food-spicy", tags: ["beef", "spicy", "vegOption"],
-            photo: "https://commons.wikimedia.org/wiki/Special:FilePath/Chengdu_Hotpot.jpg?width=640",
+            photos: [{ url: "https://commons.wikimedia.org/wiki/Special:FilePath/Chengdu_Hotpot.jpg?width=480", source: "Wikimedia Commons" }],
             name: { en: "Sichuan Hot Pot", "zh-CN": "火锅", "zh-TW": "火鍋" },
             desc: { en: "Communal simmering pot; broth and ingredients (meat, tofu, vegetables) are fully customizable.", "zh-CN": "共享火锅，汤底与食材（肉类、豆腐、蔬菜）可自由搭配。", "zh-TW": "共享火鍋，湯底與食材（肉類、豆腐、蔬菜）可自由搭配。" } },
           { id: "d-mapotofu", region: "food-spicy", icon: "food-spicy", tags: ["pork", "spicy", "vegOption"],
-            photo: "https://commons.wikimedia.org/wiki/Special:FilePath/Mapo_tofu.JPG?width=640",
+            photos: [{ url: "https://commons.wikimedia.org/wiki/Special:FilePath/Mapo_tofu.JPG?width=480", source: "Wikimedia Commons" }],
             name: { en: "Mapo Tofu", "zh-CN": "麻婆豆腐", "zh-TW": "麻婆豆腐" },
             desc: { en: "Silken tofu in a spicy sauce, traditionally with a little minced pork.", "zh-CN": "麻辣豆腐，传统做法加少量肉末。", "zh-TW": "麻辣豆腐，傳統做法加少量肉末。" } },
           { id: "d-dandan", region: "food-spicy", icon: "food-spicy", tags: ["pork", "spicy"],
             name: { en: "Dan Dan Noodles", "zh-CN": "担担面", "zh-TW": "擔擔麵" },
             desc: { en: "Spicy noodles topped with preserved vegetables and minced pork.", "zh-CN": "辣味面条，配芽菜与肉末。", "zh-TW": "辣味麵條，配芽菜與肉末。" } },
           { id: "d-pekingduck", region: "food-wheat", icon: "food-wheat", tags: ["poultry"],
-            photo: "https://commons.wikimedia.org/wiki/Special:FilePath/Sliced_Peking_Duck_with_traditional_condiments.jpg?width=640",
+            photos: [{ url: "https://commons.wikimedia.org/wiki/Special:FilePath/Sliced_Peking_Duck_with_traditional_condiments.jpg?width=480", source: "Wikimedia Commons" }],
             name: { en: "Peking Duck", "zh-CN": "北京烤鸭", "zh-TW": "北京烤鴨" },
             desc: { en: "Roast duck carved tableside, wrapped in thin pancakes with scallion and sauce.", "zh-CN": "现场片鸭，薄饼卷葱丝蘸酱。", "zh-TW": "現場片鴨，薄餅捲蔥絲沾醬。" } },
           { id: "d-yangroupaomo", region: "food-wheat", icon: "food-wheat", tags: ["lamb"],
@@ -620,11 +911,11 @@
             name: { en: "Jiaozi (Dumplings)", "zh-CN": "饺子", "zh-TW": "餃子" },
             desc: { en: "Boiled or pan-fried dumplings; pork-and-cabbage is classic, vegetable-only is common too.", "zh-CN": "水饺或煎饺，猪肉白菜馅经典，素馅也很常见。", "zh-TW": "水餃或煎餃，豬肉白菜餡經典，素餡也很常見。" } },
           { id: "d-xihuyu", region: "food-fish", icon: "food-fish", tags: ["seafood"],
-            photo: "https://commons.wikimedia.org/wiki/Special:FilePath/West_Lake_Fish_in_Vinegar_Gravy.jpg?width=640",
+            photos: [{ url: "https://commons.wikimedia.org/wiki/Special:FilePath/West_Lake_Fish_in_Vinegar_Gravy.jpg?width=480", source: "Wikimedia Commons" }],
             name: { en: "West Lake Fish", "zh-CN": "西湖醋鱼", "zh-TW": "西湖醋魚" },
             desc: { en: "Freshwater fish in a sweet-and-sour sauce, a Hangzhou signature.", "zh-CN": "糖醋风味淡水鱼，杭州名菜。", "zh-TW": "糖醋風味淡水魚，杭州名菜。" } },
           { id: "d-xiaolongbao", region: "food-fish", icon: "food-fish", tags: ["pork", "vegOption"],
-            photo: "https://commons.wikimedia.org/wiki/Special:FilePath/Xiao_Long_Bao_at_Nanxiang_Mantou_Dian_1.jpg?width=640",
+            photos: [{ url: "https://commons.wikimedia.org/wiki/Special:FilePath/Xiao_Long_Bao_at_Nanxiang_Mantou_Dian_1.jpg?width=480", source: "Wikimedia Commons" }],
             name: { en: "Xiaolongbao (Soup Dumplings)", "zh-CN": "小笼包", "zh-TW": "小籠包" },
             desc: { en: "Delicate steamed dumplings filled with broth and pork; vegetarian versions exist.", "zh-CN": "汤汁鲜美的蒸饺，传统猪肉馅，也有素馅可选。", "zh-TW": "湯汁鮮美的蒸餃，傳統豬肉餡，也有素餡可選。" } },
           { id: "d-dongpo", region: "food-fish", icon: "food-fish", tags: ["pork", "alcohol"],

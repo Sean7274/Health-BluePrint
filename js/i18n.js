@@ -102,7 +102,7 @@ window.I18N = {
         contactUs: "Contact us",
         rights: "All rights reserved."
       },
-      common: { back: "Back", learnMore: "Learn more", close: "Close", viewAll: "View all", next: "Next", optional: "optional" },
+      common: { back: "Back", learnMore: "Learn more", close: "Close", viewAll: "View all", next: "Next", optional: "optional", prevPhoto: "Previous photo", nextPhoto: "Next photo" },
       specialties: {
         checkup: "Health Checkup",
         oncology: "Cancer Care",
@@ -356,7 +356,7 @@ window.I18N = {
         contactUs: "联系我们",
         rights: "版权所有。"
       },
-      common: { back: "返回", learnMore: "了解更多", close: "关闭", viewAll: "查看全部", next: "下一步", optional: "选填" },
+      common: { back: "返回", learnMore: "了解更多", close: "关闭", viewAll: "查看全部", next: "下一步", optional: "选填", prevPhoto: "上一张照片", nextPhoto: "下一张照片" },
       specialties: {
         checkup: "健康体检",
         oncology: "肿瘤治疗",
@@ -610,7 +610,7 @@ window.I18N = {
         contactUs: "聯絡我們",
         rights: "版權所有。"
       },
-      common: { back: "返回", learnMore: "了解更多", close: "關閉", viewAll: "查看全部", next: "下一步", optional: "選填" },
+      common: { back: "返回", learnMore: "了解更多", close: "關閉", viewAll: "查看全部", next: "下一步", optional: "選填", prevPhoto: "上一張照片", nextPhoto: "下一張照片" },
       specialties: {
         checkup: "健康檢查",
         oncology: "腫瘤治療",
@@ -864,7 +864,7 @@ window.I18N = {
         contactUs: "Contáctenos",
         rights: "Todos los derechos reservados."
       },
-      common: { back: "Atrás", learnMore: "Saber más", close: "Cerrar", viewAll: "Ver todo", next: "Siguiente", optional: "opcional" },
+      common: { back: "Atrás", learnMore: "Saber más", close: "Cerrar", viewAll: "Ver todo", next: "Siguiente", optional: "opcional", prevPhoto: "Foto anterior", nextPhoto: "Foto siguiente" },
       specialties: {
         checkup: "Chequeo médico",
         oncology: "Oncología",
@@ -1118,7 +1118,7 @@ window.I18N = {
         contactUs: "Nous contacter",
         rights: "Tous droits réservés."
       },
-      common: { back: "Retour", learnMore: "En savoir plus", close: "Fermer", viewAll: "Voir tout", next: "Suivant", optional: "facultatif" },
+      common: { back: "Retour", learnMore: "En savoir plus", close: "Fermer", viewAll: "Voir tout", next: "Suivant", optional: "facultatif", prevPhoto: "Photo précédente", nextPhoto: "Photo suivante" },
       specialties: {
         checkup: "Bilan de santé",
         oncology: "Oncologie",
@@ -1372,7 +1372,7 @@ window.I18N = {
         contactUs: "Kontaktieren Sie uns",
         rights: "Alle Rechte vorbehalten."
       },
-      common: { back: "Zurück", learnMore: "Mehr erfahren", close: "Schließen", viewAll: "Alle anzeigen", next: "Weiter", optional: "optional" },
+      common: { back: "Zurück", learnMore: "Mehr erfahren", close: "Schließen", viewAll: "Alle anzeigen", next: "Weiter", optional: "optional", prevPhoto: "Vorheriges Foto", nextPhoto: "Nächstes Foto" },
       specialties: {
         checkup: "Gesundheits-Check-up",
         oncology: "Onkologie",
@@ -1626,7 +1626,7 @@ window.I18N = {
         contactUs: "Fale conosco",
         rights: "Todos os direitos reservados."
       },
-      common: { back: "Voltar", learnMore: "Saiba mais", close: "Fechar", viewAll: "Ver tudo", next: "Próximo", optional: "opcional" },
+      common: { back: "Voltar", learnMore: "Saiba mais", close: "Fechar", viewAll: "Ver tudo", next: "Próximo", optional: "opcional", prevPhoto: "Foto anterior", nextPhoto: "Próxima foto" },
       specialties: {
         checkup: "Check-up de saúde",
         oncology: "Oncologia",
@@ -1880,7 +1880,7 @@ window.I18N = {
         contactUs: "Связаться с нами",
         rights: "Все права защищены."
       },
-      common: { back: "Назад", learnMore: "Узнать больше", close: "Закрыть", viewAll: "Показать все", next: "Далее", optional: "необязательно" },
+      common: { back: "Назад", learnMore: "Узнать больше", close: "Закрыть", viewAll: "Показать все", next: "Далее", optional: "необязательно", prevPhoto: "Предыдущее фото", nextPhoto: "Следующее фото" },
       specialties: {
         checkup: "Медицинский чек-ап",
         oncology: "Онкология",
@@ -2134,7 +2134,7 @@ window.I18N = {
         contactUs: "تواصل معنا",
         rights: "جميع الحقوق محفوظة."
       },
-      common: { back: "رجوع", learnMore: "معرفة المزيد", close: "إغلاق", viewAll: "عرض الكل", next: "التالي", optional: "اختياري" },
+      common: { back: "رجوع", learnMore: "معرفة المزيد", close: "إغلاق", viewAll: "عرض الكل", next: "التالي", optional: "اختياري", prevPhoto: "الصورة السابقة", nextPhoto: "الصورة التالية" },
       specialties: {
         checkup: "الفحص الصحي الشامل",
         oncology: "علاج الأورام",
@@ -2388,7 +2388,7 @@ window.I18N = {
         contactUs: "お問い合わせ",
         rights: "All rights reserved."
       },
-      common: { back: "戻る", learnMore: "詳しく見る", close: "閉じる", viewAll: "すべて見る", next: "次へ", optional: "任意" },
+      common: { back: "戻る", learnMore: "詳しく見る", close: "閉じる", viewAll: "すべて見る", next: "次へ", optional: "任意", prevPhoto: "前の写真", nextPhoto: "次の写真" },
       specialties: {
         checkup: "健康診断",
         oncology: "がん治療",
@@ -2642,7 +2642,7 @@ window.I18N = {
         contactUs: "문의하기",
         rights: "All rights reserved."
       },
-      common: { back: "뒤로", learnMore: "자세히 알아보기", close: "닫기", viewAll: "전체 보기", next: "다음", optional: "선택 사항" },
+      common: { back: "뒤로", learnMore: "자세히 알아보기", close: "닫기", viewAll: "전체 보기", next: "다음", optional: "선택 사항", prevPhoto: "이전 사진", nextPhoto: "다음 사진" },
       specialties: {
         checkup: "건강검진",
         oncology: "암 치료",
@@ -2896,7 +2896,7 @@ window.I18N = {
         contactUs: "हमसे संपर्क करें",
         rights: "सर्वाधिकार सुरक्षित।"
       },
-      common: { back: "वापस", learnMore: "और जानें", close: "बंद करें", viewAll: "सभी देखें", next: "अगला", optional: "वैकल्पिक" },
+      common: { back: "वापस", learnMore: "और जानें", close: "बंद करें", viewAll: "सभी देखें", next: "अगला", optional: "वैकल्पिक", prevPhoto: "पिछली तस्वीर", nextPhoto: "अगली तस्वीर" },
       specialties: {
         checkup: "स्वास्थ्य जांच",
         oncology: "कैंसर देखभाल",
