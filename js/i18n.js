@@ -277,6 +277,7 @@ window.I18N = {
         noApplications: "No applications yet.",
         approve: "Approve",
         reject: "Reject",
+        downloadResume: "Download Resume",
         statusLabel: "Status",
         approved: "Approved",
         rejected: "Rejected"
@@ -540,6 +541,7 @@ window.I18N = {
         noApplications: "暂无申请。",
         approve: "通过",
         reject: "拒绝",
+        downloadResume: "下载简历",
         statusLabel: "状态",
         approved: "已通过",
         rejected: "已拒绝"
@@ -803,6 +805,7 @@ window.I18N = {
         noApplications: "暫無申請。",
         approve: "通過",
         reject: "拒絕",
+        downloadResume: "下載簡歷",
         statusLabel: "狀態",
         approved: "已通過",
         rejected: "已拒絕"
@@ -1066,6 +1069,7 @@ window.I18N = {
         noApplications: "Aún no hay solicitudes de agentes.",
         approve: "Aprobar",
         reject: "Rechazar",
+        downloadResume: "Descargar currículum",
         statusLabel: "Estado",
         approved: "Aprobado",
         rejected: "Rechazado"
@@ -1329,6 +1333,7 @@ window.I18N = {
         noApplications: "Aucune candidature pour le moment.",
         approve: "Approuver",
         reject: "Refuser",
+        downloadResume: "Télécharger le CV",
         statusLabel: "Statut",
         approved: "Approuvée",
         rejected: "Refusée"
@@ -1592,6 +1597,7 @@ window.I18N = {
         noApplications: "Noch keine Bewerbungen.",
         approve: "Genehmigen",
         reject: "Ablehnen",
+        downloadResume: "Lebenslauf herunterladen",
         statusLabel: "Status",
         approved: "Genehmigt",
         rejected: "Abgelehnt"
@@ -1855,6 +1861,7 @@ window.I18N = {
         noApplications: "Ainda não há candidaturas.",
         approve: "Aprovar",
         reject: "Rejeitar",
+        downloadResume: "Baixar currículo",
         statusLabel: "Status",
         approved: "Aprovada",
         rejected: "Rejeitada"
@@ -2118,6 +2125,7 @@ window.I18N = {
         noApplications: "Пока нет заявок.",
         approve: "Одобрить",
         reject: "Отклонить",
+        downloadResume: "Скачать резюме",
         statusLabel: "Статус",
         approved: "Одобрено",
         rejected: "Отклонено"
@@ -2381,6 +2389,7 @@ window.I18N = {
         noApplications: "لا توجد طلبات وكلاء بعد.",
         approve: "قبول",
         reject: "رفض",
+        downloadResume: "تحميل السيرة الذاتية",
         statusLabel: "الحالة",
         approved: "مقبول",
         rejected: "مرفوض"
@@ -2644,6 +2653,7 @@ window.I18N = {
         noApplications: "申請はまだありません。",
         approve: "承認",
         reject: "却下",
+        downloadResume: "履歴書をダウンロード",
         statusLabel: "状況",
         approved: "承認済み",
         rejected: "却下済み"
@@ -2907,6 +2917,7 @@ window.I18N = {
         noApplications: "아직 지원 내역이 없습니다.",
         approve: "승인",
         reject: "거절",
+        downloadResume: "이력서 다운로드",
         statusLabel: "상태",
         approved: "승인됨",
         rejected: "거절됨"
@@ -3170,6 +3181,7 @@ window.I18N = {
         noApplications: "अभी तक कोई आवेदन नहीं है।",
         approve: "स्वीकृत करें",
         reject: "अस्वीकार करें",
+        downloadResume: "रिज़्यूमे डाउनलोड करें",
         statusLabel: "स्थिति",
         approved: "स्वीकृत",
         rejected: "अस्वीकृत"
