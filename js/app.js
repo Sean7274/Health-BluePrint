@@ -681,6 +681,12 @@
         content.querySelectorAll("[data-reject]").forEach(function (btn) {
           btn.onclick = function () { setAgentAppStatus(btn.getAttribute("data-reject"), "rejected"); };
         });
+        content.querySelectorAll("[data-download-resume]").forEach(function (btn) {
+          btn.onclick = function () {
+            window.sb.storage.from("resumes").createSignedUrl(btn.getAttribute("data-download-resume"), 60)
+              .then(function (res) { if (res.data) window.open(res.data.signedUrl, "_blank", "noopener"); });
+          };
+        });
       })
       .catch(function () { content.innerHTML = '<div class="empty-state">' + esc(t("auth.genericError")) + "</div>"; });
   }
@@ -697,6 +703,7 @@
       '<p style="font-size:0.85em;color:var(--color-text-muted);">' + esc(a.email) + (a.phone ? " · " + esc(a.phone) : "") + "</p>" +
       (a.city ? "<p>" + esc(a.city) + "</p>" : "") +
       (a.message ? '<p style="white-space:pre-line;">' + esc(a.message) + "</p>" : "") +
+      (a.resume_path ? '<button type="button" class="btn btn-secondary" data-download-resume="' + esc(a.resume_path) + '">' + esc(t("admin.downloadResume")) + "</button>" : "") +
       (a.status === "pending"
         ? '<div class="field-row"><button type="button" class="btn btn-primary" data-approve="' + esc(a.id) + '">' + esc(t("admin.approve")) + '</button><button type="button" class="btn btn-secondary" data-reject="' + esc(a.id) + '">' + esc(t("admin.reject")) + "</button></div>"
         : "") +
@@ -1434,25 +1441,24 @@
       var resumeFile = fd.get("resume");
       var hasResume = !!(resumeFile && resumeFile.name);
 
-      // The resume file itself still goes through Netlify Forms (it already
-      // handles file storage + emailing it to us, so there's no need to set
-      // up Supabase Storage for this yet). The structured fields also go
-      // into Supabase so the application shows up in the admin dashboard
-      // and can be approved/rejected and tracked.
-      fd.set("form-name", "agent-application");
-      var netlifySubmit = fetch("/", { method: "POST", body: fd }).catch(function () {});
-
-      var dbPayload = {
-        user_id: authState.user ? authState.user.id : null,
-        full_name: fd.get("name"),
-        email: fd.get("email") || "",
-        phone: fd.get("phone"),
-        message: "Birth year: " + (fd.get("birthYear") || "—") + (hasResume ? " · Resume attached (see email notification)" : " · No resume attached")
-      };
-      var dbSubmit = window.sb ? window.sb.from("agent_applications").insert(dbPayload) : Promise.resolve();
-
       submitBtn.disabled = true;
-      Promise.all([netlifySubmit, dbSubmit])
+
+      var uploadResume = hasResume && window.sb
+        ? window.sb.storage.from("resumes").upload(Date.now() + "-" + resumeFile.name, resumeFile)
+        : Promise.resolve(null);
+
+      uploadResume.then(function (uploadRes) {
+        var resumePath = uploadRes && uploadRes.data ? uploadRes.data.path : null;
+        var dbPayload = {
+          user_id: authState.user ? authState.user.id : null,
+          full_name: fd.get("name"),
+          email: fd.get("email") || "",
+          phone: fd.get("phone"),
+          message: "Birth year: " + (fd.get("birthYear") || "—"),
+          resume_path: resumePath
+        };
+        return window.sb ? window.sb.from("agent_applications").insert(dbPayload) : Promise.resolve();
+      })
         .then(function () { submitBtn.disabled = false; showJoinSuccess(); })
         .catch(function () { submitBtn.disabled = false; showJoinSuccess(); });
     });

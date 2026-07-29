@@ -71,17 +71,6 @@
     </div>
   </footer>
 
-  <!-- Static fallback form so Netlify detects the "agent-application" form
-       (same reasoning as above: needed at deploy time, not just from JS). -->
-  <form name="agent-application" data-netlify="true" netlify-honeypot="company" enctype="multipart/form-data" hidden>
-    <input type="text" name="name">
-    <input type="text" name="birthYear">
-    <input type="text" name="phone">
-    <input type="email" name="email">
-    <input type="file" name="resume">
-    <input type="text" name="company">
-  </form>
-
   <script src="js/i18n.js"></script>
   <script src="js/icons.js"></script>
   <script src="js/data.js"></script>
