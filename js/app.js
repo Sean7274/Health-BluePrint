@@ -608,11 +608,14 @@
   /* ---------------- ADMIN ---------------- */
   function renderAdmin() {
     mainEl.innerHTML =
-      '<section class="section container">' +
-        '<a class="btn-back" href="#/">' + Icons.html("arrow-left", { size: 18 }) + esc(t("common.back")) + "</a>" +
-        '<h1 style="margin-top:14px;">' + esc(t("admin.title")) + "</h1>" +
-        '<div id="adminBody"></div>' +
-      "</section>";
+      '<div class="admin-page">' +
+        '<section class="section container">' +
+          '<a class="btn-back" href="#/">' + Icons.html("arrow-left", { size: 18 }) + esc(t("common.back")) + "</a>" +
+          '<div style="margin-top:14px;"><span class="admin-badge">' + Icons.html("safety", { size: 15 }) + esc(t("auth.admin")) + "</span></div>" +
+          "<h1>" + esc(t("admin.title")) + "</h1>" +
+          '<div id="adminBody"></div>' +
+        "</section>" +
+      "</div>";
 
     var body = document.getElementById("adminBody");
     if (!authState.ready) { body.innerHTML = ""; return; }
@@ -697,8 +700,9 @@
 
   function adminAgentAppCardHtml(a) {
     var statusLabel = a.status === "approved" ? t("admin.approved") : a.status === "rejected" ? t("admin.rejected") : t("account.statusPending");
+    var statusTagClass = a.status === "approved" ? "tag-approved" : a.status === "rejected" ? "tag-rejected" : "";
     return '<div class="card">' +
-      '<div class="card-tags"><span class="tag">' + esc(statusLabel) + "</span></div>" +
+      '<div class="card-tags"><span class="tag ' + statusTagClass + '">' + esc(statusLabel) + "</span></div>" +
       "<h3>" + esc(a.full_name) + "</h3>" +
       '<p style="font-size:0.85em;color:var(--color-text-muted);">' + esc(a.email) + (a.phone ? " · " + esc(a.phone) : "") + "</p>" +
       (a.city ? "<p>" + esc(a.city) + "</p>" : "") +
