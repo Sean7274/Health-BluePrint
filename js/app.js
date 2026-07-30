@@ -58,6 +58,7 @@
     document.getElementById("footerYear").textContent = String(new Date().getFullYear());
     document.getElementById("footerTermsLink").textContent = t("footer.termsLink");
     document.getElementById("footerPrivacyLink").textContent = t("footer.privacyLink");
+    document.getElementById("footerVisaLink").textContent = t("footer.visaLink");
 
     var langSelect = document.getElementById("langSelect");
     langSelect.innerHTML = SUPPORTED_LANGS.map(function (code) {
@@ -133,6 +134,8 @@
       renderLegalPage("terms");
     } else if (r.segments[0] === "privacy") {
       renderLegalPage("privacy");
+    } else if (r.segments[0] === "visa") {
+      renderLegalPage("visa");
     } else {
       renderHome();
     }
@@ -732,12 +735,38 @@
       "</section>" +
 
       '<section class="section container">' +
+        "<h2>" + esc(t("homeContent.aboutTitle")) + "</h2>" +
+        "<p>" + esc(t("homeContent.aboutBody")) + "</p>" +
+      "</section>" +
+
+      '<section class="section container">' +
         "<h2>" + esc(t("pillars.sectionTitle")) + "</h2>" +
         '<div class="choice-row pillar-row">' +
           pillarCardHtml("medical", "pillar-1", t("pillars.medicalTitle"), t("pillars.medicalDesc"), "#/hospitals") +
           pillarCardHtml("travel", "pillar-2", t("pillars.travelTitle"), t("pillars.travelDesc"), "#/trip") +
           pillarCardHtml("food", "pillar-3", t("pillars.foodTitle"), t("pillars.foodDesc"), "#/food") +
           pillarCardHtml("safety", "pillar-4", t("pillars.safetyTitle"), t("pillars.safetyDesc"), "#/safety") +
+        "</div>" +
+      "</section>" +
+
+      '<section class="section container">' +
+        "<h2>" + esc(t("homeContent.scenariosTitle")) + "</h2>" +
+        '<div class="card-grid">' +
+          scenarioCardHtml("checkup", "homeContent.scenarioCheckupDesc") +
+          scenarioCardHtml("dental", "homeContent.scenarioDentalDesc") +
+          scenarioCardHtml("oncology", "homeContent.scenarioOncologyDesc") +
+          scenarioCardHtml("obgyn", "homeContent.scenarioObgynDesc") +
+          scenarioCardHtml("cardiology", "homeContent.scenarioCardiologyDesc") +
+        "</div>" +
+      "</section>" +
+
+      '<section class="section container">' +
+        "<h2>" + esc(t("homeContent.testimonialsTitle")) + "</h2>" +
+        '<p class="legal-note">' + esc(t("homeContent.testimonialsNote")) + "</p>" +
+        '<div class="card-grid">' +
+          testimonialCardHtml("homeContent.testimonial1Quote", "homeContent.testimonial1Name") +
+          testimonialCardHtml("homeContent.testimonial2Quote", "homeContent.testimonial2Name") +
+          testimonialCardHtml("homeContent.testimonial3Quote", "homeContent.testimonial3Name") +
         "</div>" +
       "</section>" +
 
@@ -778,6 +807,19 @@
       "<span>" + esc(title) + "</span>" +
       '<span style="font-weight:400;font-size:0.85em;color:var(--color-text-muted);">' + esc(desc) + "</span>" +
     "</a>";
+  }
+  function scenarioCardHtml(specialtyId, descKey) {
+    return '<a class="card card-clickable" href="#/hospitals?specialty=' + specialtyId + '">' +
+      '<div class="card-tags">' + iconBadge(specialtyIconName(specialtyId), specialtyId) + "</div>" +
+      "<h3>" + esc(specialtyLabel(specialtyId)) + "</h3>" +
+      '<p style="color:var(--color-text-muted);font-size:0.9em;margin:0;">' + esc(t(descKey)) + "</p>" +
+    "</a>";
+  }
+  function testimonialCardHtml(quoteKey, nameKey) {
+    return '<div class="card">' +
+      '<p style="font-style:italic;">' + esc(t(quoteKey)) + "</p>" +
+      '<p style="color:var(--color-text-muted);font-size:0.85em;margin:0;">— ' + esc(t(nameKey)) + "</p>" +
+    "</div>";
   }
 
   /* ---------------- FOOD / SAFETY INFO PAGES ---------------- */
@@ -1080,6 +1122,32 @@
           'Questions about this Privacy Policy or your personal information? Contact us at <a href="mailto:' + LEGAL_CONTACT_EMAIL + '">' + LEGAL_CONTACT_EMAIL + '</a> <mark>[replace with your real contact email]</mark>.'
         ] }
       ]
+    },
+    visa: {
+      titleKey: "legal.visaTitle",
+      sections: [
+        { heading: "Important Disclaimer", body: [
+          "This page is general informational guidance only, not legal or immigration advice. Visa requirements change and vary by nationality — always confirm current requirements with your nearest Chinese embassy/consulate, or a licensed immigration professional, before making travel plans."
+        ] },
+        { heading: "1. Do You Need a Visa?", body: [
+          "Most international visitors need a visa to enter China for medical treatment. Some nationalities qualify for visa-free entry or transit under specific, limited conditions that change periodically — check the current policy for your passport with your nearest Chinese embassy or consulate before booking travel."
+        ] },
+        { heading: "2. Visa Types Relevant to Medical Travel", body: [
+          "Short medical visits are most commonly made on an <strong>L (tourist) visa</strong>. If your trip also involves a business component, an <strong>M (business) visa</strong> may apply instead. The right visa type depends on your specific circumstances — your embassy/consulate can confirm which applies to you."
+        ] },
+        { heading: "3. Typical Application Process", body: [
+          "In general, applicants prepare a passport valid for 6+ months, a completed visa application form, a recent photo, and supporting documents (such as a hospital appointment confirmation, proof of accommodation, and a return ticket), then submit these to the nearest Chinese embassy, consulate, or visa application service center. Standard processing is commonly a few business days, though this varies by location and season."
+        ] },
+        { heading: "4. Documents That Can Help", body: [
+          "A hospital appointment or invitation letter (if your agent or hospital can provide one), proof of sufficient funds, travel insurance, and accommodation booking can all strengthen a visa application, though exact requirements are set by the consulate processing your application."
+        ] },
+        { heading: "5. Timeline Recommendation", body: [
+          "We recommend starting your visa application at least 4-6 weeks before your intended travel date, to allow a buffer for processing time and any additional document requests."
+        ] },
+        { heading: "6. How Your Agent Can Help", body: [
+          "Local agents can assist with requesting an appointment confirmation letter from a partner hospital and translating documents, but cannot guarantee visa approval — that decision rests solely with Chinese immigration authorities."
+        ] }
+      ]
     }
   };
 
@@ -1351,6 +1419,22 @@
               '<div class="field"><label for="cCountry">' + esc(t("contact.country")) + '</label><input id="cCountry" name="country"></div>' +
             "</div>" +
             '<div class="field"><label for="cLang">' + esc(t("contact.preferredLanguage")) + '</label><select id="cLang" name="preferredLanguage">' + langOptions + "</select></div>" +
+            '<div class="field-row">' +
+              '<div class="field"><label for="cBudget">' + esc(t("contact.budgetLabel")) + '</label><select id="cBudget" name="budget">' +
+                '<option value="">' + esc(t("contact.budgetUnsure")) + "</option>" +
+                '<option value="under_5k">' + esc(t("contact.budgetUnder5k")) + "</option>" +
+                '<option value="5to15k">' + esc(t("contact.budget5to15k")) + "</option>" +
+                '<option value="15to50k">' + esc(t("contact.budget15to50k")) + "</option>" +
+                '<option value="over_50k">' + esc(t("contact.budgetOver50k")) + "</option>" +
+              "</select></div>" +
+              '<div class="field"><label for="cTimeframe">' + esc(t("contact.timeframeLabel")) + '</label><select id="cTimeframe" name="timeframe">' +
+                '<option value="">' + esc(t("common.optional")) + "</option>" +
+                '<option value="1m">' + esc(t("contact.timeframe1m")) + "</option>" +
+                '<option value="1to3m">' + esc(t("contact.timeframe1to3m")) + "</option>" +
+                '<option value="3to6m">' + esc(t("contact.timeframe3to6m")) + "</option>" +
+                '<option value="6mPlus">' + esc(t("contact.timeframe6mPlus")) + "</option>" +
+              "</select></div>" +
+            "</div>" +
             '<div class="field"><label for="cMessage">' + esc(t("contact.message")) + '</label><textarea id="cMessage" name="message" placeholder="' + esc(t("contact.messagePlaceholder")) + '"></textarea></div>' +
             '<div class="form-error" id="bookingFormError" hidden></div>' +
             '<button type="submit" class="btn btn-primary btn-block">' + esc(t("contact.submit")) + "</button>" +
@@ -1404,6 +1488,10 @@
     if (topic === "safety") parts.push("Topic: Safety");
     var country = fd.get("country"); if (country) parts.push("Country: " + country);
     var lang = fd.get("preferredLanguage"); if (lang) parts.push("Preferred language: " + lang);
+    var BUDGET_LABELS_EN = { under_5k: "Under $5,000", "5to15k": "$5,000 - $15,000", "15to50k": "$15,000 - $50,000", over_50k: "Over $50,000" };
+    var TIMEFRAME_LABELS_EN = { "1m": "Within 1 month", "1to3m": "1 - 3 months", "3to6m": "3 - 6 months", "6mPlus": "6+ months / just researching" };
+    var budget = fd.get("budget"); if (budget) parts.push("Budget: " + BUDGET_LABELS_EN[budget]);
+    var timeframe = fd.get("timeframe"); if (timeframe) parts.push("Timeframe: " + TIMEFRAME_LABELS_EN[timeframe]);
     return parts.join("\n");
   }
 
@@ -1415,6 +1503,25 @@
         '<div class="form-card" style="margin-top:14px;">' +
           "<h1>" + esc(t("join.title")) + "</h1>" +
           "<p>" + esc(t("join.subtitle")) + "</p>" +
+          "<h2>" + esc(t("join.whyTitle")) + "</h2>" +
+          "<p>" + esc(t("join.whyIntro")) + "</p>" +
+          "<h2>" + esc(t("join.qualTitle")) + "</h2>" +
+          "<ul class=\"included-list\">" +
+            "<li>" + esc(t("join.qual1")) + "</li>" +
+            "<li>" + esc(t("join.qual2")) + "</li>" +
+            "<li>" + esc(t("join.qual3")) + "</li>" +
+            "<li>" + esc(t("join.qual4")) + "</li>" +
+            "<li>" + esc(t("join.qual5")) + "</li>" +
+          "</ul>" +
+          "<h2>" + esc(t("join.processTitle")) + "</h2>" +
+          "<ul class=\"included-list\">" +
+            "<li>" + esc(t("join.step1")) + "</li>" +
+            "<li>" + esc(t("join.step2")) + "</li>" +
+            "<li>" + esc(t("join.step3")) + "</li>" +
+            "<li>" + esc(t("join.step4")) + "</li>" +
+            "<li>" + esc(t("join.step5")) + "</li>" +
+          "</ul>" +
+          '<p class="legal-note">' + esc(t("join.earningsNote")) + "</p>" +
           '<div id="joinFormArea">' +
           '<form id="joinForm">' +
             '<p class="required-note">' + esc(t("join.requiredNote")) + "</p>" +
