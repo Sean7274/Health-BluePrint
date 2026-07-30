@@ -5,18 +5,18 @@
 
 window.I18N = {
   meta: {
-    en: { label: "English", dir: "ltr" },
-    "zh-CN": { label: "简体中文", dir: "ltr" },
-    "zh-TW": { label: "繁體中文", dir: "ltr" },
-    es: { label: "Español", dir: "ltr" },
-    fr: { label: "Français", dir: "ltr" },
-    de: { label: "Deutsch", dir: "ltr" },
-    pt: { label: "Português", dir: "ltr" },
-    ru: { label: "Русский", dir: "ltr" },
-    ar: { label: "العربية", dir: "rtl" },
-    ja: { label: "日本語", dir: "ltr" },
-    ko: { label: "한국어", dir: "ltr" },
-    hi: { label: "हिन्दी", dir: "ltr" }
+    en: { label: "🇺🇸 English", dir: "ltr" },
+    "zh-CN": { label: "🇨🇳 简体中文", dir: "ltr" },
+    "zh-TW": { label: "🇹🇼 繁體中文", dir: "ltr" },
+    es: { label: "🇪🇸 Español", dir: "ltr" },
+    fr: { label: "🇫🇷 Français", dir: "ltr" },
+    de: { label: "🇩🇪 Deutsch", dir: "ltr" },
+    pt: { label: "🇧🇷 Português", dir: "ltr" },
+    ru: { label: "🇷🇺 Русский", dir: "ltr" },
+    ar: { label: "🇸🇦 العربية", dir: "rtl" },
+    ja: { label: "🇯🇵 日本語", dir: "ltr" },
+    ko: { label: "🇰🇷 한국어", dir: "ltr" },
+    hi: { label: "🇮🇳 हिन्दी", dir: "ltr" }
   },
 
   strings: {
@@ -114,7 +114,9 @@ window.I18N = {
         rights: "All rights reserved.",
         termsLink: "Terms of Service",
         privacyLink: "Privacy Policy",
-        visaLink: "Medical Visa & Travel Info"
+        visaLink: "Medical Visa & Travel Info",
+        phoneLabel: "Phone",
+        exampleNote: "(example — to be added)"
       },
       common: { back: "Back", learnMore: "Learn more", close: "Close", viewAll: "View all", next: "Next", optional: "optional", prevPhoto: "Previous photo", nextPhoto: "Next photo" },
       legal: {
@@ -226,6 +228,26 @@ window.I18N = {
         testimonial2Name: "Example patient, Indonesia",
         testimonial3Quote: "“Clear communication from the first inquiry through follow-up care after we returned home.”",
         testimonial3Name: "Example patient, United Kingdom"
+      },
+      travelCosts: {
+        sectionTitle: "Travel Cost Reference",
+        currencyConverterTitle: "Currency Converter",
+        currencyConverterNote: "Rates shown are approximate, illustrative examples only — not live or guaranteed. Check a live converter before making financial decisions.",
+        amountLabel: "Amount in CNY (¥)",
+        currencyLabel: "Convert to",
+        platformsTitle: "Useful Travel Platforms in China",
+        platformCtripDesc: "Flights, hotels, and trains — Ctrip's international site (Trip.com) is available in English.",
+        platformFliggyDesc: "Alibaba's travel platform for flights, hotels, and local experiences (Chinese-language).",
+        platformMeituanDesc: "Local services — restaurants, hotels, and daily deals (Chinese-language).",
+        platformAmapDesc: "China's leading maps and navigation app, useful for getting around once you arrive.",
+        platformXhsDesc: "Xiaohongshu (\u201cRED\u201d) \u2014 real traveler photos, reviews, and tips from people who've been there.",
+        flightSearchTitle: "Search Flights",
+        flightFrom: "From (city or airport)",
+        flightTo: "To (city in China)",
+        flightDate: "Departure date",
+        flightSearchBtn: "Search on Google Flights",
+        flightNote: "Opens Google Flights in a new tab with real-time results for your route.",
+        airlinesTitle: "Or Browse Airlines Serving China Directly"
       },
       pillars: {
         sectionTitle: "Plan around what matters to you",
@@ -424,7 +446,9 @@ window.I18N = {
         rights: "版权所有。",
         termsLink: "服务条款",
         privacyLink: "隐私政策",
-        visaLink: "医疗签证与出行信息"
+        visaLink: "医疗签证与出行信息",
+        phoneLabel: "电话",
+        exampleNote: "（示例——待补充）"
       },
       common: { back: "返回", learnMore: "了解更多", close: "关闭", viewAll: "查看全部", next: "下一步", optional: "选填", prevPhoto: "上一张照片", nextPhoto: "下一张照片" },
       legal: {
@@ -536,6 +560,26 @@ window.I18N = {
         testimonial2Name: "示例患者，印度尼西亚",
         testimonial3Quote: "“从最初咨询到回国后的随访，沟通始终清晰明了。”",
         testimonial3Name: "示例患者，英国"
+      },
+      travelCosts: {
+        sectionTitle: "出行费用参考",
+        currencyConverterTitle: "货币换算",
+        currencyConverterNote: "所示汇率仅为大致示例，非实时数据，不构成保证。做出财务决策前请查阅实时汇率工具。",
+        amountLabel: "人民币金额（¥）",
+        currencyLabel: "换算为",
+        platformsTitle: "中国实用出行平台",
+        platformCtripDesc: "机票、酒店、火车票预订——携程国际版 Trip.com 提供英文界面。",
+        platformFliggyDesc: "阿里巴巴旗下出行平台，提供机票、酒店及本地体验预订（中文界面）。",
+        platformMeituanDesc: "本地生活服务——餐厅、酒店及每日优惠（中文界面）。",
+        platformAmapDesc: "中国领先的地图导航应用，抵达后出行十分实用。",
+        platformXhsDesc: "小红书——真实旅行者的照片、点评与攻略分享。",
+        flightSearchTitle: "搜索航班",
+        flightFrom: "出发地（城市或机场）",
+        flightTo: "目的地（中国城市）",
+        flightDate: "出发日期",
+        flightSearchBtn: "在 Google 航班中搜索",
+        flightNote: "将在新标签页打开 Google 航班，显示该航线的实时结果。",
+        airlinesTitle: "或直接浏览飞往中国的航空公司"
       },
       pillars: {
         sectionTitle: "围绕您最关心的事来规划",
@@ -734,7 +778,9 @@ window.I18N = {
         rights: "版權所有。",
         termsLink: "服務條款",
         privacyLink: "隱私政策",
-        visaLink: "醫療簽證與出行資訊"
+        visaLink: "醫療簽證與出行資訊",
+        phoneLabel: "電話",
+        exampleNote: "（範例——待補充）"
       },
       common: { back: "返回", learnMore: "了解更多", close: "關閉", viewAll: "查看全部", next: "下一步", optional: "選填", prevPhoto: "上一張照片", nextPhoto: "下一張照片" },
       legal: {
@@ -846,6 +892,26 @@ window.I18N = {
         testimonial2Name: "範例患者，印尼",
         testimonial3Quote: "「從最初諮詢到回國後的追蹤，溝通始終清晰明瞭。」",
         testimonial3Name: "範例患者，英國"
+      },
+      travelCosts: {
+        sectionTitle: "出行費用參考",
+        currencyConverterTitle: "貨幣換算",
+        currencyConverterNote: "所示匯率僅為大致範例，非即時資料，不構成保證。做出財務決策前請查閱即時匯率工具。",
+        amountLabel: "人民幣金額（¥）",
+        currencyLabel: "換算為",
+        platformsTitle: "中國實用出行平台",
+        platformCtripDesc: "機票、飯店、火車票預訂——攜程國際版 Trip.com 提供英文介面。",
+        platformFliggyDesc: "阿里巴巴旗下出行平台，提供機票、飯店及當地體驗預訂（中文介面）。",
+        platformMeituanDesc: "本地生活服務——餐廳、飯店及每日優惠（中文介面）。",
+        platformAmapDesc: "中國領先的地圖導航應用，抵達後出行十分實用。",
+        platformXhsDesc: "小紅書——真實旅行者的照片、評論與攻略分享。",
+        flightSearchTitle: "搜尋航班",
+        flightFrom: "出發地（城市或機場）",
+        flightTo: "目的地（中國城市）",
+        flightDate: "出發日期",
+        flightSearchBtn: "在 Google 航班中搜尋",
+        flightNote: "將在新分頁開啟 Google 航班，顯示該航線的即時結果。",
+        airlinesTitle: "或直接瀏覽飛往中國的航空公司"
       },
       pillars: {
         sectionTitle: "圍繞您最關心的事來規劃",
@@ -1044,7 +1110,9 @@ window.I18N = {
         rights: "Todos los derechos reservados.",
         termsLink: "Términos de Servicio",
         privacyLink: "Política de Privacidad",
-        visaLink: "Visa Médica e Información de Viaje"
+        visaLink: "Visa Médica e Información de Viaje",
+        phoneLabel: "Teléfono",
+        exampleNote: "(ejemplo — pendiente de agregar)"
       },
       common: { back: "Atrás", learnMore: "Saber más", close: "Cerrar", viewAll: "Ver todo", next: "Siguiente", optional: "opcional", prevPhoto: "Foto anterior", nextPhoto: "Foto siguiente" },
       legal: {
@@ -1156,6 +1224,26 @@ window.I18N = {
         testimonial2Name: "Paciente de ejemplo, Indonesia",
         testimonial3Quote: "“Comunicación clara desde la primera consulta hasta el seguimiento tras regresar a casa.”",
         testimonial3Name: "Paciente de ejemplo, Reino Unido"
+      },
+      travelCosts: {
+        sectionTitle: "Referencia de Costos de Viaje",
+        currencyConverterTitle: "Conversor de Moneda",
+        currencyConverterNote: "Las tasas mostradas son aproximadas y solo ilustrativas — no son en tiempo real ni garantizadas. Consulte un conversor en vivo antes de tomar decisiones financieras.",
+        amountLabel: "Monto en CNY (¥)",
+        currencyLabel: "Convertir a",
+        platformsTitle: "Plataformas de Viaje Útiles en China",
+        platformCtripDesc: "Vuelos, hoteles y trenes: el sitio internacional de Ctrip (Trip.com) está disponible en inglés.",
+        platformFliggyDesc: "Plataforma de viajes de Alibaba para vuelos, hoteles y experiencias locales (en chino).",
+        platformMeituanDesc: "Servicios locales: restaurantes, hoteles y ofertas diarias (en chino).",
+        platformAmapDesc: "La principal aplicación de mapas y navegación de China, útil para moverse una vez que llegue.",
+        platformXhsDesc: "Xiaohongshu (\u201cRED\u201d): fotos, reseñas y consejos reales de viajeros que ya estuvieron allí.",
+        flightSearchTitle: "Buscar Vuelos",
+        flightFrom: "Desde (ciudad o aeropuerto)",
+        flightTo: "Hasta (ciudad en China)",
+        flightDate: "Fecha de salida",
+        flightSearchBtn: "Buscar en Google Flights",
+        flightNote: "Abre Google Flights en una nueva pestaña con resultados en tiempo real para su ruta.",
+        airlinesTitle: "O Explore Aerolíneas que Vuelan Directamente a China"
       },
       pillars: {
         sectionTitle: "Planifique en torno a lo que le importa",
@@ -1354,7 +1442,9 @@ window.I18N = {
         rights: "Tous droits réservés.",
         termsLink: "Conditions d'utilisation",
         privacyLink: "Politique de confidentialité",
-        visaLink: "Visa Médical et Informations de Voyage"
+        visaLink: "Visa Médical et Informations de Voyage",
+        phoneLabel: "Téléphone",
+        exampleNote: "(exemple — à ajouter)"
       },
       common: { back: "Retour", learnMore: "En savoir plus", close: "Fermer", viewAll: "Voir tout", next: "Suivant", optional: "facultatif", prevPhoto: "Photo précédente", nextPhoto: "Photo suivante" },
       legal: {
@@ -1466,6 +1556,26 @@ window.I18N = {
         testimonial2Name: "Patient exemple, Indonésie",
         testimonial3Quote: "«Une communication claire depuis la première demande jusqu'au suivi après notre retour.»",
         testimonial3Name: "Patient exemple, Royaume-Uni"
+      },
+      travelCosts: {
+        sectionTitle: "Repères de Coûts de Voyage",
+        currencyConverterTitle: "Convertisseur de Devises",
+        currencyConverterNote: "Les taux affichés sont approximatifs et purement indicatifs — non en temps réel ni garantis. Consultez un convertisseur en direct avant toute décision financière.",
+        amountLabel: "Montant en CNY (¥)",
+        currencyLabel: "Convertir en",
+        platformsTitle: "Plateformes de Voyage Utiles en Chine",
+        platformCtripDesc: "Vols, hôtels et trains — le site international de Ctrip (Trip.com) est disponible en anglais.",
+        platformFliggyDesc: "Plateforme de voyage d'Alibaba pour vols, hôtels et expériences locales (en chinois).",
+        platformMeituanDesc: "Services locaux — restaurants, hôtels et offres du jour (en chinois).",
+        platformAmapDesc: "L'application de cartes et navigation leader en Chine, utile une fois sur place.",
+        platformXhsDesc: "Xiaohongshu (\u00abRED\u00bb) — photos, avis et conseils réels de voyageurs déjà passés par là.",
+        flightSearchTitle: "Rechercher des Vols",
+        flightFrom: "Depuis (ville ou aéroport)",
+        flightTo: "Vers (ville en Chine)",
+        flightDate: "Date de départ",
+        flightSearchBtn: "Rechercher sur Google Flights",
+        flightNote: "Ouvre Google Flights dans un nouvel onglet avec des résultats en temps réel pour votre itinéraire.",
+        airlinesTitle: "Ou Consultez les Compagnies Aériennes Desservant la Chine"
       },
       pillars: {
         sectionTitle: "Organisez votre projet autour de ce qui compte pour vous",
@@ -1664,7 +1774,9 @@ window.I18N = {
         rights: "Alle Rechte vorbehalten.",
         termsLink: "Nutzungsbedingungen",
         privacyLink: "Datenschutzerklärung",
-        visaLink: "Medizinisches Visum & Reiseinformationen"
+        visaLink: "Medizinisches Visum & Reiseinformationen",
+        phoneLabel: "Telefon",
+        exampleNote: "(Beispiel — wird noch ergänzt)"
       },
       common: { back: "Zurück", learnMore: "Mehr erfahren", close: "Schließen", viewAll: "Alle anzeigen", next: "Weiter", optional: "optional", prevPhoto: "Vorheriges Foto", nextPhoto: "Nächstes Foto" },
       legal: {
@@ -1776,6 +1888,26 @@ window.I18N = {
         testimonial2Name: "Beispielpatient, Indonesien",
         testimonial3Quote: "„Klare Kommunikation von der ersten Anfrage bis zur Nachsorge nach unserer Rückkehr.“",
         testimonial3Name: "Beispielpatient, Vereinigtes Königreich"
+      },
+      travelCosts: {
+        sectionTitle: "Reisekosten-Übersicht",
+        currencyConverterTitle: "Währungsrechner",
+        currencyConverterNote: "Die angezeigten Kurse sind nur ungefähre, illustrative Beispiele — nicht live oder garantiert. Prüfen Sie vor finanziellen Entscheidungen einen aktuellen Umrechner.",
+        amountLabel: "Betrag in CNY (¥)",
+        currencyLabel: "Umrechnen in",
+        platformsTitle: "Nützliche Reiseplattformen in China",
+        platformCtripDesc: "Flüge, Hotels und Züge — die internationale Ctrip-Website (Trip.com) ist auf Englisch verfügbar.",
+        platformFliggyDesc: "Alibabas Reiseplattform für Flüge, Hotels und lokale Erlebnisse (auf Chinesisch).",
+        platformMeituanDesc: "Lokale Dienstleistungen — Restaurants, Hotels und Tagesangebote (auf Chinesisch).",
+        platformAmapDesc: "Chinas führende Karten- und Navigations-App, nützlich zur Orientierung vor Ort.",
+        platformXhsDesc: "Xiaohongshu (\u201eRED\u201c) — echte Reisefotos, Bewertungen und Tipps von Leuten, die bereits dort waren.",
+        flightSearchTitle: "Flüge Suchen",
+        flightFrom: "Von (Stadt oder Flughafen)",
+        flightTo: "Nach (Stadt in China)",
+        flightDate: "Abflugdatum",
+        flightSearchBtn: "Bei Google Flights suchen",
+        flightNote: "Öffnet Google Flights in einem neuen Tab mit Echtzeit-Ergebnissen für Ihre Strecke.",
+        airlinesTitle: "Oder Fluggesellschaften mit China-Verbindungen Durchsuchen"
       },
       pillars: {
         sectionTitle: "Planen Sie rund um das, was Ihnen wichtig ist",
@@ -1974,7 +2106,9 @@ window.I18N = {
         rights: "Todos os direitos reservados.",
         termsLink: "Termos de Serviço",
         privacyLink: "Política de Privacidade",
-        visaLink: "Visto Médico e Informações de Viagem"
+        visaLink: "Visto Médico e Informações de Viagem",
+        phoneLabel: "Telefone",
+        exampleNote: "(exemplo — a ser adicionado)"
       },
       common: { back: "Voltar", learnMore: "Saiba mais", close: "Fechar", viewAll: "Ver tudo", next: "Próximo", optional: "opcional", prevPhoto: "Foto anterior", nextPhoto: "Próxima foto" },
       legal: {
@@ -2086,6 +2220,26 @@ window.I18N = {
         testimonial2Name: "Paciente exemplo, Indonésia",
         testimonial3Quote: "“Comunicação clara desde a primeira consulta até o acompanhamento após voltarmos para casa.”",
         testimonial3Name: "Paciente exemplo, Reino Unido"
+      },
+      travelCosts: {
+        sectionTitle: "Referência de Custos de Viagem",
+        currencyConverterTitle: "Conversor de Moeda",
+        currencyConverterNote: "As taxas exibidas são aproximadas e apenas ilustrativas — não são em tempo real nem garantidas. Consulte um conversor atualizado antes de decisões financeiras.",
+        amountLabel: "Valor em CNY (¥)",
+        currencyLabel: "Converter para",
+        platformsTitle: "Plataformas de Viagem Úteis na China",
+        platformCtripDesc: "Voos, hotéis e trens — o site internacional da Ctrip (Trip.com) está disponível em inglês.",
+        platformFliggyDesc: "Plataforma de viagens do Alibaba para voos, hotéis e experiências locais (em chinês).",
+        platformMeituanDesc: "Serviços locais — restaurantes, hotéis e ofertas diárias (em chinês).",
+        platformAmapDesc: "O principal aplicativo de mapas e navegação da China, útil para se locomover após a chegada.",
+        platformXhsDesc: "Xiaohongshu (\u201cRED\u201d) — fotos, avaliações e dicas reais de viajantes que já estiveram lá.",
+        flightSearchTitle: "Buscar Voos",
+        flightFrom: "De (cidade ou aeroporto)",
+        flightTo: "Para (cidade na China)",
+        flightDate: "Data de partida",
+        flightSearchBtn: "Buscar no Google Flights",
+        flightNote: "Abre o Google Flights em uma nova aba com resultados em tempo real para sua rota.",
+        airlinesTitle: "Ou Veja Companhias Aéreas que Voam para a China"
       },
       pillars: {
         sectionTitle: "Planeje em torno do que importa para você",
@@ -2284,7 +2438,9 @@ window.I18N = {
         rights: "Все права защищены.",
         termsLink: "Условия использования",
         privacyLink: "Политика конфиденциальности",
-        visaLink: "Медицинская виза и информация о поездке"
+        visaLink: "Медицинская виза и информация о поездке",
+        phoneLabel: "Телефон",
+        exampleNote: "(пример — будет добавлено)"
       },
       common: { back: "Назад", learnMore: "Узнать больше", close: "Закрыть", viewAll: "Показать все", next: "Далее", optional: "необязательно", prevPhoto: "Предыдущее фото", nextPhoto: "Следующее фото" },
       legal: {
@@ -2396,6 +2552,26 @@ window.I18N = {
         testimonial2Name: "Пример пациента, Индонезия",
         testimonial3Quote: "«Чёткая коммуникация с первого обращения до наблюдения после возвращения домой».",
         testimonial3Name: "Пример пациента, Великобритания"
+      },
+      travelCosts: {
+        sectionTitle: "Ориентировочные Расходы на Поездку",
+        currencyConverterTitle: "Конвертер Валют",
+        currencyConverterNote: "Указанные курсы приблизительны и приведены только для примера — не в реальном времени и не гарантированы. Перед финансовыми решениями проверьте актуальный курс.",
+        amountLabel: "Сумма в CNY (¥)",
+        currencyLabel: "Конвертировать в",
+        platformsTitle: "Полезные Туристические Платформы в Китае",
+        platformCtripDesc: "Авиабилеты, отели и поезда — международный сайт Ctrip (Trip.com) доступен на английском.",
+        platformFliggyDesc: "Туристическая платформа Alibaba для авиабилетов, отелей и местных впечатлений (на китайском).",
+        platformMeituanDesc: "Локальные сервисы — рестораны, отели и ежедневные предложения (на китайском).",
+        platformAmapDesc: "Ведущее в Китае картографическое приложение, полезное для навигации по прибытии.",
+        platformXhsDesc: "Xiaohongshu («RED») — реальные фото, отзывы и советы путешественников, уже побывавших там.",
+        flightSearchTitle: "Поиск Авиабилетов",
+        flightFrom: "Откуда (город или аэропорт)",
+        flightTo: "Куда (город в Китае)",
+        flightDate: "Дата вылета",
+        flightSearchBtn: "Искать в Google Flights",
+        flightNote: "Откроет Google Flights в новой вкладке с результатами по вашему маршруту в реальном времени.",
+        airlinesTitle: "Или Посмотрите Авиакомпании, Летающие в Китай"
       },
       pillars: {
         sectionTitle: "Планируйте, исходя из того, что важно для вас",
@@ -2594,7 +2770,9 @@ window.I18N = {
         rights: "جميع الحقوق محفوظة.",
         termsLink: "شروط الخدمة",
         privacyLink: "سياسة الخصوصية",
-        visaLink: "التأشيرة الطبية ومعلومات السفر"
+        visaLink: "التأشيرة الطبية ومعلومات السفر",
+        phoneLabel: "الهاتف",
+        exampleNote: "(مثال — سيُضاف لاحقًا)"
       },
       common: { back: "رجوع", learnMore: "معرفة المزيد", close: "إغلاق", viewAll: "عرض الكل", next: "التالي", optional: "اختياري", prevPhoto: "الصورة السابقة", nextPhoto: "الصورة التالية" },
       legal: {
@@ -2706,6 +2884,26 @@ window.I18N = {
         testimonial2Name: "مريض تجريبي، إندونيسيا",
         testimonial3Quote: "«تواصل واضح منذ الاستفسار الأول وحتى المتابعة بعد عودتنا».",
         testimonial3Name: "مريض تجريبي، المملكة المتحدة"
+      },
+      travelCosts: {
+        sectionTitle: "مرجع تكاليف السفر",
+        currencyConverterTitle: "محوّل العملات",
+        currencyConverterNote: "الأسعار المعروضة تقريبية وتوضيحية فقط — وليست فورية أو مضمونة. يُرجى مراجعة محوّل عملات مباشر قبل اتخاذ أي قرارات مالية.",
+        amountLabel: "المبلغ باليوان الصيني (¥)",
+        currencyLabel: "التحويل إلى",
+        platformsTitle: "منصات سفر مفيدة في الصين",
+        platformCtripDesc: "رحلات جوية وفنادق وقطارات — الموقع الدولي لـ Ctrip (Trip.com) متاح باللغة الإنجليزية.",
+        platformFliggyDesc: "منصة السفر التابعة لعلي بابا للرحلات والفنادق والتجارب المحلية (باللغة الصينية).",
+        platformMeituanDesc: "خدمات محلية — مطاعم وفنادق وعروض يومية (باللغة الصينية).",
+        platformAmapDesc: "تطبيق الخرائط والملاحة الرائد في الصين، مفيد للتنقل بعد الوصول.",
+        platformXhsDesc: "شياو هونغ شو («RED») — صور وتقييمات ونصائح حقيقية من مسافرين زاروا المكان بالفعل.",
+        flightSearchTitle: "البحث عن رحلات جوية",
+        flightFrom: "من (مدينة أو مطار)",
+        flightTo: "إلى (مدينة في الصين)",
+        flightDate: "تاريخ المغادرة",
+        flightSearchBtn: "البحث عبر Google Flights",
+        flightNote: "يفتح Google Flights في تبويب جديد بنتائج فورية لرحلتك.",
+        airlinesTitle: "أو تصفّح شركات الطيران التي تخدم الصين مباشرة"
       },
       pillars: {
         sectionTitle: "خطّط بناءً على ما يهمك",
@@ -2904,7 +3102,9 @@ window.I18N = {
         rights: "全著作権所有。",
         termsLink: "利用規約",
         privacyLink: "プライバシーポリシー",
-        visaLink: "医療ビザと渡航情報"
+        visaLink: "医療ビザと渡航情報",
+        phoneLabel: "電話番号",
+        exampleNote: "（例——追って追加予定）"
       },
       common: { back: "戻る", learnMore: "詳しく見る", close: "閉じる", viewAll: "すべて見る", next: "次へ", optional: "任意", prevPhoto: "前の写真", nextPhoto: "次の写真" },
       legal: {
@@ -3016,6 +3216,26 @@ window.I18N = {
         testimonial2Name: "例：患者様（インドネシア）",
         testimonial3Quote: "「最初の問い合わせから帰国後のフォローアップまで、常に明確なコミュニケーションでした。」",
         testimonial3Name: "例：患者様（イギリス）"
+      },
+      travelCosts: {
+        sectionTitle: "旅費の目安",
+        currencyConverterTitle: "通貨換算",
+        currencyConverterNote: "表示されているレートはあくまで目安の例であり、リアルタイムのものでも保証されたものでもありません。資金計画の際は最新のレートをご確認ください。",
+        amountLabel: "人民元（¥）での金額",
+        currencyLabel: "換算先の通貨",
+        platformsTitle: "中国で役立つ旅行プラットフォーム",
+        platformCtripDesc: "航空券・ホテル・列車の予約——Ctripの国際版サイト（Trip.com）は英語対応です。",
+        platformFliggyDesc: "アリババ運営の旅行プラットフォームで、航空券・ホテル・現地体験を予約可能（中国語）。",
+        platformMeituanDesc: "レストラン・ホテル・日替わりセールなどの現地生活サービス（中国語）。",
+        platformAmapDesc: "中国最大手の地図・ナビアプリ。現地での移動に便利です。",
+        platformXhsDesc: "小紅書（RED）——実際の旅行者による写真・口コミ・旅のコツが投稿されています。",
+        flightSearchTitle: "フライト検索",
+        flightFrom: "出発地（都市または空港）",
+        flightTo: "到着地（中国の都市）",
+        flightDate: "出発日",
+        flightSearchBtn: "Google フライトで検索",
+        flightNote: "新しいタブでGoogleフライトが開き、該当ルートのリアルタイムの検索結果が表示されます。",
+        airlinesTitle: "または中国に就航する航空会社を直接確認する"
       },
       pillars: {
         sectionTitle: "大切なことを軸に計画しましょう",
@@ -3214,7 +3434,9 @@ window.I18N = {
         rights: "모든 권리 보유.",
         termsLink: "이용약관",
         privacyLink: "개인정보처리방침",
-        visaLink: "의료 비자 및 여행 정보"
+        visaLink: "의료 비자 및 여행 정보",
+        phoneLabel: "전화번호",
+        exampleNote: "(예시 — 추후 추가 예정)"
       },
       common: { back: "뒤로", learnMore: "자세히 알아보기", close: "닫기", viewAll: "전체 보기", next: "다음", optional: "선택 사항", prevPhoto: "이전 사진", nextPhoto: "다음 사진" },
       legal: {
@@ -3326,6 +3548,26 @@ window.I18N = {
         testimonial2Name: "예시 환자, 인도네시아",
         testimonial3Quote: "“처음 문의부터 귀국 후 후속 관리까지 소통이 명확했습니다.”",
         testimonial3Name: "예시 환자, 영국"
+      },
+      travelCosts: {
+        sectionTitle: "여행 비용 참고 정보",
+        currencyConverterTitle: "환율 계산기",
+        currencyConverterNote: "표시된 환율은 대략적인 예시일 뿐이며 실시간 데이터가 아니고 보장되지 않습니다. 재정적 결정을 내리기 전 실시간 환율을 확인하세요.",
+        amountLabel: "위안화(¥) 금액",
+        currencyLabel: "환산 통화",
+        platformsTitle: "중국에서 유용한 여행 플랫폼",
+        platformCtripDesc: "항공권, 호텔, 기차 예약 — Ctrip 국제 사이트(Trip.com)는 영어로 이용 가능합니다.",
+        platformFliggyDesc: "알리바바의 여행 플랫폼으로 항공권, 호텔, 현지 체험 예약 가능 (중국어).",
+        platformMeituanDesc: "레스토랑, 호텔, 일일 특가 등 현지 생활 서비스 (중국어).",
+        platformAmapDesc: "중국 최고의 지도 및 내비게이션 앱으로 현지 이동에 유용합니다.",
+        platformXhsDesc: "샤오홍슈(RED) — 실제 여행자들의 사진, 후기, 팁을 확인할 수 있습니다.",
+        flightSearchTitle: "항공편 검색",
+        flightFrom: "출발지 (도시 또는 공항)",
+        flightTo: "도착지 (중국 도시)",
+        flightDate: "출발일",
+        flightSearchBtn: "Google 항공편에서 검색",
+        flightNote: "새 탭에서 Google 항공편이 열리며 해당 노선의 실시간 결과를 확인할 수 있습니다.",
+        airlinesTitle: "또는 중국 취항 항공사를 직접 확인하세요"
       },
       pillars: {
         sectionTitle: "가장 중요한 것을 중심으로 계획하세요",
@@ -3524,7 +3766,9 @@ window.I18N = {
         rights: "सर्वाधिकार सुरक्षित।",
         termsLink: "सेवा की शर्तें",
         privacyLink: "गोपनीयता नीति",
-        visaLink: "चिकित्सा वीज़ा और यात्रा जानकारी"
+        visaLink: "चिकित्सा वीज़ा और यात्रा जानकारी",
+        phoneLabel: "फ़ोन",
+        exampleNote: "(उदाहरण — जल्द जोड़ा जाएगा)"
       },
       common: { back: "वापस", learnMore: "और जानें", close: "बंद करें", viewAll: "सभी देखें", next: "अगला", optional: "वैकल्पिक", prevPhoto: "पिछली तस्वीर", nextPhoto: "अगली तस्वीर" },
       legal: {
@@ -3636,6 +3880,26 @@ window.I18N = {
         testimonial2Name: "उदाहरण मरीज़, इंडोनेशिया",
         testimonial3Quote: "“पहली पूछताछ से लेकर घर लौटने के बाद की फॉलो-अप देखभाल तक स्पष्ट संवाद रहा।”",
         testimonial3Name: "उदाहरण मरीज़, यूनाइटेड किंगडम"
+      },
+      travelCosts: {
+        sectionTitle: "यात्रा लागत संदर्भ",
+        currencyConverterTitle: "मुद्रा परिवर्तक",
+        currencyConverterNote: "दिखाई गई दरें केवल अनुमानित उदाहरण हैं — यह लाइव या गारंटीशुदा नहीं हैं। वित्तीय निर्णय लेने से पहले कृपया लाइव कन्वर्टर देखें।",
+        amountLabel: "CNY (¥) में राशि",
+        currencyLabel: "किसमें बदलें",
+        platformsTitle: "चीन में उपयोगी यात्रा प्लेटफ़ॉर्म",
+        platformCtripDesc: "फ्लाइट, होटल और ट्रेनें — Ctrip की अंतरराष्ट्रीय साइट (Trip.com) अंग्रेज़ी में उपलब्ध है।",
+        platformFliggyDesc: "फ्लाइट, होटल और स्थानीय अनुभवों के लिए Alibaba का यात्रा प्लेटफ़ॉर्म (चीनी भाषा में)।",
+        platformMeituanDesc: "स्थानीय सेवाएं — रेस्तरां, होटल और दैनिक ऑफ़र (चीनी भाषा में)।",
+        platformAmapDesc: "चीन का अग्रणी मानचित्र और नेविगेशन ऐप, पहुंचने के बाद घूमने के लिए उपयोगी।",
+        platformXhsDesc: "श्याओहोंगशू (\u201cRED\u201d) — वहां जा चुके यात्रियों की वास्तविक तस्वीरें, समीक्षाएं और सुझाव।",
+        flightSearchTitle: "फ्लाइट खोजें",
+        flightFrom: "कहाँ से (शहर या हवाई अड्डा)",
+        flightTo: "कहाँ तक (चीन में शहर)",
+        flightDate: "प्रस्थान की तारीख़",
+        flightSearchBtn: "Google Flights पर खोजें",
+        flightNote: "आपके मार्ग के लिए वास्तविक समय के परिणामों के साथ नए टैब में Google Flights खुलेगा।",
+        airlinesTitle: "या सीधे चीन जाने वाली एयरलाइनों को देखें"
       },
       pillars: {
         sectionTitle: "अपने लिए जो मायने रखता है उसके अनुसार योजना बनाएं",
