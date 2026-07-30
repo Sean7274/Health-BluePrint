@@ -52,7 +52,13 @@
 
     document.getElementById("footerAboutTitle").textContent = t("footer.aboutTitle");
     document.getElementById("footerAboutText").textContent = t("footer.aboutText");
-    document.getElementById("footerContactTitle").textContent = t("footer.contactUs");
+    document.getElementById("footerContactCol").innerHTML =
+      '<h3 id="footerContactTitle">' + esc(t("footer.contactUs")) + "</h3>" +
+      '<p><a href="mailto:hello@healthblueprint.example">hello@healthblueprint.example</a></p>' +
+      '<p>' + Icons.html("phone", { size: 15 }) + ' +1 (555) 000-0000 <span class="legal-note">' + esc(t("footer.exampleNote")) + "</span></p>" +
+      '<p><a href="https://wa.me/15550000000" target="_blank" rel="noopener noreferrer">' + Icons.html("chat", { size: 15 }) + " WhatsApp</a> <span class=\"legal-note\">" + esc(t("footer.exampleNote")) + "</span></p>" +
+      '<p><a href="https://facebook.com/healthblueprint" target="_blank" rel="noopener noreferrer">Facebook</a> <span class="legal-note">' + esc(t("footer.exampleNote")) + "</span></p>" +
+      '<p><a href="https://instagram.com/healthblueprint" target="_blank" rel="noopener noreferrer">Instagram</a> <span class="legal-note">' + esc(t("footer.exampleNote")) + "</span></p>";
     document.getElementById("footerDisclaimer").textContent = t("footer.disclaimer");
     document.getElementById("footerRights").textContent = t("footer.rights");
     document.getElementById("footerYear").textContent = String(new Date().getFullYear());
@@ -1580,6 +1586,112 @@
   }
 
   /* ---------------- TRIP PLANNER ---------------- */
+  // Approximate, illustrative-only conversion rates (units of currency per
+  // 1 CNY). Not live data — clearly labeled as such in the UI. Covers the
+  // site's current languages plus a few widely-traveled currencies.
+  var CURRENCY_RATES = {
+    USD: { rate: 0.14, symbol: "$" },
+    EUR: { rate: 0.13, symbol: "€" },
+    GBP: { rate: 0.11, symbol: "£" },
+    JPY: { rate: 21, symbol: "¥" },
+    KRW: { rate: 190, symbol: "₩" },
+    INR: { rate: 11.6, symbol: "₹" },
+    RUB: { rate: 13, symbol: "₽" },
+    SAR: { rate: 0.52, symbol: "SAR " },
+    AUD: { rate: 0.21, symbol: "A$" },
+    CAD: { rate: 0.19, symbol: "C$" },
+    BRL: { rate: 0.78, symbol: "R$" },
+    IDR: { rate: 2200, symbol: "Rp " },
+    THB: { rate: 4.8, symbol: "฿" },
+    VND: { rate: 3500, symbol: "₫" }
+  };
+  var TRAVEL_PLATFORMS = [
+    { name: "Ctrip / Trip.com", url: "https://www.trip.com", descKey: "travelCosts.platformCtripDesc" },
+    { name: "Fliggy 飞猪", url: "https://www.fliggy.com", descKey: "travelCosts.platformFliggyDesc" },
+    { name: "Meituan 美团", url: "https://www.meituan.com", descKey: "travelCosts.platformMeituanDesc" },
+    { name: "Amap 高德地图", url: "https://www.amap.com", descKey: "travelCosts.platformAmapDesc" },
+    { name: "Xiaohongshu 小红书", url: "https://www.xiaohongshu.com", descKey: "travelCosts.platformXhsDesc" }
+  ];
+  var AIRLINES_SERVING_CHINA = [
+    { name: "Air China", url: "https://www.airchina.com" },
+    { name: "China Eastern", url: "https://www.ceair.com" },
+    { name: "China Southern", url: "https://www.csair.com" },
+    { name: "United Airlines", url: "https://www.united.com" },
+    { name: "Delta Air Lines", url: "https://www.delta.com" },
+    { name: "American Airlines", url: "https://www.aa.com" },
+    { name: "Emirates", url: "https://www.emirates.com" },
+    { name: "Singapore Airlines", url: "https://www.singaporeair.com" },
+    { name: "Cathay Pacific", url: "https://www.cathaypacific.com" },
+    { name: "Qatar Airways", url: "https://www.qatarairways.com" }
+  ];
+
+  function travelCostsSectionHtml() {
+    var currencyOptions = Object.keys(CURRENCY_RATES).map(function (code) {
+      return '<option value="' + code + '">' + code + "</option>";
+    }).join("");
+    return '<div class="form-card" style="margin-top:20px;">' +
+      "<h2>" + esc(t("travelCosts.sectionTitle")) + "</h2>" +
+
+      "<h3>" + esc(t("travelCosts.currencyConverterTitle")) + "</h3>" +
+      '<p class="legal-note">' + esc(t("travelCosts.currencyConverterNote")) + "</p>" +
+      '<div class="field-row" style="align-items:flex-end;">' +
+        '<div class="field"><label for="tcAmount">' + esc(t("travelCosts.amountLabel")) + '</label><input type="number" id="tcAmount" min="0" value="1000"></div>' +
+        '<div class="field"><label for="tcCurrency">' + esc(t("travelCosts.currencyLabel")) + '</label><select id="tcCurrency">' + currencyOptions + "</select></div>" +
+      "</div>" +
+      '<p id="tcResult" style="font-size:1.3em;font-weight:700;color:var(--color-primary);"></p>' +
+
+      "<h3 style=\"margin-top:24px;\">" + esc(t("travelCosts.platformsTitle")) + "</h3>" +
+      '<div class="card-grid">' +
+        TRAVEL_PLATFORMS.map(function (p) {
+          return '<a class="card card-clickable" href="' + p.url + '" target="_blank" rel="noopener noreferrer">' +
+            "<h3>" + esc(p.name) + "</h3>" +
+            '<p style="color:var(--color-text-muted);font-size:0.9em;margin:0;">' + esc(t(p.descKey)) + "</p>" +
+          "</a>";
+        }).join("") +
+      "</div>" +
+
+      "<h3 style=\"margin-top:24px;\">" + esc(t("travelCosts.flightSearchTitle")) + "</h3>" +
+      '<div class="field-row" style="align-items:flex-end;">' +
+        '<div class="field"><label for="tcFlightFrom">' + esc(t("travelCosts.flightFrom")) + '</label><input type="text" id="tcFlightFrom"></div>' +
+        '<div class="field"><label for="tcFlightTo">' + esc(t("travelCosts.flightTo")) + '</label><input type="text" id="tcFlightTo"></div>' +
+        '<div class="field"><label for="tcFlightDate">' + esc(t("travelCosts.flightDate")) + '</label><input type="date" id="tcFlightDate"></div>' +
+      "</div>" +
+      '<button type="button" class="btn btn-primary" id="tcFlightSearchBtn">' + esc(t("travelCosts.flightSearchBtn")) + "</button>" +
+      '<p class="legal-note">' + esc(t("travelCosts.flightNote")) + "</p>" +
+
+      "<h3 style=\"margin-top:24px;\">" + esc(t("travelCosts.airlinesTitle")) + "</h3>" +
+      '<div class="chip-row">' +
+        AIRLINES_SERVING_CHINA.map(function (a) {
+          return '<a class="chip" href="' + a.url + '" target="_blank" rel="noopener noreferrer">' + esc(a.name) + "</a>";
+        }).join("") +
+      "</div>" +
+    "</div>";
+  }
+
+  function wireTravelCosts() {
+    var amountInput = document.getElementById("tcAmount");
+    var currencySelect = document.getElementById("tcCurrency");
+    var resultEl = document.getElementById("tcResult");
+    function updateConversion() {
+      var amount = parseFloat(amountInput.value) || 0;
+      var currency = CURRENCY_RATES[currencySelect.value];
+      var converted = amount * currency.rate;
+      var formatted = converted >= 100 ? Math.round(converted).toLocaleString() : converted.toFixed(2);
+      resultEl.textContent = "¥" + amount.toLocaleString() + " ≈ " + currency.symbol + formatted;
+    }
+    amountInput.oninput = updateConversion;
+    currencySelect.onchange = updateConversion;
+    updateConversion();
+
+    document.getElementById("tcFlightSearchBtn").onclick = function () {
+      var from = document.getElementById("tcFlightFrom").value.trim();
+      var to = document.getElementById("tcFlightTo").value.trim();
+      var date = document.getElementById("tcFlightDate").value;
+      var query = "Flights" + (from ? " from " + from : "") + (to ? " to " + to : "") + (date ? " on " + date : "");
+      window.open("https://www.google.com/travel/flights?q=" + encodeURIComponent(query), "_blank", "noopener");
+    };
+  }
+
   function tripHref(query, patch) {
     var merged = {};
     Object.keys(query || {}).forEach(function (k) { if (query[k]) merged[k] = query[k]; });
@@ -1680,6 +1792,8 @@
       '<a class="btn btn-primary btn-block" id="useCustomRouteBtn" style="margin-top:10px;">' + esc(t("trip.useCustomRoute")) + "</a>" +
     "</div>";
 
+    html += travelCostsSectionHtml();
+
     html += "</div>"; // #tripResults
     html += "</section>";
     mainEl.innerHTML = html;
@@ -1713,6 +1827,8 @@
     // Custom route builder: add/remove stops purely client-side (no
     // navigation) so typing doesn't get interrupted by a full re-render;
     // only "Use This Custom Route" commits the list to the URL.
+    wireTravelCosts();
+
     var stopInput = document.getElementById("customStopInput");
     var stopsListEl = document.getElementById("customStopsList");
     var useBtn = document.getElementById("useCustomRouteBtn");
