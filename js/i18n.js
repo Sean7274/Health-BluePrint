@@ -113,7 +113,14 @@ window.I18N = {
         summaryHospital: "Hospital",
         summaryProgram: "Specialty",
         summaryAgent: "Agent",
-        summaryRoute: "Travel route"
+        summaryRoute: "Travel route",
+        treatmentCategoriesLabel: "What type of treatment are you interested in? (optional)",
+        treatmentOther: "Other",
+        travelWindowLabel: "Preferred travel window (optional)",
+        travelStartLabel: "Earliest travel date",
+        travelEndLabel: "Latest travel date",
+        medicalRecordsLabel: "Existing medical records or reports (optional)",
+        medicalRecordsHint: "PDF, JPG, or PNG — stored securely and shared only with your matched agent/hospital",
       },
       footer: {
         aboutTitle: "About Health Blueprint",
@@ -124,6 +131,7 @@ window.I18N = {
         termsLink: "Terms of Service",
         privacyLink: "Privacy Policy",
         visaLink: "Medical Visa & Travel Info",
+        faqLink: "FAQ",
         phoneLabel: "Phone",
         exampleNote: "(example — to be added)"
       },
@@ -132,6 +140,7 @@ window.I18N = {
         termsTitle: "Terms of Service",
         privacyTitle: "Privacy Policy",
         visaTitle: "Medical Visa & Travel Info",
+        faqTitle: "Frequently Asked Questions",
         lastUpdated: "Last updated: {date}",
         englishOnlyNote: "This document is currently provided in English only."
       },
@@ -445,7 +454,14 @@ window.I18N = {
         summaryHospital: "医院",
         summaryProgram: "专科",
         summaryAgent: "服务人员",
-        summaryRoute: "旅行路线"
+        summaryRoute: "旅行路线",
+        treatmentCategoriesLabel: "您对哪种治疗感兴趣？（可选）",
+        treatmentOther: "其他",
+        travelWindowLabel: "期望的出行时间范围（可选）",
+        travelStartLabel: "最早出行日期",
+        travelEndLabel: "最晚出行日期",
+        medicalRecordsLabel: "现有病历或检查报告（可选）",
+        medicalRecordsHint: "支持 PDF、JPG 或 PNG 格式 — 安全存储，仅与匹配的服务人员/医院共享",
       },
       footer: {
         aboutTitle: "关于健康蓝图",
@@ -456,6 +472,7 @@ window.I18N = {
         termsLink: "服务条款",
         privacyLink: "隐私政策",
         visaLink: "医疗签证与出行信息",
+        faqLink: "常见问题",
         phoneLabel: "电话",
         exampleNote: "（示例——待补充）"
       },
@@ -464,6 +481,7 @@ window.I18N = {
         termsTitle: "服务条款",
         privacyTitle: "隐私政策",
         visaTitle: "医疗签证与出行信息",
+        faqTitle: "常见问题",
         lastUpdated: "最后更新：{date}",
         englishOnlyNote: "本文件目前仅提供英文版本。"
       },
@@ -777,7 +795,14 @@ window.I18N = {
         summaryHospital: "醫院",
         summaryProgram: "專科",
         summaryAgent: "服務人員",
-        summaryRoute: "旅行路線"
+        summaryRoute: "旅行路線",
+        treatmentCategoriesLabel: "您對哪種治療感興趣？（可選）",
+        treatmentOther: "其他",
+        travelWindowLabel: "期望的出行時間範圍（可選）",
+        travelStartLabel: "最早出行日期",
+        travelEndLabel: "最晚出行日期",
+        medicalRecordsLabel: "現有病歷或檢查報告（可選）",
+        medicalRecordsHint: "支援 PDF、JPG 或 PNG 格式 — 安全儲存，僅與媒合的服務人員/醫院共用",
       },
       footer: {
         aboutTitle: "關於健康藍圖",
@@ -788,6 +813,7 @@ window.I18N = {
         termsLink: "服務條款",
         privacyLink: "隱私政策",
         visaLink: "醫療簽證與出行資訊",
+        faqLink: "常見問題",
         phoneLabel: "電話",
         exampleNote: "（範例——待補充）"
       },
@@ -796,6 +822,7 @@ window.I18N = {
         termsTitle: "服務條款",
         privacyTitle: "隱私政策",
         visaTitle: "醫療簽證與出行資訊",
+        faqTitle: "常見問題",
         lastUpdated: "最後更新：{date}",
         englishOnlyNote: "本文件目前僅提供英文版本。"
       },
@@ -1109,7 +1136,14 @@ window.I18N = {
         summaryHospital: "Hospital",
         summaryProgram: "Especialidad",
         summaryAgent: "Agente",
-        summaryRoute: "Ruta de viaje"
+        summaryRoute: "Ruta de viaje",
+        treatmentCategoriesLabel: "¿Qué tipo de tratamiento le interesa? (opcional)",
+        treatmentOther: "Otro",
+        travelWindowLabel: "Ventana de viaje preferida (opcional)",
+        travelStartLabel: "Fecha de viaje más temprana",
+        travelEndLabel: "Fecha de viaje más tardía",
+        medicalRecordsLabel: "Historial médico o informes existentes (opcional)",
+        medicalRecordsHint: "PDF, JPG o PNG — almacenado de forma segura y compartido solo con su agente/hospital asignado",
       },
       footer: {
         aboutTitle: "Acerca de Health Blueprint",
@@ -1120,6 +1154,7 @@ window.I18N = {
         termsLink: "Términos de Servicio",
         privacyLink: "Política de Privacidad",
         visaLink: "Visa Médica e Información de Viaje",
+        faqLink: "Preguntas Frecuentes",
         phoneLabel: "Teléfono",
         exampleNote: "(ejemplo — pendiente de agregar)"
       },
@@ -1128,6 +1163,7 @@ window.I18N = {
         termsTitle: "Términos de Servicio",
         privacyTitle: "Política de Privacidad",
         visaTitle: "Visa Médica e Información de Viaje",
+        faqTitle: "Preguntas Frecuentes",
         lastUpdated: "Última actualización: {date}",
         englishOnlyNote: "Este documento está disponible actualmente solo en inglés."
       },
@@ -1441,7 +1477,14 @@ window.I18N = {
         summaryHospital: "Hôpital",
         summaryProgram: "Spécialité",
         summaryAgent: "Agent",
-        summaryRoute: "Itinéraire de voyage"
+        summaryRoute: "Itinéraire de voyage",
+        treatmentCategoriesLabel: "Quel type de traitement vous intéresse ? (facultatif)",
+        treatmentOther: "Autre",
+        travelWindowLabel: "Période de voyage souhaitée (facultatif)",
+        travelStartLabel: "Date de voyage la plus proche",
+        travelEndLabel: "Date de voyage la plus tardive",
+        medicalRecordsLabel: "Dossiers médicaux ou rapports existants (facultatif)",
+        medicalRecordsHint: "PDF, JPG ou PNG — stocké en toute sécurité et partagé uniquement avec votre agent/hôpital assigné",
       },
       footer: {
         aboutTitle: "À propos de Health Blueprint",
@@ -1452,6 +1495,7 @@ window.I18N = {
         termsLink: "Conditions d'utilisation",
         privacyLink: "Politique de confidentialité",
         visaLink: "Visa Médical et Informations de Voyage",
+        faqLink: "FAQ",
         phoneLabel: "Téléphone",
         exampleNote: "(exemple — à ajouter)"
       },
@@ -1460,6 +1504,7 @@ window.I18N = {
         termsTitle: "Conditions d'utilisation",
         privacyTitle: "Politique de confidentialité",
         visaTitle: "Visa Médical et Informations de Voyage",
+        faqTitle: "Foire Aux Questions",
         lastUpdated: "Dernière mise à jour : {date}",
         englishOnlyNote: "Ce document est actuellement disponible uniquement en anglais."
       },
@@ -1773,7 +1818,14 @@ window.I18N = {
         summaryHospital: "Krankenhaus",
         summaryProgram: "Fachbereich",
         summaryAgent: "Betreuer",
-        summaryRoute: "Reiseroute"
+        summaryRoute: "Reiseroute",
+        treatmentCategoriesLabel: "An welcher Behandlung sind Sie interessiert? (optional)",
+        treatmentOther: "Sonstiges",
+        travelWindowLabel: "Bevorzugter Reisezeitraum (optional)",
+        travelStartLabel: "Frühestes Reisedatum",
+        travelEndLabel: "Spätestes Reisedatum",
+        medicalRecordsLabel: "Vorhandene medizinische Unterlagen oder Berichte (optional)",
+        medicalRecordsHint: "PDF, JPG oder PNG — sicher gespeichert und nur mit Ihrem zugewiesenen Agenten/Krankenhaus geteilt",
       },
       footer: {
         aboutTitle: "Über Health Blueprint",
@@ -1784,6 +1836,7 @@ window.I18N = {
         termsLink: "Nutzungsbedingungen",
         privacyLink: "Datenschutzerklärung",
         visaLink: "Medizinisches Visum & Reiseinformationen",
+        faqLink: "FAQ",
         phoneLabel: "Telefon",
         exampleNote: "(Beispiel — wird noch ergänzt)"
       },
@@ -1792,6 +1845,7 @@ window.I18N = {
         termsTitle: "Nutzungsbedingungen",
         privacyTitle: "Datenschutzerklärung",
         visaTitle: "Medizinisches Visum & Reiseinformationen",
+        faqTitle: "Häufig gestellte Fragen",
         lastUpdated: "Zuletzt aktualisiert: {date}",
         englishOnlyNote: "Dieses Dokument liegt derzeit nur auf Englisch vor."
       },
@@ -2105,7 +2159,14 @@ window.I18N = {
         summaryHospital: "Hospital",
         summaryProgram: "Especialidade",
         summaryAgent: "Agente",
-        summaryRoute: "Roteiro de viagem"
+        summaryRoute: "Roteiro de viagem",
+        treatmentCategoriesLabel: "Que tipo de tratamento lhe interessa? (opcional)",
+        treatmentOther: "Outro",
+        travelWindowLabel: "Período de viagem preferido (opcional)",
+        travelStartLabel: "Data de viagem mais próxima",
+        travelEndLabel: "Data de viagem mais distante",
+        medicalRecordsLabel: "Registros médicos ou relatórios existentes (opcional)",
+        medicalRecordsHint: "PDF, JPG ou PNG — armazenado com segurança e compartilhado apenas com seu agente/hospital designado",
       },
       footer: {
         aboutTitle: "Sobre a Health Blueprint",
@@ -2116,6 +2177,7 @@ window.I18N = {
         termsLink: "Termos de Serviço",
         privacyLink: "Política de Privacidade",
         visaLink: "Visto Médico e Informações de Viagem",
+        faqLink: "Perguntas Frequentes",
         phoneLabel: "Telefone",
         exampleNote: "(exemplo — a ser adicionado)"
       },
@@ -2124,6 +2186,7 @@ window.I18N = {
         termsTitle: "Termos de Serviço",
         privacyTitle: "Política de Privacidade",
         visaTitle: "Visto Médico e Informações de Viagem",
+        faqTitle: "Perguntas Frequentes",
         lastUpdated: "Última atualização: {date}",
         englishOnlyNote: "Este documento está atualmente disponível apenas em inglês."
       },
@@ -2437,7 +2500,14 @@ window.I18N = {
         summaryHospital: "Больница",
         summaryProgram: "Направление",
         summaryAgent: "Агент",
-        summaryRoute: "Маршрут поездки"
+        summaryRoute: "Маршрут поездки",
+        treatmentCategoriesLabel: "Какой вид лечения вас интересует? (необязательно)",
+        treatmentOther: "Другое",
+        travelWindowLabel: "Предпочтительные сроки поездки (необязательно)",
+        travelStartLabel: "Самая ранняя дата поездки",
+        travelEndLabel: "Самая поздняя дата поездки",
+        medicalRecordsLabel: "Имеющиеся медицинские записи или заключения (необязательно)",
+        medicalRecordsHint: "PDF, JPG или PNG — надёжно хранится и передаётся только вашему назначенному агенту/больнице",
       },
       footer: {
         aboutTitle: "О Health Blueprint",
@@ -2448,6 +2518,7 @@ window.I18N = {
         termsLink: "Условия использования",
         privacyLink: "Политика конфиденциальности",
         visaLink: "Медицинская виза и информация о поездке",
+        faqLink: "Частые вопросы",
         phoneLabel: "Телефон",
         exampleNote: "(пример — будет добавлено)"
       },
@@ -2456,6 +2527,7 @@ window.I18N = {
         termsTitle: "Условия использования",
         privacyTitle: "Политика конфиденциальности",
         visaTitle: "Медицинская виза и информация о поездке",
+        faqTitle: "Часто задаваемые вопросы",
         lastUpdated: "Последнее обновление: {date}",
         englishOnlyNote: "В настоящее время этот документ доступен только на английском языке."
       },
@@ -2769,7 +2841,14 @@ window.I18N = {
         summaryHospital: "المستشفى",
         summaryProgram: "التخصص",
         summaryAgent: "الوكيل",
-        summaryRoute: "مسار الرحلة"
+        summaryRoute: "مسار الرحلة",
+        treatmentCategoriesLabel: "ما نوع العلاج الذي يهمك؟ (اختياري)",
+        treatmentOther: "أخرى",
+        travelWindowLabel: "فترة السفر المفضلة (اختياري)",
+        travelStartLabel: "أقرب تاريخ للسفر",
+        travelEndLabel: "أبعد تاريخ للسفر",
+        medicalRecordsLabel: "السجلات أو التقارير الطبية الحالية (اختياري)",
+        medicalRecordsHint: "PDF أو JPG أو PNG — يتم تخزينها بأمان ومشاركتها فقط مع الوكيل/المستشفى المخصص لك",
       },
       footer: {
         aboutTitle: "عن Health Blueprint",
@@ -2780,6 +2859,7 @@ window.I18N = {
         termsLink: "شروط الخدمة",
         privacyLink: "سياسة الخصوصية",
         visaLink: "التأشيرة الطبية ومعلومات السفر",
+        faqLink: "الأسئلة الشائعة",
         phoneLabel: "الهاتف",
         exampleNote: "(مثال — سيُضاف لاحقًا)"
       },
@@ -2788,6 +2868,7 @@ window.I18N = {
         termsTitle: "شروط الخدمة",
         privacyTitle: "سياسة الخصوصية",
         visaTitle: "التأشيرة الطبية ومعلومات السفر",
+        faqTitle: "الأسئلة الشائعة",
         lastUpdated: "آخر تحديث: {date}",
         englishOnlyNote: "هذا المستند متاح حاليًا باللغة الإنجليزية فقط."
       },
@@ -3101,7 +3182,14 @@ window.I18N = {
         summaryHospital: "病院",
         summaryProgram: "診療科",
         summaryAgent: "エージェント",
-        summaryRoute: "旅程ルート"
+        summaryRoute: "旅程ルート",
+        treatmentCategoriesLabel: "どのような治療にご興味がありますか？（任意）",
+        treatmentOther: "その他",
+        travelWindowLabel: "希望の渡航期間（任意）",
+        travelStartLabel: "渡航可能な最も早い日",
+        travelEndLabel: "渡航可能な最も遅い日",
+        medicalRecordsLabel: "既存の医療記録・検査報告書（任意）",
+        medicalRecordsHint: "PDF、JPG、PNG形式に対応 — 安全に保管され、担当のエージェント/病院にのみ共有されます",
       },
       footer: {
         aboutTitle: "Health Blueprintについて",
@@ -3112,6 +3200,7 @@ window.I18N = {
         termsLink: "利用規約",
         privacyLink: "プライバシーポリシー",
         visaLink: "医療ビザと渡航情報",
+        faqLink: "よくある質問",
         phoneLabel: "電話番号",
         exampleNote: "（例——追って追加予定）"
       },
@@ -3120,6 +3209,7 @@ window.I18N = {
         termsTitle: "利用規約",
         privacyTitle: "プライバシーポリシー",
         visaTitle: "医療ビザと渡航情報",
+        faqTitle: "よくある質問",
         lastUpdated: "最終更新日：{date}",
         englishOnlyNote: "この文書は現在英語のみで提供されています。"
       },
@@ -3433,7 +3523,14 @@ window.I18N = {
         summaryHospital: "병원",
         summaryProgram: "진료과",
         summaryAgent: "에이전트",
-        summaryRoute: "여행 경로"
+        summaryRoute: "여행 경로",
+        treatmentCategoriesLabel: "어떤 치료에 관심이 있으신가요? (선택 사항)",
+        treatmentOther: "기타",
+        travelWindowLabel: "선호하는 여행 기간 (선택 사항)",
+        travelStartLabel: "가장 빠른 여행 날짜",
+        travelEndLabel: "가장 늦은 여행 날짜",
+        medicalRecordsLabel: "기존 의료 기록 또는 보고서 (선택 사항)",
+        medicalRecordsHint: "PDF, JPG 또는 PNG — 안전하게 저장되며 배정된 에이전트/병원에만 공유됩니다",
       },
       footer: {
         aboutTitle: "Health Blueprint 소개",
@@ -3444,6 +3541,7 @@ window.I18N = {
         termsLink: "이용약관",
         privacyLink: "개인정보처리방침",
         visaLink: "의료 비자 및 여행 정보",
+        faqLink: "자주 묻는 질문",
         phoneLabel: "전화번호",
         exampleNote: "(예시 — 추후 추가 예정)"
       },
@@ -3452,6 +3550,7 @@ window.I18N = {
         termsTitle: "이용약관",
         privacyTitle: "개인정보처리방침",
         visaTitle: "의료 비자 및 여행 정보",
+        faqTitle: "자주 묻는 질문",
         lastUpdated: "최종 업데이트: {date}",
         englishOnlyNote: "이 문서는 현재 영어로만 제공됩니다."
       },
@@ -3765,7 +3864,14 @@ window.I18N = {
         summaryHospital: "अस्पताल",
         summaryProgram: "विभाग",
         summaryAgent: "एजेंट",
-        summaryRoute: "यात्रा मार्ग"
+        summaryRoute: "यात्रा मार्ग",
+        treatmentCategoriesLabel: "आप किस प्रकार के उपचार में रुचि रखते हैं? (वैकल्पिक)",
+        treatmentOther: "अन्य",
+        travelWindowLabel: "पसंदीदा यात्रा अवधि (वैकल्पिक)",
+        travelStartLabel: "सबसे जल्दी यात्रा तिथि",
+        travelEndLabel: "सबसे देर यात्रा तिथि",
+        medicalRecordsLabel: "मौजूदा मेडिकल रिकॉर्ड या रिपोर्ट (वैकल्पिक)",
+        medicalRecordsHint: "PDF, JPG, या PNG — सुरक्षित रूप से संग्रहीत और केवल आपके नियुक्त एजेंट/अस्पताल के साथ साझा किया जाता है",
       },
       footer: {
         aboutTitle: "Health Blueprint के बारे में",
@@ -3776,6 +3882,7 @@ window.I18N = {
         termsLink: "सेवा की शर्तें",
         privacyLink: "गोपनीयता नीति",
         visaLink: "चिकित्सा वीज़ा और यात्रा जानकारी",
+        faqLink: "सामान्य प्रश्न",
         phoneLabel: "फ़ोन",
         exampleNote: "(उदाहरण — जल्द जोड़ा जाएगा)"
       },
@@ -3784,6 +3891,7 @@ window.I18N = {
         termsTitle: "सेवा की शर्तें",
         privacyTitle: "गोपनीयता नीति",
         visaTitle: "चिकित्सा वीज़ा और यात्रा जानकारी",
+        faqTitle: "अक्सर पूछे जाने वाले प्रश्न",
         lastUpdated: "अंतिम अपडेट: {date}",
         englishOnlyNote: "यह दस्तावेज़ फ़िलहाल केवल अंग्रेज़ी में उपलब्ध है।"
       },
@@ -4097,7 +4205,14 @@ window.I18N = {
         summaryHospital: "Rumah Sakit",
         summaryProgram: "Spesialisasi",
         summaryAgent: "Agen",
-        summaryRoute: "Rute perjalanan"
+        summaryRoute: "Rute perjalanan",
+        treatmentCategoriesLabel: "Jenis perawatan apa yang Anda minati? (opsional)",
+        treatmentOther: "Lainnya",
+        travelWindowLabel: "Rentang waktu perjalanan yang diinginkan (opsional)",
+        travelStartLabel: "Tanggal perjalanan paling awal",
+        travelEndLabel: "Tanggal perjalanan paling akhir",
+        medicalRecordsLabel: "Rekam medis atau laporan yang sudah ada (opsional)",
+        medicalRecordsHint: "PDF, JPG, atau PNG — disimpan dengan aman dan hanya dibagikan dengan agen/rumah sakit yang ditugaskan",
       },
       footer: {
         aboutTitle: "Tentang Health Blueprint",
@@ -4108,6 +4223,7 @@ window.I18N = {
         termsLink: "Ketentuan Layanan",
         privacyLink: "Kebijakan Privasi",
         visaLink: "Info Visa Medis & Perjalanan",
+        faqLink: "FAQ",
         phoneLabel: "Telepon",
         exampleNote: "(contoh — akan ditambahkan)"
       },
@@ -4116,6 +4232,7 @@ window.I18N = {
         termsTitle: "Ketentuan Layanan",
         privacyTitle: "Kebijakan Privasi",
         visaTitle: "Info Visa Medis & Perjalanan",
+        faqTitle: "Pertanyaan yang Sering Diajukan",
         lastUpdated: "Terakhir diperbarui: {date}",
         englishOnlyNote: "Dokumen ini saat ini hanya tersedia dalam bahasa Inggris."
       },
@@ -4428,7 +4545,14 @@ window.I18N = {
         summaryHospital: "Bệnh viện",
         summaryProgram: "Chuyên khoa",
         summaryAgent: "Đại lý",
-        summaryRoute: "Lộ trình di chuyển"
+        summaryRoute: "Lộ trình di chuyển",
+        treatmentCategoriesLabel: "Bạn quan tâm đến loại điều trị nào? (không bắt buộc)",
+        treatmentOther: "Khác",
+        travelWindowLabel: "Thời gian du lịch mong muốn (không bắt buộc)",
+        travelStartLabel: "Ngày đi sớm nhất",
+        travelEndLabel: "Ngày đi muộn nhất",
+        medicalRecordsLabel: "Hồ sơ hoặc báo cáo y tế hiện có (không bắt buộc)",
+        medicalRecordsHint: "PDF, JPG hoặc PNG — được lưu trữ an toàn và chỉ chia sẻ với đại lý/bệnh viện được chỉ định cho bạn",
       },
       footer: {
         aboutTitle: "Về Health Blueprint",
@@ -4439,6 +4563,7 @@ window.I18N = {
         termsLink: "Điều Khoản Dịch Vụ",
         privacyLink: "Chính Sách Bảo Mật",
         visaLink: "Thông Tin Visa Y Tế & Du Lịch",
+        faqLink: "Câu hỏi thường gặp",
         phoneLabel: "Điện thoại",
         exampleNote: "(ví dụ — sẽ được bổ sung)"
       },
@@ -4447,6 +4572,7 @@ window.I18N = {
         termsTitle: "Điều Khoản Dịch Vụ",
         privacyTitle: "Chính Sách Bảo Mật",
         visaTitle: "Thông Tin Visa Y Tế & Du Lịch",
+        faqTitle: "Câu hỏi thường gặp",
         lastUpdated: "Cập nhật lần cuối: {date}",
         englishOnlyNote: "Tài liệu này hiện chỉ có bằng tiếng Anh."
       },
@@ -4759,7 +4885,14 @@ window.I18N = {
         summaryHospital: "โรงพยาบาล",
         summaryProgram: "ความเชี่ยวชาญ",
         summaryAgent: "ตัวแทน",
-        summaryRoute: "เส้นทางการเดินทาง"
+        summaryRoute: "เส้นทางการเดินทาง",
+        treatmentCategoriesLabel: "คุณสนใจการรักษาประเภทใด? (ไม่บังคับ)",
+        treatmentOther: "อื่นๆ",
+        travelWindowLabel: "ช่วงเวลาเดินทางที่ต้องการ (ไม่บังคับ)",
+        travelStartLabel: "วันที่เดินทางเร็วที่สุด",
+        travelEndLabel: "วันที่เดินทางช้าที่สุด",
+        medicalRecordsLabel: "ประวัติการรักษาหรือรายงานทางการแพทย์ที่มีอยู่ (ไม่บังคับ)",
+        medicalRecordsHint: "PDF, JPG หรือ PNG — จัดเก็บอย่างปลอดภัยและแชร์เฉพาะกับตัวแทน/โรงพยาบาลที่จับคู่ให้คุณเท่านั้น",
       },
       footer: {
         aboutTitle: "เกี่ยวกับ Health Blueprint",
@@ -4770,6 +4903,7 @@ window.I18N = {
         termsLink: "ข้อกำหนดการให้บริการ",
         privacyLink: "นโยบายความเป็นส่วนตัว",
         visaLink: "ข้อมูลวีซ่ารักษาพยาบาลและการเดินทาง",
+        faqLink: "คำถามที่พบบ่อย",
         phoneLabel: "โทรศัพท์",
         exampleNote: "(ตัวอย่าง — จะเพิ่มในภายหลัง)"
       },
@@ -4778,6 +4912,7 @@ window.I18N = {
         termsTitle: "ข้อกำหนดการให้บริการ",
         privacyTitle: "นโยบายความเป็นส่วนตัว",
         visaTitle: "ข้อมูลวีซ่ารักษาพยาบาลและการเดินทาง",
+        faqTitle: "คำถามที่พบบ่อย",
         lastUpdated: "อัปเดตล่าสุด: {date}",
         englishOnlyNote: "เอกสารนี้มีให้บริการเฉพาะภาษาอังกฤษในขณะนี้"
       },
@@ -5090,7 +5225,14 @@ window.I18N = {
         summaryHospital: "Hospital",
         summaryProgram: "Kepakaran",
         summaryAgent: "Ejen",
-        summaryRoute: "Laluan perjalanan"
+        summaryRoute: "Laluan perjalanan",
+        treatmentCategoriesLabel: "Apakah jenis rawatan yang anda minati? (pilihan)",
+        treatmentOther: "Lain-lain",
+        travelWindowLabel: "Tempoh perjalanan pilihan (pilihan)",
+        travelStartLabel: "Tarikh perjalanan paling awal",
+        travelEndLabel: "Tarikh perjalanan paling lewat",
+        medicalRecordsLabel: "Rekod perubatan atau laporan sedia ada (pilihan)",
+        medicalRecordsHint: "PDF, JPG atau PNG — disimpan dengan selamat dan dikongsi hanya dengan ejen/hospital yang ditugaskan",
       },
       footer: {
         aboutTitle: "Tentang Health Blueprint",
@@ -5101,6 +5243,7 @@ window.I18N = {
         termsLink: "Terma Perkhidmatan",
         privacyLink: "Dasar Privasi",
         visaLink: "Maklumat Visa Perubatan & Perjalanan",
+        faqLink: "Soalan Lazim",
         phoneLabel: "Telefon",
         exampleNote: "(contoh — akan ditambah)"
       },
@@ -5109,6 +5252,7 @@ window.I18N = {
         termsTitle: "Terma Perkhidmatan",
         privacyTitle: "Dasar Privasi",
         visaTitle: "Maklumat Visa Perubatan & Perjalanan",
+        faqTitle: "Soalan Lazim",
         lastUpdated: "Terakhir dikemas kini: {date}",
         englishOnlyNote: "Dokumen ini pada masa ini hanya disediakan dalam bahasa Inggeris."
       },
@@ -5421,7 +5565,14 @@ window.I18N = {
         summaryHospital: "Ospital",
         summaryProgram: "Espesyalidad",
         summaryAgent: "Ahente",
-        summaryRoute: "Ruta ng biyahe"
+        summaryRoute: "Ruta ng biyahe",
+        treatmentCategoriesLabel: "Anong uri ng paggamot ang interesado ka? (opsyonal)",
+        treatmentOther: "Iba pa",
+        travelWindowLabel: "Nais na oras ng paglalakbay (opsyonal)",
+        travelStartLabel: "Pinakamaagang petsa ng paglalakbay",
+        travelEndLabel: "Pinakahuling petsa ng paglalakbay",
+        medicalRecordsLabel: "Umiiral na medikal na rekord o ulat (opsyonal)",
+        medicalRecordsHint: "PDF, JPG, o PNG — ligtas na iniimbak at ibinabahagi lamang sa itinalagang ahente/ospital mo",
       },
       footer: {
         aboutTitle: "Tungkol sa Health Blueprint",
@@ -5432,6 +5583,7 @@ window.I18N = {
         termsLink: "Mga Tuntunin ng Serbisyo",
         privacyLink: "Patakaran sa Privacy",
         visaLink: "Impormasyon sa Medical Visa at Paglalakbay",
+        faqLink: "FAQ",
         phoneLabel: "Telepono",
         exampleNote: "(halimbawa — idaragdag pa)"
       },
@@ -5440,6 +5592,7 @@ window.I18N = {
         termsTitle: "Mga Tuntunin ng Serbisyo",
         privacyTitle: "Patakaran sa Privacy",
         visaTitle: "Impormasyon sa Medical Visa at Paglalakbay",
+        faqTitle: "Mga Madalas Itanong",
         lastUpdated: "Huling na-update: {date}",
         englishOnlyNote: "Ang dokumentong ito ay kasalukuyang nasa Ingles lamang."
       },
@@ -5752,7 +5905,14 @@ window.I18N = {
         summaryHospital: "Ospedale",
         summaryProgram: "Specializzazione",
         summaryAgent: "Agente",
-        summaryRoute: "Percorso di viaggio"
+        summaryRoute: "Percorso di viaggio",
+        treatmentCategoriesLabel: "A quale tipo di trattamento sei interessato? (facoltativo)",
+        treatmentOther: "Altro",
+        travelWindowLabel: "Periodo di viaggio preferito (facoltativo)",
+        travelStartLabel: "Data di viaggio più anticipata",
+        travelEndLabel: "Data di viaggio più tardiva",
+        medicalRecordsLabel: "Cartelle cliniche o referti esistenti (facoltativo)",
+        medicalRecordsHint: "PDF, JPG o PNG — archiviato in modo sicuro e condiviso solo con l'agente/ospedale a te assegnato",
       },
       footer: {
         aboutTitle: "Informazioni su Health Blueprint",
@@ -5763,6 +5923,7 @@ window.I18N = {
         termsLink: "Termini di Servizio",
         privacyLink: "Informativa sulla Privacy",
         visaLink: "Informazioni su Visto Medico e Viaggio",
+        faqLink: "FAQ",
         phoneLabel: "Telefono",
         exampleNote: "(esempio — da aggiungere)"
       },
@@ -5771,6 +5932,7 @@ window.I18N = {
         termsTitle: "Termini di Servizio",
         privacyTitle: "Informativa sulla Privacy",
         visaTitle: "Informazioni su Visto Medico e Viaggio",
+        faqTitle: "Domande Frequenti",
         lastUpdated: "Ultimo aggiornamento: {date}",
         englishOnlyNote: "Questo documento è attualmente disponibile solo in inglese."
       },
@@ -6083,7 +6245,14 @@ window.I18N = {
         summaryHospital: "Ziekenhuis",
         summaryProgram: "Specialisme",
         summaryAgent: "Agent",
-        summaryRoute: "Reisroute"
+        summaryRoute: "Reisroute",
+        treatmentCategoriesLabel: "In welk type behandeling bent u geïnteresseerd? (optioneel)",
+        treatmentOther: "Anders",
+        travelWindowLabel: "Gewenste reisperiode (optioneel)",
+        travelStartLabel: "Vroegste reisdatum",
+        travelEndLabel: "Laatste reisdatum",
+        medicalRecordsLabel: "Bestaande medische dossiers of rapporten (optioneel)",
+        medicalRecordsHint: "PDF, JPG of PNG — veilig opgeslagen en alleen gedeeld met uw toegewezen agent/ziekenhuis",
       },
       footer: {
         aboutTitle: "Over Health Blueprint",
@@ -6094,6 +6263,7 @@ window.I18N = {
         termsLink: "Servicevoorwaarden",
         privacyLink: "Privacybeleid",
         visaLink: "Informatie over Medisch Visum & Reizen",
+        faqLink: "Veelgestelde vragen",
         phoneLabel: "Telefoon",
         exampleNote: "(voorbeeld — wordt nog toegevoegd)"
       },
@@ -6102,6 +6272,7 @@ window.I18N = {
         termsTitle: "Servicevoorwaarden",
         privacyTitle: "Privacybeleid",
         visaTitle: "Informatie over Medisch Visum & Reizen",
+        faqTitle: "Veelgestelde vragen",
         lastUpdated: "Laatst bijgewerkt: {date}",
         englishOnlyNote: "Dit document is momenteel alleen beschikbaar in het Engels."
       },
@@ -6414,7 +6585,14 @@ window.I18N = {
         summaryHospital: "Szpital",
         summaryProgram: "Specjalizacja",
         summaryAgent: "Agent",
-        summaryRoute: "Trasa podróży"
+        summaryRoute: "Trasa podróży",
+        treatmentCategoriesLabel: "Jakim rodzajem leczenia jesteś zainteresowany? (opcjonalnie)",
+        treatmentOther: "Inne",
+        travelWindowLabel: "Preferowany termin podróży (opcjonalnie)",
+        travelStartLabel: "Najwcześniejsza data podróży",
+        travelEndLabel: "Najpóźniejsza data podróży",
+        medicalRecordsLabel: "Istniejąca dokumentacja medyczna lub raporty (opcjonalnie)",
+        medicalRecordsHint: "PDF, JPG lub PNG — bezpiecznie przechowywane i udostępniane wyłącznie przyznanemu agentowi/szpitalowi",
       },
       footer: {
         aboutTitle: "O Health Blueprint",
@@ -6425,6 +6603,7 @@ window.I18N = {
         termsLink: "Warunki Świadczenia Usług",
         privacyLink: "Polityka Prywatności",
         visaLink: "Informacje o Wizie Medycznej i Podróży",
+        faqLink: "FAQ",
         phoneLabel: "Telefon",
         exampleNote: "(przykład — do uzupełnienia)"
       },
@@ -6433,6 +6612,7 @@ window.I18N = {
         termsTitle: "Warunki Świadczenia Usług",
         privacyTitle: "Polityka Prywatności",
         visaTitle: "Informacje o Wizie Medycznej i Podróży",
+        faqTitle: "Najczęściej zadawane pytania",
         lastUpdated: "Ostatnia aktualizacja: {date}",
         englishOnlyNote: "Ten dokument jest obecnie dostępny tylko w języku angielskim."
       },
@@ -6745,7 +6925,14 @@ window.I18N = {
         summaryHospital: "Sjukhus",
         summaryProgram: "Specialitet",
         summaryAgent: "Agent",
-        summaryRoute: "Resrutt"
+        summaryRoute: "Resrutt",
+        treatmentCategoriesLabel: "Vilken typ av behandling är du intresserad av? (valfritt)",
+        treatmentOther: "Annat",
+        travelWindowLabel: "Önskat resefönster (valfritt)",
+        travelStartLabel: "Tidigast önskat resedatum",
+        travelEndLabel: "Senast önskat resedatum",
+        medicalRecordsLabel: "Befintliga journaler eller rapporter (valfritt)",
+        medicalRecordsHint: "PDF, JPG eller PNG — lagras säkert och delas endast med din tilldelade agent/sjukhus",
       },
       footer: {
         aboutTitle: "Om Health Blueprint",
@@ -6756,6 +6943,7 @@ window.I18N = {
         termsLink: "Användarvillkor",
         privacyLink: "Integritetspolicy",
         visaLink: "Information om Medicinskt Visum & Resa",
+        faqLink: "Vanliga frågor",
         phoneLabel: "Telefon",
         exampleNote: "(exempel — läggs till senare)"
       },
@@ -6764,6 +6952,7 @@ window.I18N = {
         termsTitle: "Användarvillkor",
         privacyTitle: "Integritetspolicy",
         visaTitle: "Information om Medicinskt Visum & Resa",
+        faqTitle: "Vanliga frågor",
         lastUpdated: "Senast uppdaterad: {date}",
         englishOnlyNote: "Detta dokument finns för närvarande endast på engelska."
       },
