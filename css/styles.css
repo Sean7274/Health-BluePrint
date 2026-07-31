@@ -239,6 +239,10 @@ img { max-width: 100%; display: block; }
   font-family: inherit; background: #fff; color: var(--color-text);
 }
 .field textarea { min-height: 100px; resize: vertical; }
+.field-sublabel { font-weight: 600; font-size: 0.85em; color: var(--color-text-muted); }
+.checkbox-group { display: flex; flex-wrap: wrap; gap: 8px 14px; }
+.checkbox-option { display: flex; align-items: center; gap: 6px; font-weight: 400; cursor: pointer; }
+.checkbox-option input { width: auto; }
 .required-note { color: var(--color-text-muted); font-size: 0.85em; margin-bottom: 16px; }
 .success-box {
   background: var(--color-success-bg); color: var(--color-success-text); border-radius: var(--radius);
@@ -273,6 +277,17 @@ img { max-width: 100%; display: block; }
 .scroll-top-btn:hover, .scroll-top-btn:focus-visible { background: var(--color-primary-dark); }
 [dir="rtl"] .scroll-top-btn { right: auto; left: 20px; }
 @media (max-width: 640px) { .scroll-top-btn { right: 14px; bottom: 18px; width: 44px; height: 44px; } [dir="rtl"] .scroll-top-btn { left: 14px; } }
+
+/* ---------- WhatsApp floating button ---------- */
+.whatsapp-float-btn {
+  position: fixed; left: 20px; bottom: 28px; z-index: 90;
+  width: 48px; height: 48px; border-radius: 50%; border: none;
+  background: #25d366; color: #fff; box-shadow: var(--shadow-hover);
+  display: flex; align-items: center; justify-content: center; text-decoration: none;
+}
+.whatsapp-float-btn:hover, .whatsapp-float-btn:focus-visible { background: #1fb457; }
+[dir="rtl"] .whatsapp-float-btn { left: auto; right: 20px; }
+@media (max-width: 640px) { .whatsapp-float-btn { left: 14px; bottom: 18px; width: 44px; height: 44px; } [dir="rtl"] .whatsapp-float-btn { right: 14px; } }
 
 /* ---------- Icon system ---------- */
 .icon-svg { display: block; flex-shrink: 0; }

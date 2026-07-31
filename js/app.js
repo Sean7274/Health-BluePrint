@@ -57,14 +57,20 @@
       '<p><a href="mailto:hello@healthblueprint.example">hello@healthblueprint.example</a></p>' +
       '<p>' + Icons.html("phone", { size: 15 }) + ' +1 (555) 000-0000 <span class="legal-note">' + esc(t("footer.exampleNote")) + "</span></p>" +
       '<p><a href="https://wa.me/15550000000" target="_blank" rel="noopener noreferrer">' + Icons.html("chat", { size: 15 }) + " WhatsApp</a> <span class=\"legal-note\">" + esc(t("footer.exampleNote")) + "</span></p>" +
+      '<p><a href="https://t.me/healthblueprint" target="_blank" rel="noopener noreferrer">' + Icons.html("chat", { size: 15 }) + " Telegram</a> <span class=\"legal-note\">" + esc(t("footer.exampleNote")) + "</span></p>" +
       '<p><a href="https://facebook.com/healthblueprint" target="_blank" rel="noopener noreferrer">Facebook</a> <span class="legal-note">' + esc(t("footer.exampleNote")) + "</span></p>" +
       '<p><a href="https://instagram.com/healthblueprint" target="_blank" rel="noopener noreferrer">Instagram</a> <span class="legal-note">' + esc(t("footer.exampleNote")) + "</span></p>";
+    var waBtn = document.getElementById("whatsappFloatBtn");
+    waBtn.innerHTML = Icons.html("chat", { size: 24 });
+    waBtn.title = "WhatsApp " + t("footer.exampleNote");
+
     document.getElementById("footerDisclaimer").textContent = t("footer.disclaimer");
     document.getElementById("footerRights").textContent = t("footer.rights");
     document.getElementById("footerYear").textContent = String(new Date().getFullYear());
     document.getElementById("footerTermsLink").textContent = t("footer.termsLink");
     document.getElementById("footerPrivacyLink").textContent = t("footer.privacyLink");
     document.getElementById("footerVisaLink").textContent = t("footer.visaLink");
+    document.getElementById("footerFaqLink").textContent = t("footer.faqLink");
 
     var langSelect = document.getElementById("langSelect");
     langSelect.innerHTML = SUPPORTED_LANGS.map(function (code) {
@@ -90,11 +96,15 @@
   }
 
   /* ---------------- routing ---------------- */
-  function parseHash() {
-    var hash = location.hash.replace(/^#/, "") || "/";
-    var qIndex = hash.indexOf("?");
-    var path = qIndex === -1 ? hash : hash.slice(0, qIndex);
-    var queryStr = qIndex === -1 ? "" : hash.slice(qIndex + 1);
+  // Real pushState routing (clean URLs like /hospitals instead of #/hospitals),
+  // paired with 404.html's GitHub Pages redirect trick so direct/deep links
+  // and crawlers still resolve to real, distinct URLs. Internal links are
+  // plain <a href="/..."> markup; a single delegated click listener below
+  // intercepts same-origin path clicks and turns them into pushState
+  // navigations instead of full page loads.
+  function parsePath() {
+    var path = location.pathname || "/";
+    var queryStr = location.search.replace(/^\?/, "");
     var query = {};
     queryStr.split("&").forEach(function (pair) {
       if (!pair) return;
@@ -105,8 +115,41 @@
     return { segments: segments, query: query };
   }
 
+  function navigate(path) {
+    if (path !== location.pathname + location.search) history.pushState(null, "", path);
+    route();
+  }
+
+  var OUTBOUND_CHANNEL_PATTERNS = [
+    [/^mailto:/, "email"],
+    [/^tel:/, "phone"],
+    [/wa\.me|whatsapp\.com/, "whatsapp"],
+    [/t\.me|telegram\.me/, "telegram"],
+    [/facebook\.com/, "facebook"],
+    [/instagram\.com/, "instagram"]
+  ];
+  function outboundChannel(href) {
+    var match = OUTBOUND_CHANNEL_PATTERNS.filter(function (p) { return p[0].test(href); })[0];
+    return match ? match[1] : null;
+  }
+
+  document.addEventListener("click", function (ev) {
+    if (ev.defaultPrevented || ev.button !== 0 || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return;
+    var a = ev.target.closest ? ev.target.closest("a") : null;
+    if (!a) return;
+    var href = a.getAttribute("href");
+    if (!href) return;
+    var channel = outboundChannel(href);
+    if (channel) { Analytics.track("contact_outbound_click", { channel: channel }); return; }
+    if (href.indexOf("/") !== 0) return; // only same-origin absolute-path links are app routes
+    if (a.target && a.target !== "_self") return;
+    if (a.hasAttribute("download")) return;
+    ev.preventDefault();
+    navigate(href);
+  });
+
   function route() {
-    var r = parseHash();
+    var r = parsePath();
     window.scrollTo(0, 0);
     if (r.segments.length === 0) {
       renderHome();
@@ -142,11 +185,13 @@
       renderLegalPage("privacy");
     } else if (r.segments[0] === "visa") {
       renderLegalPage("visa");
+    } else if (r.segments[0] === "faq") {
+      renderLegalPage("faq");
     } else {
       renderHome();
     }
   }
-  window.addEventListener("hashchange", route);
+  window.addEventListener("popstate", route);
 
   /* ---------------- shared helpers ---------------- */
   function esc(str) {
@@ -238,7 +283,7 @@
 
   // Auth state is loaded asynchronously (a network round trip to Supabase),
   // so the header renders without login controls first, then fills in once
-  // ready. If the visitor lands directly on #/account or #/admin (e.g. a
+  // ready. If the visitor lands directly on /account or /admin (e.g. a
   // page refresh while already logged in), we re-run the router once that
   // first resolution completes so the page reflects real auth state instead
   // of permanently showing "please log in".
@@ -252,7 +297,7 @@
         renderAuthControls();
         if (firstResolve) {
           firstResolve = false;
-          var seg = parseHash().segments[0];
+          var seg = parsePath().segments[0];
           if (seg === "account" || seg === "admin") route();
         }
       });
@@ -264,13 +309,13 @@
     if (!el) return;
     if (!authState.ready) { el.innerHTML = ""; return; }
     if (!authState.user) {
-      el.innerHTML = '<a href="#/login" class="btn btn-secondary btn-nav">' + esc(t("auth.logIn")) + "</a>";
+      el.innerHTML = '<a href="/login" class="btn btn-secondary btn-nav">' + esc(t("auth.logIn")) + "</a>";
       return;
     }
     el.innerHTML =
       '<span class="auth-menu">' +
-        '<a href="#/account" class="btn btn-secondary btn-nav">' + esc(t("auth.myRequests")) + "</a>" +
-        (isAdmin() ? '<a href="#/admin" class="btn btn-secondary btn-nav">' + esc(t("auth.admin")) + "</a>" : "") +
+        '<a href="/account" class="btn btn-secondary btn-nav">' + esc(t("auth.myRequests")) + "</a>" +
+        (isAdmin() ? '<a href="/admin" class="btn btn-secondary btn-nav">' + esc(t("auth.admin")) + "</a>" : "") +
         '<button type="button" class="btn btn-secondary btn-nav" id="logoutBtn">' + esc(t("auth.logOut")) + "</button>" +
       "</span>";
     document.getElementById("logoutBtn").onclick = function () {
@@ -278,7 +323,7 @@
         authState.user = null;
         authState.profile = null;
         renderAuthControls();
-        location.hash = "#/";
+        navigate("/");
       });
     };
   }
@@ -343,7 +388,7 @@
     query = query || {};
     mainEl.innerHTML =
       '<section class="section container">' +
-        '<a class="btn-back" href="#/">' + Icons.html("arrow-left", { size: 18 }) + esc(t("common.back")) + "</a>" +
+        '<a class="btn-back" href="/">' + Icons.html("arrow-left", { size: 18 }) + esc(t("common.back")) + "</a>" +
         '<div class="form-card" style="margin-top:14px;max-width:480px;">' +
           "<h1>" + esc(t("auth.loginTitle")) + "</h1>" +
           "<p>" + esc(t("auth.loginSubtitle")) + "</p>" +
@@ -358,7 +403,7 @@
               '<button type="submit" class="btn btn-primary btn-block">' + esc(t("auth.submitLogin")) + "</button>" +
             "</form>" +
             '<p style="margin-top:14px;"><button type="button" class="link-btn" id="showCodeLoginBtn">' + esc(t("auth.loginWithCode")) + "</button></p>" +
-            '<p style="margin-top:6px;">' + esc(t("auth.noAccountPrompt")) + ' <a href="#/signup">' + esc(t("auth.createOne")) + "</a></p>" +
+            '<p style="margin-top:6px;">' + esc(t("auth.noAccountPrompt")) + ' <a href="/signup">' + esc(t("auth.createOne")) + "</a></p>" +
             "</div>" +
           "</div>" +
 
@@ -385,7 +430,7 @@
       return refreshProfile().then(function () {
         authState.ready = true;
         renderAuthControls();
-        location.hash = "#/";
+        navigate("/");
       });
     }
 
@@ -455,7 +500,7 @@
   function renderSignup() {
     mainEl.innerHTML =
       '<section class="section container">' +
-        '<a class="btn-back" href="#/">' + Icons.html("arrow-left", { size: 18 }) + esc(t("common.back")) + "</a>" +
+        '<a class="btn-back" href="/">' + Icons.html("arrow-left", { size: 18 }) + esc(t("common.back")) + "</a>" +
         '<div class="form-card" style="margin-top:14px;max-width:480px;">' +
 
           '<div id="signupStep1">' +
@@ -484,15 +529,15 @@
 
               '<label class="agree-check"><input type="checkbox" id="sAgreeTerms" required><span>' +
                 t("auth.agreeToTerms", {
-                  terms: '<a href="#/terms" target="_blank" rel="noopener noreferrer">' + esc(t("legal.termsTitle")) + "</a>",
-                  privacy: '<a href="#/privacy" target="_blank" rel="noopener noreferrer">' + esc(t("legal.privacyTitle")) + "</a>"
+                  terms: '<a href="/terms" target="_blank" rel="noopener noreferrer">' + esc(t("legal.termsTitle")) + "</a>",
+                  privacy: '<a href="/privacy" target="_blank" rel="noopener noreferrer">' + esc(t("legal.privacyTitle")) + "</a>"
                 }) +
               "</span></label>" +
 
               formErrorHtml() +
               '<button type="submit" class="btn btn-primary btn-block">' + esc(t("auth.submitSignup")) + "</button>" +
             "</form>" +
-            '<p style="margin-top:14px;">' + esc(t("auth.haveAccountPrompt")) + ' <a href="#/login">' + esc(t("auth.logInInstead")) + "</a></p>" +
+            '<p style="margin-top:14px;">' + esc(t("auth.haveAccountPrompt")) + ' <a href="/login">' + esc(t("auth.logInInstead")) + "</a></p>" +
             "</div>" +
           "</div>" +
 
@@ -505,7 +550,7 @@
               '<button type="submit" class="btn btn-primary btn-block">' + esc(t("auth.verifyCode")) + "</button>" +
             "</form>" +
             '<p style="margin-top:14px;"><button type="button" class="link-btn" id="resendCodeBtn">' + esc(t("auth.resendCode")) + "</button></p>" +
-            '<p style="margin-top:6px;">' + esc(t("auth.alreadyVerifiedPrompt")) + ' <a href="#/login">' + esc(t("auth.logInInstead")) + "</a></p>" +
+            '<p style="margin-top:6px;">' + esc(t("auth.alreadyVerifiedPrompt")) + ' <a href="/login">' + esc(t("auth.logInInstead")) + "</a></p>" +
           "</div>" +
 
         "</div>" +
@@ -562,7 +607,7 @@
           return window.sb.auth.signOut().then(function () {
             authState.user = null;
             authState.profile = null;
-            location.hash = "#/login" + qs({ verified: "1" });
+            navigate("/login" + qs({ verified: "1" }));
           });
         })
         .catch(function () { showFormError("signupVerifyError", t("auth.genericError")); });
@@ -592,7 +637,7 @@
   function renderAccount() {
     mainEl.innerHTML =
       '<section class="section container">' +
-        '<a class="btn-back" href="#/">' + Icons.html("arrow-left", { size: 18 }) + esc(t("common.back")) + "</a>" +
+        '<a class="btn-back" href="/">' + Icons.html("arrow-left", { size: 18 }) + esc(t("common.back")) + "</a>" +
         '<h1 style="margin-top:14px;">' + esc(t("account.title")) + "</h1>" +
         "<p>" + esc(t("account.subtitle")) + "</p>" +
         '<div id="accountResults" class="card-grid" style="margin-top:16px;"></div>' +
@@ -601,7 +646,7 @@
     var el = document.getElementById("accountResults");
     if (!authState.ready) { el.innerHTML = ""; return; }
     if (!authState.user) {
-      el.innerHTML = '<div class="empty-state">' + esc(t("account.loginRequired")) + ' <a href="#/login">' + esc(t("auth.logIn")) + "</a></div>";
+      el.innerHTML = '<div class="empty-state">' + esc(t("account.loginRequired")) + ' <a href="/login">' + esc(t("auth.logIn")) + "</a></div>";
       return;
     }
     if (!window.sb) { el.innerHTML = '<div class="empty-state">' + esc(t("auth.genericError")) + "</div>"; return; }
@@ -619,7 +664,7 @@
     mainEl.innerHTML =
       '<div class="admin-page">' +
         '<section class="section container">' +
-          '<a class="btn-back" href="#/">' + Icons.html("arrow-left", { size: 18 }) + esc(t("common.back")) + "</a>" +
+          '<a class="btn-back" href="/">' + Icons.html("arrow-left", { size: 18 }) + esc(t("common.back")) + "</a>" +
           '<div style="margin-top:14px;"><span class="admin-badge">' + Icons.html("safety", { size: 15 }) + esc(t("auth.admin")) + "</span></div>" +
           "<h1>" + esc(t("admin.title")) + "</h1>" +
           '<div id="adminBody"></div>' +
@@ -730,7 +775,7 @@
         '<div class="hero-inner">' +
           "<h1>" + esc(t("hero.title")) + "</h1>" +
           '<p class="subtitle">' + esc(t("hero.subtitle")) + "</p>" +
-          '<a class="btn btn-primary" href="#/hospitals">' + esc(t("hero.ctaStart")) + "</a>" +
+          '<a class="btn btn-primary" href="/hospitals">' + esc(t("hero.ctaStart")) + "</a>" +
           '<div class="trust-row">' +
             trustItem("check", t("hero.trust1")) +
             trustItem("globe", t("hero.trust2")) +
@@ -748,10 +793,10 @@
       '<section class="section container">' +
         "<h2>" + esc(t("pillars.sectionTitle")) + "</h2>" +
         '<div class="choice-row pillar-row">' +
-          pillarCardHtml("medical", "pillar-1", t("pillars.medicalTitle"), t("pillars.medicalDesc"), "#/hospitals") +
-          pillarCardHtml("travel", "pillar-2", t("pillars.travelTitle"), t("pillars.travelDesc"), "#/trip") +
-          pillarCardHtml("food", "pillar-3", t("pillars.foodTitle"), t("pillars.foodDesc"), "#/food") +
-          pillarCardHtml("safety", "pillar-4", t("pillars.safetyTitle"), t("pillars.safetyDesc"), "#/safety") +
+          pillarCardHtml("medical", "pillar-1", t("pillars.medicalTitle"), t("pillars.medicalDesc"), "/hospitals") +
+          pillarCardHtml("travel", "pillar-2", t("pillars.travelTitle"), t("pillars.travelDesc"), "/trip") +
+          pillarCardHtml("food", "pillar-3", t("pillars.foodTitle"), t("pillars.foodDesc"), "/food") +
+          pillarCardHtml("safety", "pillar-4", t("pillars.safetyTitle"), t("pillars.safetyDesc"), "/safety") +
         "</div>" +
       "</section>" +
 
@@ -789,7 +834,7 @@
     var specialtyGrid = document.getElementById("specialtyGrid");
     D.specialties.forEach(function (s) {
       var link = document.createElement("a");
-      link.href = "#/hospitals?specialty=" + s;
+      link.href = "/hospitals?specialty=" + s;
       link.className = "area-card";
       link.innerHTML = iconBadge(specialtyIconName(s), s) + "<span>" + esc(specialtyLabel(s)) + "</span>";
       specialtyGrid.appendChild(link);
@@ -798,7 +843,7 @@
     var areaChips = document.getElementById("areaChips");
     D.areas.forEach(function (id) {
       var link = document.createElement("a");
-      link.href = "#/hospitals?area=" + id;
+      link.href = "/hospitals?area=" + id;
       link.className = "chip";
       link.innerHTML = Icons.html(areaIconName(id), { size: 16 }) + " " + esc(areaLabel(id));
       areaChips.appendChild(link);
@@ -815,7 +860,7 @@
     "</a>";
   }
   function scenarioCardHtml(specialtyId, descKey) {
-    return '<a class="card card-clickable" href="#/hospitals?specialty=' + specialtyId + '">' +
+    return '<a class="card card-clickable" href="/hospitals?specialty=' + specialtyId + '">' +
       '<div class="card-tags">' + iconBadge(specialtyIconName(specialtyId), specialtyId) + "</div>" +
       "<h3>" + esc(specialtyLabel(specialtyId)) + "</h3>" +
       '<p style="color:var(--color-text-muted);font-size:0.9em;margin:0;">' + esc(t(descKey)) + "</p>" +
@@ -834,7 +879,7 @@
     var titleKey = key === "food" ? "pillars.foodTitle" : "pillars.safetyTitle";
     var html =
       '<section class="section container">' +
-        '<a class="btn-back" href="#/">' + Icons.html("arrow-left", { size: 18 }) + esc(t("common.back")) + "</a>" +
+        '<a class="btn-back" href="/">' + Icons.html("arrow-left", { size: 18 }) + esc(t("common.back")) + "</a>" +
         '<h1 style="margin-top:14px;">' + esc(t(titleKey)) + "</h1>" +
         "<p>" + esc(D.text(page.intro, state.lang)) + "</p>" +
         '<div class="card-grid" style="margin-top:20px;">' +
@@ -889,7 +934,7 @@
     html += '<div class="form-card" style="margin-top:34px;text-align:center;">' +
       "<h2>" + esc(t("contact.title")) + "</h2>" +
       "<p>" + esc(t(key === "food" ? "pillars.foodDesc" : "pillars.safetyDesc")) + "</p>" +
-      '<a class="btn btn-primary" href="#/request' + qs({ topic: key }) + '">' + esc(t("contact.submit")) + "</a>" +
+      '<a class="btn btn-primary" href="/request' + qs({ topic: key }) + '">' + esc(t("contact.submit")) + "</a>" +
     "</div>";
 
     html += "</section>";
@@ -1050,7 +1095,7 @@
           "Any information you submit — including messages describing your medical or travel needs — may be shared with the agent or hospital relevant to your request, solely to help fulfill that request."
         ] },
         { heading: "9. Third-Party Services and Links", body: [
-          "The Service links to official hospital websites and relies on third-party infrastructure providers — including Supabase for account and data storage, and Netlify for hosting and form processing — to operate. We are not responsible for the content, availability, or practices of third-party websites or services."
+          "The Service links to official hospital websites and relies on third-party infrastructure providers — including Supabase for account, data, and file storage, and GitHub Pages for hosting — to operate. We are not responsible for the content, availability, or practices of third-party websites or services."
         ] },
         { heading: "10. Intellectual Property", body: [
           "The Health Blueprint name, logo, and original site content are owned by <mark>" + LEGAL_ENTITY + "</mark>. Photographs of hospitals, dishes, cities, and travel destinations are sourced from Wikimedia Commons, credited on each page, and remain the property of their original contributors under their respective licenses."
@@ -1087,8 +1132,8 @@
         { heading: "2. Information We Collect", body: [
           "<strong>Account information:</strong> when you sign up, we collect your email address (or phone number, once that sign-in option is enabled) and a password, stored securely by our authentication provider, Supabase — we never see or store your password in plain text.",
           "<strong>Profile information:</strong> at sign-up, we ask for your gender, age, country of residence, family size, and food preference. Country of residence is required; the rest are optional.",
-          "<strong>Booking request information:</strong> when you submit a request, we collect your name, email, phone number, your preferred language, and any details you choose to share about your medical or travel needs, plus which hospital/specialty/route the request relates to.",
-          "<strong>Agent application information:</strong> if you apply to become an agent, we collect your name, birth year, phone number, optional email, and an optional resume, transmitted via our form-processing provider, Netlify.",
+          "<strong>Booking request information:</strong> when you submit a request, we collect your name, email, phone number, your preferred language, and any details you choose to share about your medical or travel needs, plus which hospital/specialty/route the request relates to. If you choose to upload existing medical records or reports, these are treated as sensitive health data (see Section 5) and stored in an encrypted, access-restricted file store, not in the general request record.",
+          "<strong>Agent application information:</strong> if you apply to become an agent, we collect your name, birth year, phone number, optional email, and an optional resume, stored in our database provider's encrypted, access-restricted file storage (Supabase Storage).",
           "<strong>Usage preferences:</strong> we store your selected display language and text-size preference in your browser's local storage. This stays on your device and is not sent to our servers."
         ] },
         { heading: "3. How We Use Your Information", body: [
@@ -1097,11 +1142,11 @@
         ] },
         { heading: "4. How We Share Your Information", body: [
           "<strong>With agents and hospitals:</strong> information relevant to your request — such as your name, contact details, and any message you provide — is shared with the agent or hospital you're connecting with, solely to help fulfill your request.",
-          "<strong>With service providers:</strong> we use Supabase (database and authentication) and Netlify (hosting and form processing) to operate the Service. These providers process data on our behalf.",
+          "<strong>With service providers:</strong> we use Supabase (database, authentication, and file storage) and GitHub Pages (static site hosting) to operate the Service. These providers process data on our behalf.",
           "<strong>For legal reasons:</strong> we may disclose information if required by law, or to protect the rights, safety, or property of Health Blueprint, our users, or others."
         ] },
         { heading: "5. Health-Related Information You Choose to Share", body: [
-          'The free-text fields on our request form (such as "tell us about your needs") may contain health-related information you voluntarily choose to share, to help us connect you with the right hospital and agent. We only share this with the specific agent/hospital relevant to your request. Please avoid including more detail than necessary to describe your care-coordination needs.'
+          'The free-text fields on our request form (such as "tell us about your needs"), and any existing medical records or reports you optionally upload, may contain health-related information you voluntarily choose to share, to help us connect you with the right hospital and agent. Uploaded files are stored in encrypted storage that only authorized platform staff can access, are not included in the general request record shown on the admin dashboard, and are shared only with the specific agent/hospital relevant to your request. Please avoid including more detail or documentation than necessary to describe your care-coordination needs.'
         ] },
         { heading: "6. International Data Transfers", body: [
           "Health Blueprint connects international patients with hospitals and agents based in China. As a result, information you submit may be transferred to and processed by agents, hospitals, or service providers located in China or other countries, which may have different data protection laws than your home country. <mark>[If you operate under GDPR, China's PIPL, or similar cross-border transfer regimes, this section needs a lawyer's review to add the required safeguards.]</mark>"
@@ -1115,8 +1160,9 @@
         { heading: "9. Children's Privacy", body: [
           'The Service is not directed to children, and we do not knowingly collect account information from anyone under 16. The "family size" field is meant for describing family members traveling with you, not for creating accounts on their behalf. If you believe a child has provided us with personal information, please contact us so we can remove it.'
         ] },
-        { heading: "10. Cookies and Local Storage", body: [
-          "We use browser local storage — not third-party tracking cookies — to remember your language and text-size preferences. We do not currently use analytics or advertising trackers. <mark>[Update this section if you add analytics, e.g. Google Analytics or Plausible, in the future.]</mark>"
+        { heading: "10. Cookies and Analytics", body: [
+          "We use browser local storage — not third-party tracking cookies — to remember your language and text-size preferences.",
+          "We use Google Analytics (GA4) to understand aggregate site usage, such as which pages are visited and whether visitors start and complete our request/application forms, so we can improve the Service. GA4 uses its own cookies and may collect information such as your approximate location, device/browser type, and pages visited. We do not use GA4 to collect the contents of what you type into our forms. <mark>[Once a real GA4 property is connected, confirm IP anonymization/consent-mode settings meet the requirements of your visitors' jurisdictions, e.g. GDPR.]</mark>"
         ] },
         { heading: "11. Security", body: [
           "We rely on Supabase's security infrastructure, including encrypted password storage and row-level access controls, to protect your data. No method of transmission or storage is 100% secure, and we cannot guarantee absolute security."
@@ -1154,13 +1200,48 @@
           "Local agents can assist with requesting an appointment confirmation letter from a partner hospital and translating documents, but cannot guarantee visa approval — that decision rests solely with Chinese immigration authorities."
         ] }
       ]
+    },
+    faq: {
+      titleKey: "legal.faqTitle",
+      sections: [
+        { heading: "Is Health Blueprint a hospital or medical provider?", body: [
+          "No. Health Blueprint is an independent directory and facilitation platform. We help you find and compare hospitals, and connect you with an independent local agent — we do not employ doctors, provide medical advice, or perform treatment ourselves. See our <a href=\"/terms\">Terms of Service</a> for the full picture of our role."
+        ] },
+        { heading: "How does the process work, from first contact to treatment?", body: [
+          "Browse hospitals or specialties, submit a request through <a href=\"/trip\">Plan a Trip</a> describing what you're looking for, and our team or a matched local agent will follow up — typically within 24 hours — to discuss your options, next steps, and rough costs. From there, the agent helps coordinate appointment scheduling, translation, and logistics directly with the hospital."
+        ] },
+        { heading: "How much will my trip cost?", body: [
+          "Costs vary widely by treatment, hospital, and length of stay, so we don't publish fixed prices. When you submit a request you can select a rough budget band as a starting point, and the Trip Planner's travel cost reference gives a general sense of transport, lodging, and daily expenses. A confirmed quote comes from the hospital/agent once your treatment needs are understood."
+        ] },
+        { heading: "Do I need a visa to come to China for treatment?", body: [
+          "Most international patients do. See our dedicated <a href=\"/visa\">Medical Visa & Travel Info</a> page for a general overview, and always confirm current requirements with your nearest Chinese embassy or consulate."
+        ] },
+        { heading: "Will there be someone who speaks my language?", body: [
+          "The site itself is available in 21 languages — use the language selector in the header. Local agents are matched in part on language ability, and you can note your preferred language when submitting a request so we take it into account."
+        ] },
+        { heading: "Is my medical information kept private?", body: [
+          "We collect only what's needed to match you with the right hospital/agent and handle it under the practices described in our <a href=\"/privacy\">Privacy Policy</a>, including how any medical records you choose to share are stored and who can access them."
+        ] },
+        { heading: "How do I pay, and is my money protected?", body: [
+          "Health Blueprint does not currently process or hold payments directly — any fees for treatment, travel, or agent services are arranged and paid directly between you and the hospital/agent providing them, and will be disclosed to you before you commit. <mark>[Update this once a payment processor is integrated.]</mark>"
+        ] },
+        { heading: "Can I book on behalf of a family member?", body: [
+          "Yes — many requests are submitted by a family member on behalf of a patient, including adult children helping an elderly parent. Just provide the patient's details in the request so the hospital and agent understand who they're treating."
+        ] },
+        { heading: "What if I need help outside business hours or in an emergency?", body: [
+          "For a genuine medical emergency, contact local emergency services or go to the nearest hospital directly — Health Blueprint is not an emergency response service. For non-emergency questions, reach us through the contact channels in the footer below."
+        ] },
+        { heading: "How do I become a local agent?", body: [
+          "Visit the <a href=\"/join\">Join as an Agent</a> page for the role description, requirements, and application form."
+        ] }
+      ]
     }
   };
 
   function renderLegalPage(key) {
     var content = LEGAL_CONTENT[key];
     var html = '<section class="section container legal-page">' +
-      '<a class="btn-back" href="#/">' + Icons.html("arrow-left", { size: 18 }) + esc(t("common.back")) + "</a>" +
+      '<a class="btn-back" href="/">' + Icons.html("arrow-left", { size: 18 }) + esc(t("common.back")) + "</a>" +
       '<h1 style="margin-top:14px;">' + esc(t(content.titleKey)) + "</h1>" +
       '<p class="legal-updated">' + esc(t("legal.lastUpdated", { date: LEGAL_LAST_UPDATED })) + "</p>" +
       '<p class="legal-note">' + esc(t("legal.englishOnlyNote")) + "</p>";
@@ -1176,7 +1257,7 @@
   function renderHospitalList(query) {
     mainEl.innerHTML =
       '<section class="section container">' +
-        '<a class="btn-back" href="#/">' + Icons.html("arrow-left", { size: 18 }) + '' + esc(t("common.back")) + "</a>" +
+        '<a class="btn-back" href="/">' + Icons.html("arrow-left", { size: 18 }) + '' + esc(t("common.back")) + "</a>" +
         '<div class="step-indicator" style="margin-top:10px;">' + esc(t("steps.hospital")) + "</div>" +
         '<div class="filters-bar">' +
           '<div class="filter-group">' +
@@ -1240,7 +1321,7 @@
   function hospitalCardHtml(h, specialty) {
     var media = carouselHtml(h.photos, "hospital-card-media", "hospital-card-photo", "") ||
       (h.logo ? '<div class="hospital-card-media"><img class="hospital-card-photo" src="' + esc(h.logo) + '" alt="" loading="lazy"></div>' : "");
-    return '<a class="card card-clickable" href="#/hospital/' + h.id + qs({ specialty: specialty || "" }) + '">' +
+    return '<a class="card card-clickable" href="/hospital/' + h.id + qs({ specialty: specialty || "" }) + '">' +
       media +
       '<div class="card-tags">' + tierBadgeHtml(h.tier) + h.tags.map(function (tag) { return '<span class="tag">' + esc(specialtyLabel(tag)) + "</span>"; }).join("") + "</div>" +
       "<h3>" + esc(h.name) + "</h3>" +
@@ -1270,7 +1351,7 @@
 
     mainEl.innerHTML =
       '<section class="section container">' +
-        '<a class="btn-back" href="#/hospitals">' + Icons.html("arrow-left", { size: 18 }) + '' + esc(t("common.back")) + "</a>" +
+        '<a class="btn-back" href="/hospitals">' + Icons.html("arrow-left", { size: 18 }) + '' + esc(t("common.back")) + "</a>" +
         '<div class="plan-summary"><span><strong>' + esc(t("contact.summaryRoute")) + "</strong>" +
           (sel.length ? esc(routesDisplayNames(sel)) : '<span class="muted">' + esc(t("trip.noRoute")) + "</span>") +
           '</span><a class="link-btn" href="' + routeLinkHref + '">' + esc(sel.length ? t("trip.changeRoute") : t("trip.addRoute")) + "</a></div>" +
@@ -1320,7 +1401,7 @@
   }
 
   function specialtyCardHtml(h, tag, rq, isRecommended) {
-    var href = "#/program/" + makeProgramId(h.id, tag) + qs(rq);
+    var href = "/program/" + makeProgramId(h.id, tag) + qs(rq);
     return '<a class="card card-clickable' + (isRecommended ? " active" : "") + '" href="' + href + '">' +
       iconBadge(specialtyIconName(tag), tag, { small: true }) +
       "<h3>" + esc(specialtyLabel(tag)) + (isRecommended ? " " + Icons.html("star", { size: 15, className: "icon-accent" }) : "") + "</h3>" +
@@ -1339,7 +1420,7 @@
 
     mainEl.innerHTML =
       '<section class="section container">' +
-        '<a class="btn-back" href="#/hospital/' + h.id + qs(rq) + '">' + Icons.html("arrow-left", { size: 18 }) + '' + esc(t("common.back")) + "</a>" +
+        '<a class="btn-back" href="/hospital/' + h.id + qs(rq) + '">' + Icons.html("arrow-left", { size: 18 }) + '' + esc(t("common.back")) + "</a>" +
         '<div class="detail-title-block" style="margin-top:14px;">' +
           '<div class="card-tags">' + tierBadgeHtml(h.tier) + '<span class="tag">' + esc(specialtyLabel(tag)) + "</span></div>" +
           "<h1>" + esc(specialtyLabel(tag)) + "</h1>" +
@@ -1361,7 +1442,7 @@
   function agentCardHtml(a, programId, rq) {
     var services = D.textList(a.services, state.lang);
     var langLabels = a.languages.map(function (code) { return (I18N.meta[code] || {}).label || code; });
-    var href = "#/agent/" + a.id + qs(Object.assign({ program: programId }, rq));
+    var href = "/agent/" + a.id + qs(Object.assign({ program: programId }, rq));
     return '<div class="card agent-card">' +
       '<div class="agent-top">' +
         '<div class="agent-avatar" aria-hidden="true">' + esc(agentInitials(a.name)) + "</div>" +
@@ -1380,7 +1461,15 @@
   }
 
   /* ---------------- CONTACT / BOOKING ---------------- */
+  // Treatment interest categories offered on the request form. These map to
+  // existing specialties.* i18n labels (already translated in all 21
+  // languages) rather than the narrower D.specialties hospital-filter list,
+  // since a patient's treatment interest is broader than what any single
+  // hospital happens to be tagged with in our directory.
+  var TREATMENT_CATEGORY_IDS = ["checkup", "dental", "tcm", "oncology", "fertility", "orthopedics", "cosmetic"];
+
   function renderContact(agentId, query) {
+    Analytics.track("trip_form_start");
     var a = agentId ? agentById(agentId) : null;
     var programId = query && query.program;
     var parsed = programId ? parseProgramId(programId) : null;
@@ -1393,8 +1482,8 @@
       return '<option value="' + code + '"' + (code === state.lang ? " selected" : "") + ">" + I18N.meta[code].label + "</option>";
     }).join("");
 
-    var backHref = programId ? "#/program/" + programId + qs(rq)
-      : topic === "food" ? "#/food" : topic === "safety" ? "#/safety" : (sel.length ? "#/trip" + qs(rq) : "#/");
+    var backHref = programId ? "/program/" + programId + qs(rq)
+      : topic === "food" ? "/food" : topic === "safety" ? "/safety" : (sel.length ? "/trip" + qs(rq) : "/");
 
     mainEl.innerHTML =
       '<section class="section container">' +
@@ -1425,6 +1514,26 @@
               '<div class="field"><label for="cCountry">' + esc(t("contact.country")) + '</label><input id="cCountry" name="country"></div>' +
             "</div>" +
             '<div class="field"><label for="cLang">' + esc(t("contact.preferredLanguage")) + '</label><select id="cLang" name="preferredLanguage">' + langOptions + "</select></div>" +
+            '<div class="field">' +
+              "<label>" + esc(t("contact.treatmentCategoriesLabel")) + "</label>" +
+              '<div class="checkbox-group">' +
+                TREATMENT_CATEGORY_IDS.map(function (id) {
+                  return '<label class="checkbox-option"><input type="checkbox" name="treatmentCategories" value="' + esc(id) + '"> ' + esc(specialtyLabel(id)) + "</label>";
+                }).join("") +
+                '<label class="checkbox-option"><input type="checkbox" name="treatmentCategories" value="other"> ' + esc(t("contact.treatmentOther")) + "</label>" +
+              "</div>" +
+            "</div>" +
+            '<div class="field">' +
+              "<label>" + esc(t("contact.travelWindowLabel")) + "</label>" +
+              '<div class="field-row">' +
+                '<div class="field"><label for="cTravelStart" class="field-sublabel">' + esc(t("contact.travelStartLabel")) + '</label><input id="cTravelStart" type="date" name="travelStart"></div>' +
+                '<div class="field"><label for="cTravelEnd" class="field-sublabel">' + esc(t("contact.travelEndLabel")) + '</label><input id="cTravelEnd" type="date" name="travelEnd"></div>' +
+              "</div>" +
+            "</div>" +
+            '<div class="field"><label for="cMedicalRecords">' + esc(t("contact.medicalRecordsLabel")) + '</label>' +
+              '<input id="cMedicalRecords" type="file" name="medicalRecords" accept=".pdf,.jpg,.jpeg,.png">' +
+              '<span style="color:var(--color-text-muted);font-size:0.85em;">' + esc(t("contact.medicalRecordsHint")) + "</span>" +
+            "</div>" +
             '<div class="field-row">' +
               '<div class="field"><label for="cBudget">' + esc(t("contact.budgetLabel")) + '</label><select id="cBudget" name="budget">' +
                 '<option value="">' + esc(t("contact.budgetUnsure")) + "</option>" +
@@ -1452,24 +1561,37 @@
     var form = document.getElementById("inquiryForm");
     form.addEventListener("submit", function (ev) {
       ev.preventDefault();
+      if (!window.sb) { showFormError("bookingFormError", t("auth.genericError")); return; }
       var submitBtn = form.querySelector("button[type=submit]");
       var fd = new FormData(form);
-      var payload = {
-        user_id: authState.user ? authState.user.id : null,
-        full_name: fd.get("name"),
-        email: fd.get("email"),
-        phone: fd.get("phone"),
-        hospital_id: h ? h.id : null,
-        specialty: parsed ? parsed.tag : (topic || null),
-        route_data: sel.length ? sel : null,
-        message: buildBookingMessage(fd, a, sel, topic)
-      };
-      if (!window.sb) { showFormError("bookingFormError", t("auth.genericError")); return; }
+      var recordFile = fd.get("medicalRecords");
+      var hasRecord = !!(recordFile && recordFile.name);
+
       submitBtn.disabled = true;
-      window.sb.from("bookings").insert(payload)
+
+      var uploadRecord = hasRecord
+        ? window.sb.storage.from("medical-records").upload(Date.now() + "-" + recordFile.name, recordFile)
+        : Promise.resolve(null);
+
+      uploadRecord.then(function (uploadRes) {
+        var recordPath = uploadRes && uploadRes.data ? uploadRes.data.path : null;
+        var payload = {
+          user_id: authState.user ? authState.user.id : null,
+          full_name: fd.get("name"),
+          email: fd.get("email"),
+          phone: fd.get("phone"),
+          hospital_id: h ? h.id : null,
+          specialty: parsed ? parsed.tag : (topic || null),
+          route_data: sel.length ? sel : null,
+          medical_record_path: recordPath,
+          message: buildBookingMessage(fd, a, sel, topic)
+        };
+        return window.sb.from("bookings").insert(payload);
+      })
         .then(function (res) {
           submitBtn.disabled = false;
           if (res.error) { showFormError("bookingFormError", t("auth.genericError")); return; }
+          Analytics.track("trip_form_submit");
           showSuccess();
         })
         .catch(function () { submitBtn.disabled = false; showFormError("bookingFormError", t("auth.genericError")); });
@@ -1498,14 +1620,19 @@
     var TIMEFRAME_LABELS_EN = { "1m": "Within 1 month", "1to3m": "1 - 3 months", "3to6m": "3 - 6 months", "6mPlus": "6+ months / just researching" };
     var budget = fd.get("budget"); if (budget) parts.push("Budget: " + BUDGET_LABELS_EN[budget]);
     var timeframe = fd.get("timeframe"); if (timeframe) parts.push("Timeframe: " + TIMEFRAME_LABELS_EN[timeframe]);
+    var categories = fd.getAll("treatmentCategories");
+    if (categories.length) parts.push("Treatment interest: " + categories.map(function (id) { return id === "other" ? "Other" : I18N.t("en", "specialties." + id); }).join(", "));
+    var travelStart = fd.get("travelStart"), travelEnd = fd.get("travelEnd");
+    if (travelStart || travelEnd) parts.push("Preferred travel window: " + (travelStart || "?") + " to " + (travelEnd || "?"));
     return parts.join("\n");
   }
 
   /* ---------------- JOIN AS AGENT ---------------- */
   function renderJoin() {
+    Analytics.track("agent_form_start");
     mainEl.innerHTML =
       '<section class="section container">' +
-        '<a class="btn-back" href="#/">' + Icons.html("arrow-left", { size: 18 }) + '' + esc(t("common.back")) + "</a>" +
+        '<a class="btn-back" href="/">' + Icons.html("arrow-left", { size: 18 }) + '' + esc(t("common.back")) + "</a>" +
         '<div class="form-card" style="margin-top:14px;">' +
           "<h1>" + esc(t("join.title")) + "</h1>" +
           "<p>" + esc(t("join.subtitle")) + "</p>" +
@@ -1576,7 +1703,7 @@
         };
         return window.sb ? window.sb.from("agent_applications").insert(dbPayload) : Promise.resolve();
       })
-        .then(function () { submitBtn.disabled = false; showJoinSuccess(); })
+        .then(function () { submitBtn.disabled = false; Analytics.track("agent_form_submit"); showJoinSuccess(); })
         .catch(function () { submitBtn.disabled = false; showJoinSuccess(); });
     });
 
@@ -1696,7 +1823,7 @@
     var merged = {};
     Object.keys(query || {}).forEach(function (k) { if (query[k]) merged[k] = query[k]; });
     Object.keys(patch).forEach(function (k) { if (patch[k]) { merged[k] = patch[k]; } else { delete merged[k]; } });
-    return "#/trip" + qs(merged);
+    return "/trip" + qs(merged);
   }
 
   function renderTrip(query) {
@@ -1714,7 +1841,7 @@
     var customStops = customRouteEntry ? customRouteEntry.stops.slice() : [];
 
     var html = '<section class="section container">';
-    html += '<a class="btn-back" href="#/">' + Icons.html("arrow-left", { size: 18 }) + esc(t("common.back")) + "</a>";
+    html += '<a class="btn-back" href="/">' + Icons.html("arrow-left", { size: 18 }) + esc(t("common.back")) + "</a>";
     html += '<h1 style="margin-top:14px;">' + esc(t("trip.title")) + "</h1><p>" + esc(t("trip.subtitle")) + "</p>";
 
     html += '<div class="plan-summary">';
@@ -1725,7 +1852,7 @@
       (selRoutes.length ? esc(routesDisplayNames(selRoutes)) : '<span class="muted">' + esc(t("trip.noRoute")) + "</span>") + "</span>";
     if (selRoutes.length) html += '<a class="link-btn" href="' + tripHref(query, { routes: null, waypoints: null }) + '">' + Icons.html("close", { size: 14 }) + esc(t("trip.changeRoute")) + "</a>";
     if (selHospital || selRoutes.length) {
-      html += '<a class="btn btn-primary" href="' + (selHospital ? "#/hospital/" + selHospital.id + qs(rq) : "#/request" + qs(rq)) + '">' + esc(t("trip.continueToAgents")) + "</a>";
+      html += '<a class="btn btn-primary" href="' + (selHospital ? "/hospital/" + selHospital.id + qs(rq) : "/request" + qs(rq)) + '">' + esc(t("trip.continueToAgents")) + "</a>";
     }
     html += "</div>";
 

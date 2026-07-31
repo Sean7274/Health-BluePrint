@@ -2,6 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <script>
+    // Single Page Apps for GitHub Pages: decodes the redirect 404.html
+    // produced (see that file) back into a real path via history.replaceState,
+    // before the router below reads location.pathname. Runs on every load;
+    // a no-op when the URL wasn't redirected (normal pushState navigation).
+    // See https://github.com/rafgraph/spa-github-pages
+    (function (l) {
+      if (l.search[1] === "/") {
+        var decoded = l.search.slice(1).split("&").map(function (s) {
+          return s.replace(/~and~/g, "&");
+        }).join("?");
+        window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+      }
+    }(window.location));
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
   <title>Health Blueprint — Find Trusted Healthcare in China</title>
   <meta name="description" content="Health Blueprint helps international patients find licensed hospitals in China, compare care programs, and connect with trusted local agents for their entire trip.">
@@ -22,14 +37,14 @@
 
   <header class="site-header">
     <div class="header-inner">
-      <a href="#/" class="brand" id="brandLink">
+      <a href="/" class="brand" id="brandLink">
         <img class="brand-mark" src="img/logo.png" alt="Health Blueprint logo">
         <span class="brand-name" id="brandName">Health Blueprint</span>
       </a>
 
       <div class="header-controls">
-        <a href="#/trip" class="btn btn-secondary btn-nav" id="tripNavLink"><span id="tripNavIcon"></span> <span id="tripNavLabel">Plan a Trip</span></a>
-        <a href="#/join" class="btn btn-primary btn-nav" id="joinNavLink"><span id="joinNavIcon"></span> <span id="joinNavLabel">Join as an Agent</span></a>
+        <a href="/trip" class="btn btn-secondary btn-nav" id="tripNavLink"><span id="tripNavIcon"></span> <span id="tripNavLabel">Plan a Trip</span></a>
+        <a href="/join" class="btn btn-primary btn-nav" id="joinNavLink"><span id="joinNavIcon"></span> <span id="joinNavLabel">Join as an Agent</span></a>
 
         <div class="font-size-control" role="group" aria-label="Text size">
           <button type="button" id="fontDecrease" class="font-btn">A−</button>
@@ -50,6 +65,7 @@
   <main id="main"></main>
 
   <button type="button" id="scrollTopBtn" class="scroll-top-btn" aria-label="Scroll to top"></button>
+  <a href="https://wa.me/15550000000" target="_blank" rel="noopener noreferrer" id="whatsappFloatBtn" class="whatsapp-float-btn" aria-label="Chat on WhatsApp"></a>
 
   <footer class="site-footer">
     <div class="footer-inner">
@@ -66,10 +82,11 @@
     </div>
     <div class="footer-bottom">
       <span id="brandNameFooter">Health Blueprint</span> · <span id="footerRights"></span> © <span id="footerYear"></span>
-      · <a href="#/terms" id="footerTermsLink">Terms of Service</a> · <a href="#/privacy" id="footerPrivacyLink">Privacy Policy</a> · <a href="#/visa" id="footerVisaLink">Visa & Travel Info</a>
+      · <a href="/terms" id="footerTermsLink">Terms of Service</a> · <a href="/privacy" id="footerPrivacyLink">Privacy Policy</a> · <a href="/visa" id="footerVisaLink">Visa & Travel Info</a> · <a href="/faq" id="footerFaqLink">FAQ</a>
     </div>
   </footer>
 
+  <script src="js/analytics.js"></script>
   <script src="js/i18n.js"></script>
   <script src="js/icons.js"></script>
   <script src="js/data.js"></script>
