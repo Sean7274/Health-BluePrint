@@ -14,6 +14,11 @@
 
   var mainEl = document.getElementById("main");
 
+  // Set to a real https://wa.me/<number> (or wa.me/qr/<code>) link once one
+  // exists; until then the WhatsApp floating button and footer QR block stay
+  // hidden rather than pointing at a fake number.
+  var WHATSAPP_LINK = null;
+
   /* ---------------- persistence ---------------- */
   function loadLang() {
     var saved = localStorage.getItem("hb_lang");
@@ -55,14 +60,31 @@
     document.getElementById("footerContactCol").innerHTML =
       '<h3 id="footerContactTitle">' + esc(t("footer.contactUs")) + "</h3>" +
       '<p><a href="mailto:healthblueprint@163.com">healthblueprint@163.com</a></p>' +
-      '<p>' + Icons.html("phone", { size: 15 }) + ' +1 (555) 000-0000 <span class="legal-note">' + esc(t("footer.exampleNote")) + "</span></p>" +
-      '<p><a href="https://wa.me/15550000000" target="_blank" rel="noopener noreferrer">' + Icons.html("chat", { size: 15 }) + " WhatsApp</a> <span class=\"legal-note\">" + esc(t("footer.exampleNote")) + "</span></p>" +
-      '<p><a href="https://t.me/healthblueprint" target="_blank" rel="noopener noreferrer">' + Icons.html("chat", { size: 15 }) + " Telegram</a> <span class=\"legal-note\">" + esc(t("footer.exampleNote")) + "</span></p>" +
       '<p><a href="https://www.facebook.com/profile.php?id=61593082696013" target="_blank" rel="noopener noreferrer">Facebook</a></p>' +
       '<p><a href="https://instagram.com/healthblueprint123" target="_blank" rel="noopener noreferrer">Instagram</a></p>';
+    // WhatsApp intentionally isn't in the plain contact list above — it gets
+    // its own QR block (see footerWhatsappCol) once a real wa.me link/number
+    // is provided, rather than a text link mixed in with the others. Until
+    // then, both this block and the floating button stay hidden instead of
+    // pointing at a placeholder number.
+    var waCol = document.getElementById("footerWhatsappCol");
+    if (waCol) {
+      waCol.innerHTML = WHATSAPP_LINK
+        ? '<h3>' + esc(t("footer.contactUs")) + " — WhatsApp</h3>" +
+          '<a href="' + esc(WHATSAPP_LINK) + '" target="_blank" rel="noopener noreferrer">' +
+            '<img class="whatsapp-qr" src="' + esc("img/whatsapp-qr.png") + '" alt="Scan to chat on WhatsApp" width="140" height="140">' +
+          "</a>"
+        : "";
+    }
     var waBtn = document.getElementById("whatsappFloatBtn");
-    waBtn.innerHTML = Icons.html("chat", { size: 24 });
-    waBtn.title = "WhatsApp " + t("footer.exampleNote");
+    if (WHATSAPP_LINK) {
+      waBtn.href = WHATSAPP_LINK;
+      waBtn.innerHTML = Icons.html("chat", { size: 24 });
+      waBtn.title = "WhatsApp";
+      waBtn.style.display = "";
+    } else {
+      waBtn.style.display = "none";
+    }
 
     document.getElementById("footerDisclaimer").textContent = t("footer.disclaimer");
     document.getElementById("footerRights").textContent = t("footer.rights");
