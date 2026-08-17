@@ -17,7 +17,7 @@
   // Set to a real https://wa.me/<number> (or wa.me/qr/<code>) link once one
   // exists; until then the WhatsApp floating button and footer QR block stay
   // hidden rather than pointing at a fake number.
-  var WHATSAPP_LINK = null;
+  var WHATSAPP_LINK = "https://wa.me/qr/43HF24UXVUGGJ1";
 
   /* ---------------- persistence ---------------- */
   function loadLang() {
