@@ -73,7 +73,8 @@
         ? '<h3>' + esc(t("footer.contactUs")) + " — WhatsApp</h3>" +
           '<a href="' + esc(WHATSAPP_LINK) + '" target="_blank" rel="noopener noreferrer">' +
             '<img class="whatsapp-qr" src="' + esc("img/whatsapp-qr.png") + '" alt="Scan to chat on WhatsApp" width="140" height="140">' +
-          "</a>"
+          "</a>" +
+          '<p><a href="' + esc(WHATSAPP_LINK) + '" target="_blank" rel="noopener noreferrer">' + Icons.html("chat", { size: 15 }) + " WhatsApp</a></p>"
         : "";
     }
     var waBtn = document.getElementById("whatsappFloatBtn");
