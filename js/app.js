@@ -54,12 +54,12 @@
     document.getElementById("footerAboutText").textContent = t("footer.aboutText");
     document.getElementById("footerContactCol").innerHTML =
       '<h3 id="footerContactTitle">' + esc(t("footer.contactUs")) + "</h3>" +
-      '<p><a href="mailto:hello@healthblueprint.example">hello@healthblueprint.example</a></p>' +
+      '<p><a href="mailto:healthblueprint@163.com">healthblueprint@163.com</a></p>' +
       '<p>' + Icons.html("phone", { size: 15 }) + ' +1 (555) 000-0000 <span class="legal-note">' + esc(t("footer.exampleNote")) + "</span></p>" +
       '<p><a href="https://wa.me/15550000000" target="_blank" rel="noopener noreferrer">' + Icons.html("chat", { size: 15 }) + " WhatsApp</a> <span class=\"legal-note\">" + esc(t("footer.exampleNote")) + "</span></p>" +
       '<p><a href="https://t.me/healthblueprint" target="_blank" rel="noopener noreferrer">' + Icons.html("chat", { size: 15 }) + " Telegram</a> <span class=\"legal-note\">" + esc(t("footer.exampleNote")) + "</span></p>" +
-      '<p><a href="https://facebook.com/healthblueprint" target="_blank" rel="noopener noreferrer">Facebook</a> <span class="legal-note">' + esc(t("footer.exampleNote")) + "</span></p>" +
-      '<p><a href="https://instagram.com/healthblueprint" target="_blank" rel="noopener noreferrer">Instagram</a> <span class="legal-note">' + esc(t("footer.exampleNote")) + "</span></p>";
+      '<p><a href="https://www.facebook.com/profile.php?id=61593082696013" target="_blank" rel="noopener noreferrer">Facebook</a></p>' +
+      '<p><a href="https://instagram.com/healthblueprint123" target="_blank" rel="noopener noreferrer">Instagram</a></p>';
     var waBtn = document.getElementById("whatsappFloatBtn");
     waBtn.innerHTML = Icons.html("chat", { size: 24 });
     waBtn.title = "WhatsApp " + t("footer.exampleNote");
@@ -1059,7 +1059,7 @@
   // jurisdiction, and a real contact address. This is a starting point, not
   // a substitute for a lawyer's review before relying on it with real users.
   var LEGAL_LAST_UPDATED = "July 28, 2026";
-  var LEGAL_CONTACT_EMAIL = "hello@healthblueprint.example";
+  var LEGAL_CONTACT_EMAIL = "healthblueprint@163.com";
   var LEGAL_ENTITY = "[YOUR LEGAL ENTITY NAME]";
 
   var LEGAL_CONTENT = {
@@ -1119,7 +1119,7 @@
           'We may update these Terms from time to time. If we make material changes, we will update the "Last updated" date at the top of this page. Continued use of the Service after changes take effect constitutes acceptance of the revised Terms.'
         ] },
         { heading: "17. Contact Us", body: [
-          'Questions about these Terms? Contact us at <a href="mailto:' + LEGAL_CONTACT_EMAIL + '">' + LEGAL_CONTACT_EMAIL + "</a> <mark>[replace with your real contact email]</mark>."
+          'Questions about these Terms? Contact us at <a href="mailto:' + LEGAL_CONTACT_EMAIL + '">' + LEGAL_CONTACT_EMAIL + "</a>."
         ] }
       ]
     },
@@ -1155,7 +1155,7 @@
           'We retain your account and request information for as long as your account is active, or as needed to provide the Service, comply with legal obligations, and resolve disputes. You can request deletion of your account and associated data at any time (see "Your Rights" below).'
         ] },
         { heading: "8. Your Rights and Choices", body: [
-          'Depending on where you live, you may have the right to access, correct, or delete your personal information, or to object to certain processing. To exercise these rights, contact us at <a href="mailto:' + LEGAL_CONTACT_EMAIL + '">' + LEGAL_CONTACT_EMAIL + '</a> <mark>[replace with your real contact email]</mark>.'
+          'Depending on where you live, you may have the right to access, correct, or delete your personal information, or to object to certain processing. To exercise these rights, contact us at <a href="mailto:' + LEGAL_CONTACT_EMAIL + '">' + LEGAL_CONTACT_EMAIL + '</a>.'
         ] },
         { heading: "9. Children's Privacy", body: [
           'The Service is not directed to children, and we do not knowingly collect account information from anyone under 16. The "family size" field is meant for describing family members traveling with you, not for creating accounts on their behalf. If you believe a child has provided us with personal information, please contact us so we can remove it.'
@@ -1171,7 +1171,7 @@
           'We may update this Privacy Policy from time to time. If we make material changes, we will update the "Last updated" date at the top of this page.'
         ] },
         { heading: "13. Contact Us", body: [
-          'Questions about this Privacy Policy or your personal information? Contact us at <a href="mailto:' + LEGAL_CONTACT_EMAIL + '">' + LEGAL_CONTACT_EMAIL + '</a> <mark>[replace with your real contact email]</mark>.'
+          'Questions about this Privacy Policy or your personal information? Contact us at <a href="mailto:' + LEGAL_CONTACT_EMAIL + '">' + LEGAL_CONTACT_EMAIL + '</a>.'
         ] }
       ]
     },
