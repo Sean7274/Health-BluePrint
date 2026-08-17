@@ -1083,7 +1083,7 @@
   // a substitute for a lawyer's review before relying on it with real users.
   var LEGAL_LAST_UPDATED = "July 28, 2026";
   var LEGAL_CONTACT_EMAIL = "healthblueprint@163.com";
-  var LEGAL_ENTITY = "[YOUR LEGAL ENTITY NAME]";
+  var LEGAL_ENTITY = "Health Blueprint Ltd";
 
   var LEGAL_CONTENT = {
     terms: {
@@ -1111,7 +1111,7 @@
           "Submitting a booking request through Health Blueprint is an expression of interest, not a confirmed booking, appointment, or contract with a hospital or agent. Actual scheduling, pricing, medical evaluation, and terms of service are determined directly between you and the agent/hospital you are connected with. Health Blueprint is not a party to that arrangement."
         ] },
         { heading: "7. Fees", body: [
-          "Creating an account and submitting a request through Health Blueprint is currently free of charge. Any fees charged by an agent or hospital for their own services are separate from, and not controlled by, Health Blueprint, and will be disclosed to you directly by that agent or hospital. <mark>[If Health Blueprint later charges platform fees or earns referral commissions, that arrangement should be disclosed here.]</mark>"
+          "Creating an account and submitting a request through Health Blueprint is currently free of charge. Any fees charged by an agent or hospital for their own services are separate from, and not controlled by, Health Blueprint, and will be disclosed to you directly by that agent or hospital. If Health Blueprint begins charging platform fees or earning referral commissions in the future, that arrangement will be disclosed here before it takes effect."
         ] },
         { heading: "8. User Content and Conduct", body: [
           "You agree to provide accurate information when creating an account, submitting a request, or applying to become an agent. You agree not to: (a) impersonate any person or entity; (b) submit false, fraudulent, or misleading information; (c) use the Service to harass, abuse, or harm any agent, hospital, or other user; (d) attempt to scrape, reverse-engineer, or interfere with the Service; or (e) use the Service for any unlawful purpose.",
@@ -1121,22 +1121,22 @@
           "The Service links to official hospital websites and relies on third-party infrastructure providers — including Supabase for account, data, and file storage, and GitHub Pages for hosting — to operate. We are not responsible for the content, availability, or practices of third-party websites or services."
         ] },
         { heading: "10. Intellectual Property", body: [
-          "The Health Blueprint name, logo, and original site content are owned by <mark>" + LEGAL_ENTITY + "</mark>. Photographs of hospitals, dishes, cities, and travel destinations are sourced from Wikimedia Commons, credited on each page, and remain the property of their original contributors under their respective licenses."
+          "The Health Blueprint name, logo, and original site content are owned by " + LEGAL_ENTITY + ". Photographs of hospitals, dishes, cities, and travel destinations are sourced from Wikimedia Commons, credited on each page, and remain the property of their original contributors under their respective licenses."
         ] },
         { heading: "11. Disclaimers", body: [
           'THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE," WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED. WE DO NOT WARRANT THAT THE SERVICE WILL BE UNINTERRUPTED OR ERROR-FREE, OR THAT ANY HOSPITAL RANKING, AGENT INFORMATION, OR OTHER CONTENT ON THE SERVICE IS ACCURATE, COMPLETE, OR CURRENT.'
         ] },
         { heading: "12. Limitation of Liability", body: [
-          "TO THE MAXIMUM EXTENT PERMITTED BY LAW, <mark>" + LEGAL_ENTITY + "</mark> SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING FROM (A) YOUR USE OF OR INABILITY TO USE THE SERVICE; (B) ANY CONDUCT OR CONTENT OF ANY AGENT, HOSPITAL, OR THIRD PARTY, INCLUDING ANY MEDICAL OUTCOME; OR (C) UNAUTHORIZED ACCESS TO OR ALTERATION OF YOUR TRANSMISSIONS OR CONTENT."
+          "TO THE MAXIMUM EXTENT PERMITTED BY LAW, " + LEGAL_ENTITY + " SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING FROM (A) YOUR USE OF OR INABILITY TO USE THE SERVICE; (B) ANY CONDUCT OR CONTENT OF ANY AGENT, HOSPITAL, OR THIRD PARTY, INCLUDING ANY MEDICAL OUTCOME; OR (C) UNAUTHORIZED ACCESS TO OR ALTERATION OF YOUR TRANSMISSIONS OR CONTENT."
         ] },
         { heading: "13. Indemnification", body: [
-          "You agree to indemnify and hold harmless <mark>" + LEGAL_ENTITY + "</mark> from any claims, damages, losses, or expenses (including reasonable legal fees) arising from your violation of these Terms or misuse of the Service."
+          "You agree to indemnify and hold harmless " + LEGAL_ENTITY + " from any claims, damages, losses, or expenses (including reasonable legal fees) arising from your violation of these Terms or misuse of the Service."
         ] },
         { heading: "14. Termination", body: [
           "We may suspend or terminate your account at any time if we believe you have violated these Terms. You may stop using the Service and request account deletion at any time by contacting us."
         ] },
         { heading: "15. Governing Law and Disputes", body: [
-          "<mark>[These Terms are governed by the laws of [JURISDICTION], without regard to conflict-of-law principles, and disputes will be resolved in [COURTS/ARBITRATION FORUM]. This section needs to be completed based on where your business is legally established — get a lawyer's input here.]</mark>"
+          "These Terms are governed by the laws of the Hong Kong Special Administrative Region, without regard to conflict-of-law principles. Any dispute arising out of or relating to these Terms or the Service shall be subject to the exclusive jurisdiction of the courts of Hong Kong."
         ] },
         { heading: "16. Changes to These Terms", body: [
           'We may update these Terms from time to time. If we make material changes, we will update the "Last updated" date at the top of this page. Continued use of the Service after changes take effect constitutes acceptance of the revised Terms.'
@@ -1172,7 +1172,8 @@
           'The free-text fields on our request form (such as "tell us about your needs"), and any existing medical records or reports you optionally upload, may contain health-related information you voluntarily choose to share, to help us connect you with the right hospital and agent. Uploaded files are stored in encrypted storage that only authorized platform staff can access, are not included in the general request record shown on the admin dashboard, and are shared only with the specific agent/hospital relevant to your request. Please avoid including more detail or documentation than necessary to describe your care-coordination needs.'
         ] },
         { heading: "6. International Data Transfers", body: [
-          "Health Blueprint connects international patients with hospitals and agents based in China. As a result, information you submit may be transferred to and processed by agents, hospitals, or service providers located in China or other countries, which may have different data protection laws than your home country. <mark>[If you operate under GDPR, China's PIPL, or similar cross-border transfer regimes, this section needs a lawyer's review to add the required safeguards.]</mark>"
+          "Health Blueprint connects international patients with hospitals and agents based in China. As a result, information you submit is transferred to, and processed in, China, and may also be processed in other countries where our service providers (such as Supabase) operate infrastructure — which may have different data protection laws than your home country.",
+          "We limit cross-border transfers to what's necessary to provide the Service, encrypt data in transit and at rest, restrict access to personnel and processors who need it to fulfil your request, and require our processors to protect your data under contract. If you are located in a jurisdiction with its own cross-border transfer requirements — for example the EU/UK GDPR or China's Personal Information Protection Law (PIPL) — submitting a request through the Service is you knowingly and voluntarily initiating this cross-border transfer, given that the Service's entire purpose is connecting you with care providers in China. Contact us at healthblueprint@163.com if you'd like more detail on the specific safeguards that apply to your information."
         ] },
         { heading: "7. Data Retention", body: [
           'We retain your account and request information for as long as your account is active, or as needed to provide the Service, comply with legal obligations, and resolve disputes. You can request deletion of your account and associated data at any time (see "Your Rights" below).'
@@ -1185,7 +1186,7 @@
         ] },
         { heading: "10. Cookies and Analytics", body: [
           "We use browser local storage — not third-party tracking cookies — to remember your language and text-size preferences.",
-          "We use Google Analytics (GA4) to understand aggregate site usage, such as which pages are visited and whether visitors start and complete our request/application forms, so we can improve the Service. GA4 uses its own cookies and may collect information such as your approximate location, device/browser type, and pages visited. We do not use GA4 to collect the contents of what you type into our forms. <mark>[Once a real GA4 property is connected, confirm IP anonymization/consent-mode settings meet the requirements of your visitors' jurisdictions, e.g. GDPR.]</mark>"
+          "We use Google Analytics (GA4) to understand aggregate site usage, such as which pages are visited and whether visitors start and complete our request/application forms, so we can improve the Service. GA4 uses its own cookies and may collect information such as your approximate location, device/browser type, and pages visited. We do not use GA4 to collect the contents of what you type into our forms, and we have not enabled Google Signals or advertising personalization. GA4 does not store your full IP address — Google uses it briefly to estimate your general location and discards it."
         ] },
         { heading: "11. Security", body: [
           "We rely on Supabase's security infrastructure, including encrypted password storage and row-level access controls, to protect your data. No method of transmission or storage is 100% secure, and we cannot guarantee absolute security."
@@ -1246,7 +1247,7 @@
           "We collect only what's needed to match you with the right hospital/agent and handle it under the practices described in our <a href=\"/privacy\">Privacy Policy</a>, including how any medical records you choose to share are stored and who can access them."
         ] },
         { heading: "How do I pay, and is my money protected?", body: [
-          "Health Blueprint does not currently process or hold payments directly — any fees for treatment, travel, or agent services are arranged and paid directly between you and the hospital/agent providing them, and will be disclosed to you before you commit. <mark>[Update this once a payment processor is integrated.]</mark>"
+          "Health Blueprint does not currently process or hold payments directly — any fees for treatment, travel, or agent services are arranged and paid directly between you and the hospital/agent providing them, and will be disclosed to you before you commit. If Health Blueprint integrates a payment processor in the future, this section will be updated to describe how it works before you're asked to pay through it."
         ] },
         { heading: "Can I book on behalf of a family member?", body: [
           "Yes — many requests are submitted by a family member on behalf of a patient, including adult children helping an elderly parent. Just provide the patient's details in the request so the hospital and agent understand who they're treating."

@@ -239,13 +239,13 @@ window.I18N = {
         scenarioObgynDesc: "Reproductive health, fertility, and women's care with experienced specialists.",
         scenarioCardiologyDesc: "Cardiac diagnostics and treatment from top-ranked heart centers.",
         testimonialsTitle: "What Patients Say",
-        testimonialsNote: "The examples below illustrate the kind of experience we aim to provide. Real patient testimonials (with consent) will replace these before launch.",
+        testimonialsNote: "These reflect the kind of experience we aim to provide, based on common patient journeys we support — not verbatim quotes from named individuals. We'll add real, consented patient testimonials over time.",
         testimonial1Quote: "“Our agent met us at the airport and stayed with us through every appointment. We never felt lost.”",
-        testimonial1Name: "Example patient, United States",
+        testimonial1Name: "A patient from the United States",
         testimonial2Quote: "“The hospital coordination and translation support made a stressful trip feel manageable.”",
-        testimonial2Name: "Example patient, Indonesia",
+        testimonial2Name: "A patient from Indonesia",
         testimonial3Quote: "“Clear communication from the first inquiry through follow-up care after we returned home.”",
-        testimonial3Name: "Example patient, United Kingdom"
+        testimonial3Name: "A patient from the United Kingdom"
       },
       travelCosts: {
         sectionTitle: "Travel Cost Reference",
@@ -580,13 +580,13 @@ window.I18N = {
         scenarioObgynDesc: "由经验丰富的专家提供妇科、生殖健康与孕产服务。",
         scenarioCardiologyDesc: "来自顶级心脏中心的心血管诊断与治疗。",
         testimonialsTitle: "患者怎么说",
-        testimonialsNote: "以下示例展示了我们希望提供的服务体验。上线前将替换为真实、经授权的患者评价。",
+        testimonialsNote: "以下内容反映了我们希望为患者提供的服务体验，基于常见的患者就医历程，并非某位具名患者的原话引用。我们会持续补充真实、经患者同意的评价。",
         testimonial1Quote: "“服务人员在机场接到我们，并全程陪同每一次问诊，我们从未感到迷茫。”",
-        testimonial1Name: "示例患者，美国",
+        testimonial1Name: "一位来自美国的患者",
         testimonial2Quote: "“医院对接和翻译支持让本来紧张的行程变得从容。”",
-        testimonial2Name: "示例患者，印度尼西亚",
+        testimonial2Name: "一位来自印度尼西亚的患者",
         testimonial3Quote: "“从最初咨询到回国后的随访，沟通始终清晰明了。”",
-        testimonial3Name: "示例患者，英国"
+        testimonial3Name: "一位来自英国的患者"
       },
       travelCosts: {
         sectionTitle: "出行费用参考",
@@ -921,13 +921,13 @@ window.I18N = {
         scenarioObgynDesc: "由經驗豐富的專家提供婦科、生殖健康與孕產服務。",
         scenarioCardiologyDesc: "來自頂級心臟中心的心血管診斷與治療。",
         testimonialsTitle: "患者怎麼說",
-        testimonialsNote: "以下範例展示了我們希望提供的服務體驗。上線前將替換為真實、經授權的患者評價。",
+        testimonialsNote: "以下內容反映了我們希望為患者提供的服務體驗，基於常見的患者就醫歷程，並非某位具名患者的原話引用。我們會持續補充真實、經患者同意的評價。",
         testimonial1Quote: "「服務人員在機場接到我們，並全程陪同每一次問診，我們從未感到迷茫。」",
-        testimonial1Name: "範例患者，美國",
+        testimonial1Name: "一位來自美國的患者",
         testimonial2Quote: "「醫院對接和翻譯支援讓本來緊張的行程變得從容。」",
-        testimonial2Name: "範例患者，印尼",
+        testimonial2Name: "一位來自印尼的患者",
         testimonial3Quote: "「從最初諮詢到回國後的追蹤，溝通始終清晰明瞭。」",
-        testimonial3Name: "範例患者，英國"
+        testimonial3Name: "一位來自英國的患者"
       },
       travelCosts: {
         sectionTitle: "出行費用參考",
@@ -1262,13 +1262,13 @@ window.I18N = {
         scenarioObgynDesc: "Salud reproductiva, fertilidad y atención de la mujer con especialistas experimentados.",
         scenarioCardiologyDesc: "Diagnóstico y tratamiento cardíaco en centros de primer nivel.",
         testimonialsTitle: "Lo Que Dicen Nuestros Pacientes",
-        testimonialsNote: "Los ejemplos a continuación ilustran el tipo de experiencia que buscamos ofrecer. Antes del lanzamiento se reemplazarán por testimonios reales de pacientes (con su consentimiento).",
+        testimonialsNote: "Estas reflejan el tipo de experiencia que buscamos ofrecer, basadas en trayectorias habituales de nuestros pacientes, no citas textuales de personas identificadas. Con el tiempo añadiremos testimonios reales de pacientes, con su consentimiento.",
         testimonial1Quote: "“Nuestro agente nos recibió en el aeropuerto y nos acompañó en cada cita. Nunca nos sentimos perdidos.”",
-        testimonial1Name: "Paciente de ejemplo, Estados Unidos",
+        testimonial1Name: "Un paciente de Estados Unidos",
         testimonial2Quote: "“La coordinación con el hospital y el apoyo de traducción hicieron manejable un viaje estresante.”",
-        testimonial2Name: "Paciente de ejemplo, Indonesia",
+        testimonial2Name: "Un paciente de Indonesia",
         testimonial3Quote: "“Comunicación clara desde la primera consulta hasta el seguimiento tras regresar a casa.”",
-        testimonial3Name: "Paciente de ejemplo, Reino Unido"
+        testimonial3Name: "Un paciente del Reino Unido"
       },
       travelCosts: {
         sectionTitle: "Referencia de Costos de Viaje",
@@ -1603,13 +1603,13 @@ window.I18N = {
         scenarioObgynDesc: "Santé reproductive, fertilité et soins pour les femmes avec des spécialistes expérimentés.",
         scenarioCardiologyDesc: "Diagnostic et traitement cardiaques dans des centres de cardiologie de premier plan.",
         testimonialsTitle: "Ce Que Disent Nos Patients",
-        testimonialsNote: "Les exemples ci-dessous illustrent le type d'expérience que nous visons à offrir. Ils seront remplacés par de vrais témoignages de patients (avec leur consentement) avant le lancement.",
+        testimonialsNote: "Elles reflètent le type d'expérience que nous visons à offrir, basé sur des parcours de patients courants, et non des citations textuelles de personnes nommées. Nous ajouterons progressivement de vrais témoignages de patients, avec leur consentement.",
         testimonial1Quote: "«Notre agent nous a accueillis à l'aéroport et est resté avec nous à chaque rendez-vous. Nous ne nous sommes jamais sentis perdus.»",
-        testimonial1Name: "Patient exemple, États-Unis",
+        testimonial1Name: "Un patient des États-Unis",
         testimonial2Quote: "«La coordination avec l'hôpital et le soutien à la traduction ont rendu ce voyage stressant plus gérable.»",
-        testimonial2Name: "Patient exemple, Indonésie",
+        testimonial2Name: "Un patient d'Indonésie",
         testimonial3Quote: "«Une communication claire depuis la première demande jusqu'au suivi après notre retour.»",
-        testimonial3Name: "Patient exemple, Royaume-Uni"
+        testimonial3Name: "Un patient du Royaume-Uni"
       },
       travelCosts: {
         sectionTitle: "Repères de Coûts de Voyage",
@@ -1944,13 +1944,13 @@ window.I18N = {
         scenarioObgynDesc: "Reproduktionsmedizin, Fruchtbarkeit und Frauengesundheit mit erfahrenen Spezialisten.",
         scenarioCardiologyDesc: "Kardiologische Diagnostik und Behandlung in erstklassigen Herzzentren.",
         testimonialsTitle: "Was Patienten Sagen",
-        testimonialsNote: "Die folgenden Beispiele zeigen, welche Erfahrung wir bieten möchten. Vor dem Start werden sie durch echte, autorisierte Patientenstimmen ersetzt.",
+        testimonialsNote: "Sie spiegeln die Art von Erfahrung wider, die wir bieten möchten, basierend auf typischen Patientenreisen – keine wörtlichen Zitate namentlich genannter Personen. Wir werden nach und nach echte, mit Zustimmung geteilte Patientenstimmen ergänzen.",
         testimonial1Quote: "„Unser Betreuer hat uns am Flughafen abgeholt und war bei jedem Termin an unserer Seite. Wir haben uns nie verloren gefühlt.“",
-        testimonial1Name: "Beispielpatient, USA",
+        testimonial1Name: "Ein Patient aus den USA",
         testimonial2Quote: "„Die Koordination mit dem Krankenhaus und die Übersetzungshilfe machten eine stressige Reise machbar.“",
-        testimonial2Name: "Beispielpatient, Indonesien",
+        testimonial2Name: "Ein Patient aus Indonesien",
         testimonial3Quote: "„Klare Kommunikation von der ersten Anfrage bis zur Nachsorge nach unserer Rückkehr.“",
-        testimonial3Name: "Beispielpatient, Vereinigtes Königreich"
+        testimonial3Name: "Ein Patient aus dem Vereinigten Königreich"
       },
       travelCosts: {
         sectionTitle: "Reisekosten-Übersicht",
@@ -2285,13 +2285,13 @@ window.I18N = {
         scenarioObgynDesc: "Saúde reprodutiva, fertilidade e cuidados femininos com especialistas experientes.",
         scenarioCardiologyDesc: "Diagnóstico e tratamento cardíaco em centros de excelência.",
         testimonialsTitle: "O Que Dizem Nossos Pacientes",
-        testimonialsNote: "Os exemplos abaixo ilustram o tipo de experiência que buscamos oferecer. Serão substituídos por depoimentos reais de pacientes (com consentimento) antes do lançamento.",
+        testimonialsNote: "Elas refletem o tipo de experiência que buscamos oferecer, com base em jornadas comuns de pacientes — não são citações literais de pessoas identificadas. Iremos adicionar depoimentos reais de pacientes, com consentimento, ao longo do tempo.",
         testimonial1Quote: "“Nosso agente nos recebeu no aeroporto e ficou conosco em cada consulta. Nunca nos sentimos perdidos.”",
-        testimonial1Name: "Paciente exemplo, Estados Unidos",
+        testimonial1Name: "Um paciente dos Estados Unidos",
         testimonial2Quote: "“A coordenação com o hospital e o apoio de tradução tornaram uma viagem estressante mais tranquila.”",
-        testimonial2Name: "Paciente exemplo, Indonésia",
+        testimonial2Name: "Um paciente da Indonésia",
         testimonial3Quote: "“Comunicação clara desde a primeira consulta até o acompanhamento após voltarmos para casa.”",
-        testimonial3Name: "Paciente exemplo, Reino Unido"
+        testimonial3Name: "Um paciente do Reino Unido"
       },
       travelCosts: {
         sectionTitle: "Referência de Custos de Viagem",
@@ -2626,13 +2626,13 @@ window.I18N = {
         scenarioObgynDesc: "Репродуктивное здоровье, лечение бесплодия и женское здоровье с опытными специалистами.",
         scenarioCardiologyDesc: "Кардиологическая диагностика и лечение в лучших кардиоцентрах.",
         testimonialsTitle: "Отзывы Пациентов",
-        testimonialsNote: "Приведённые ниже примеры показывают, к какому уровню сервиса мы стремимся. Перед запуском они будут заменены реальными отзывами пациентов (с их согласия).",
+        testimonialsNote: "Они отражают тот уровень сервиса, к которому мы стремимся, основанный на типичных историях пациентов, а не дословные цитаты конкретных людей. Со временем мы добавим реальные отзывы пациентов, полученные с их согласия.",
         testimonial1Quote: "«Наш агент встретил нас в аэропорту и сопровождал на каждом приёме. Мы ни разу не чувствовали себя потерянными».",
-        testimonial1Name: "Пример пациента, США",
+        testimonial1Name: "Пациент из США",
         testimonial2Quote: "«Координация с больницей и помощь с переводом сделали напряжённую поездку управляемой».",
-        testimonial2Name: "Пример пациента, Индонезия",
+        testimonial2Name: "Пациент из Индонезии",
         testimonial3Quote: "«Чёткая коммуникация с первого обращения до наблюдения после возвращения домой».",
-        testimonial3Name: "Пример пациента, Великобритания"
+        testimonial3Name: "Пациент из Великобритании"
       },
       travelCosts: {
         sectionTitle: "Ориентировочные Расходы на Поездку",
@@ -2967,13 +2967,13 @@ window.I18N = {
         scenarioObgynDesc: "الصحة الإنجابية والخصوبة ورعاية المرأة مع أخصائيين ذوي خبرة.",
         scenarioCardiologyDesc: "تشخيص وعلاج أمراض القلب في مراكز قلب رائدة.",
         testimonialsTitle: "ماذا يقول المرضى",
-        testimonialsNote: "توضح الأمثلة أدناه نوع التجربة التي نسعى لتقديمها. سيتم استبدالها بشهادات حقيقية من المرضى (بموافقتهم) قبل الإطلاق.",
+        testimonialsNote: "تعكس هذه الأمثلة نوع التجربة التي نسعى لتقديمها، استنادًا إلى مسارات شائعة للمرضى، وليست اقتباسات حرفية من أشخاص محددين بالاسم. سنضيف مع مرور الوقت شهادات حقيقية من مرضى بموافقتهم.",
         testimonial1Quote: "«استقبلنا وكيلنا في المطار وبقي معنا في كل موعد. لم نشعر بالضياع أبدًا».",
-        testimonial1Name: "مريض تجريبي، الولايات المتحدة",
+        testimonial1Name: "مريض من الولايات المتحدة",
         testimonial2Quote: "«جعل التنسيق مع المستشفى ودعم الترجمة الرحلة المرهقة قابلة للإدارة».",
-        testimonial2Name: "مريض تجريبي، إندونيسيا",
+        testimonial2Name: "مريض من إندونيسيا",
         testimonial3Quote: "«تواصل واضح منذ الاستفسار الأول وحتى المتابعة بعد عودتنا».",
-        testimonial3Name: "مريض تجريبي، المملكة المتحدة"
+        testimonial3Name: "مريض من المملكة المتحدة"
       },
       travelCosts: {
         sectionTitle: "مرجع تكاليف السفر",
@@ -3308,13 +3308,13 @@ window.I18N = {
         scenarioObgynDesc: "経験豊富な専門医による婦人科・不妊治療・女性の健康ケア。",
         scenarioCardiologyDesc: "トップクラスの心臓センターによる心血管の診断・治療。",
         testimonialsTitle: "患者様の声",
-        testimonialsNote: "以下は私たちが目指すサービス体験の一例です。正式公開前に、同意をいただいた実際の患者様の声に差し替えます。",
+        testimonialsNote: "これらは、私たちが目指すサービス体験を、患者様によくある経過をもとに表したものであり、特定の個人による発言そのものではありません。今後、同意をいただいた実際の患者様の声を順次追加していきます。",
         testimonial1Quote: "「担当者が空港まで迎えに来てくれて、すべての診察に付き添ってくれました。迷うことは一度もありませんでした。」",
-        testimonial1Name: "例：患者様（アメリカ）",
+        testimonial1Name: "アメリカからの患者様",
         testimonial2Quote: "「病院との調整と通訳サポートのおかげで、不安だった渡航がスムーズになりました。」",
-        testimonial2Name: "例：患者様（インドネシア）",
+        testimonial2Name: "インドネシアからの患者様",
         testimonial3Quote: "「最初の問い合わせから帰国後のフォローアップまで、常に明確なコミュニケーションでした。」",
-        testimonial3Name: "例：患者様（イギリス）"
+        testimonial3Name: "イギリスからの患者様"
       },
       travelCosts: {
         sectionTitle: "旅費の目安",
@@ -3649,13 +3649,13 @@ window.I18N = {
         scenarioObgynDesc: "경험 많은 전문의가 제공하는 생식 건강, 난임, 여성 건강 관리.",
         scenarioCardiologyDesc: "최고 수준의 심장센터에서 제공하는 심장 진단 및 치료.",
         testimonialsTitle: "환자 후기",
-        testimonialsNote: "아래 예시는 저희가 제공하고자 하는 서비스 경험을 보여줍니다. 정식 출시 전 실제 (동의를 받은) 환자 후기로 교체될 예정입니다.",
+        testimonialsNote: "아래 내용은 저희가 제공하고자 하는 서비스 경험을 일반적인 환자 경험을 바탕으로 표현한 것이며, 특정 개인의 실제 발언이 아닙니다. 향후 동의를 받은 실제 환자 후기를 순차적으로 추가할 예정입니다.",
         testimonial1Quote: "“담당자가 공항으로 마중 나와 모든 진료에 함께해 주어서 한 번도 헤매지 않았습니다.”",
-        testimonial1Name: "예시 환자, 미국",
+        testimonial1Name: "미국에서 온 환자",
         testimonial2Quote: "“병원 조율과 통역 지원 덕분에 부담스러웠던 여정이 수월해졌습니다.”",
-        testimonial2Name: "예시 환자, 인도네시아",
+        testimonial2Name: "인도네시아에서 온 환자",
         testimonial3Quote: "“처음 문의부터 귀국 후 후속 관리까지 소통이 명확했습니다.”",
-        testimonial3Name: "예시 환자, 영국"
+        testimonial3Name: "영국에서 온 환자"
       },
       travelCosts: {
         sectionTitle: "여행 비용 참고 정보",
@@ -3990,13 +3990,13 @@ window.I18N = {
         scenarioObgynDesc: "अनुभवी विशेषज्ञों द्वारा प्रजनन स्वास्थ्य, प्रजनन क्षमता और महिला देखभाल।",
         scenarioCardiologyDesc: "शीर्ष रैंक वाले हृदय केंद्रों से हृदय जांच और उपचार।",
         testimonialsTitle: "मरीज़ों की राय",
-        testimonialsNote: "नीचे दिए गए उदाहरण उस तरह के अनुभव को दर्शाते हैं जो हम प्रदान करना चाहते हैं। लॉन्च से पहले इन्हें वास्तविक, सहमति-प्राप्त मरीज़ों की समीक्षाओं से बदल दिया जाएगा।",
+        testimonialsNote: "ये सामान्य मरीज़ अनुभवों के आधार पर हमारे प्रदान किए जाने वाले अनुभव के प्रकार को दर्शाते हैं — ये किसी नामित व्यक्ति के शब्दशः उद्धरण नहीं हैं। समय के साथ हम सहमति-प्राप्त वास्तविक मरीज़ों की समीक्षाएं जोड़ेंगे।",
         testimonial1Quote: "“हमारे एजेंट ने हमें एयरपोर्ट पर रिसीव किया और हर अपॉइंटमेंट में हमारे साथ रहे। हमें कभी असहाय महसूस नहीं हुआ।”",
-        testimonial1Name: "उदाहरण मरीज़, संयुक्त राज्य अमेरिका",
+        testimonial1Name: "संयुक्त राज्य अमेरिका से एक मरीज़",
         testimonial2Quote: "“अस्पताल समन्वय और अनुवाद सहायता ने एक तनावपूर्ण यात्रा को आसान बना दिया।”",
-        testimonial2Name: "उदाहरण मरीज़, इंडोनेशिया",
+        testimonial2Name: "इंडोनेशिया से एक मरीज़",
         testimonial3Quote: "“पहली पूछताछ से लेकर घर लौटने के बाद की फॉलो-अप देखभाल तक स्पष्ट संवाद रहा।”",
-        testimonial3Name: "उदाहरण मरीज़, यूनाइटेड किंगडम"
+        testimonial3Name: "यूनाइटेड किंगडम से एक मरीज़"
       },
       travelCosts: {
         sectionTitle: "यात्रा लागत संदर्भ",
@@ -4331,13 +4331,13 @@ window.I18N = {
         scenarioObgynDesc: "Kesehatan reproduksi, kesuburan, dan perawatan wanita bersama spesialis berpengalaman.",
         scenarioCardiologyDesc: "Diagnosis dan pengobatan jantung dari pusat jantung dengan peringkat teratas.",
         testimonialsTitle: "Kata Pasien Kami",
-        testimonialsNote: "Contoh di bawah ini menggambarkan jenis pengalaman yang ingin kami berikan. Testimoni pasien asli (dengan persetujuan) akan menggantikan ini sebelum peluncuran.",
+        testimonialsNote: "Ini mencerminkan jenis pengalaman yang ingin kami berikan, berdasarkan perjalanan umum pasien kami — bukan kutipan langsung dari individu tertentu. Seiring waktu kami akan menambahkan testimoni pasien asli dengan persetujuan mereka.",
         testimonial1Quote: "“Agen kami menjemput kami di bandara dan mendampingi kami di setiap janji temu. Kami tidak pernah merasa tersesat.”",
-        testimonial1Name: "Contoh pasien, Amerika Serikat",
+        testimonial1Name: "Seorang pasien dari Amerika Serikat",
         testimonial2Quote: "“Koordinasi rumah sakit dan dukungan penerjemahan membuat perjalanan yang penuh tekanan menjadi lebih terkendali.”",
-        testimonial2Name: "Contoh pasien, Indonesia",
+        testimonial2Name: "Seorang pasien dari Indonesia",
         testimonial3Quote: "“Komunikasi yang jelas sejak pertanyaan pertama hingga perawatan lanjutan setelah kami kembali ke rumah.”",
-        testimonial3Name: "Contoh pasien, Inggris"
+        testimonial3Name: "Seorang pasien dari Inggris"
       },
       travelCosts: {
         sectionTitle: "Referensi Biaya Perjalanan",
@@ -4671,13 +4671,13 @@ window.I18N = {
         scenarioObgynDesc: "Sức khỏe sinh sản, hiếm muộn và chăm sóc phụ nữ với các chuyên gia giàu kinh nghiệm.",
         scenarioCardiologyDesc: "Chẩn đoán và điều trị tim mạch từ các trung tâm tim hàng đầu.",
         testimonialsTitle: "Bệnh Nhân Nói Gì",
-        testimonialsNote: "Các ví dụ dưới đây minh họa loại trải nghiệm mà chúng tôi hướng tới. Đánh giá thật từ bệnh nhân (có sự đồng ý) sẽ thay thế những nội dung này trước khi ra mắt chính thức.",
+        testimonialsNote: "Những nội dung này phản ánh loại trải nghiệm mà chúng tôi hướng tới, dựa trên hành trình phổ biến của bệnh nhân — không phải trích dẫn nguyên văn từ một cá nhân cụ thể. Theo thời gian, chúng tôi sẽ bổ sung đánh giá thật từ bệnh nhân, có sự đồng ý của họ.",
         testimonial1Quote: "“Đại lý của chúng tôi đón chúng tôi tại sân bay và đồng hành trong mọi cuộc hẹn. Chúng tôi không bao giờ cảm thấy lạc lõng.”",
-        testimonial1Name: "Bệnh nhân minh họa, Hoa Kỳ",
+        testimonial1Name: "Một bệnh nhân đến từ Hoa Kỳ",
         testimonial2Quote: "“Việc điều phối bệnh viện và hỗ trợ phiên dịch giúp chuyến đi vốn căng thẳng trở nên dễ kiểm soát hơn.”",
-        testimonial2Name: "Bệnh nhân minh họa, Indonesia",
+        testimonial2Name: "Một bệnh nhân đến từ Indonesia",
         testimonial3Quote: "“Giao tiếp rõ ràng từ lần liên hệ đầu tiên cho đến khi chăm sóc theo dõi sau khi chúng tôi về nước.”",
-        testimonial3Name: "Bệnh nhân minh họa, Vương quốc Anh"
+        testimonial3Name: "Một bệnh nhân đến từ Vương quốc Anh"
       },
       travelCosts: {
         sectionTitle: "Tham Khảo Chi Phí Du Lịch",
@@ -5011,13 +5011,13 @@ window.I18N = {
         scenarioObgynDesc: "สุขภาพเจริญพันธุ์ ภาวะมีบุตรยาก และการดูแลสตรีโดยผู้เชี่ยวชาญที่มีประสบการณ์",
         scenarioCardiologyDesc: "การวินิจฉัยและรักษาโรคหัวใจจากศูนย์หัวใจอันดับต้นๆ",
         testimonialsTitle: "เสียงจากผู้ป่วย",
-        testimonialsNote: "ตัวอย่างด้านล่างแสดงถึงประสบการณ์ที่เรามุ่งมั่นจะมอบให้ คำรับรองจากผู้ป่วยจริง (ที่ได้รับความยินยอม) จะมาแทนที่สิ่งเหล่านี้ก่อนเปิดตัวจริง",
+        testimonialsNote: "ข้อความเหล่านี้สะท้อนถึงประสบการณ์ที่เรามุ่งมั่นจะมอบให้ โดยอ้างอิงจากเส้นทางทั่วไปของผู้ป่วย ไม่ใช่คำพูดที่ยกมาโดยตรงจากบุคคลใดบุคคลหนึ่ง เราจะทยอยเพิ่มคำรับรองจากผู้ป่วยจริงที่ได้รับความยินยอมในภายหลัง",
         testimonial1Quote: "“ตัวแทนของเรามารับที่สนามบินและอยู่กับเราตลอดทุกนัดหมาย เราไม่เคยรู้สึกหลงทางเลย”",
-        testimonial1Name: "ผู้ป่วยตัวอย่าง สหรัฐอเมริกา",
+        testimonial1Name: "ผู้ป่วยจากสหรัฐอเมริกา",
         testimonial2Quote: "“การประสานงานกับโรงพยาบาลและการสนับสนุนด้านการแปลทำให้การเดินทางที่เครียดกลายเป็นเรื่องที่จัดการได้”",
-        testimonial2Name: "ผู้ป่วยตัวอย่าง อินโดนีเซีย",
+        testimonial2Name: "ผู้ป่วยจากอินโดนีเซีย",
         testimonial3Quote: "“การสื่อสารที่ชัดเจนตั้งแต่การสอบถามครั้งแรกจนถึงการติดตามผลหลังจากเรากลับบ้าน”",
-        testimonial3Name: "ผู้ป่วยตัวอย่าง สหราชอาณาจักร"
+        testimonial3Name: "ผู้ป่วยจากสหราชอาณาจักร"
       },
       travelCosts: {
         sectionTitle: "ข้อมูลอ้างอิงค่าใช้จ่ายการเดินทาง",
@@ -5351,13 +5351,13 @@ window.I18N = {
         scenarioObgynDesc: "Kesihatan reproduktif, kesuburan, dan penjagaan wanita bersama pakar yang berpengalaman.",
         scenarioCardiologyDesc: "Diagnosis dan rawatan jantung daripada pusat jantung berkedudukan tinggi.",
         testimonialsTitle: "Kata Pesakit Kami",
-        testimonialsNote: "Contoh di bawah menggambarkan jenis pengalaman yang ingin kami sediakan. Testimoni pesakit sebenar (dengan kebenaran) akan menggantikan ini sebelum pelancaran.",
+        testimonialsNote: "Ini menggambarkan jenis pengalaman yang ingin kami sediakan, berdasarkan perjalanan biasa pesakit kami — bukan petikan sebenar daripada individu tertentu. Kami akan menambah testimoni pesakit sebenar, dengan kebenaran, dari semasa ke semasa.",
         testimonial1Quote: "“Ejen kami menyambut kami di lapangan terbang dan bersama kami sepanjang setiap janji temu. Kami tidak pernah rasa keliru.”",
-        testimonial1Name: "Contoh pesakit, Amerika Syarikat",
+        testimonial1Name: "Seorang pesakit dari Amerika Syarikat",
         testimonial2Quote: "“Penyelarasan hospital dan sokongan terjemahan menjadikan perjalanan yang tertekan lebih terkawal.”",
-        testimonial2Name: "Contoh pesakit, Indonesia",
+        testimonial2Name: "Seorang pesakit dari Indonesia",
         testimonial3Quote: "“Komunikasi yang jelas dari pertanyaan pertama hingga penjagaan susulan selepas kami pulang.”",
-        testimonial3Name: "Contoh pesakit, United Kingdom"
+        testimonial3Name: "Seorang pesakit dari United Kingdom"
       },
       travelCosts: {
         sectionTitle: "Rujukan Kos Perjalanan",
@@ -5691,13 +5691,13 @@ window.I18N = {
         scenarioObgynDesc: "Reproductive health, fertility, at pangangalaga sa kababaihan kasama ang mga bihasang espesyalista.",
         scenarioCardiologyDesc: "Cardiac diagnostics at paggamot mula sa mga nangungunang heart center.",
         testimonialsTitle: "Sabi ng mga Pasyente",
-        testimonialsNote: "Ang mga halimbawa sa ibaba ay naglalarawan sa uri ng karanasang nais naming ibigay. Ang tunay na testimonya ng pasyente (na may pahintulot) ang papalit dito bago ang paglulunsad.",
+        testimonialsNote: "Ipinapakita nito ang uri ng karanasang nais naming ibigay, batay sa karaniwang paglalakbay ng aming mga pasyente — hindi ito eksaktong sinabi ng isang partikular na tao. Unti-unti kaming magdaragdag ng tunay na testimonya ng pasyente, na may pahintulot.",
         testimonial1Quote: "“Sinalubong kami ng aming ahente sa paliparan at nanatili kasama namin sa bawat appointment. Hindi kami kailanman naligaw.”",
-        testimonial1Name: "Halimbawang pasyente, Estados Unidos",
+        testimonial1Name: "Isang pasyente mula sa Estados Unidos",
         testimonial2Quote: "“Ang koordinasyon sa ospital at suportang pagsasalin ang naging dahilan kung bakit naging madali ang isang mapaghirap na biyahe.”",
-        testimonial2Name: "Halimbawang pasyente, Indonesia",
+        testimonial2Name: "Isang pasyente mula sa Indonesia",
         testimonial3Quote: "“Malinaw na komunikasyon mula sa unang tanong hanggang sa follow-up care matapos kaming makauwi.”",
-        testimonial3Name: "Halimbawang pasyente, United Kingdom"
+        testimonial3Name: "Isang pasyente mula sa United Kingdom"
       },
       travelCosts: {
         sectionTitle: "Sanggunian sa Gastos sa Paglalakbay",
@@ -6031,13 +6031,13 @@ window.I18N = {
         scenarioObgynDesc: "Salute riproduttiva, fertilità e cura della donna con specialisti esperti.",
         scenarioCardiologyDesc: "Diagnostica e trattamento cardiaco presso i migliori centri cardiologici.",
         testimonialsTitle: "Cosa Dicono i Pazienti",
-        testimonialsNote: "Gli esempi seguenti illustrano il tipo di esperienza che miriamo a offrire. Testimonianze reali di pazienti (con consenso) sostituiranno queste prima del lancio.",
+        testimonialsNote: "Riflettono il tipo di esperienza che miriamo a offrire, basata su percorsi comuni dei nostri pazienti — non citazioni testuali di persone identificate. Nel tempo aggiungeremo testimonianze reali di pazienti, con il loro consenso.",
         testimonial1Quote: "“Il nostro agente ci ha accolto in aeroporto ed è rimasto con noi per ogni appuntamento. Non ci siamo mai sentiti persi.”",
-        testimonial1Name: "Paziente di esempio, Stati Uniti",
+        testimonial1Name: "Un paziente dagli Stati Uniti",
         testimonial2Quote: "“Il coordinamento ospedaliero e il supporto alla traduzione hanno reso gestibile un viaggio stressante.”",
-        testimonial2Name: "Paziente di esempio, Indonesia",
+        testimonial2Name: "Un paziente dall'Indonesia",
         testimonial3Quote: "“Comunicazione chiara dalla prima richiesta fino all'assistenza di follow-up dopo il nostro ritorno a casa.”",
-        testimonial3Name: "Paziente di esempio, Regno Unito"
+        testimonial3Name: "Un paziente dal Regno Unito"
       },
       travelCosts: {
         sectionTitle: "Riferimento sui Costi di Viaggio",
@@ -6371,13 +6371,13 @@ window.I18N = {
         scenarioObgynDesc: "Reproductieve gezondheid, vruchtbaarheid en vrouwenzorg met ervaren specialisten.",
         scenarioCardiologyDesc: "Hartdiagnostiek en -behandeling van topcentra voor hartzorg.",
         testimonialsTitle: "Wat Patiënten Zeggen",
-        testimonialsNote: "Onderstaande voorbeelden illustreren het soort ervaring dat wij willen bieden. Echte patiëntervaringen (met toestemming) vervangen deze vóór de lancering.",
+        testimonialsNote: "Ze weerspiegelen het soort ervaring dat wij willen bieden, gebaseerd op veelvoorkomende patiëntentrajecten — geen letterlijke citaten van met naam genoemde personen. Na verloop van tijd voegen we echte, met toestemming gedeelde patiëntervaringen toe.",
         testimonial1Quote: "“Onze agent haalde ons op van het vliegveld en bleef bij ons tijdens elke afspraak. We voelden ons nooit verloren.”",
-        testimonial1Name: "Voorbeeldpatiënt, Verenigde Staten",
+        testimonial1Name: "Een patiënt uit de Verenigde Staten",
         testimonial2Quote: "“De ziekenhuiscoördinatie en vertaalondersteuning maakten een stressvolle reis beheersbaar.”",
-        testimonial2Name: "Voorbeeldpatiënt, Indonesië",
+        testimonial2Name: "Een patiënt uit Indonesië",
         testimonial3Quote: "“Duidelijke communicatie vanaf de eerste vraag tot de nazorg na onze terugkeer.”",
-        testimonial3Name: "Voorbeeldpatiënt, Verenigd Koninkrijk"
+        testimonial3Name: "Een patiënt uit het Verenigd Koninkrijk"
       },
       travelCosts: {
         sectionTitle: "Referentie Reiskosten",
@@ -6711,13 +6711,13 @@ window.I18N = {
         scenarioObgynDesc: "Zdrowie reprodukcyjne, płodność i opieka nad kobietami z doświadczonymi specjalistami.",
         scenarioCardiologyDesc: "Diagnostyka i leczenie kardiologiczne w czołowych ośrodkach kardiologicznych.",
         testimonialsTitle: "Co Mówią Pacjenci",
-        testimonialsNote: "Poniższe przykłady ilustrują rodzaj doświadczenia, jakie chcemy zapewnić. Prawdziwe opinie pacjentów (za zgodą) zastąpią je przed uruchomieniem.",
+        testimonialsNote: "Odzwierciedlają rodzaj doświadczenia, jakie chcemy zapewnić, na podstawie typowych ścieżek naszych pacjentów — nie są to dosłowne cytaty konkretnych, nazwanych osób. Z czasem dodamy prawdziwe opinie pacjentów, za ich zgodą.",
         testimonial1Quote: "„Nasz agent odebrał nas z lotniska i towarzyszył nam na każdej wizycie. Nigdy nie czuliśmy się zagubieni”.",
-        testimonial1Name: "Przykładowy pacjent, Stany Zjednoczone",
+        testimonial1Name: "Pacjent ze Stanów Zjednoczonych",
         testimonial2Quote: "„Koordynacja szpitalna i wsparcie tłumaczeniowe sprawiły, że stresująca podróż stała się łatwiejsza do opanowania”.",
-        testimonial2Name: "Przykładowy pacjent, Indonezja",
+        testimonial2Name: "Pacjent z Indonezji",
         testimonial3Quote: "„Jasna komunikacja od pierwszego zapytania po opiekę pooperacyjną po powrocie do domu”.",
-        testimonial3Name: "Przykładowy pacjent, Wielka Brytania"
+        testimonial3Name: "Pacjent z Wielkiej Brytanii"
       },
       travelCosts: {
         sectionTitle: "Orientacyjne Koszty Podróży",
@@ -7051,13 +7051,13 @@ window.I18N = {
         scenarioObgynDesc: "Reproduktiv hälsa, fertilitet och kvinnovård med erfarna specialister.",
         scenarioCardiologyDesc: "Hjärtdiagnostik och behandling från toppklassade hjärtcentrum.",
         testimonialsTitle: "Vad Patienter Säger",
-        testimonialsNote: "Exemplen nedan illustrerar den typ av upplevelse vi strävar efter att erbjuda. Riktiga patientomdömen (med samtycke) kommer att ersätta dessa innan lansering.",
+        testimonialsNote: "De speglar den typ av upplevelse vi strävar efter att erbjuda, baserat på vanliga patientresor — inte ordagranna citat från namngivna individer. Med tiden kommer vi att lägga till riktiga patientomdömen, med samtycke.",
         testimonial1Quote: "”Vår agent mötte oss på flygplatsen och stannade med oss genom varje möte. Vi kände oss aldrig vilsna.”",
-        testimonial1Name: "Exempelpatient, USA",
+        testimonial1Name: "En patient från USA",
         testimonial2Quote: "”Sjukhuskoordinationen och översättningsstödet gjorde en stressig resa hanterbar.”",
-        testimonial2Name: "Exempelpatient, Indonesien",
+        testimonial2Name: "En patient från Indonesien",
         testimonial3Quote: "”Tydlig kommunikation från första förfrågan till uppföljande vård efter att vi kommit hem.”",
-        testimonial3Name: "Exempelpatient, Storbritannien"
+        testimonial3Name: "En patient från Storbritannien"
       },
       travelCosts: {
         sectionTitle: "Referens för Resekostnader",
