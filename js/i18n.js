@@ -31,7 +31,7 @@ window.I18N = {
   strings: {
     en: {
       brand: { name: "Health Blueprint", tagline: "Your trusted path to healthcare in China" },
-      nav: { home: "Home", howItWorks: "How It Works", contact: "Contact", joinUs: "Join as an Agent", trip: "Plan a Trip" },
+      nav: { home: "Home", howItWorks: "How It Works", contact: "Contact", joinUs: "Join as an Agent", trip: "Plan a Trip", findCare: "Find Care" },
       fontSize: { label: "Text size", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "Find the right hospital in China — with people to guide you there",
@@ -64,7 +64,9 @@ window.I18N = {
         officialWebsite: "Official hospital website",
         illustrationNote: "Illustration, not an actual photo — visit the official website above for real photos.",
         photoNote: "Photo sourced externally — may not always load reliably.",
-        tierLabel: "2023 China Hospital Ranking"
+        tierLabel: "2023 China Hospital Ranking",
+        tierShort: "2023 ranking",
+        directoryDisclaimer: "This directory is compiled from publicly available information, including the 2023 China Hospital Ranking. A hospital appearing here does not mean it is affiliated with, partnered with, or endorsed by Health Blueprint. Always confirm a hospital's current services and credentials directly with the hospital."
       },
       program: {
         viewDetails: "View Details",
@@ -75,7 +77,8 @@ window.I18N = {
         included: "What's typically included",
         selectProgram: "Select This Specialty",
         agentsTitle: "Available Agents for This Specialty",
-        agentsSubtitle: "These agents will take care of you throughout your trip to China — from planning to your safe return home."
+        agentsSubtitle: "These agents will take care of you throughout your trip to China — from planning to your safe return home.",
+        agentsSampleNote: "The agent profiles below are sample profiles showing the kind of support we are building, not individually verified people available for booking today. Submit a request and we will match you with a real, vetted agent — or tell you plainly if we cannot."
       },
       agent: {
         yearsExp: "{n} years of experience",
@@ -110,6 +113,10 @@ window.I18N = {
         submit: "Send Request",
         success: "Thank you! Your request has been sent. Your agent will contact you within 1 business day.",
         requiredNote: "* Required fields",
+        directAskPrompt: "Already know what you need? Skip ahead and tell us directly — we will come back to you within 24 hours.",
+        directAskCta: "Send a Request",
+        noPreferencePrompt: "No preference, or none of these fit? We will match you with a suitable agent.",
+        noPreferenceCta: "Request Without Choosing",
         summaryHospital: "Hospital",
         summaryProgram: "Specialty",
         summaryAgent: "Agent",
@@ -120,7 +127,7 @@ window.I18N = {
         travelStartLabel: "Earliest travel date",
         travelEndLabel: "Latest travel date",
         medicalRecordsLabel: "Existing medical records or reports (optional)",
-        medicalRecordsHint: "PDF, JPG, or PNG — stored securely and shared only with your matched agent/hospital",
+        medicalRecordsHint: "PDF, JPG, or PNG — stored securely and shared only with your matched agent/hospital"
       },
       footer: {
         aboutTitle: "About Health Blueprint",
@@ -205,6 +212,7 @@ window.I18N = {
         chooseRegion: "Choose a Region",
         chooseHospitalFirst: "Choose a Hospital",
         recommendedHospitals: "Recommended Hospitals in This Region",
+        hospitalsInRegion: "Hospitals in This Region",
         recommendedRoutes: "Recommended Travel Routes",
         anyRegion: "Any region — choose a route separately",
         viewRoute: "View Route",
@@ -238,14 +246,13 @@ window.I18N = {
         scenarioOncologyDesc: "Access to leading cancer specialists and treatment programs.",
         scenarioObgynDesc: "Reproductive health, fertility, and women's care with experienced specialists.",
         scenarioCardiologyDesc: "Cardiac diagnostics and treatment from top-ranked heart centers.",
-        testimonialsTitle: "What Patients Say",
-        testimonialsNote: "These reflect the kind of experience we aim to provide, based on common patient journeys we support — not verbatim quotes from named individuals. We'll add real, consented patient testimonials over time.",
-        testimonial1Quote: "“Our agent met us at the airport and stayed with us through every appointment. We never felt lost.”",
-        testimonial1Name: "A patient from the United States",
-        testimonial2Quote: "“The hospital coordination and translation support made a stressful trip feel manageable.”",
-        testimonial2Name: "A patient from Indonesia",
-        testimonial3Quote: "“Clear communication from the first inquiry through follow-up care after we returned home.”",
-        testimonial3Name: "A patient from the United Kingdom"
+        howItWorksTitle: "How It Works",
+        howStep1Title: "Tell us what you need",
+        howStep1Desc: "Send a request with your condition or the care you are looking for, your rough dates, and your preferred language. No account needed.",
+        howStep2Title: "We come back with options",
+        howStep2Desc: "Within 24 hours we follow up to discuss suitable hospitals, what the process looks like, and a realistic sense of cost and timing.",
+        howStep3Title: "A local agent takes it from there",
+        howStep3Desc: "Once you decide to come, a vetted agent handles appointments, translation, and logistics — from your arrival through your trip home."
       },
       travelCosts: {
         sectionTitle: "Travel Cost Reference",
@@ -372,7 +379,7 @@ window.I18N = {
 
     "zh-CN": {
       brand: { name: "健康蓝图", tagline: "您通往中国医疗的信赖之路" },
-      nav: { home: "首页", howItWorks: "使用流程", contact: "联系我们", joinUs: "成为服务人员", trip: "行程规划" },
+      nav: { home: "首页", howItWorks: "使用流程", contact: "联系我们", joinUs: "成为服务人员", trip: "行程规划", findCare: "寻找医疗" },
       fontSize: { label: "字体大小", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "在中国找到合适的医院——并有专人全程陪同",
@@ -405,7 +412,9 @@ window.I18N = {
         officialWebsite: "医院官方网站",
         illustrationNote: "示意图，并非实景照片——如需查看真实照片，请访问上方官方网站。",
         photoNote: "图片来自外部来源，可能无法始终稳定加载。",
-        tierLabel: "2023年度中国医院排行"
+        tierLabel: "2023年度中国医院排行",
+        tierShort: "2023年排行",
+        directoryDisclaimer: "本目录依据公开信息整理，其中医院评级来自《2023年度中国医院排行》。医院出现在此列表中，不代表其与健康蓝图存在合作、关联或由其背书。请务必直接向医院确认其当前的诊疗服务与资质。"
       },
       program: {
         viewDetails: "查看详情",
@@ -416,7 +425,8 @@ window.I18N = {
         included: "通常包含服务",
         selectProgram: "选择此专科",
         agentsTitle: "该专科可选服务人员",
-        agentsSubtitle: "这些服务人员将在您整个中国之旅中全程照顾您——从行程安排到平安返程。"
+        agentsSubtitle: "这些服务人员将在您整个中国之旅中全程照顾您——从行程安排到平安返程。",
+        agentsSampleNote: "以下服务人员资料为示例资料，用于展示我们正在搭建的服务形态，并非当前可供预约的、已逐一核实的真实人员。提交咨询后，我们会为您匹配经审核的真实服务人员；如暂时无法匹配，我们会如实告知。"
       },
       agent: {
         yearsExp: "{n} 年经验",
@@ -451,6 +461,10 @@ window.I18N = {
         submit: "发送请求",
         success: "感谢您！请求已发送，服务人员将在1个工作日内与您联系。",
         requiredNote: "* 为必填项",
+        directAskPrompt: "已经清楚自己的需求？可以直接告诉我们，我们会在 24 小时内回复。",
+        directAskCta: "提交咨询",
+        noPreferencePrompt: "没有特别偏好，或以上都不合适？我们会为您匹配合适的服务人员。",
+        noPreferenceCta: "直接提交咨询",
         summaryHospital: "医院",
         summaryProgram: "专科",
         summaryAgent: "服务人员",
@@ -461,7 +475,7 @@ window.I18N = {
         travelStartLabel: "最早出行日期",
         travelEndLabel: "最晚出行日期",
         medicalRecordsLabel: "现有病历或检查报告（可选）",
-        medicalRecordsHint: "支持 PDF、JPG 或 PNG 格式 — 安全存储，仅与匹配的服务人员/医院共享",
+        medicalRecordsHint: "支持 PDF、JPG 或 PNG 格式 — 安全存储，仅与匹配的服务人员/医院共享"
       },
       footer: {
         aboutTitle: "关于健康蓝图",
@@ -546,6 +560,7 @@ window.I18N = {
         chooseRegion: "选择地区",
         chooseHospitalFirst: "选择医院",
         recommendedHospitals: "该地区推荐医院",
+        hospitalsInRegion: "该地区医院",
         recommendedRoutes: "推荐旅行路线",
         anyRegion: "不限地区——单独选择路线",
         viewRoute: "查看路线",
@@ -579,14 +594,13 @@ window.I18N = {
         scenarioOncologyDesc: "对接国内顶尖肿瘤专家与治疗项目。",
         scenarioObgynDesc: "由经验丰富的专家提供妇科、生殖健康与孕产服务。",
         scenarioCardiologyDesc: "来自顶级心脏中心的心血管诊断与治疗。",
-        testimonialsTitle: "患者怎么说",
-        testimonialsNote: "以下内容反映了我们希望为患者提供的服务体验，基于常见的患者就医历程，并非某位具名患者的原话引用。我们会持续补充真实、经患者同意的评价。",
-        testimonial1Quote: "“服务人员在机场接到我们，并全程陪同每一次问诊，我们从未感到迷茫。”",
-        testimonial1Name: "一位来自美国的患者",
-        testimonial2Quote: "“医院对接和翻译支持让本来紧张的行程变得从容。”",
-        testimonial2Name: "一位来自印度尼西亚的患者",
-        testimonial3Quote: "“从最初咨询到回国后的随访，沟通始终清晰明了。”",
-        testimonial3Name: "一位来自英国的患者"
+        howItWorksTitle: "服务流程",
+        howStep1Title: "告诉我们您的需求",
+        howStep1Desc: "提交咨询，说明您的病情或想看的科室、大致时间和偏好的语言。无需注册账号。",
+        howStep2Title: "我们回复可行方案",
+        howStep2Desc: "我们会在 24 小时内联系您，沟通合适的医院、具体流程，以及大致的费用与时间预期。",
+        howStep3Title: "本地服务人员全程跟进",
+        howStep3Desc: "您决定来华后，经审核的服务人员会负责预约、翻译和行程安排——从抵达直到返程。"
       },
       travelCosts: {
         sectionTitle: "出行费用参考",
@@ -802,7 +816,7 @@ window.I18N = {
         travelStartLabel: "最早出行日期",
         travelEndLabel: "最晚出行日期",
         medicalRecordsLabel: "現有病歷或檢查報告（可選）",
-        medicalRecordsHint: "支援 PDF、JPG 或 PNG 格式 — 安全儲存，僅與媒合的服務人員/醫院共用",
+        medicalRecordsHint: "支援 PDF、JPG 或 PNG 格式 — 安全儲存，僅與媒合的服務人員/醫院共用"
       },
       footer: {
         aboutTitle: "關於健康藍圖",
@@ -919,15 +933,7 @@ window.I18N = {
         scenarioDentalDesc: "以更實惠的價格獲得先進的牙科治療。",
         scenarioOncologyDesc: "對接國內頂尖腫瘤專家與治療項目。",
         scenarioObgynDesc: "由經驗豐富的專家提供婦科、生殖健康與孕產服務。",
-        scenarioCardiologyDesc: "來自頂級心臟中心的心血管診斷與治療。",
-        testimonialsTitle: "患者怎麼說",
-        testimonialsNote: "以下內容反映了我們希望為患者提供的服務體驗，基於常見的患者就醫歷程，並非某位具名患者的原話引用。我們會持續補充真實、經患者同意的評價。",
-        testimonial1Quote: "「服務人員在機場接到我們，並全程陪同每一次問診，我們從未感到迷茫。」",
-        testimonial1Name: "一位來自美國的患者",
-        testimonial2Quote: "「醫院對接和翻譯支援讓本來緊張的行程變得從容。」",
-        testimonial2Name: "一位來自印尼的患者",
-        testimonial3Quote: "「從最初諮詢到回國後的追蹤，溝通始終清晰明瞭。」",
-        testimonial3Name: "一位來自英國的患者"
+        scenarioCardiologyDesc: "來自頂級心臟中心的心血管診斷與治療。"
       },
       travelCosts: {
         sectionTitle: "出行費用參考",
@@ -1143,7 +1149,7 @@ window.I18N = {
         travelStartLabel: "Fecha de viaje más temprana",
         travelEndLabel: "Fecha de viaje más tardía",
         medicalRecordsLabel: "Historial médico o informes existentes (opcional)",
-        medicalRecordsHint: "PDF, JPG o PNG — almacenado de forma segura y compartido solo con su agente/hospital asignado",
+        medicalRecordsHint: "PDF, JPG o PNG — almacenado de forma segura y compartido solo con su agente/hospital asignado"
       },
       footer: {
         aboutTitle: "Acerca de Health Blueprint",
@@ -1260,15 +1266,7 @@ window.I18N = {
         scenarioDentalDesc: "Atención dental avanzada a una fracción del costo en su país.",
         scenarioOncologyDesc: "Acceso a especialistas oncológicos líderes y programas de tratamiento.",
         scenarioObgynDesc: "Salud reproductiva, fertilidad y atención de la mujer con especialistas experimentados.",
-        scenarioCardiologyDesc: "Diagnóstico y tratamiento cardíaco en centros de primer nivel.",
-        testimonialsTitle: "Lo Que Dicen Nuestros Pacientes",
-        testimonialsNote: "Estas reflejan el tipo de experiencia que buscamos ofrecer, basadas en trayectorias habituales de nuestros pacientes, no citas textuales de personas identificadas. Con el tiempo añadiremos testimonios reales de pacientes, con su consentimiento.",
-        testimonial1Quote: "“Nuestro agente nos recibió en el aeropuerto y nos acompañó en cada cita. Nunca nos sentimos perdidos.”",
-        testimonial1Name: "Un paciente de Estados Unidos",
-        testimonial2Quote: "“La coordinación con el hospital y el apoyo de traducción hicieron manejable un viaje estresante.”",
-        testimonial2Name: "Un paciente de Indonesia",
-        testimonial3Quote: "“Comunicación clara desde la primera consulta hasta el seguimiento tras regresar a casa.”",
-        testimonial3Name: "Un paciente del Reino Unido"
+        scenarioCardiologyDesc: "Diagnóstico y tratamiento cardíaco en centros de primer nivel."
       },
       travelCosts: {
         sectionTitle: "Referencia de Costos de Viaje",
@@ -1484,7 +1482,7 @@ window.I18N = {
         travelStartLabel: "Date de voyage la plus proche",
         travelEndLabel: "Date de voyage la plus tardive",
         medicalRecordsLabel: "Dossiers médicaux ou rapports existants (facultatif)",
-        medicalRecordsHint: "PDF, JPG ou PNG — stocké en toute sécurité et partagé uniquement avec votre agent/hôpital assigné",
+        medicalRecordsHint: "PDF, JPG ou PNG — stocké en toute sécurité et partagé uniquement avec votre agent/hôpital assigné"
       },
       footer: {
         aboutTitle: "À propos de Health Blueprint",
@@ -1601,15 +1599,7 @@ window.I18N = {
         scenarioDentalDesc: "Soins dentaires avancés à une fraction du coût dans votre pays.",
         scenarioOncologyDesc: "Accès aux meilleurs spécialistes et programmes de traitement en oncologie.",
         scenarioObgynDesc: "Santé reproductive, fertilité et soins pour les femmes avec des spécialistes expérimentés.",
-        scenarioCardiologyDesc: "Diagnostic et traitement cardiaques dans des centres de cardiologie de premier plan.",
-        testimonialsTitle: "Ce Que Disent Nos Patients",
-        testimonialsNote: "Elles reflètent le type d'expérience que nous visons à offrir, basé sur des parcours de patients courants, et non des citations textuelles de personnes nommées. Nous ajouterons progressivement de vrais témoignages de patients, avec leur consentement.",
-        testimonial1Quote: "«Notre agent nous a accueillis à l'aéroport et est resté avec nous à chaque rendez-vous. Nous ne nous sommes jamais sentis perdus.»",
-        testimonial1Name: "Un patient des États-Unis",
-        testimonial2Quote: "«La coordination avec l'hôpital et le soutien à la traduction ont rendu ce voyage stressant plus gérable.»",
-        testimonial2Name: "Un patient d'Indonésie",
-        testimonial3Quote: "«Une communication claire depuis la première demande jusqu'au suivi après notre retour.»",
-        testimonial3Name: "Un patient du Royaume-Uni"
+        scenarioCardiologyDesc: "Diagnostic et traitement cardiaques dans des centres de cardiologie de premier plan."
       },
       travelCosts: {
         sectionTitle: "Repères de Coûts de Voyage",
@@ -1825,7 +1815,7 @@ window.I18N = {
         travelStartLabel: "Frühestes Reisedatum",
         travelEndLabel: "Spätestes Reisedatum",
         medicalRecordsLabel: "Vorhandene medizinische Unterlagen oder Berichte (optional)",
-        medicalRecordsHint: "PDF, JPG oder PNG — sicher gespeichert und nur mit Ihrem zugewiesenen Agenten/Krankenhaus geteilt",
+        medicalRecordsHint: "PDF, JPG oder PNG — sicher gespeichert und nur mit Ihrem zugewiesenen Agenten/Krankenhaus geteilt"
       },
       footer: {
         aboutTitle: "Über Health Blueprint",
@@ -1942,15 +1932,7 @@ window.I18N = {
         scenarioDentalDesc: "Moderne Zahnbehandlungen zu einem Bruchteil der Kosten zu Hause.",
         scenarioOncologyDesc: "Zugang zu führenden Onkologen und Behandlungsprogrammen.",
         scenarioObgynDesc: "Reproduktionsmedizin, Fruchtbarkeit und Frauengesundheit mit erfahrenen Spezialisten.",
-        scenarioCardiologyDesc: "Kardiologische Diagnostik und Behandlung in erstklassigen Herzzentren.",
-        testimonialsTitle: "Was Patienten Sagen",
-        testimonialsNote: "Sie spiegeln die Art von Erfahrung wider, die wir bieten möchten, basierend auf typischen Patientenreisen – keine wörtlichen Zitate namentlich genannter Personen. Wir werden nach und nach echte, mit Zustimmung geteilte Patientenstimmen ergänzen.",
-        testimonial1Quote: "„Unser Betreuer hat uns am Flughafen abgeholt und war bei jedem Termin an unserer Seite. Wir haben uns nie verloren gefühlt.“",
-        testimonial1Name: "Ein Patient aus den USA",
-        testimonial2Quote: "„Die Koordination mit dem Krankenhaus und die Übersetzungshilfe machten eine stressige Reise machbar.“",
-        testimonial2Name: "Ein Patient aus Indonesien",
-        testimonial3Quote: "„Klare Kommunikation von der ersten Anfrage bis zur Nachsorge nach unserer Rückkehr.“",
-        testimonial3Name: "Ein Patient aus dem Vereinigten Königreich"
+        scenarioCardiologyDesc: "Kardiologische Diagnostik und Behandlung in erstklassigen Herzzentren."
       },
       travelCosts: {
         sectionTitle: "Reisekosten-Übersicht",
@@ -2166,7 +2148,7 @@ window.I18N = {
         travelStartLabel: "Data de viagem mais próxima",
         travelEndLabel: "Data de viagem mais distante",
         medicalRecordsLabel: "Registros médicos ou relatórios existentes (opcional)",
-        medicalRecordsHint: "PDF, JPG ou PNG — armazenado com segurança e compartilhado apenas com seu agente/hospital designado",
+        medicalRecordsHint: "PDF, JPG ou PNG — armazenado com segurança e compartilhado apenas com seu agente/hospital designado"
       },
       footer: {
         aboutTitle: "Sobre a Health Blueprint",
@@ -2283,15 +2265,7 @@ window.I18N = {
         scenarioDentalDesc: "Tratamentos odontológicos avançados por uma fração do custo em seu país.",
         scenarioOncologyDesc: "Acesso a especialistas oncológicos renomados e programas de tratamento.",
         scenarioObgynDesc: "Saúde reprodutiva, fertilidade e cuidados femininos com especialistas experientes.",
-        scenarioCardiologyDesc: "Diagnóstico e tratamento cardíaco em centros de excelência.",
-        testimonialsTitle: "O Que Dizem Nossos Pacientes",
-        testimonialsNote: "Elas refletem o tipo de experiência que buscamos oferecer, com base em jornadas comuns de pacientes — não são citações literais de pessoas identificadas. Iremos adicionar depoimentos reais de pacientes, com consentimento, ao longo do tempo.",
-        testimonial1Quote: "“Nosso agente nos recebeu no aeroporto e ficou conosco em cada consulta. Nunca nos sentimos perdidos.”",
-        testimonial1Name: "Um paciente dos Estados Unidos",
-        testimonial2Quote: "“A coordenação com o hospital e o apoio de tradução tornaram uma viagem estressante mais tranquila.”",
-        testimonial2Name: "Um paciente da Indonésia",
-        testimonial3Quote: "“Comunicação clara desde a primeira consulta até o acompanhamento após voltarmos para casa.”",
-        testimonial3Name: "Um paciente do Reino Unido"
+        scenarioCardiologyDesc: "Diagnóstico e tratamento cardíaco em centros de excelência."
       },
       travelCosts: {
         sectionTitle: "Referência de Custos de Viagem",
@@ -2507,7 +2481,7 @@ window.I18N = {
         travelStartLabel: "Самая ранняя дата поездки",
         travelEndLabel: "Самая поздняя дата поездки",
         medicalRecordsLabel: "Имеющиеся медицинские записи или заключения (необязательно)",
-        medicalRecordsHint: "PDF, JPG или PNG — надёжно хранится и передаётся только вашему назначенному агенту/больнице",
+        medicalRecordsHint: "PDF, JPG или PNG — надёжно хранится и передаётся только вашему назначенному агенту/больнице"
       },
       footer: {
         aboutTitle: "О Health Blueprint",
@@ -2624,15 +2598,7 @@ window.I18N = {
         scenarioDentalDesc: "Современное стоматологическое лечение по цене в разы ниже, чем на родине.",
         scenarioOncologyDesc: "Доступ к ведущим онкологам и программам лечения.",
         scenarioObgynDesc: "Репродуктивное здоровье, лечение бесплодия и женское здоровье с опытными специалистами.",
-        scenarioCardiologyDesc: "Кардиологическая диагностика и лечение в лучших кардиоцентрах.",
-        testimonialsTitle: "Отзывы Пациентов",
-        testimonialsNote: "Они отражают тот уровень сервиса, к которому мы стремимся, основанный на типичных историях пациентов, а не дословные цитаты конкретных людей. Со временем мы добавим реальные отзывы пациентов, полученные с их согласия.",
-        testimonial1Quote: "«Наш агент встретил нас в аэропорту и сопровождал на каждом приёме. Мы ни разу не чувствовали себя потерянными».",
-        testimonial1Name: "Пациент из США",
-        testimonial2Quote: "«Координация с больницей и помощь с переводом сделали напряжённую поездку управляемой».",
-        testimonial2Name: "Пациент из Индонезии",
-        testimonial3Quote: "«Чёткая коммуникация с первого обращения до наблюдения после возвращения домой».",
-        testimonial3Name: "Пациент из Великобритании"
+        scenarioCardiologyDesc: "Кардиологическая диагностика и лечение в лучших кардиоцентрах."
       },
       travelCosts: {
         sectionTitle: "Ориентировочные Расходы на Поездку",
@@ -2848,7 +2814,7 @@ window.I18N = {
         travelStartLabel: "أقرب تاريخ للسفر",
         travelEndLabel: "أبعد تاريخ للسفر",
         medicalRecordsLabel: "السجلات أو التقارير الطبية الحالية (اختياري)",
-        medicalRecordsHint: "PDF أو JPG أو PNG — يتم تخزينها بأمان ومشاركتها فقط مع الوكيل/المستشفى المخصص لك",
+        medicalRecordsHint: "PDF أو JPG أو PNG — يتم تخزينها بأمان ومشاركتها فقط مع الوكيل/المستشفى المخصص لك"
       },
       footer: {
         aboutTitle: "عن Health Blueprint",
@@ -2965,15 +2931,7 @@ window.I18N = {
         scenarioDentalDesc: "رعاية أسنان متقدمة بجزء بسيط من التكلفة في بلدك.",
         scenarioOncologyDesc: "الوصول إلى أبرز أخصائيي الأورام وبرامج العلاج.",
         scenarioObgynDesc: "الصحة الإنجابية والخصوبة ورعاية المرأة مع أخصائيين ذوي خبرة.",
-        scenarioCardiologyDesc: "تشخيص وعلاج أمراض القلب في مراكز قلب رائدة.",
-        testimonialsTitle: "ماذا يقول المرضى",
-        testimonialsNote: "تعكس هذه الأمثلة نوع التجربة التي نسعى لتقديمها، استنادًا إلى مسارات شائعة للمرضى، وليست اقتباسات حرفية من أشخاص محددين بالاسم. سنضيف مع مرور الوقت شهادات حقيقية من مرضى بموافقتهم.",
-        testimonial1Quote: "«استقبلنا وكيلنا في المطار وبقي معنا في كل موعد. لم نشعر بالضياع أبدًا».",
-        testimonial1Name: "مريض من الولايات المتحدة",
-        testimonial2Quote: "«جعل التنسيق مع المستشفى ودعم الترجمة الرحلة المرهقة قابلة للإدارة».",
-        testimonial2Name: "مريض من إندونيسيا",
-        testimonial3Quote: "«تواصل واضح منذ الاستفسار الأول وحتى المتابعة بعد عودتنا».",
-        testimonial3Name: "مريض من المملكة المتحدة"
+        scenarioCardiologyDesc: "تشخيص وعلاج أمراض القلب في مراكز قلب رائدة."
       },
       travelCosts: {
         sectionTitle: "مرجع تكاليف السفر",
@@ -3189,7 +3147,7 @@ window.I18N = {
         travelStartLabel: "渡航可能な最も早い日",
         travelEndLabel: "渡航可能な最も遅い日",
         medicalRecordsLabel: "既存の医療記録・検査報告書（任意）",
-        medicalRecordsHint: "PDF、JPG、PNG形式に対応 — 安全に保管され、担当のエージェント/病院にのみ共有されます",
+        medicalRecordsHint: "PDF、JPG、PNG形式に対応 — 安全に保管され、担当のエージェント/病院にのみ共有されます"
       },
       footer: {
         aboutTitle: "Health Blueprintについて",
@@ -3306,15 +3264,7 @@ window.I18N = {
         scenarioDentalDesc: "自国よりも大幅に低いコストで受けられる高度な歯科治療。",
         scenarioOncologyDesc: "国内トップクラスのがん専門医・治療プログラムへのアクセス。",
         scenarioObgynDesc: "経験豊富な専門医による婦人科・不妊治療・女性の健康ケア。",
-        scenarioCardiologyDesc: "トップクラスの心臓センターによる心血管の診断・治療。",
-        testimonialsTitle: "患者様の声",
-        testimonialsNote: "これらは、私たちが目指すサービス体験を、患者様によくある経過をもとに表したものであり、特定の個人による発言そのものではありません。今後、同意をいただいた実際の患者様の声を順次追加していきます。",
-        testimonial1Quote: "「担当者が空港まで迎えに来てくれて、すべての診察に付き添ってくれました。迷うことは一度もありませんでした。」",
-        testimonial1Name: "アメリカからの患者様",
-        testimonial2Quote: "「病院との調整と通訳サポートのおかげで、不安だった渡航がスムーズになりました。」",
-        testimonial2Name: "インドネシアからの患者様",
-        testimonial3Quote: "「最初の問い合わせから帰国後のフォローアップまで、常に明確なコミュニケーションでした。」",
-        testimonial3Name: "イギリスからの患者様"
+        scenarioCardiologyDesc: "トップクラスの心臓センターによる心血管の診断・治療。"
       },
       travelCosts: {
         sectionTitle: "旅費の目安",
@@ -3530,7 +3480,7 @@ window.I18N = {
         travelStartLabel: "가장 빠른 여행 날짜",
         travelEndLabel: "가장 늦은 여행 날짜",
         medicalRecordsLabel: "기존 의료 기록 또는 보고서 (선택 사항)",
-        medicalRecordsHint: "PDF, JPG 또는 PNG — 안전하게 저장되며 배정된 에이전트/병원에만 공유됩니다",
+        medicalRecordsHint: "PDF, JPG 또는 PNG — 안전하게 저장되며 배정된 에이전트/병원에만 공유됩니다"
       },
       footer: {
         aboutTitle: "Health Blueprint 소개",
@@ -3647,15 +3597,7 @@ window.I18N = {
         scenarioDentalDesc: "본국보다 훨씬 저렴한 비용의 첨단 치과 치료.",
         scenarioOncologyDesc: "국내 최고 수준의 종양 전문의 및 치료 프로그램 이용.",
         scenarioObgynDesc: "경험 많은 전문의가 제공하는 생식 건강, 난임, 여성 건강 관리.",
-        scenarioCardiologyDesc: "최고 수준의 심장센터에서 제공하는 심장 진단 및 치료.",
-        testimonialsTitle: "환자 후기",
-        testimonialsNote: "아래 내용은 저희가 제공하고자 하는 서비스 경험을 일반적인 환자 경험을 바탕으로 표현한 것이며, 특정 개인의 실제 발언이 아닙니다. 향후 동의를 받은 실제 환자 후기를 순차적으로 추가할 예정입니다.",
-        testimonial1Quote: "“담당자가 공항으로 마중 나와 모든 진료에 함께해 주어서 한 번도 헤매지 않았습니다.”",
-        testimonial1Name: "미국에서 온 환자",
-        testimonial2Quote: "“병원 조율과 통역 지원 덕분에 부담스러웠던 여정이 수월해졌습니다.”",
-        testimonial2Name: "인도네시아에서 온 환자",
-        testimonial3Quote: "“처음 문의부터 귀국 후 후속 관리까지 소통이 명확했습니다.”",
-        testimonial3Name: "영국에서 온 환자"
+        scenarioCardiologyDesc: "최고 수준의 심장센터에서 제공하는 심장 진단 및 치료."
       },
       travelCosts: {
         sectionTitle: "여행 비용 참고 정보",
@@ -3871,7 +3813,7 @@ window.I18N = {
         travelStartLabel: "सबसे जल्दी यात्रा तिथि",
         travelEndLabel: "सबसे देर यात्रा तिथि",
         medicalRecordsLabel: "मौजूदा मेडिकल रिकॉर्ड या रिपोर्ट (वैकल्पिक)",
-        medicalRecordsHint: "PDF, JPG, या PNG — सुरक्षित रूप से संग्रहीत और केवल आपके नियुक्त एजेंट/अस्पताल के साथ साझा किया जाता है",
+        medicalRecordsHint: "PDF, JPG, या PNG — सुरक्षित रूप से संग्रहीत और केवल आपके नियुक्त एजेंट/अस्पताल के साथ साझा किया जाता है"
       },
       footer: {
         aboutTitle: "Health Blueprint के बारे में",
@@ -3988,15 +3930,7 @@ window.I18N = {
         scenarioDentalDesc: "अपने देश की तुलना में बहुत कम लागत पर उन्नत दंत चिकित्सा।",
         scenarioOncologyDesc: "अग्रणी कैंसर विशेषज्ञों और उपचार कार्यक्रमों तक पहुंच।",
         scenarioObgynDesc: "अनुभवी विशेषज्ञों द्वारा प्रजनन स्वास्थ्य, प्रजनन क्षमता और महिला देखभाल।",
-        scenarioCardiologyDesc: "शीर्ष रैंक वाले हृदय केंद्रों से हृदय जांच और उपचार।",
-        testimonialsTitle: "मरीज़ों की राय",
-        testimonialsNote: "ये सामान्य मरीज़ अनुभवों के आधार पर हमारे प्रदान किए जाने वाले अनुभव के प्रकार को दर्शाते हैं — ये किसी नामित व्यक्ति के शब्दशः उद्धरण नहीं हैं। समय के साथ हम सहमति-प्राप्त वास्तविक मरीज़ों की समीक्षाएं जोड़ेंगे।",
-        testimonial1Quote: "“हमारे एजेंट ने हमें एयरपोर्ट पर रिसीव किया और हर अपॉइंटमेंट में हमारे साथ रहे। हमें कभी असहाय महसूस नहीं हुआ।”",
-        testimonial1Name: "संयुक्त राज्य अमेरिका से एक मरीज़",
-        testimonial2Quote: "“अस्पताल समन्वय और अनुवाद सहायता ने एक तनावपूर्ण यात्रा को आसान बना दिया।”",
-        testimonial2Name: "इंडोनेशिया से एक मरीज़",
-        testimonial3Quote: "“पहली पूछताछ से लेकर घर लौटने के बाद की फॉलो-अप देखभाल तक स्पष्ट संवाद रहा।”",
-        testimonial3Name: "यूनाइटेड किंगडम से एक मरीज़"
+        scenarioCardiologyDesc: "शीर्ष रैंक वाले हृदय केंद्रों से हृदय जांच और उपचार।"
       },
       travelCosts: {
         sectionTitle: "यात्रा लागत संदर्भ",
@@ -4212,7 +4146,7 @@ window.I18N = {
         travelStartLabel: "Tanggal perjalanan paling awal",
         travelEndLabel: "Tanggal perjalanan paling akhir",
         medicalRecordsLabel: "Rekam medis atau laporan yang sudah ada (opsional)",
-        medicalRecordsHint: "PDF, JPG, atau PNG — disimpan dengan aman dan hanya dibagikan dengan agen/rumah sakit yang ditugaskan",
+        medicalRecordsHint: "PDF, JPG, atau PNG — disimpan dengan aman dan hanya dibagikan dengan agen/rumah sakit yang ditugaskan"
       },
       footer: {
         aboutTitle: "Tentang Health Blueprint",
@@ -4329,15 +4263,7 @@ window.I18N = {
         scenarioDentalDesc: "Perawatan dan prosedur gigi canggih dengan biaya jauh lebih rendah dibanding di negara asal.",
         scenarioOncologyDesc: "Akses ke spesialis dan program pengobatan kanker terkemuka.",
         scenarioObgynDesc: "Kesehatan reproduksi, kesuburan, dan perawatan wanita bersama spesialis berpengalaman.",
-        scenarioCardiologyDesc: "Diagnosis dan pengobatan jantung dari pusat jantung dengan peringkat teratas.",
-        testimonialsTitle: "Kata Pasien Kami",
-        testimonialsNote: "Ini mencerminkan jenis pengalaman yang ingin kami berikan, berdasarkan perjalanan umum pasien kami — bukan kutipan langsung dari individu tertentu. Seiring waktu kami akan menambahkan testimoni pasien asli dengan persetujuan mereka.",
-        testimonial1Quote: "“Agen kami menjemput kami di bandara dan mendampingi kami di setiap janji temu. Kami tidak pernah merasa tersesat.”",
-        testimonial1Name: "Seorang pasien dari Amerika Serikat",
-        testimonial2Quote: "“Koordinasi rumah sakit dan dukungan penerjemahan membuat perjalanan yang penuh tekanan menjadi lebih terkendali.”",
-        testimonial2Name: "Seorang pasien dari Indonesia",
-        testimonial3Quote: "“Komunikasi yang jelas sejak pertanyaan pertama hingga perawatan lanjutan setelah kami kembali ke rumah.”",
-        testimonial3Name: "Seorang pasien dari Inggris"
+        scenarioCardiologyDesc: "Diagnosis dan pengobatan jantung dari pusat jantung dengan peringkat teratas."
       },
       travelCosts: {
         sectionTitle: "Referensi Biaya Perjalanan",
@@ -4552,7 +4478,7 @@ window.I18N = {
         travelStartLabel: "Ngày đi sớm nhất",
         travelEndLabel: "Ngày đi muộn nhất",
         medicalRecordsLabel: "Hồ sơ hoặc báo cáo y tế hiện có (không bắt buộc)",
-        medicalRecordsHint: "PDF, JPG hoặc PNG — được lưu trữ an toàn và chỉ chia sẻ với đại lý/bệnh viện được chỉ định cho bạn",
+        medicalRecordsHint: "PDF, JPG hoặc PNG — được lưu trữ an toàn và chỉ chia sẻ với đại lý/bệnh viện được chỉ định cho bạn"
       },
       footer: {
         aboutTitle: "Về Health Blueprint",
@@ -4669,15 +4595,7 @@ window.I18N = {
         scenarioDentalDesc: "Chăm sóc và điều trị nha khoa tiên tiến với chi phí thấp hơn nhiều so với ở quê nhà.",
         scenarioOncologyDesc: "Tiếp cận các chuyên gia và chương trình điều trị ung thư hàng đầu.",
         scenarioObgynDesc: "Sức khỏe sinh sản, hiếm muộn và chăm sóc phụ nữ với các chuyên gia giàu kinh nghiệm.",
-        scenarioCardiologyDesc: "Chẩn đoán và điều trị tim mạch từ các trung tâm tim hàng đầu.",
-        testimonialsTitle: "Bệnh Nhân Nói Gì",
-        testimonialsNote: "Những nội dung này phản ánh loại trải nghiệm mà chúng tôi hướng tới, dựa trên hành trình phổ biến của bệnh nhân — không phải trích dẫn nguyên văn từ một cá nhân cụ thể. Theo thời gian, chúng tôi sẽ bổ sung đánh giá thật từ bệnh nhân, có sự đồng ý của họ.",
-        testimonial1Quote: "“Đại lý của chúng tôi đón chúng tôi tại sân bay và đồng hành trong mọi cuộc hẹn. Chúng tôi không bao giờ cảm thấy lạc lõng.”",
-        testimonial1Name: "Một bệnh nhân đến từ Hoa Kỳ",
-        testimonial2Quote: "“Việc điều phối bệnh viện và hỗ trợ phiên dịch giúp chuyến đi vốn căng thẳng trở nên dễ kiểm soát hơn.”",
-        testimonial2Name: "Một bệnh nhân đến từ Indonesia",
-        testimonial3Quote: "“Giao tiếp rõ ràng từ lần liên hệ đầu tiên cho đến khi chăm sóc theo dõi sau khi chúng tôi về nước.”",
-        testimonial3Name: "Một bệnh nhân đến từ Vương quốc Anh"
+        scenarioCardiologyDesc: "Chẩn đoán và điều trị tim mạch từ các trung tâm tim hàng đầu."
       },
       travelCosts: {
         sectionTitle: "Tham Khảo Chi Phí Du Lịch",
@@ -4892,7 +4810,7 @@ window.I18N = {
         travelStartLabel: "วันที่เดินทางเร็วที่สุด",
         travelEndLabel: "วันที่เดินทางช้าที่สุด",
         medicalRecordsLabel: "ประวัติการรักษาหรือรายงานทางการแพทย์ที่มีอยู่ (ไม่บังคับ)",
-        medicalRecordsHint: "PDF, JPG หรือ PNG — จัดเก็บอย่างปลอดภัยและแชร์เฉพาะกับตัวแทน/โรงพยาบาลที่จับคู่ให้คุณเท่านั้น",
+        medicalRecordsHint: "PDF, JPG หรือ PNG — จัดเก็บอย่างปลอดภัยและแชร์เฉพาะกับตัวแทน/โรงพยาบาลที่จับคู่ให้คุณเท่านั้น"
       },
       footer: {
         aboutTitle: "เกี่ยวกับ Health Blueprint",
@@ -5009,15 +4927,7 @@ window.I18N = {
         scenarioDentalDesc: "การรักษาและหัตถการทางทันตกรรมขั้นสูงในราคาที่ถูกกว่าที่บ้านมาก",
         scenarioOncologyDesc: "เข้าถึงผู้เชี่ยวชาญด้านมะเร็งชั้นนำและโปรแกรมการรักษา",
         scenarioObgynDesc: "สุขภาพเจริญพันธุ์ ภาวะมีบุตรยาก และการดูแลสตรีโดยผู้เชี่ยวชาญที่มีประสบการณ์",
-        scenarioCardiologyDesc: "การวินิจฉัยและรักษาโรคหัวใจจากศูนย์หัวใจอันดับต้นๆ",
-        testimonialsTitle: "เสียงจากผู้ป่วย",
-        testimonialsNote: "ข้อความเหล่านี้สะท้อนถึงประสบการณ์ที่เรามุ่งมั่นจะมอบให้ โดยอ้างอิงจากเส้นทางทั่วไปของผู้ป่วย ไม่ใช่คำพูดที่ยกมาโดยตรงจากบุคคลใดบุคคลหนึ่ง เราจะทยอยเพิ่มคำรับรองจากผู้ป่วยจริงที่ได้รับความยินยอมในภายหลัง",
-        testimonial1Quote: "“ตัวแทนของเรามารับที่สนามบินและอยู่กับเราตลอดทุกนัดหมาย เราไม่เคยรู้สึกหลงทางเลย”",
-        testimonial1Name: "ผู้ป่วยจากสหรัฐอเมริกา",
-        testimonial2Quote: "“การประสานงานกับโรงพยาบาลและการสนับสนุนด้านการแปลทำให้การเดินทางที่เครียดกลายเป็นเรื่องที่จัดการได้”",
-        testimonial2Name: "ผู้ป่วยจากอินโดนีเซีย",
-        testimonial3Quote: "“การสื่อสารที่ชัดเจนตั้งแต่การสอบถามครั้งแรกจนถึงการติดตามผลหลังจากเรากลับบ้าน”",
-        testimonial3Name: "ผู้ป่วยจากสหราชอาณาจักร"
+        scenarioCardiologyDesc: "การวินิจฉัยและรักษาโรคหัวใจจากศูนย์หัวใจอันดับต้นๆ"
       },
       travelCosts: {
         sectionTitle: "ข้อมูลอ้างอิงค่าใช้จ่ายการเดินทาง",
@@ -5232,7 +5142,7 @@ window.I18N = {
         travelStartLabel: "Tarikh perjalanan paling awal",
         travelEndLabel: "Tarikh perjalanan paling lewat",
         medicalRecordsLabel: "Rekod perubatan atau laporan sedia ada (pilihan)",
-        medicalRecordsHint: "PDF, JPG atau PNG — disimpan dengan selamat dan dikongsi hanya dengan ejen/hospital yang ditugaskan",
+        medicalRecordsHint: "PDF, JPG atau PNG — disimpan dengan selamat dan dikongsi hanya dengan ejen/hospital yang ditugaskan"
       },
       footer: {
         aboutTitle: "Tentang Health Blueprint",
@@ -5349,15 +5259,7 @@ window.I18N = {
         scenarioDentalDesc: "Penjagaan dan prosedur pergigian termaju dengan kos yang jauh lebih rendah berbanding di negara asal.",
         scenarioOncologyDesc: "Akses kepada pakar kanser terkemuka dan program rawatan.",
         scenarioObgynDesc: "Kesihatan reproduktif, kesuburan, dan penjagaan wanita bersama pakar yang berpengalaman.",
-        scenarioCardiologyDesc: "Diagnosis dan rawatan jantung daripada pusat jantung berkedudukan tinggi.",
-        testimonialsTitle: "Kata Pesakit Kami",
-        testimonialsNote: "Ini menggambarkan jenis pengalaman yang ingin kami sediakan, berdasarkan perjalanan biasa pesakit kami — bukan petikan sebenar daripada individu tertentu. Kami akan menambah testimoni pesakit sebenar, dengan kebenaran, dari semasa ke semasa.",
-        testimonial1Quote: "“Ejen kami menyambut kami di lapangan terbang dan bersama kami sepanjang setiap janji temu. Kami tidak pernah rasa keliru.”",
-        testimonial1Name: "Seorang pesakit dari Amerika Syarikat",
-        testimonial2Quote: "“Penyelarasan hospital dan sokongan terjemahan menjadikan perjalanan yang tertekan lebih terkawal.”",
-        testimonial2Name: "Seorang pesakit dari Indonesia",
-        testimonial3Quote: "“Komunikasi yang jelas dari pertanyaan pertama hingga penjagaan susulan selepas kami pulang.”",
-        testimonial3Name: "Seorang pesakit dari United Kingdom"
+        scenarioCardiologyDesc: "Diagnosis dan rawatan jantung daripada pusat jantung berkedudukan tinggi."
       },
       travelCosts: {
         sectionTitle: "Rujukan Kos Perjalanan",
@@ -5572,7 +5474,7 @@ window.I18N = {
         travelStartLabel: "Pinakamaagang petsa ng paglalakbay",
         travelEndLabel: "Pinakahuling petsa ng paglalakbay",
         medicalRecordsLabel: "Umiiral na medikal na rekord o ulat (opsyonal)",
-        medicalRecordsHint: "PDF, JPG, o PNG — ligtas na iniimbak at ibinabahagi lamang sa itinalagang ahente/ospital mo",
+        medicalRecordsHint: "PDF, JPG, o PNG — ligtas na iniimbak at ibinabahagi lamang sa itinalagang ahente/ospital mo"
       },
       footer: {
         aboutTitle: "Tungkol sa Health Blueprint",
@@ -5689,15 +5591,7 @@ window.I18N = {
         scenarioDentalDesc: "Advanced na pangangalaga at proseso sa ngipin sa mas mababang halaga kumpara sa sariling bansa.",
         scenarioOncologyDesc: "Access sa nangungunang mga espesyalista at programa sa paggamot ng kanser.",
         scenarioObgynDesc: "Reproductive health, fertility, at pangangalaga sa kababaihan kasama ang mga bihasang espesyalista.",
-        scenarioCardiologyDesc: "Cardiac diagnostics at paggamot mula sa mga nangungunang heart center.",
-        testimonialsTitle: "Sabi ng mga Pasyente",
-        testimonialsNote: "Ipinapakita nito ang uri ng karanasang nais naming ibigay, batay sa karaniwang paglalakbay ng aming mga pasyente — hindi ito eksaktong sinabi ng isang partikular na tao. Unti-unti kaming magdaragdag ng tunay na testimonya ng pasyente, na may pahintulot.",
-        testimonial1Quote: "“Sinalubong kami ng aming ahente sa paliparan at nanatili kasama namin sa bawat appointment. Hindi kami kailanman naligaw.”",
-        testimonial1Name: "Isang pasyente mula sa Estados Unidos",
-        testimonial2Quote: "“Ang koordinasyon sa ospital at suportang pagsasalin ang naging dahilan kung bakit naging madali ang isang mapaghirap na biyahe.”",
-        testimonial2Name: "Isang pasyente mula sa Indonesia",
-        testimonial3Quote: "“Malinaw na komunikasyon mula sa unang tanong hanggang sa follow-up care matapos kaming makauwi.”",
-        testimonial3Name: "Isang pasyente mula sa United Kingdom"
+        scenarioCardiologyDesc: "Cardiac diagnostics at paggamot mula sa mga nangungunang heart center."
       },
       travelCosts: {
         sectionTitle: "Sanggunian sa Gastos sa Paglalakbay",
@@ -5912,7 +5806,7 @@ window.I18N = {
         travelStartLabel: "Data di viaggio più anticipata",
         travelEndLabel: "Data di viaggio più tardiva",
         medicalRecordsLabel: "Cartelle cliniche o referti esistenti (facoltativo)",
-        medicalRecordsHint: "PDF, JPG o PNG — archiviato in modo sicuro e condiviso solo con l'agente/ospedale a te assegnato",
+        medicalRecordsHint: "PDF, JPG o PNG — archiviato in modo sicuro e condiviso solo con l'agente/ospedale a te assegnato"
       },
       footer: {
         aboutTitle: "Informazioni su Health Blueprint",
@@ -6029,15 +5923,7 @@ window.I18N = {
         scenarioDentalDesc: "Cure e procedure dentali avanzate a una frazione del costo del paese d'origine.",
         scenarioOncologyDesc: "Accesso ai migliori specialisti oncologici e programmi di trattamento.",
         scenarioObgynDesc: "Salute riproduttiva, fertilità e cura della donna con specialisti esperti.",
-        scenarioCardiologyDesc: "Diagnostica e trattamento cardiaco presso i migliori centri cardiologici.",
-        testimonialsTitle: "Cosa Dicono i Pazienti",
-        testimonialsNote: "Riflettono il tipo di esperienza che miriamo a offrire, basata su percorsi comuni dei nostri pazienti — non citazioni testuali di persone identificate. Nel tempo aggiungeremo testimonianze reali di pazienti, con il loro consenso.",
-        testimonial1Quote: "“Il nostro agente ci ha accolto in aeroporto ed è rimasto con noi per ogni appuntamento. Non ci siamo mai sentiti persi.”",
-        testimonial1Name: "Un paziente dagli Stati Uniti",
-        testimonial2Quote: "“Il coordinamento ospedaliero e il supporto alla traduzione hanno reso gestibile un viaggio stressante.”",
-        testimonial2Name: "Un paziente dall'Indonesia",
-        testimonial3Quote: "“Comunicazione chiara dalla prima richiesta fino all'assistenza di follow-up dopo il nostro ritorno a casa.”",
-        testimonial3Name: "Un paziente dal Regno Unito"
+        scenarioCardiologyDesc: "Diagnostica e trattamento cardiaco presso i migliori centri cardiologici."
       },
       travelCosts: {
         sectionTitle: "Riferimento sui Costi di Viaggio",
@@ -6252,7 +6138,7 @@ window.I18N = {
         travelStartLabel: "Vroegste reisdatum",
         travelEndLabel: "Laatste reisdatum",
         medicalRecordsLabel: "Bestaande medische dossiers of rapporten (optioneel)",
-        medicalRecordsHint: "PDF, JPG of PNG — veilig opgeslagen en alleen gedeeld met uw toegewezen agent/ziekenhuis",
+        medicalRecordsHint: "PDF, JPG of PNG — veilig opgeslagen en alleen gedeeld met uw toegewezen agent/ziekenhuis"
       },
       footer: {
         aboutTitle: "Over Health Blueprint",
@@ -6369,15 +6255,7 @@ window.I18N = {
         scenarioDentalDesc: "Geavanceerde tandheelkundige zorg en behandelingen voor een fractie van de kosten thuis.",
         scenarioOncologyDesc: "Toegang tot toonaangevende kankerspecialisten en behandelprogramma's.",
         scenarioObgynDesc: "Reproductieve gezondheid, vruchtbaarheid en vrouwenzorg met ervaren specialisten.",
-        scenarioCardiologyDesc: "Hartdiagnostiek en -behandeling van topcentra voor hartzorg.",
-        testimonialsTitle: "Wat Patiënten Zeggen",
-        testimonialsNote: "Ze weerspiegelen het soort ervaring dat wij willen bieden, gebaseerd op veelvoorkomende patiëntentrajecten — geen letterlijke citaten van met naam genoemde personen. Na verloop van tijd voegen we echte, met toestemming gedeelde patiëntervaringen toe.",
-        testimonial1Quote: "“Onze agent haalde ons op van het vliegveld en bleef bij ons tijdens elke afspraak. We voelden ons nooit verloren.”",
-        testimonial1Name: "Een patiënt uit de Verenigde Staten",
-        testimonial2Quote: "“De ziekenhuiscoördinatie en vertaalondersteuning maakten een stressvolle reis beheersbaar.”",
-        testimonial2Name: "Een patiënt uit Indonesië",
-        testimonial3Quote: "“Duidelijke communicatie vanaf de eerste vraag tot de nazorg na onze terugkeer.”",
-        testimonial3Name: "Een patiënt uit het Verenigd Koninkrijk"
+        scenarioCardiologyDesc: "Hartdiagnostiek en -behandeling van topcentra voor hartzorg."
       },
       travelCosts: {
         sectionTitle: "Referentie Reiskosten",
@@ -6592,7 +6470,7 @@ window.I18N = {
         travelStartLabel: "Najwcześniejsza data podróży",
         travelEndLabel: "Najpóźniejsza data podróży",
         medicalRecordsLabel: "Istniejąca dokumentacja medyczna lub raporty (opcjonalnie)",
-        medicalRecordsHint: "PDF, JPG lub PNG — bezpiecznie przechowywane i udostępniane wyłącznie przyznanemu agentowi/szpitalowi",
+        medicalRecordsHint: "PDF, JPG lub PNG — bezpiecznie przechowywane i udostępniane wyłącznie przyznanemu agentowi/szpitalowi"
       },
       footer: {
         aboutTitle: "O Health Blueprint",
@@ -6709,15 +6587,7 @@ window.I18N = {
         scenarioDentalDesc: "Zaawansowana opieka stomatologiczna i zabiegi za ułamek kosztów w kraju.",
         scenarioOncologyDesc: "Dostęp do czołowych specjalistów onkologicznych i programów leczenia.",
         scenarioObgynDesc: "Zdrowie reprodukcyjne, płodność i opieka nad kobietami z doświadczonymi specjalistami.",
-        scenarioCardiologyDesc: "Diagnostyka i leczenie kardiologiczne w czołowych ośrodkach kardiologicznych.",
-        testimonialsTitle: "Co Mówią Pacjenci",
-        testimonialsNote: "Odzwierciedlają rodzaj doświadczenia, jakie chcemy zapewnić, na podstawie typowych ścieżek naszych pacjentów — nie są to dosłowne cytaty konkretnych, nazwanych osób. Z czasem dodamy prawdziwe opinie pacjentów, za ich zgodą.",
-        testimonial1Quote: "„Nasz agent odebrał nas z lotniska i towarzyszył nam na każdej wizycie. Nigdy nie czuliśmy się zagubieni”.",
-        testimonial1Name: "Pacjent ze Stanów Zjednoczonych",
-        testimonial2Quote: "„Koordynacja szpitalna i wsparcie tłumaczeniowe sprawiły, że stresująca podróż stała się łatwiejsza do opanowania”.",
-        testimonial2Name: "Pacjent z Indonezji",
-        testimonial3Quote: "„Jasna komunikacja od pierwszego zapytania po opiekę pooperacyjną po powrocie do domu”.",
-        testimonial3Name: "Pacjent z Wielkiej Brytanii"
+        scenarioCardiologyDesc: "Diagnostyka i leczenie kardiologiczne w czołowych ośrodkach kardiologicznych."
       },
       travelCosts: {
         sectionTitle: "Orientacyjne Koszty Podróży",
@@ -6932,7 +6802,7 @@ window.I18N = {
         travelStartLabel: "Tidigast önskat resedatum",
         travelEndLabel: "Senast önskat resedatum",
         medicalRecordsLabel: "Befintliga journaler eller rapporter (valfritt)",
-        medicalRecordsHint: "PDF, JPG eller PNG — lagras säkert och delas endast med din tilldelade agent/sjukhus",
+        medicalRecordsHint: "PDF, JPG eller PNG — lagras säkert och delas endast med din tilldelade agent/sjukhus"
       },
       footer: {
         aboutTitle: "Om Health Blueprint",
@@ -7049,15 +6919,7 @@ window.I18N = {
         scenarioDentalDesc: "Avancerad tandvård och behandlingar till en bråkdel av kostnaden hemma.",
         scenarioOncologyDesc: "Tillgång till ledande cancerspecialister och behandlingsprogram.",
         scenarioObgynDesc: "Reproduktiv hälsa, fertilitet och kvinnovård med erfarna specialister.",
-        scenarioCardiologyDesc: "Hjärtdiagnostik och behandling från toppklassade hjärtcentrum.",
-        testimonialsTitle: "Vad Patienter Säger",
-        testimonialsNote: "De speglar den typ av upplevelse vi strävar efter att erbjuda, baserat på vanliga patientresor — inte ordagranna citat från namngivna individer. Med tiden kommer vi att lägga till riktiga patientomdömen, med samtycke.",
-        testimonial1Quote: "”Vår agent mötte oss på flygplatsen och stannade med oss genom varje möte. Vi kände oss aldrig vilsna.”",
-        testimonial1Name: "En patient från USA",
-        testimonial2Quote: "”Sjukhuskoordinationen och översättningsstödet gjorde en stressig resa hanterbar.”",
-        testimonial2Name: "En patient från Indonesien",
-        testimonial3Quote: "”Tydlig kommunikation från första förfrågan till uppföljande vård efter att vi kommit hem.”",
-        testimonial3Name: "En patient från Storbritannien"
+        scenarioCardiologyDesc: "Hjärtdiagnostik och behandling från toppklassade hjärtcentrum."
       },
       travelCosts: {
         sectionTitle: "Referens för Resekostnader",
