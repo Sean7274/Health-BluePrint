@@ -50,10 +50,12 @@
     document.getElementById("brandNameFooter").textContent = t("brand.name");
     document.title = t("brand.name") + " — " + t("brand.tagline");
 
+    document.getElementById("findCareNavLabel").textContent = t("nav.findCare");
     document.getElementById("tripNavLabel").textContent = t("nav.trip");
     document.getElementById("joinNavLabel").textContent = t("nav.joinUs");
+    document.getElementById("findCareNavIcon").innerHTML = Icons.html("hospital", { size: 17 });
     document.getElementById("tripNavIcon").innerHTML = Icons.html("compass", { size: 17 });
-    document.getElementById("joinNavIcon").innerHTML = Icons.html("handshake", { size: 17 });
+    document.getElementById("joinNavIcon").innerHTML = Icons.html("handshake", { size: 15 });
 
     document.getElementById("footerAboutTitle").textContent = t("footer.aboutTitle");
     document.getElementById("footerAboutText").textContent = t("footer.aboutText");
@@ -289,8 +291,12 @@
   }
 
   var TIER_CLASS_COLOR = { "A++++": "#b8860b", "A+++": "#c8622a", "A++": "#0f6b5c", "A+": "#2a6ec8", "A": "#6b6b6b" };
+  // The tier is a grade from a third-party published ranking, not our own
+  // assessment — the title carries the source so a bare "A++++" on a card is
+  // never read as a Health Blueprint endorsement.
   function tierBadgeHtml(tier) {
-    return '<span class="tier-badge" style="color:' + TIER_CLASS_COLOR[tier] + '">' + Icons.html("star", { size: 14 }) + " " + esc(tier) + "</span>";
+    return '<span class="tier-badge" style="color:' + TIER_CLASS_COLOR[tier] + '" title="' + esc(t("hospital.tierLabel")) + '">' +
+      Icons.html("star", { size: 14 }) + " " + esc(tier) + '<span class="tier-source">' + esc(t("hospital.tierShort")) + "</span></span>";
   }
 
   /* ---------------- AUTH ---------------- */
@@ -834,13 +840,15 @@
         "</div>" +
       "</section>" +
 
+      // Until there are real, consented patient stories to show, explaining the
+      // process builds more trust than illustrative quotes that have to be
+      // disclaimed as not-real right underneath them.
       '<section class="section container">' +
-        "<h2>" + esc(t("homeContent.testimonialsTitle")) + "</h2>" +
-        '<p class="legal-note">' + esc(t("homeContent.testimonialsNote")) + "</p>" +
-        '<div class="card-grid">' +
-          testimonialCardHtml("homeContent.testimonial1Quote", "homeContent.testimonial1Name") +
-          testimonialCardHtml("homeContent.testimonial2Quote", "homeContent.testimonial2Name") +
-          testimonialCardHtml("homeContent.testimonial3Quote", "homeContent.testimonial3Name") +
+        "<h2>" + esc(t("homeContent.howItWorksTitle")) + "</h2>" +
+        '<div class="card-grid how-grid">' +
+          howStepHtml("1", "homeContent.howStep1Title", "homeContent.howStep1Desc") +
+          howStepHtml("2", "homeContent.howStep2Title", "homeContent.howStep2Desc") +
+          howStepHtml("3", "homeContent.howStep3Title", "homeContent.howStep3Desc") +
         "</div>" +
       "</section>" +
 
@@ -889,10 +897,11 @@
       '<p style="color:var(--color-text-muted);font-size:0.9em;margin:0;">' + esc(t(descKey)) + "</p>" +
     "</a>";
   }
-  function testimonialCardHtml(quoteKey, nameKey) {
-    return '<div class="card">' +
-      '<p style="font-style:italic;">' + esc(t(quoteKey)) + "</p>" +
-      '<p style="color:var(--color-text-muted);font-size:0.85em;margin:0;">— ' + esc(t(nameKey)) + "</p>" +
+  function howStepHtml(num, titleKey, descKey) {
+    return '<div class="card how-step">' +
+      '<span class="how-step-num" aria-hidden="true">' + esc(num) + "</span>" +
+      "<h3>" + esc(t(titleKey)) + "</h3>" +
+      "<p>" + esc(t(descKey)) + "</p>" +
     "</div>";
   }
 
@@ -1283,6 +1292,7 @@
       '<section class="section container">' +
         '<a class="btn-back" href="/">' + Icons.html("arrow-left", { size: 18 }) + '' + esc(t("common.back")) + "</a>" +
         '<div class="step-indicator" style="margin-top:10px;">' + esc(t("steps.hospital")) + "</div>" +
+        '<p class="legal-note">' + esc(t("hospital.directoryDisclaimer")) + "</p>" +
         '<div class="filters-bar">' +
           '<div class="filter-group">' +
             '<label for="filterArea">' + esc(t("filters.areaLabel")) + "</label>" +
@@ -1396,6 +1406,12 @@
           : '<p class="no-website-note">' + esc(t("hospital.officialWebsite")) + ": —</p>") +
         '<h2 style="margin-top:24px;">' + esc(t("hospital.programsTitle")) + "</h2>" +
         '<div class="card-grid">' + orderedTags.map(function (tag) { return specialtyCardHtml(h, tag, rq, tag === wantedSpecialty); }).join("") + "</div>" +
+        // Choosing a specialty, then an agent, is the guided path. Patients who
+        // already know what they want should not have to walk it to reach us.
+        '<div class="direct-ask">' +
+          "<p>" + esc(t("contact.directAskPrompt")) + "</p>" +
+          '<a class="btn btn-primary" href="/request' + qs(Object.assign({ hospital: h.id }, rq)) + '">' + esc(t("contact.directAskCta")) + "</a>" +
+        "</div>" +
       "</section>";
 
     // Real photos/logos are hotlinked from external sources we can't
@@ -1455,7 +1471,12 @@
         '<div class="step-indicator" style="margin-top:28px;">' + esc(t("steps.agent")) + "</div>" +
         "<h2>" + esc(t("program.agentsTitle")) + "</h2>" +
         "<p>" + esc(t("program.agentsSubtitle")) + "</p>" +
+        '<p class="legal-note">' + esc(t("program.agentsSampleNote")) + "</p>" +
         '<div class="card-grid">' + agents.map(function (a) { return agentCardHtml(a, pid, rq); }).join("") + "</div>" +
+        '<div class="direct-ask">' +
+          "<p>" + esc(t("contact.noPreferencePrompt")) + "</p>" +
+          '<a class="btn btn-primary" href="/request' + qs(Object.assign({ program: pid }, rq)) + '">' + esc(t("contact.noPreferenceCta")) + "</a>" +
+        "</div>" +
       "</section>";
   }
 
@@ -1497,7 +1518,12 @@
     var a = agentId ? agentById(agentId) : null;
     var programId = query && query.program;
     var parsed = programId ? parseProgramId(programId) : null;
-    var h = parsed ? hospitalById(parsed.hospitalId) : null;
+    // A request can arrive from a specialty page (program id carries both the
+    // hospital and the tag) or straight from a hospital page, where only the
+    // hospital is known — resolve either so the request still reaches us
+    // tagged with the hospital the patient was actually looking at.
+    var h = parsed ? hospitalById(parsed.hospitalId)
+      : (query && query.hospital ? hospitalById(query.hospital) : null);
     var rq = routeQS(query);
     var sel = resolveRoutes(rq.routes, rq.waypoints);
     var topic = query && query.topic;
@@ -1895,7 +1921,8 @@
       var cityPhotos = (D.cityPhotos && D.cityPhotos[area]) || [];
       html += carouselHtml(cityPhotos, "city-photo-block", "city-photo", areaLabel(area));
       var hospitalsInArea = hospitalsForArea(area).slice(0, 9);
-      html += '<h2 style="margin-top:30px;">' + esc(t("trip.recommendedHospitals")) + " — " + esc(areaLabel(area)) + "</h2>";
+      html += '<h2 style="margin-top:30px;">' + esc(t("trip.hospitalsInRegion")) + " — " + esc(areaLabel(area)) + "</h2>";
+      html += '<p class="legal-note">' + esc(t("hospital.directoryDisclaimer")) + "</p>";
       html += '<div class="card-grid">';
       hospitalsInArea.forEach(function (h) {
         var active = h.id === hospitalId;

@@ -462,3 +462,55 @@ img { max-width: 100%; display: block; }
   .header-inner { padding: 10px 14px; }
   .section { padding: 28px 0; }
 }
+
+/* ---------- Quiet agent-recruiting nav link ---------- */
+/* Agent recruiting is a secondary audience: it stays reachable in the header
+   but must never outweigh the patient CTA, especially on phones where the
+   header is most of the first screen. */
+.btn-nav-quiet {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.88em; font-weight: 600; white-space: nowrap;
+  color: var(--color-text-muted); text-decoration: none;
+  padding: 6px 2px; border-bottom: 1px solid transparent;
+}
+.btn-nav-quiet:hover, .btn-nav-quiet:focus-visible {
+  color: var(--color-primary); border-bottom-color: currentColor;
+}
+
+@media (max-width: 640px) {
+  /* Keep the header to roughly one compact band so the hero CTA is visible
+     without scrolling. */
+  .header-controls { gap: 8px; }
+  .btn-nav { padding: 8px 13px; font-size: 0.85em; }
+  .font-size-control { order: 3; }
+  .font-btn { padding: 6px 9px; }
+  .lang-select { min-width: 104px; padding: 6px 8px; font-size: 0.9em; }
+  .brand-mark { width: 30px; height: 30px; }
+  .brand-name { font-size: 1.05em; }
+}
+
+/* ---------- How it works ---------- */
+.how-step { position: relative; padding-top: 26px; }
+.how-step-num {
+  position: absolute; top: 16px; inset-inline-start: 18px;
+  width: 28px; height: 28px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--color-primary-light); color: var(--color-primary);
+  font-weight: 700; font-size: 0.9em;
+}
+.how-step h3 { margin-top: 30px; }
+
+/* ---------- Direct request prompt ---------- */
+/* An escape hatch out of the guided specialty -> agent path, for patients who
+   already know what they want and would otherwise bounce. */
+.direct-ask {
+  margin-top: 28px; padding: 20px; border-radius: 12px;
+  background: var(--color-primary-light); text-align: center;
+}
+.direct-ask p { margin: 0 0 14px; color: var(--color-text); }
+
+/* ---------- Ranking source on tier badges ---------- */
+.tier-source {
+  margin-inline-start: 5px; font-size: 0.78em; font-weight: 600;
+  color: var(--color-text-muted); white-space: nowrap;
+}
