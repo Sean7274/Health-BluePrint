@@ -41,7 +41,7 @@ npx supabase link --project-ref kcohwhwplsocpqalykmd
 npx supabase secrets set \
   RESEND_API_KEY=re_your_key_here \
   WEBHOOK_SECRET=the_string_from_step_2 \
-  NOTIFY_TO=healthblueprint@163.com
+  NOTIFY_TO=the_address_that_owns_the_resend_account
 
 npx supabase functions deploy notify-lead --no-verify-jwt
 ```
@@ -49,15 +49,35 @@ npx supabase functions deploy notify-lead --no-verify-jwt
 `--no-verify-jwt` is required: the database webhook calls the function without
 a user token. The `WEBHOOK_SECRET` header check is what protects it instead.
 
-Optional extra secret, once your domain is verified in Resend:
+### `NOTIFY_TO` is restricted until you verify a domain
+
+Until a sending domain is verified, this function sends from Resend's shared
+testing address (`onboarding@resend.dev`), and Resend will only deliver mail
+from it **to the email address that owns the Resend account**. Any other
+recipient is rejected with a 403, the function returns 502, and Supabase retries
+until it gives up — no notification arrives and nothing says why.
+
+So `NOTIFY_TO` must be the Resend account's own address at first, even if you
+would rather notifications went to a company inbox. Mail from the shared testing
+address also tends to land in spam; check the spam folder on the first test.
+
+To send from your own domain and to any recipient, verify `healthblueprint.cn`
+in Resend (**Domains** → **Add Domain**, then add the DNS records it gives you),
+and set both secrets:
 
 ```bash
-npx supabase secrets set NOTIFY_FROM="Health Blueprint <noreply@healthblueprint.cn>"
+npx supabase secrets set \
+  NOTIFY_FROM="Health Blueprint <noreply@healthblueprint.cn>" \
+  NOTIFY_TO=healthblueprint@163.com
 ```
+
+Changing secrets takes effect on the next invocation; no redeploy is needed.
 
 ## 4. Create the webhooks
 
-In the Supabase dashboard: **Database** → **Webhooks** → **Create a new hook**.
+In the Supabase dashboard: **Integrations** → **Webhooks** → **Create a new hook**
+(direct link: `/project/_/integrations/webhooks/overview`). Older docs put this
+under **Database** → **Webhooks**; it moved.
 
 Make **two** hooks, identical except the table:
 
@@ -70,6 +90,15 @@ Make **two** hooks, identical except the table:
 | Method | `POST` |
 | URL | `https://kcohwhwplsocpqalykmd.supabase.co/functions/v1/notify-lead` |
 | HTTP Headers | `Content-Type: application/json`<br>`x-webhook-secret: <the string from step 2>` |
+
+Two things to watch in that form:
+
+- The header table may already contain a `Content-Type` row. Don't add a second
+  one — duplicates are sent as-is and can confuse the receiving function.
+- `x-webhook-secret` must match the `WEBHOOK_SECRET` secret from step 2
+  character for character. Generate it yourself with the `openssl` command
+  above; never paste a value copied from documentation, a chat log, or an
+  example — anything that has appeared somewhere else is not a secret.
 
 ---
 
@@ -101,3 +130,10 @@ stays free well past the point where you'd want a real CRM instead.
   hitting Reply in your inbox answers the patient or applicant directly.
 - A non-2xx response makes Supabase retry, so a transient Resend outage
   doesn't silently drop a notification.
+- **Free-tier projects pause after about a week with no activity.** A paused
+  project answers nothing: every form on the site fails, and because the
+  insert never happens, no webhook fires and no notification is sent — the
+  failure is completely silent from your side. This has already happened once.
+  Either keep the project awake with real traffic, upgrade off the free tier
+  before running ads, or check the project is running whenever the site has
+  been quiet for a few days.
