@@ -514,3 +514,12 @@ img { max-width: 100%; display: block; }
   margin-inline-start: 5px; font-size: 0.78em; font-weight: 600;
   color: var(--color-text-muted); white-space: nowrap;
 }
+
+/* ---------- Fallback contact channels inside a form error ---------- */
+.form-error p { margin: 0 0 8px; }
+.form-error p:last-child { margin-bottom: 0; }
+.form-error-channels { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.form-error-channels a {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-weight: 600; color: inherit; text-decoration: underline;
+}

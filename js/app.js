@@ -365,6 +365,23 @@
     el.hidden = false;
   }
 
+  // A submission that fails is the one moment we are guaranteed to lose the
+  // person unless we hand them another way through. The backend being down
+  // must not also mean "no way to contact us" — show the real channels.
+  function showFormErrorWithFallback(id, message) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.innerHTML = "<p>" + esc(message) + "</p>" +
+      "<p>" + esc(t("contact.failoverIntro")) + "</p>" +
+      '<p class="form-error-channels">' +
+        '<a href="mailto:' + esc(LEGAL_CONTACT_EMAIL) + '">' + Icons.html("mail", { size: 15 }) + " " + esc(LEGAL_CONTACT_EMAIL) + "</a>" +
+        (WHATSAPP_LINK
+          ? '<a href="' + esc(WHATSAPP_LINK) + '" target="_blank" rel="noopener noreferrer">' + Icons.html("chat", { size: 15 }) + " WhatsApp</a>"
+          : "") +
+      "</p>";
+    el.hidden = false;
+  }
+
   // Phone sign-in needs an SMS provider (e.g. Twilio) configured in
   // Supabase, which costs money and hasn't been set up yet — hidden until
   // that's ready. Flip this back on once it is; no other code changes
@@ -1611,7 +1628,7 @@
     var form = document.getElementById("inquiryForm");
     form.addEventListener("submit", function (ev) {
       ev.preventDefault();
-      if (!window.sb) { showFormError("bookingFormError", t("auth.genericError")); return; }
+      if (!window.sb) { showFormErrorWithFallback("bookingFormError", t("auth.genericError")); return; }
       var submitBtn = form.querySelector("button[type=submit]");
       var fd = new FormData(form);
       var recordFile = fd.get("medicalRecords");
@@ -1640,11 +1657,11 @@
       })
         .then(function (res) {
           submitBtn.disabled = false;
-          if (res.error) { showFormError("bookingFormError", t("auth.genericError")); return; }
+          if (res.error) { showFormErrorWithFallback("bookingFormError", t("auth.genericError")); return; }
           Analytics.track("trip_form_submit");
           showSuccess();
         })
-        .catch(function () { submitBtn.disabled = false; showFormError("bookingFormError", t("auth.genericError")); });
+        .catch(function () { submitBtn.disabled = false; showFormErrorWithFallback("bookingFormError", t("auth.genericError")); });
     });
 
     function showSuccess() {
@@ -1751,10 +1768,20 @@
           message: "Birth year: " + (fd.get("birthYear") || "—"),
           resume_path: resumePath
         };
-        return window.sb ? window.sb.from("agent_applications").insert(dbPayload) : Promise.resolve();
+        // No backend means the application was never stored. Saying "thanks,
+        // we'll be in touch" in that case is worse than an error: the
+        // applicant has no reason to ever follow up.
+        if (!window.sb) return Promise.reject(new Error("no backend"));
+        return window.sb.from("agent_applications").insert(dbPayload).then(function (res) {
+          if (res && res.error) throw res.error;
+          return res;
+        });
       })
         .then(function () { submitBtn.disabled = false; Analytics.track("agent_form_submit"); showJoinSuccess(); })
-        .catch(function () { submitBtn.disabled = false; showJoinSuccess(); });
+        .catch(function () {
+          submitBtn.disabled = false;
+          showFormErrorWithFallback("joinFormError", t("auth.genericError"));
+        });
     });
 
     function showJoinSuccess() {

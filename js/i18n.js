@@ -127,7 +127,8 @@ window.I18N = {
         travelStartLabel: "Earliest travel date",
         travelEndLabel: "Latest travel date",
         medicalRecordsLabel: "Existing medical records or reports (optional)",
-        medicalRecordsHint: "PDF, JPG, or PNG — stored securely and shared only with your matched agent/hospital"
+        medicalRecordsHint: "PDF, JPG, or PNG — stored securely and shared only with your matched agent/hospital",
+        failoverIntro: "You can also reach us directly — we read every message:"
       },
       footer: {
         aboutTitle: "About Health Blueprint",
@@ -475,7 +476,8 @@ window.I18N = {
         travelStartLabel: "最早出行日期",
         travelEndLabel: "最晚出行日期",
         medicalRecordsLabel: "现有病历或检查报告（可选）",
-        medicalRecordsHint: "支持 PDF、JPG 或 PNG 格式 — 安全存储，仅与匹配的服务人员/医院共享"
+        medicalRecordsHint: "支持 PDF、JPG 或 PNG 格式 — 安全存储，仅与匹配的服务人员/医院共享",
+        failoverIntro: "也可以直接联系我们,每一条消息我们都会看:"
       },
       footer: {
         aboutTitle: "关于健康蓝图",
@@ -825,7 +827,8 @@ window.I18N = {
         directAskPrompt: "已經清楚自己的需求？可以直接告訴我們，我們會在 24 小時內回覆。",
         directAskCta: "提交諮詢",
         noPreferencePrompt: "沒有特別偏好，或以上都不合適？我們會為您媒合合適的服務人員。",
-        noPreferenceCta: "直接提交諮詢"
+        noPreferenceCta: "直接提交諮詢",
+        failoverIntro: "也可以直接聯繫我們,每一則訊息我們都會看:"
       },
       footer: {
         aboutTitle: "關於健康藍圖",
@@ -1175,7 +1178,8 @@ window.I18N = {
         directAskPrompt: "¿Ya sabe lo que necesita? Díganoslo directamente: le responderemos en un plazo de 24 horas.",
         directAskCta: "Enviar solicitud",
         noPreferencePrompt: "¿Sin preferencia o ninguno encaja? Le asignaremos un agente adecuado.",
-        noPreferenceCta: "Solicitar sin elegir"
+        noPreferenceCta: "Solicitar sin elegir",
+        failoverIntro: "También puede contactarnos directamente — leemos todos los mensajes:"
       },
       footer: {
         aboutTitle: "Acerca de Health Blueprint",
@@ -1525,7 +1529,8 @@ window.I18N = {
         directAskPrompt: "Vous savez déjà ce dont vous avez besoin ? Dites-le-nous directement : nous vous répondons sous 24 heures.",
         directAskCta: "Envoyer une demande",
         noPreferencePrompt: "Pas de préférence, ou aucun ne convient ? Nous vous attribuerons un accompagnateur adapté.",
-        noPreferenceCta: "Demander sans choisir"
+        noPreferenceCta: "Demander sans choisir",
+        failoverIntro: "Vous pouvez aussi nous contacter directement — nous lisons chaque message :"
       },
       footer: {
         aboutTitle: "À propos de Health Blueprint",
@@ -1875,7 +1880,8 @@ window.I18N = {
         directAskPrompt: "Sie wissen bereits, was Sie brauchen? Sagen Sie es uns direkt – wir melden uns innerhalb von 24 Stunden.",
         directAskCta: "Anfrage senden",
         noPreferencePrompt: "Keine Präferenz oder nichts passt? Wir vermitteln Ihnen einen geeigneten Betreuer.",
-        noPreferenceCta: "Ohne Auswahl anfragen"
+        noPreferenceCta: "Ohne Auswahl anfragen",
+        failoverIntro: "Sie können uns auch direkt erreichen — wir lesen jede Nachricht:"
       },
       footer: {
         aboutTitle: "Über Health Blueprint",
@@ -2225,7 +2231,8 @@ window.I18N = {
         directAskPrompt: "Já sabe do que precisa? Conte-nos diretamente: respondemos em até 24 horas.",
         directAskCta: "Enviar solicitação",
         noPreferencePrompt: "Sem preferência ou nenhum serve? Encontraremos um agente adequado para você.",
-        noPreferenceCta: "Solicitar sem escolher"
+        noPreferenceCta: "Solicitar sem escolher",
+        failoverIntro: "Você também pode falar conosco diretamente — lemos todas as mensagens:"
       },
       footer: {
         aboutTitle: "Sobre a Health Blueprint",
@@ -2575,7 +2582,8 @@ window.I18N = {
         directAskPrompt: "Уже знаете, что вам нужно? Напишите нам напрямую — ответим в течение 24 часов.",
         directAskCta: "Отправить заявку",
         noPreferencePrompt: "Нет предпочтений или никто не подходит? Мы подберём подходящего сопровождающего.",
-        noPreferenceCta: "Заявка без выбора"
+        noPreferenceCta: "Заявка без выбора",
+        failoverIntro: "Вы также можете связаться с нами напрямую — мы читаем каждое сообщение:"
       },
       footer: {
         aboutTitle: "О Health Blueprint",
@@ -2925,7 +2933,8 @@ window.I18N = {
         directAskPrompt: "هل تعرف ما تحتاجه بالفعل؟ أخبرنا مباشرة — سنرد خلال 24 ساعة.",
         directAskCta: "إرسال طلب",
         noPreferencePrompt: "لا تفضيل لديك أو لا يناسبك أي منهم؟ سنوفّر لك مرافقًا مناسبًا.",
-        noPreferenceCta: "اطلب دون اختيار"
+        noPreferenceCta: "اطلب دون اختيار",
+        failoverIntro: "يمكنك أيضًا التواصل معنا مباشرة — نقرأ كل رسالة:"
       },
       footer: {
         aboutTitle: "عن Health Blueprint",
@@ -3275,7 +3284,8 @@ window.I18N = {
         directAskPrompt: "ご希望がすでに決まっていますか。直接お知らせください。24時間以内にご返信します。",
         directAskCta: "相談を送る",
         noPreferencePrompt: "特に希望がない、または合う方がいない場合は、適切なスタッフをこちらでお探しします。",
-        noPreferenceCta: "選ばずに相談する"
+        noPreferenceCta: "選ばずに相談する",
+        failoverIntro: "直接ご連絡いただくこともできます。すべてのメッセージに目を通しています:"
       },
       footer: {
         aboutTitle: "Health Blueprintについて",
@@ -3625,7 +3635,8 @@ window.I18N = {
         directAskPrompt: "필요한 것이 이미 정해지셨나요? 바로 알려주시면 24시간 이내에 답변드립니다.",
         directAskCta: "문의 보내기",
         noPreferencePrompt: "특별한 선호가 없거나 맞는 분이 없으신가요? 적합한 담당자를 연결해 드립니다.",
-        noPreferenceCta: "선택 없이 문의하기"
+        noPreferenceCta: "선택 없이 문의하기",
+        failoverIntro: "직접 연락하셔도 됩니다. 모든 메시지를 확인하고 있습니다:"
       },
       footer: {
         aboutTitle: "Health Blueprint 소개",
@@ -3975,7 +3986,8 @@ window.I18N = {
         directAskPrompt: "पहले से पता है कि आपको क्या चाहिए? हमें सीधे बताएँ — हम 24 घंटे के भीतर उत्तर देंगे।",
         directAskCta: "अनुरोध भेजें",
         noPreferencePrompt: "कोई विशेष पसंद नहीं, या इनमें से कोई उपयुक्त नहीं? हम आपके लिए उपयुक्त सहायक चुन देंगे।",
-        noPreferenceCta: "बिना चुने अनुरोध करें"
+        noPreferenceCta: "बिना चुने अनुरोध करें",
+        failoverIntro: "आप हमसे सीधे भी संपर्क कर सकते हैं — हम हर संदेश पढ़ते हैं:"
       },
       footer: {
         aboutTitle: "Health Blueprint के बारे में",
@@ -4325,7 +4337,8 @@ window.I18N = {
         directAskPrompt: "Sudah tahu apa yang Anda butuhkan? Sampaikan langsung kepada kami — kami akan membalas dalam 24 jam.",
         directAskCta: "Kirim Permintaan",
         noPreferencePrompt: "Tidak ada preferensi, atau tidak ada yang cocok? Kami akan mencarikan pendamping yang sesuai.",
-        noPreferenceCta: "Ajukan Tanpa Memilih"
+        noPreferenceCta: "Ajukan Tanpa Memilih",
+        failoverIntro: "Anda juga bisa menghubungi kami langsung — kami membaca setiap pesan:"
       },
       footer: {
         aboutTitle: "Tentang Health Blueprint",
@@ -4674,7 +4687,8 @@ window.I18N = {
         directAskPrompt: "Bạn đã biết mình cần gì? Hãy cho chúng tôi biết trực tiếp — chúng tôi sẽ phản hồi trong vòng 24 giờ.",
         directAskCta: "Gửi yêu cầu",
         noPreferencePrompt: "Không có lựa chọn ưu tiên, hoặc không ai phù hợp? Chúng tôi sẽ ghép bạn với người đồng hành phù hợp.",
-        noPreferenceCta: "Gửi yêu cầu không cần chọn"
+        noPreferenceCta: "Gửi yêu cầu không cần chọn",
+        failoverIntro: "Bạn cũng có thể liên hệ trực tiếp với chúng tôi — chúng tôi đọc mọi tin nhắn:"
       },
       footer: {
         aboutTitle: "Về Health Blueprint",
@@ -5023,7 +5037,8 @@ window.I18N = {
         directAskPrompt: "ทราบความต้องการของคุณแล้วใช่ไหม แจ้งเราได้โดยตรง เราจะติดต่อกลับภายใน 24 ชั่วโมง",
         directAskCta: "ส่งคำขอ",
         noPreferencePrompt: "ไม่มีผู้ที่ต้องการเป็นพิเศษ หรือไม่มีใครเหมาะสม เราจะจัดหาผู้ดูแลที่เหมาะสมให้คุณ",
-        noPreferenceCta: "ส่งคำขอโดยไม่เลือก"
+        noPreferenceCta: "ส่งคำขอโดยไม่เลือก",
+        failoverIntro: "คุณติดต่อเราโดยตรงได้เช่นกัน เราอ่านทุกข้อความ:"
       },
       footer: {
         aboutTitle: "เกี่ยวกับ Health Blueprint",
@@ -5372,7 +5387,8 @@ window.I18N = {
         directAskPrompt: "Sudah tahu apa yang anda perlukan? Beritahu kami terus — kami akan membalas dalam masa 24 jam.",
         directAskCta: "Hantar Permintaan",
         noPreferencePrompt: "Tiada pilihan tertentu, atau tiada yang sesuai? Kami akan memadankan anda dengan pengiring yang sesuai.",
-        noPreferenceCta: "Mohon Tanpa Memilih"
+        noPreferenceCta: "Mohon Tanpa Memilih",
+        failoverIntro: "Anda juga boleh menghubungi kami terus — kami membaca setiap mesej:"
       },
       footer: {
         aboutTitle: "Tentang Health Blueprint",
@@ -5721,7 +5737,8 @@ window.I18N = {
         directAskPrompt: "Alam mo na ba ang kailangan mo? Sabihin mo sa amin nang direkta — sasagot kami sa loob ng 24 oras.",
         directAskCta: "Magpadala ng Kahilingan",
         noPreferencePrompt: "Walang partikular na gusto, o walang akmang pagpipilian? Itutugma ka namin sa angkop na agent.",
-        noPreferenceCta: "Humiling nang Walang Pinipili"
+        noPreferenceCta: "Humiling nang Walang Pinipili",
+        failoverIntro: "Maaari ka ring makipag-ugnayan sa amin nang direkta — binabasa namin ang bawat mensahe:"
       },
       footer: {
         aboutTitle: "Tungkol sa Health Blueprint",
@@ -6070,7 +6087,8 @@ window.I18N = {
         directAskPrompt: "Sapete già di cosa avete bisogno? Ditecelo direttamente: vi rispondiamo entro 24 ore.",
         directAskCta: "Invia una richiesta",
         noPreferencePrompt: "Nessuna preferenza o nessuno adatto? Vi assegneremo un accompagnatore idoneo.",
-        noPreferenceCta: "Richiedi senza scegliere"
+        noPreferenceCta: "Richiedi senza scegliere",
+        failoverIntro: "Potete anche contattarci direttamente: leggiamo ogni messaggio."
       },
       footer: {
         aboutTitle: "Informazioni su Health Blueprint",
@@ -6419,7 +6437,8 @@ window.I18N = {
         directAskPrompt: "Weet u al wat u nodig hebt? Laat het ons direct weten — wij reageren binnen 24 uur.",
         directAskCta: "Aanvraag versturen",
         noPreferencePrompt: "Geen voorkeur, of zit er niets passends bij? Wij koppelen u aan een geschikte begeleider.",
-        noPreferenceCta: "Aanvragen zonder te kiezen"
+        noPreferenceCta: "Aanvragen zonder te kiezen",
+        failoverIntro: "U kunt ook rechtstreeks contact met ons opnemen — wij lezen elk bericht:"
       },
       footer: {
         aboutTitle: "Over Health Blueprint",
@@ -6768,7 +6787,8 @@ window.I18N = {
         directAskPrompt: "Wiesz już, czego potrzebujesz? Napisz do nas bezpośrednio — odpowiemy w ciągu 24 godzin.",
         directAskCta: "Wyślij zgłoszenie",
         noPreferencePrompt: "Nie masz preferencji albo nikt nie pasuje? Dobierzemy odpowiedniego opiekuna.",
-        noPreferenceCta: "Zgłoszenie bez wyboru"
+        noPreferenceCta: "Zgłoszenie bez wyboru",
+        failoverIntro: "Możesz też skontaktować się z nami bezpośrednio — czytamy każdą wiadomość:"
       },
       footer: {
         aboutTitle: "O Health Blueprint",
@@ -7117,7 +7137,8 @@ window.I18N = {
         directAskPrompt: "Vet du redan vad du behöver? Berätta direkt för oss — vi återkommer inom 24 timmar.",
         directAskCta: "Skicka förfrågan",
         noPreferencePrompt: "Ingen särskild önskan, eller passar ingen? Vi matchar dig med en lämplig medföljare.",
-        noPreferenceCta: "Fråga utan att välja"
+        noPreferenceCta: "Fråga utan att välja",
+        failoverIntro: "Du kan också kontakta oss direkt — vi läser varje meddelande:"
       },
       footer: {
         aboutTitle: "Om Health Blueprint",
