@@ -31,7 +31,7 @@ window.I18N = {
   strings: {
     en: {
       brand: { name: "Health Blueprint", tagline: "Your trusted path to healthcare in China" },
-      nav: { home: "Home", howItWorks: "How It Works", contact: "Contact", joinUs: "Join as an Agent", trip: "Plan a Trip" },
+      nav: { home: "Home", howItWorks: "How It Works", contact: "Contact", joinUs: "Join as an Agent", trip: "Plan a Trip", findCare: "Find Care" },
       fontSize: { label: "Text size", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "Find the right hospital in China — with people to guide you there",
@@ -64,7 +64,9 @@ window.I18N = {
         officialWebsite: "Official hospital website",
         illustrationNote: "Illustration, not an actual photo — visit the official website above for real photos.",
         photoNote: "Photo sourced externally — may not always load reliably.",
-        tierLabel: "2023 China Hospital Ranking"
+        tierLabel: "2023 China Hospital Ranking",
+        tierShort: "2023 ranking",
+        directoryDisclaimer: "This directory is compiled from publicly available information, including the 2023 China Hospital Ranking. A hospital appearing here does not mean it is affiliated with, partnered with, or endorsed by Health Blueprint. Always confirm a hospital's current services and credentials directly with the hospital."
       },
       program: {
         viewDetails: "View Details",
@@ -75,7 +77,8 @@ window.I18N = {
         included: "What's typically included",
         selectProgram: "Select This Specialty",
         agentsTitle: "Available Agents for This Specialty",
-        agentsSubtitle: "These agents will take care of you throughout your trip to China — from planning to your safe return home."
+        agentsSubtitle: "These agents will take care of you throughout your trip to China — from planning to your safe return home.",
+        agentsSampleNote: "The agent profiles below are sample profiles showing the kind of support we are building, not individually verified people available for booking today. Submit a request and we will match you with a real, vetted agent — or tell you plainly if we cannot."
       },
       agent: {
         yearsExp: "{n} years of experience",
@@ -110,6 +113,10 @@ window.I18N = {
         submit: "Send Request",
         success: "Thank you! Your request has been sent. Your agent will contact you within 1 business day.",
         requiredNote: "* Required fields",
+        directAskPrompt: "Already know what you need? Skip ahead and tell us directly — we will come back to you within 24 hours.",
+        directAskCta: "Send a Request",
+        noPreferencePrompt: "No preference, or none of these fit? We will match you with a suitable agent.",
+        noPreferenceCta: "Request Without Choosing",
         summaryHospital: "Hospital",
         summaryProgram: "Specialty",
         summaryAgent: "Agent",
@@ -120,7 +127,7 @@ window.I18N = {
         travelStartLabel: "Earliest travel date",
         travelEndLabel: "Latest travel date",
         medicalRecordsLabel: "Existing medical records or reports (optional)",
-        medicalRecordsHint: "PDF, JPG, or PNG — stored securely and shared only with your matched agent/hospital",
+        medicalRecordsHint: "PDF, JPG, or PNG — stored securely and shared only with your matched agent/hospital"
       },
       footer: {
         aboutTitle: "About Health Blueprint",
@@ -205,6 +212,7 @@ window.I18N = {
         chooseRegion: "Choose a Region",
         chooseHospitalFirst: "Choose a Hospital",
         recommendedHospitals: "Recommended Hospitals in This Region",
+        hospitalsInRegion: "Hospitals in This Region",
         recommendedRoutes: "Recommended Travel Routes",
         anyRegion: "Any region — choose a route separately",
         viewRoute: "View Route",
@@ -238,14 +246,13 @@ window.I18N = {
         scenarioOncologyDesc: "Access to leading cancer specialists and treatment programs.",
         scenarioObgynDesc: "Reproductive health, fertility, and women's care with experienced specialists.",
         scenarioCardiologyDesc: "Cardiac diagnostics and treatment from top-ranked heart centers.",
-        testimonialsTitle: "What Patients Say",
-        testimonialsNote: "These reflect the kind of experience we aim to provide, based on common patient journeys we support — not verbatim quotes from named individuals. We'll add real, consented patient testimonials over time.",
-        testimonial1Quote: "“Our agent met us at the airport and stayed with us through every appointment. We never felt lost.”",
-        testimonial1Name: "A patient from the United States",
-        testimonial2Quote: "“The hospital coordination and translation support made a stressful trip feel manageable.”",
-        testimonial2Name: "A patient from Indonesia",
-        testimonial3Quote: "“Clear communication from the first inquiry through follow-up care after we returned home.”",
-        testimonial3Name: "A patient from the United Kingdom"
+        howItWorksTitle: "How It Works",
+        howStep1Title: "Tell us what you need",
+        howStep1Desc: "Send a request with your condition or the care you are looking for, your rough dates, and your preferred language. No account needed.",
+        howStep2Title: "We come back with options",
+        howStep2Desc: "Within 24 hours we follow up to discuss suitable hospitals, what the process looks like, and a realistic sense of cost and timing.",
+        howStep3Title: "A local agent takes it from there",
+        howStep3Desc: "Once you decide to come, a vetted agent handles appointments, translation, and logistics — from your arrival through your trip home."
       },
       travelCosts: {
         sectionTitle: "Travel Cost Reference",
@@ -372,7 +379,7 @@ window.I18N = {
 
     "zh-CN": {
       brand: { name: "健康蓝图", tagline: "您通往中国医疗的信赖之路" },
-      nav: { home: "首页", howItWorks: "使用流程", contact: "联系我们", joinUs: "成为服务人员", trip: "行程规划" },
+      nav: { home: "首页", howItWorks: "使用流程", contact: "联系我们", joinUs: "成为服务人员", trip: "行程规划", findCare: "寻找医疗" },
       fontSize: { label: "字体大小", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "在中国找到合适的医院——并有专人全程陪同",
@@ -405,7 +412,9 @@ window.I18N = {
         officialWebsite: "医院官方网站",
         illustrationNote: "示意图，并非实景照片——如需查看真实照片，请访问上方官方网站。",
         photoNote: "图片来自外部来源，可能无法始终稳定加载。",
-        tierLabel: "2023年度中国医院排行"
+        tierLabel: "2023年度中国医院排行",
+        tierShort: "2023年排行",
+        directoryDisclaimer: "本目录依据公开信息整理，其中医院评级来自《2023年度中国医院排行》。医院出现在此列表中，不代表其与健康蓝图存在合作、关联或由其背书。请务必直接向医院确认其当前的诊疗服务与资质。"
       },
       program: {
         viewDetails: "查看详情",
@@ -416,7 +425,8 @@ window.I18N = {
         included: "通常包含服务",
         selectProgram: "选择此专科",
         agentsTitle: "该专科可选服务人员",
-        agentsSubtitle: "这些服务人员将在您整个中国之旅中全程照顾您——从行程安排到平安返程。"
+        agentsSubtitle: "这些服务人员将在您整个中国之旅中全程照顾您——从行程安排到平安返程。",
+        agentsSampleNote: "以下服务人员资料为示例资料，用于展示我们正在搭建的服务形态，并非当前可供预约的、已逐一核实的真实人员。提交咨询后，我们会为您匹配经审核的真实服务人员；如暂时无法匹配，我们会如实告知。"
       },
       agent: {
         yearsExp: "{n} 年经验",
@@ -451,6 +461,10 @@ window.I18N = {
         submit: "发送请求",
         success: "感谢您！请求已发送，服务人员将在1个工作日内与您联系。",
         requiredNote: "* 为必填项",
+        directAskPrompt: "已经清楚自己的需求？可以直接告诉我们，我们会在 24 小时内回复。",
+        directAskCta: "提交咨询",
+        noPreferencePrompt: "没有特别偏好，或以上都不合适？我们会为您匹配合适的服务人员。",
+        noPreferenceCta: "直接提交咨询",
         summaryHospital: "医院",
         summaryProgram: "专科",
         summaryAgent: "服务人员",
@@ -461,7 +475,7 @@ window.I18N = {
         travelStartLabel: "最早出行日期",
         travelEndLabel: "最晚出行日期",
         medicalRecordsLabel: "现有病历或检查报告（可选）",
-        medicalRecordsHint: "支持 PDF、JPG 或 PNG 格式 — 安全存储，仅与匹配的服务人员/医院共享",
+        medicalRecordsHint: "支持 PDF、JPG 或 PNG 格式 — 安全存储，仅与匹配的服务人员/医院共享"
       },
       footer: {
         aboutTitle: "关于健康蓝图",
@@ -546,6 +560,7 @@ window.I18N = {
         chooseRegion: "选择地区",
         chooseHospitalFirst: "选择医院",
         recommendedHospitals: "该地区推荐医院",
+        hospitalsInRegion: "该地区医院",
         recommendedRoutes: "推荐旅行路线",
         anyRegion: "不限地区——单独选择路线",
         viewRoute: "查看路线",
@@ -579,14 +594,13 @@ window.I18N = {
         scenarioOncologyDesc: "对接国内顶尖肿瘤专家与治疗项目。",
         scenarioObgynDesc: "由经验丰富的专家提供妇科、生殖健康与孕产服务。",
         scenarioCardiologyDesc: "来自顶级心脏中心的心血管诊断与治疗。",
-        testimonialsTitle: "患者怎么说",
-        testimonialsNote: "以下内容反映了我们希望为患者提供的服务体验，基于常见的患者就医历程，并非某位具名患者的原话引用。我们会持续补充真实、经患者同意的评价。",
-        testimonial1Quote: "“服务人员在机场接到我们，并全程陪同每一次问诊，我们从未感到迷茫。”",
-        testimonial1Name: "一位来自美国的患者",
-        testimonial2Quote: "“医院对接和翻译支持让本来紧张的行程变得从容。”",
-        testimonial2Name: "一位来自印度尼西亚的患者",
-        testimonial3Quote: "“从最初咨询到回国后的随访，沟通始终清晰明了。”",
-        testimonial3Name: "一位来自英国的患者"
+        howItWorksTitle: "服务流程",
+        howStep1Title: "告诉我们您的需求",
+        howStep1Desc: "提交咨询，说明您的病情或想看的科室、大致时间和偏好的语言。无需注册账号。",
+        howStep2Title: "我们回复可行方案",
+        howStep2Desc: "我们会在 24 小时内联系您，沟通合适的医院、具体流程，以及大致的费用与时间预期。",
+        howStep3Title: "本地服务人员全程跟进",
+        howStep3Desc: "您决定来华后，经审核的服务人员会负责预约、翻译和行程安排——从抵达直到返程。"
       },
       travelCosts: {
         sectionTitle: "出行费用参考",
@@ -713,7 +727,9 @@ window.I18N = {
 
     "zh-TW": {
       brand: { name: "健康藍圖", tagline: "您通往中國醫療的信賴之路" },
-      nav: { home: "首頁", howItWorks: "使用流程", contact: "聯絡我們", joinUs: "成為服務人員", trip: "行程規劃" },
+      nav: { home: "首頁", howItWorks: "使用流程", contact: "聯絡我們", joinUs: "成為服務人員", trip: "行程規劃",
+        findCare: "尋找醫療"
+      },
       fontSize: { label: "字體大小", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "在中國找到合適的醫院——並有專人全程陪同",
@@ -746,7 +762,9 @@ window.I18N = {
         officialWebsite: "醫院官方網站",
         illustrationNote: "示意圖，並非實景照片——如需查看真實照片，請造訪上方官方網站。",
         photoNote: "圖片來自外部來源，可能無法始終穩定載入。",
-        tierLabel: "2023年度中國醫院排行"
+        tierLabel: "2023年度中國醫院排行",
+        tierShort: "2023年排行",
+        directoryDisclaimer: "本目錄依據公開資訊整理，其中醫院評級來自《2023年度中國醫院排行》。醫院出現在此列表中，不代表其與健康藍圖存在合作、關聯或由其背書。請務必直接向醫院確認其當前的診療服務與資質。"
       },
       program: {
         viewDetails: "查看詳情",
@@ -757,7 +775,8 @@ window.I18N = {
         included: "通常包含服務",
         selectProgram: "選擇此專科",
         agentsTitle: "該專科可選服務人員",
-        agentsSubtitle: "這些服務人員將在您整趟中國旅程中全程照顧您——從行程安排到平安返程。"
+        agentsSubtitle: "這些服務人員將在您整趟中國旅程中全程照顧您——從行程安排到平安返程。",
+        agentsSampleNote: "以下服務人員資料為範例資料，用於展示我們正在建立的服務形態，並非目前可供預約、已逐一核實的真實人員。提交諮詢後，我們會為您媒合經審核的真實服務人員；如暫時無法媒合，我們會據實告知。"
       },
       agent: {
         yearsExp: "{n} 年經驗",
@@ -803,6 +822,10 @@ window.I18N = {
         travelEndLabel: "最晚出行日期",
         medicalRecordsLabel: "現有病歷或檢查報告（可選）",
         medicalRecordsHint: "支援 PDF、JPG 或 PNG 格式 — 安全儲存，僅與媒合的服務人員/醫院共用",
+        directAskPrompt: "已經清楚自己的需求？可以直接告訴我們，我們會在 24 小時內回覆。",
+        directAskCta: "提交諮詢",
+        noPreferencePrompt: "沒有特別偏好，或以上都不合適？我們會為您媒合合適的服務人員。",
+        noPreferenceCta: "直接提交諮詢"
       },
       footer: {
         aboutTitle: "關於健康藍圖",
@@ -909,7 +932,8 @@ window.I18N = {
         removeRoute: "移除此路線",
         addRoute: "新增旅行路線",
         noRoute: "尚未選擇路線",
-        noHospital: "尚未選擇醫院"
+        noHospital: "尚未選擇醫院",
+        hospitalsInRegion: "該地區醫院"
       },
       homeContent: {
         aboutTitle: "關於我們",
@@ -920,14 +944,13 @@ window.I18N = {
         scenarioOncologyDesc: "對接國內頂尖腫瘤專家與治療項目。",
         scenarioObgynDesc: "由經驗豐富的專家提供婦科、生殖健康與孕產服務。",
         scenarioCardiologyDesc: "來自頂級心臟中心的心血管診斷與治療。",
-        testimonialsTitle: "患者怎麼說",
-        testimonialsNote: "以下內容反映了我們希望為患者提供的服務體驗，基於常見的患者就醫歷程，並非某位具名患者的原話引用。我們會持續補充真實、經患者同意的評價。",
-        testimonial1Quote: "「服務人員在機場接到我們，並全程陪同每一次問診，我們從未感到迷茫。」",
-        testimonial1Name: "一位來自美國的患者",
-        testimonial2Quote: "「醫院對接和翻譯支援讓本來緊張的行程變得從容。」",
-        testimonial2Name: "一位來自印尼的患者",
-        testimonial3Quote: "「從最初諮詢到回國後的追蹤，溝通始終清晰明瞭。」",
-        testimonial3Name: "一位來自英國的患者"
+        howItWorksTitle: "服務流程",
+        howStep1Title: "告訴我們您的需求",
+        howStep1Desc: "提交諮詢，說明您的病情或想看的科別、大致時間和偏好的語言。無需註冊帳號。",
+        howStep2Title: "我們回覆可行方案",
+        howStep2Desc: "我們會在 24 小時內聯繫您，溝通合適的醫院、具體流程，以及大致的費用與時間預期。",
+        howStep3Title: "當地服務人員全程跟進",
+        howStep3Desc: "您決定來華後，經審核的服務人員會負責預約、翻譯和行程安排——從抵達直到返程。"
       },
       travelCosts: {
         sectionTitle: "出行費用參考",
@@ -1054,7 +1077,9 @@ window.I18N = {
 
     es: {
       brand: { name: "Health Blueprint", tagline: "Su camino de confianza hacia la atención médica en China" },
-      nav: { home: "Inicio", howItWorks: "Cómo funciona", contact: "Contacto", joinUs: "Únase como agente", trip: "Planificar viaje" },
+      nav: { home: "Inicio", howItWorks: "Cómo funciona", contact: "Contacto", joinUs: "Únase como agente", trip: "Planificar viaje",
+        findCare: "Buscar atención"
+      },
       fontSize: { label: "Tamaño de texto", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "Encuentre el hospital adecuado en China, con personas que lo guíen",
@@ -1087,7 +1112,9 @@ window.I18N = {
         officialWebsite: "Sitio web oficial del hospital",
         illustrationNote: "Ilustración, no una fotografía real — visite el sitio web oficial arriba para ver fotos reales.",
         photoNote: "Foto obtenida de una fuente externa — puede que no siempre cargue correctamente.",
-        tierLabel: "Ranking de hospitales de China 2023"
+        tierLabel: "Ranking de hospitales de China 2023",
+        tierShort: "Ranking 2023",
+        directoryDisclaimer: "Este directorio se ha elaborado a partir de información pública, incluido el Ranking de Hospitales de China 2023. La aparición de un hospital aquí no significa que esté afiliado, asociado ni respaldado por Health Blueprint. Confirme siempre los servicios y credenciales vigentes directamente con el hospital."
       },
       program: {
         viewDetails: "Ver detalles",
@@ -1098,7 +1125,8 @@ window.I18N = {
         included: "Qué suele incluir",
         selectProgram: "Seleccionar esta especialidad",
         agentsTitle: "Agentes disponibles para esta especialidad",
-        agentsSubtitle: "Estos agentes lo cuidarán durante todo su viaje a China, desde la planificación hasta su regreso seguro a casa."
+        agentsSubtitle: "Estos agentes lo cuidarán durante todo su viaje a China, desde la planificación hasta su regreso seguro a casa.",
+        agentsSampleNote: "Los perfiles de agentes que aparecen a continuación son perfiles de muestra que ilustran el tipo de apoyo que estamos desarrollando; no son personas verificadas individualmente ni disponibles para reservar hoy. Envíe una solicitud y le asignaremos un agente real y verificado, o le diremos con claridad si no podemos."
       },
       agent: {
         yearsExp: "{n} años de experiencia",
@@ -1144,6 +1172,10 @@ window.I18N = {
         travelEndLabel: "Fecha de viaje más tardía",
         medicalRecordsLabel: "Historial médico o informes existentes (opcional)",
         medicalRecordsHint: "PDF, JPG o PNG — almacenado de forma segura y compartido solo con su agente/hospital asignado",
+        directAskPrompt: "¿Ya sabe lo que necesita? Díganoslo directamente: le responderemos en un plazo de 24 horas.",
+        directAskCta: "Enviar solicitud",
+        noPreferencePrompt: "¿Sin preferencia o ninguno encaja? Le asignaremos un agente adecuado.",
+        noPreferenceCta: "Solicitar sin elegir"
       },
       footer: {
         aboutTitle: "Acerca de Health Blueprint",
@@ -1250,7 +1282,8 @@ window.I18N = {
         removeRoute: "Quitar esta ruta",
         addRoute: "Añadir una ruta de viaje",
         noRoute: "Aún no ha seleccionado una ruta",
-        noHospital: "Aún no ha seleccionado un hospital"
+        noHospital: "Aún no ha seleccionado un hospital",
+        hospitalsInRegion: "Hospitales en esta región"
       },
       homeContent: {
         aboutTitle: "Quiénes Somos",
@@ -1261,14 +1294,13 @@ window.I18N = {
         scenarioOncologyDesc: "Acceso a especialistas oncológicos líderes y programas de tratamiento.",
         scenarioObgynDesc: "Salud reproductiva, fertilidad y atención de la mujer con especialistas experimentados.",
         scenarioCardiologyDesc: "Diagnóstico y tratamiento cardíaco en centros de primer nivel.",
-        testimonialsTitle: "Lo Que Dicen Nuestros Pacientes",
-        testimonialsNote: "Estas reflejan el tipo de experiencia que buscamos ofrecer, basadas en trayectorias habituales de nuestros pacientes, no citas textuales de personas identificadas. Con el tiempo añadiremos testimonios reales de pacientes, con su consentimiento.",
-        testimonial1Quote: "“Nuestro agente nos recibió en el aeropuerto y nos acompañó en cada cita. Nunca nos sentimos perdidos.”",
-        testimonial1Name: "Un paciente de Estados Unidos",
-        testimonial2Quote: "“La coordinación con el hospital y el apoyo de traducción hicieron manejable un viaje estresante.”",
-        testimonial2Name: "Un paciente de Indonesia",
-        testimonial3Quote: "“Comunicación clara desde la primera consulta hasta el seguimiento tras regresar a casa.”",
-        testimonial3Name: "Un paciente del Reino Unido"
+        howItWorksTitle: "Cómo funciona",
+        howStep1Title: "Cuéntenos qué necesita",
+        howStep1Desc: "Envíe una solicitud con su afección o la atención que busca, sus fechas aproximadas y su idioma preferido. No hace falta crear una cuenta.",
+        howStep2Title: "Le respondemos con opciones",
+        howStep2Desc: "En un plazo de 24 horas le contactamos para hablar de hospitales adecuados, cómo es el proceso y una idea realista del coste y los plazos.",
+        howStep3Title: "Un agente local se encarga del resto",
+        howStep3Desc: "Cuando decida venir, un agente verificado gestiona las citas, la traducción y la logística, desde su llegada hasta el viaje de vuelta."
       },
       travelCosts: {
         sectionTitle: "Referencia de Costos de Viaje",
@@ -1395,7 +1427,9 @@ window.I18N = {
 
     fr: {
       brand: { name: "Health Blueprint", tagline: "Votre chemin de confiance vers les soins de santé en Chine" },
-      nav: { home: "Accueil", howItWorks: "Comment ça marche", contact: "Contact", joinUs: "Devenir agent", trip: "Planifier un voyage" },
+      nav: { home: "Accueil", howItWorks: "Comment ça marche", contact: "Contact", joinUs: "Devenir agent", trip: "Planifier un voyage",
+        findCare: "Trouver des soins"
+      },
       fontSize: { label: "Taille du texte", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "Trouvez le bon hôpital en Chine — avec des personnes pour vous guider",
@@ -1428,7 +1462,9 @@ window.I18N = {
         officialWebsite: "Site officiel de l'hôpital",
         illustrationNote: "Illustration, pas une photo réelle — consultez le site officiel ci-dessus pour de vraies photos.",
         photoNote: "Photo provenant d'une source externe — peut ne pas toujours se charger correctement.",
-        tierLabel: "Classement des hôpitaux chinois 2023"
+        tierLabel: "Classement des hôpitaux chinois 2023",
+        tierShort: "Classement 2023",
+        directoryDisclaimer: "Ce répertoire est constitué à partir d'informations publiques, dont le Classement des hôpitaux chinois 2023. La présence d'un hôpital ici ne signifie pas qu'il est affilié à Health Blueprint, partenaire ou recommandé par nous. Vérifiez toujours les services et les qualifications en vigueur directement auprès de l'hôpital."
       },
       program: {
         viewDetails: "Voir les détails",
@@ -1439,7 +1475,8 @@ window.I18N = {
         included: "Ce qui est généralement inclus",
         selectProgram: "Choisir cette spécialité",
         agentsTitle: "Agents disponibles pour cette spécialité",
-        agentsSubtitle: "Ces agents s'occuperont de vous tout au long de votre voyage en Chine, de la planification jusqu'à votre retour en toute sécurité."
+        agentsSubtitle: "Ces agents s'occuperont de vous tout au long de votre voyage en Chine, de la planification jusqu'à votre retour en toute sécurité.",
+        agentsSampleNote: "Les profils d'accompagnateurs ci-dessous sont des exemples illustrant le type d'accompagnement que nous mettons en place, et non des personnes vérifiées individuellement et réservables aujourd'hui. Envoyez une demande et nous vous mettrons en relation avec un accompagnateur réel et vérifié — ou nous vous dirons clairement si nous ne le pouvons pas."
       },
       agent: {
         yearsExp: "{n} ans d'expérience",
@@ -1485,6 +1522,10 @@ window.I18N = {
         travelEndLabel: "Date de voyage la plus tardive",
         medicalRecordsLabel: "Dossiers médicaux ou rapports existants (facultatif)",
         medicalRecordsHint: "PDF, JPG ou PNG — stocké en toute sécurité et partagé uniquement avec votre agent/hôpital assigné",
+        directAskPrompt: "Vous savez déjà ce dont vous avez besoin ? Dites-le-nous directement : nous vous répondons sous 24 heures.",
+        directAskCta: "Envoyer une demande",
+        noPreferencePrompt: "Pas de préférence, ou aucun ne convient ? Nous vous attribuerons un accompagnateur adapté.",
+        noPreferenceCta: "Demander sans choisir"
       },
       footer: {
         aboutTitle: "À propos de Health Blueprint",
@@ -1591,7 +1632,8 @@ window.I18N = {
         removeRoute: "Retirer cet itinéraire",
         addRoute: "Ajouter un itinéraire de voyage",
         noRoute: "Aucun itinéraire sélectionné pour l'instant",
-        noHospital: "Aucun hôpital sélectionné pour l'instant"
+        noHospital: "Aucun hôpital sélectionné pour l'instant",
+        hospitalsInRegion: "Hôpitaux dans cette région"
       },
       homeContent: {
         aboutTitle: "Qui Sommes-Nous",
@@ -1602,14 +1644,13 @@ window.I18N = {
         scenarioOncologyDesc: "Accès aux meilleurs spécialistes et programmes de traitement en oncologie.",
         scenarioObgynDesc: "Santé reproductive, fertilité et soins pour les femmes avec des spécialistes expérimentés.",
         scenarioCardiologyDesc: "Diagnostic et traitement cardiaques dans des centres de cardiologie de premier plan.",
-        testimonialsTitle: "Ce Que Disent Nos Patients",
-        testimonialsNote: "Elles reflètent le type d'expérience que nous visons à offrir, basé sur des parcours de patients courants, et non des citations textuelles de personnes nommées. Nous ajouterons progressivement de vrais témoignages de patients, avec leur consentement.",
-        testimonial1Quote: "«Notre agent nous a accueillis à l'aéroport et est resté avec nous à chaque rendez-vous. Nous ne nous sommes jamais sentis perdus.»",
-        testimonial1Name: "Un patient des États-Unis",
-        testimonial2Quote: "«La coordination avec l'hôpital et le soutien à la traduction ont rendu ce voyage stressant plus gérable.»",
-        testimonial2Name: "Un patient d'Indonésie",
-        testimonial3Quote: "«Une communication claire depuis la première demande jusqu'au suivi après notre retour.»",
-        testimonial3Name: "Un patient du Royaume-Uni"
+        howItWorksTitle: "Comment ça marche",
+        howStep1Title: "Dites-nous ce qu'il vous faut",
+        howStep1Desc: "Envoyez une demande en précisant votre pathologie ou les soins recherchés, vos dates approximatives et votre langue préférée. Aucun compte n'est nécessaire.",
+        howStep2Title: "Nous revenons vers vous avec des options",
+        howStep2Desc: "Sous 24 heures, nous vous recontactons pour évoquer les hôpitaux adaptés, le déroulement et une estimation réaliste des coûts et des délais.",
+        howStep3Title: "Un accompagnateur local prend le relais",
+        howStep3Desc: "Une fois votre venue décidée, un accompagnateur vérifié gère les rendez-vous, la traduction et la logistique, de votre arrivée jusqu'à votre retour."
       },
       travelCosts: {
         sectionTitle: "Repères de Coûts de Voyage",
@@ -1736,7 +1777,9 @@ window.I18N = {
 
     de: {
       brand: { name: "Health Blueprint", tagline: "Ihr vertrauenswürdiger Weg zur Gesundheitsversorgung in China" },
-      nav: { home: "Startseite", howItWorks: "So funktioniert's", contact: "Kontakt", joinUs: "Als Betreuer mitmachen", trip: "Reise planen" },
+      nav: { home: "Startseite", howItWorks: "So funktioniert's", contact: "Kontakt", joinUs: "Als Betreuer mitmachen", trip: "Reise planen",
+        findCare: "Behandlung finden"
+      },
       fontSize: { label: "Textgröße", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "Finden Sie das richtige Krankenhaus in China — mit persönlicher Begleitung",
@@ -1769,7 +1812,9 @@ window.I18N = {
         officialWebsite: "Offizielle Website des Krankenhauses",
         illustrationNote: "Illustration, kein echtes Foto — echte Fotos finden Sie auf der offiziellen Website oben.",
         photoNote: "Foto aus externer Quelle — lädt möglicherweise nicht immer zuverlässig.",
-        tierLabel: "Chinesisches Krankenhausranking 2023"
+        tierLabel: "Chinesisches Krankenhausranking 2023",
+        tierShort: "Ranking 2023",
+        directoryDisclaimer: "Dieses Verzeichnis wurde aus öffentlich zugänglichen Informationen zusammengestellt, darunter das chinesische Krankenhausranking 2023. Die Aufnahme eines Krankenhauses bedeutet nicht, dass es mit Health Blueprint verbunden ist, mit uns kooperiert oder von uns empfohlen wird. Bestätigen Sie aktuelle Leistungen und Qualifikationen stets direkt beim Krankenhaus."
       },
       program: {
         viewDetails: "Details ansehen",
@@ -1780,7 +1825,8 @@ window.I18N = {
         included: "Üblicherweise enthalten",
         selectProgram: "Diesen Fachbereich wählen",
         agentsTitle: "Verfügbare Betreuer für diesen Fachbereich",
-        agentsSubtitle: "Diese Betreuer kümmern sich während Ihrer gesamten Reise nach China um Sie — von der Planung bis zur sicheren Heimreise."
+        agentsSubtitle: "Diese Betreuer kümmern sich während Ihrer gesamten Reise nach China um Sie — von der Planung bis zur sicheren Heimreise.",
+        agentsSampleNote: "Die folgenden Betreuerprofile sind Beispielprofile, die zeigen, welche Art von Unterstützung wir aufbauen. Es handelt sich nicht um einzeln geprüfte Personen, die heute buchbar sind. Senden Sie eine Anfrage, und wir vermitteln Ihnen einen echten, geprüften Betreuer – oder sagen Ihnen klar, wenn das nicht möglich ist."
       },
       agent: {
         yearsExp: "{n} Jahre Erfahrung",
@@ -1826,6 +1872,10 @@ window.I18N = {
         travelEndLabel: "Spätestes Reisedatum",
         medicalRecordsLabel: "Vorhandene medizinische Unterlagen oder Berichte (optional)",
         medicalRecordsHint: "PDF, JPG oder PNG — sicher gespeichert und nur mit Ihrem zugewiesenen Agenten/Krankenhaus geteilt",
+        directAskPrompt: "Sie wissen bereits, was Sie brauchen? Sagen Sie es uns direkt – wir melden uns innerhalb von 24 Stunden.",
+        directAskCta: "Anfrage senden",
+        noPreferencePrompt: "Keine Präferenz oder nichts passt? Wir vermitteln Ihnen einen geeigneten Betreuer.",
+        noPreferenceCta: "Ohne Auswahl anfragen"
       },
       footer: {
         aboutTitle: "Über Health Blueprint",
@@ -1932,7 +1982,8 @@ window.I18N = {
         removeRoute: "Diese Route entfernen",
         addRoute: "Reiseroute hinzufügen",
         noRoute: "Noch keine Route ausgewählt",
-        noHospital: "Noch kein Krankenhaus ausgewählt"
+        noHospital: "Noch kein Krankenhaus ausgewählt",
+        hospitalsInRegion: "Krankenhäuser in dieser Region"
       },
       homeContent: {
         aboutTitle: "Wer Wir Sind",
@@ -1943,14 +1994,13 @@ window.I18N = {
         scenarioOncologyDesc: "Zugang zu führenden Onkologen und Behandlungsprogrammen.",
         scenarioObgynDesc: "Reproduktionsmedizin, Fruchtbarkeit und Frauengesundheit mit erfahrenen Spezialisten.",
         scenarioCardiologyDesc: "Kardiologische Diagnostik und Behandlung in erstklassigen Herzzentren.",
-        testimonialsTitle: "Was Patienten Sagen",
-        testimonialsNote: "Sie spiegeln die Art von Erfahrung wider, die wir bieten möchten, basierend auf typischen Patientenreisen – keine wörtlichen Zitate namentlich genannter Personen. Wir werden nach und nach echte, mit Zustimmung geteilte Patientenstimmen ergänzen.",
-        testimonial1Quote: "„Unser Betreuer hat uns am Flughafen abgeholt und war bei jedem Termin an unserer Seite. Wir haben uns nie verloren gefühlt.“",
-        testimonial1Name: "Ein Patient aus den USA",
-        testimonial2Quote: "„Die Koordination mit dem Krankenhaus und die Übersetzungshilfe machten eine stressige Reise machbar.“",
-        testimonial2Name: "Ein Patient aus Indonesien",
-        testimonial3Quote: "„Klare Kommunikation von der ersten Anfrage bis zur Nachsorge nach unserer Rückkehr.“",
-        testimonial3Name: "Ein Patient aus dem Vereinigten Königreich"
+        howItWorksTitle: "So funktioniert es",
+        howStep1Title: "Sagen Sie uns, was Sie brauchen",
+        howStep1Desc: "Senden Sie eine Anfrage mit Ihrer Erkrankung oder der gesuchten Behandlung, Ihrem ungefähren Zeitraum und Ihrer bevorzugten Sprache. Kein Konto erforderlich.",
+        howStep2Title: "Wir melden uns mit Optionen",
+        howStep2Desc: "Innerhalb von 24 Stunden melden wir uns, um passende Krankenhäuser, den Ablauf und eine realistische Einschätzung von Kosten und Zeitrahmen zu besprechen.",
+        howStep3Title: "Ein Betreuer vor Ort übernimmt",
+        howStep3Desc: "Wenn Sie sich für die Reise entscheiden, kümmert sich ein geprüfter Betreuer um Termine, Übersetzung und Organisation – von der Ankunft bis zur Heimreise."
       },
       travelCosts: {
         sectionTitle: "Reisekosten-Übersicht",
@@ -2077,7 +2127,9 @@ window.I18N = {
 
     pt: {
       brand: { name: "Health Blueprint", tagline: "Seu caminho de confiança para a saúde na China" },
-      nav: { home: "Início", howItWorks: "Como funciona", contact: "Contato", joinUs: "Seja um agente", trip: "Planejar viagem" },
+      nav: { home: "Início", howItWorks: "Como funciona", contact: "Contato", joinUs: "Seja um agente", trip: "Planejar viagem",
+        findCare: "Encontrar atendimento"
+      },
       fontSize: { label: "Tamanho do texto", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "Encontre o hospital certo na China — com pessoas para guiá-lo",
@@ -2110,7 +2162,9 @@ window.I18N = {
         officialWebsite: "Site oficial do hospital",
         illustrationNote: "Ilustração, não é uma foto real — visite o site oficial acima para ver fotos reais.",
         photoNote: "Foto de fonte externa — pode nem sempre carregar corretamente.",
-        tierLabel: "Ranking de Hospitais da China 2023"
+        tierLabel: "Ranking de Hospitais da China 2023",
+        tierShort: "Ranking 2023",
+        directoryDisclaimer: "Este diretório foi compilado a partir de informações públicas, incluindo o Ranking de Hospitais da China de 2023. A presença de um hospital aqui não significa que ele seja afiliado, parceiro ou recomendado pela Health Blueprint. Confirme sempre os serviços e as credenciais atuais diretamente com o hospital."
       },
       program: {
         viewDetails: "Ver detalhes",
@@ -2121,7 +2175,8 @@ window.I18N = {
         included: "O que geralmente está incluído",
         selectProgram: "Selecionar esta especialidade",
         agentsTitle: "Agentes disponíveis para esta especialidade",
-        agentsSubtitle: "Esses agentes cuidarão de você durante toda a sua viagem à China, do planejamento até o seu retorno seguro para casa."
+        agentsSubtitle: "Esses agentes cuidarão de você durante toda a sua viagem à China, do planejamento até o seu retorno seguro para casa.",
+        agentsSampleNote: "Os perfis de agentes abaixo são perfis de exemplo que mostram o tipo de apoio que estamos construindo, e não pessoas verificadas individualmente e disponíveis para contratação hoje. Envie uma solicitação e faremos a correspondência com um agente real e verificado — ou diremos com clareza se não for possível."
       },
       agent: {
         yearsExp: "{n} anos de experiência",
@@ -2167,6 +2222,10 @@ window.I18N = {
         travelEndLabel: "Data de viagem mais distante",
         medicalRecordsLabel: "Registros médicos ou relatórios existentes (opcional)",
         medicalRecordsHint: "PDF, JPG ou PNG — armazenado com segurança e compartilhado apenas com seu agente/hospital designado",
+        directAskPrompt: "Já sabe do que precisa? Conte-nos diretamente: respondemos em até 24 horas.",
+        directAskCta: "Enviar solicitação",
+        noPreferencePrompt: "Sem preferência ou nenhum serve? Encontraremos um agente adequado para você.",
+        noPreferenceCta: "Solicitar sem escolher"
       },
       footer: {
         aboutTitle: "Sobre a Health Blueprint",
@@ -2273,7 +2332,8 @@ window.I18N = {
         removeRoute: "Remover este roteiro",
         addRoute: "Adicionar um roteiro de viagem",
         noRoute: "Nenhum roteiro selecionado ainda",
-        noHospital: "Nenhum hospital selecionado ainda"
+        noHospital: "Nenhum hospital selecionado ainda",
+        hospitalsInRegion: "Hospitais nesta região"
       },
       homeContent: {
         aboutTitle: "Quem Somos",
@@ -2284,14 +2344,13 @@ window.I18N = {
         scenarioOncologyDesc: "Acesso a especialistas oncológicos renomados e programas de tratamento.",
         scenarioObgynDesc: "Saúde reprodutiva, fertilidade e cuidados femininos com especialistas experientes.",
         scenarioCardiologyDesc: "Diagnóstico e tratamento cardíaco em centros de excelência.",
-        testimonialsTitle: "O Que Dizem Nossos Pacientes",
-        testimonialsNote: "Elas refletem o tipo de experiência que buscamos oferecer, com base em jornadas comuns de pacientes — não são citações literais de pessoas identificadas. Iremos adicionar depoimentos reais de pacientes, com consentimento, ao longo do tempo.",
-        testimonial1Quote: "“Nosso agente nos recebeu no aeroporto e ficou conosco em cada consulta. Nunca nos sentimos perdidos.”",
-        testimonial1Name: "Um paciente dos Estados Unidos",
-        testimonial2Quote: "“A coordenação com o hospital e o apoio de tradução tornaram uma viagem estressante mais tranquila.”",
-        testimonial2Name: "Um paciente da Indonésia",
-        testimonial3Quote: "“Comunicação clara desde a primeira consulta até o acompanhamento após voltarmos para casa.”",
-        testimonial3Name: "Um paciente do Reino Unido"
+        howItWorksTitle: "Como funciona",
+        howStep1Title: "Conte-nos o que precisa",
+        howStep1Desc: "Envie uma solicitação com sua condição ou o atendimento que procura, as datas aproximadas e o idioma de sua preferência. Não é preciso criar conta.",
+        howStep2Title: "Retornamos com opções",
+        howStep2Desc: "Em até 24 horas entramos em contato para conversar sobre hospitais adequados, como é o processo e uma noção realista de custo e prazo.",
+        howStep3Title: "Um agente local assume daí em diante",
+        howStep3Desc: "Quando decidir vir, um agente verificado cuida das consultas, da tradução e da logística — da sua chegada até a viagem de volta."
       },
       travelCosts: {
         sectionTitle: "Referência de Custos de Viagem",
@@ -2418,7 +2477,9 @@ window.I18N = {
 
     ru: {
       brand: { name: "Health Blueprint", tagline: "Ваш надёжный путь к медицине в Китае" },
-      nav: { home: "Главная", howItWorks: "Как это работает", contact: "Контакты", joinUs: "Стать агентом", trip: "Спланировать поездку" },
+      nav: { home: "Главная", howItWorks: "Как это работает", contact: "Контакты", joinUs: "Стать агентом", trip: "Спланировать поездку",
+        findCare: "Найти лечение"
+      },
       fontSize: { label: "Размер текста", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "Найдите подходящую больницу в Китае — с сопровождением на каждом шаге",
@@ -2451,7 +2512,9 @@ window.I18N = {
         officialWebsite: "Официальный сайт больницы",
         illustrationNote: "Иллюстрация, а не реальное фото — настоящие фотографии смотрите на официальном сайте выше.",
         photoNote: "Фото из внешнего источника — может загружаться нестабильно.",
-        tierLabel: "Рейтинг больниц Китая 2023"
+        tierLabel: "Рейтинг больниц Китая 2023",
+        tierShort: "Рейтинг 2023",
+        directoryDisclaimer: "Этот каталог составлен на основе общедоступной информации, включая Рейтинг больниц Китая 2023 года. Присутствие больницы в списке не означает, что она связана с Health Blueprint, является нашим партнёром или рекомендована нами. Всегда уточняйте текущие услуги и квалификацию непосредственно в больнице."
       },
       program: {
         viewDetails: "Подробнее",
@@ -2462,7 +2525,8 @@ window.I18N = {
         included: "Что обычно включено",
         selectProgram: "Выбрать это направление",
         agentsTitle: "Доступные агенты для этого направления",
-        agentsSubtitle: "Эти агенты будут заботиться о вас на протяжении всей поездки в Китай — от планирования до благополучного возвращения домой."
+        agentsSubtitle: "Эти агенты будут заботиться о вас на протяжении всей поездки в Китай — от планирования до благополучного возвращения домой.",
+        agentsSampleNote: "Приведённые ниже профили сопровождающих — это образцы, показывающие, какую поддержку мы выстраиваем, а не проверенные по отдельности люди, доступные для записи сегодня. Отправьте заявку, и мы подберём вам реального проверенного сопровождающего — либо прямо скажем, если не сможем."
       },
       agent: {
         yearsExp: "Опыт: {n} лет",
@@ -2508,6 +2572,10 @@ window.I18N = {
         travelEndLabel: "Самая поздняя дата поездки",
         medicalRecordsLabel: "Имеющиеся медицинские записи или заключения (необязательно)",
         medicalRecordsHint: "PDF, JPG или PNG — надёжно хранится и передаётся только вашему назначенному агенту/больнице",
+        directAskPrompt: "Уже знаете, что вам нужно? Напишите нам напрямую — ответим в течение 24 часов.",
+        directAskCta: "Отправить заявку",
+        noPreferencePrompt: "Нет предпочтений или никто не подходит? Мы подберём подходящего сопровождающего.",
+        noPreferenceCta: "Заявка без выбора"
       },
       footer: {
         aboutTitle: "О Health Blueprint",
@@ -2614,7 +2682,8 @@ window.I18N = {
         removeRoute: "Убрать этот маршрут",
         addRoute: "Добавить маршрут поездки",
         noRoute: "Маршрут ещё не выбран",
-        noHospital: "Больница ещё не выбрана"
+        noHospital: "Больница ещё не выбрана",
+        hospitalsInRegion: "Больницы в этом регионе"
       },
       homeContent: {
         aboutTitle: "Кто Мы",
@@ -2625,14 +2694,13 @@ window.I18N = {
         scenarioOncologyDesc: "Доступ к ведущим онкологам и программам лечения.",
         scenarioObgynDesc: "Репродуктивное здоровье, лечение бесплодия и женское здоровье с опытными специалистами.",
         scenarioCardiologyDesc: "Кардиологическая диагностика и лечение в лучших кардиоцентрах.",
-        testimonialsTitle: "Отзывы Пациентов",
-        testimonialsNote: "Они отражают тот уровень сервиса, к которому мы стремимся, основанный на типичных историях пациентов, а не дословные цитаты конкретных людей. Со временем мы добавим реальные отзывы пациентов, полученные с их согласия.",
-        testimonial1Quote: "«Наш агент встретил нас в аэропорту и сопровождал на каждом приёме. Мы ни разу не чувствовали себя потерянными».",
-        testimonial1Name: "Пациент из США",
-        testimonial2Quote: "«Координация с больницей и помощь с переводом сделали напряжённую поездку управляемой».",
-        testimonial2Name: "Пациент из Индонезии",
-        testimonial3Quote: "«Чёткая коммуникация с первого обращения до наблюдения после возвращения домой».",
-        testimonial3Name: "Пациент из Великобритании"
+        howItWorksTitle: "Как это работает",
+        howStep1Title: "Расскажите, что вам нужно",
+        howStep1Desc: "Отправьте заявку с описанием вашего состояния или нужного лечения, примерными датами и предпочитаемым языком. Регистрация не требуется.",
+        howStep2Title: "Мы возвращаемся с вариантами",
+        howStep2Desc: "В течение 24 часов мы свяжемся с вами, чтобы обсудить подходящие больницы, порядок действий и реалистичную оценку стоимости и сроков.",
+        howStep3Title: "Дальше всё берёт на себя местный сопровождающий",
+        howStep3Desc: "Когда вы решите приехать, проверенный сопровождающий займётся записью к врачу, переводом и организацией — от прилёта до обратной дороги."
       },
       travelCosts: {
         sectionTitle: "Ориентировочные Расходы на Поездку",
@@ -2759,7 +2827,9 @@ window.I18N = {
 
     ar: {
       brand: { name: "Health Blueprint", tagline: "طريقك الموثوق للرعاية الصحية في الصين" },
-      nav: { home: "الرئيسية", howItWorks: "كيف يعمل الموقع", contact: "اتصل بنا", joinUs: "انضم كوكيل", trip: "خطّط لرحلتك" },
+      nav: { home: "الرئيسية", howItWorks: "كيف يعمل الموقع", contact: "اتصل بنا", joinUs: "انضم كوكيل", trip: "خطّط لرحلتك",
+        findCare: "ابحث عن الرعاية"
+      },
       fontSize: { label: "حجم النص", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "اعثر على المستشفى المناسب في الصين — مع مرافقين يرشدونك في كل خطوة",
@@ -2792,7 +2862,9 @@ window.I18N = {
         officialWebsite: "الموقع الرسمي للمستشفى",
         illustrationNote: "رسم توضيحي وليس صورة حقيقية — لمشاهدة صور حقيقية، يُرجى زيارة الموقع الرسمي أعلاه.",
         photoNote: "صورة من مصدر خارجي — قد لا يتم تحميلها دائمًا بشكل موثوق.",
-        tierLabel: "تصنيف المستشفيات الصينية 2023"
+        tierLabel: "تصنيف المستشفيات الصينية 2023",
+        tierShort: "تصنيف 2023",
+        directoryDisclaimer: "جُمع هذا الدليل من معلومات متاحة للعموم، من بينها تصنيف المستشفيات الصينية لعام 2023. ووجود مستشفى هنا لا يعني أنه تابع لـ Health Blueprint أو شريك لها أو معتمد منها. تحقق دائمًا من الخدمات والاعتمادات الحالية مع المستشفى مباشرة."
       },
       program: {
         viewDetails: "عرض التفاصيل",
@@ -2803,7 +2875,8 @@ window.I18N = {
         included: "ما يتضمنه عادةً",
         selectProgram: "اختر هذا التخصص",
         agentsTitle: "الوكلاء المتاحون لهذا التخصص",
-        agentsSubtitle: "سيهتم هؤلاء الوكلاء بك طوال رحلتك إلى الصين — من التخطيط وحتى عودتك الآمنة إلى بلدك."
+        agentsSubtitle: "سيهتم هؤلاء الوكلاء بك طوال رحلتك إلى الصين — من التخطيط وحتى عودتك الآمنة إلى بلدك.",
+        agentsSampleNote: "الملفات التعريفية للمرافقين أدناه هي نماذج توضّح نوع الدعم الذي نبنيه، وليست أشخاصًا تم التحقق منهم فرديًا ومتاحين للحجز اليوم. أرسل طلبًا وسنوفّر لك مرافقًا حقيقيًا تم التحقق منه، أو نخبرك بوضوح إذا تعذّر ذلك."
       },
       agent: {
         yearsExp: "{n} سنوات خبرة",
@@ -2849,6 +2922,10 @@ window.I18N = {
         travelEndLabel: "أبعد تاريخ للسفر",
         medicalRecordsLabel: "السجلات أو التقارير الطبية الحالية (اختياري)",
         medicalRecordsHint: "PDF أو JPG أو PNG — يتم تخزينها بأمان ومشاركتها فقط مع الوكيل/المستشفى المخصص لك",
+        directAskPrompt: "هل تعرف ما تحتاجه بالفعل؟ أخبرنا مباشرة — سنرد خلال 24 ساعة.",
+        directAskCta: "إرسال طلب",
+        noPreferencePrompt: "لا تفضيل لديك أو لا يناسبك أي منهم؟ سنوفّر لك مرافقًا مناسبًا.",
+        noPreferenceCta: "اطلب دون اختيار"
       },
       footer: {
         aboutTitle: "عن Health Blueprint",
@@ -2955,7 +3032,8 @@ window.I18N = {
         removeRoute: "إزالة هذا المسار",
         addRoute: "إضافة مسار سفر",
         noRoute: "لم يتم اختيار مسار بعد",
-        noHospital: "لم يتم اختيار مستشفى بعد"
+        noHospital: "لم يتم اختيار مستشفى بعد",
+        hospitalsInRegion: "المستشفيات في هذه المنطقة"
       },
       homeContent: {
         aboutTitle: "من نحن",
@@ -2966,14 +3044,13 @@ window.I18N = {
         scenarioOncologyDesc: "الوصول إلى أبرز أخصائيي الأورام وبرامج العلاج.",
         scenarioObgynDesc: "الصحة الإنجابية والخصوبة ورعاية المرأة مع أخصائيين ذوي خبرة.",
         scenarioCardiologyDesc: "تشخيص وعلاج أمراض القلب في مراكز قلب رائدة.",
-        testimonialsTitle: "ماذا يقول المرضى",
-        testimonialsNote: "تعكس هذه الأمثلة نوع التجربة التي نسعى لتقديمها، استنادًا إلى مسارات شائعة للمرضى، وليست اقتباسات حرفية من أشخاص محددين بالاسم. سنضيف مع مرور الوقت شهادات حقيقية من مرضى بموافقتهم.",
-        testimonial1Quote: "«استقبلنا وكيلنا في المطار وبقي معنا في كل موعد. لم نشعر بالضياع أبدًا».",
-        testimonial1Name: "مريض من الولايات المتحدة",
-        testimonial2Quote: "«جعل التنسيق مع المستشفى ودعم الترجمة الرحلة المرهقة قابلة للإدارة».",
-        testimonial2Name: "مريض من إندونيسيا",
-        testimonial3Quote: "«تواصل واضح منذ الاستفسار الأول وحتى المتابعة بعد عودتنا».",
-        testimonial3Name: "مريض من المملكة المتحدة"
+        howItWorksTitle: "كيف تسير العملية",
+        howStep1Title: "أخبرنا بما تحتاجه",
+        howStep1Desc: "أرسل طلبًا يوضّح حالتك أو الرعاية التي تبحث عنها، وتواريخك التقريبية، ولغتك المفضّلة. لا حاجة إلى إنشاء حساب.",
+        howStep2Title: "نعود إليك بالخيارات",
+        howStep2Desc: "خلال 24 ساعة نتواصل معك لمناقشة المستشفيات المناسبة، وكيفية سير الإجراءات، وتصوّر واقعي للتكلفة والمدة.",
+        howStep3Title: "مرافق محلي يتولّى الباقي",
+        howStep3Desc: "بمجرد أن تقرّر القدوم، يتولّى مرافق تم التحقق منه المواعيد والترجمة والترتيبات اللوجستية — من وصولك حتى رحلة العودة."
       },
       travelCosts: {
         sectionTitle: "مرجع تكاليف السفر",
@@ -3100,7 +3177,9 @@ window.I18N = {
 
     ja: {
       brand: { name: "Health Blueprint", tagline: "中国の医療への信頼できる架け橋" },
-      nav: { home: "ホーム", howItWorks: "ご利用の流れ", contact: "お問い合わせ", joinUs: "エージェント登録", trip: "旅程を計画" },
+      nav: { home: "ホーム", howItWorks: "ご利用の流れ", contact: "お問い合わせ", joinUs: "エージェント登録", trip: "旅程を計画",
+        findCare: "医療を探す"
+      },
       fontSize: { label: "文字サイズ", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "中国で最適な病院を見つけましょう——現地スタッフが最後までご案内します",
@@ -3133,7 +3212,9 @@ window.I18N = {
         officialWebsite: "病院公式サイト",
         illustrationNote: "イメージ図であり実際の写真ではありません——実際の写真は上記の公式サイトでご確認ください。",
         photoNote: "外部ソースの写真です——正常に読み込まれない場合があります。",
-        tierLabel: "2023年版 中国病院ランキング"
+        tierLabel: "2023年版 中国病院ランキング",
+        tierShort: "2023年ランキング",
+        directoryDisclaimer: "この一覧は、2023年中国病院ランキングを含む公開情報をもとに作成しています。掲載されていることは、その病院がHealth Blueprintと提携・関連している、または当社が推奨していることを意味するものではありません。現在の診療内容や資格については必ず病院に直接ご確認ください。"
       },
       program: {
         viewDetails: "詳細を見る",
@@ -3144,7 +3225,8 @@ window.I18N = {
         included: "一般的な内容",
         selectProgram: "この診療科を選択",
         agentsTitle: "この診療科のエージェント",
-        agentsSubtitle: "これらのエージェントが、計画から無事のご帰国まで、中国滞在中ずっとサポートします。"
+        agentsSubtitle: "これらのエージェントが、計画から無事のご帰国まで、中国滞在中ずっとサポートします。",
+        agentsSampleNote: "以下の同行スタッフのプロフィールは、当社が整備を進めているサポートの形を示すサンプルであり、個別に確認済みで現在予約可能な方ではありません。ご相談をお送りいただければ、審査済みの実際のスタッフをご紹介します。難しい場合はその旨を正直にお伝えします。"
       },
       agent: {
         yearsExp: "経験{n}年",
@@ -3190,6 +3272,10 @@ window.I18N = {
         travelEndLabel: "渡航可能な最も遅い日",
         medicalRecordsLabel: "既存の医療記録・検査報告書（任意）",
         medicalRecordsHint: "PDF、JPG、PNG形式に対応 — 安全に保管され、担当のエージェント/病院にのみ共有されます",
+        directAskPrompt: "ご希望がすでに決まっていますか。直接お知らせください。24時間以内にご返信します。",
+        directAskCta: "相談を送る",
+        noPreferencePrompt: "特に希望がない、または合う方がいない場合は、適切なスタッフをこちらでお探しします。",
+        noPreferenceCta: "選ばずに相談する"
       },
       footer: {
         aboutTitle: "Health Blueprintについて",
@@ -3296,7 +3382,8 @@ window.I18N = {
         removeRoute: "このルートを削除",
         addRoute: "旅行ルートを追加",
         noRoute: "まだルートが選択されていません",
-        noHospital: "まだ病院が選択されていません"
+        noHospital: "まだ病院が選択されていません",
+        hospitalsInRegion: "この地域の病院"
       },
       homeContent: {
         aboutTitle: "私たちについて",
@@ -3307,14 +3394,13 @@ window.I18N = {
         scenarioOncologyDesc: "国内トップクラスのがん専門医・治療プログラムへのアクセス。",
         scenarioObgynDesc: "経験豊富な専門医による婦人科・不妊治療・女性の健康ケア。",
         scenarioCardiologyDesc: "トップクラスの心臓センターによる心血管の診断・治療。",
-        testimonialsTitle: "患者様の声",
-        testimonialsNote: "これらは、私たちが目指すサービス体験を、患者様によくある経過をもとに表したものであり、特定の個人による発言そのものではありません。今後、同意をいただいた実際の患者様の声を順次追加していきます。",
-        testimonial1Quote: "「担当者が空港まで迎えに来てくれて、すべての診察に付き添ってくれました。迷うことは一度もありませんでした。」",
-        testimonial1Name: "アメリカからの患者様",
-        testimonial2Quote: "「病院との調整と通訳サポートのおかげで、不安だった渡航がスムーズになりました。」",
-        testimonial2Name: "インドネシアからの患者様",
-        testimonial3Quote: "「最初の問い合わせから帰国後のフォローアップまで、常に明確なコミュニケーションでした。」",
-        testimonial3Name: "イギリスからの患者様"
+        howItWorksTitle: "ご利用の流れ",
+        howStep1Title: "ご希望をお聞かせください",
+        howStep1Desc: "症状や希望する診療科、おおよその時期、希望言語を記入してご相談ください。アカウント登録は不要です。",
+        howStep2Title: "選択肢をご提案します",
+        howStep2Desc: "24時間以内にご連絡し、適した病院、進め方、費用と期間の現実的な目安をご説明します。",
+        howStep3Title: "現地スタッフが対応します",
+        howStep3Desc: "渡航を決められたら、審査済みのスタッフが予約・通訳・移動の手配を担当します。到着から帰国までサポートします。"
       },
       travelCosts: {
         sectionTitle: "旅費の目安",
@@ -3441,7 +3527,9 @@ window.I18N = {
 
     ko: {
       brand: { name: "Health Blueprint", tagline: "중국 의료로 가는 믿을 수 있는 길" },
-      nav: { home: "홈", howItWorks: "이용 방법", contact: "문의하기", joinUs: "에이전트 지원", trip: "여행 계획" },
+      nav: { home: "홈", howItWorks: "이용 방법", contact: "문의하기", joinUs: "에이전트 지원", trip: "여행 계획",
+        findCare: "진료 찾기"
+      },
       fontSize: { label: "글자 크기", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "중국에서 알맞은 병원을 찾아보세요 — 처음부터 끝까지 안내해 드립니다",
@@ -3474,7 +3562,9 @@ window.I18N = {
         officialWebsite: "병원 공식 웹사이트",
         illustrationNote: "실제 사진이 아닌 이미지입니다 — 실제 사진은 위의 공식 웹사이트에서 확인하세요.",
         photoNote: "외부 출처의 사진입니다 — 항상 안정적으로 로드되지 않을 수 있습니다.",
-        tierLabel: "2023 중국 병원 순위"
+        tierLabel: "2023 중국 병원 순위",
+        tierShort: "2023 순위",
+        directoryDisclaimer: "이 목록은 2023 중국 병원 순위를 포함한 공개 정보를 바탕으로 정리한 것입니다. 병원이 목록에 있다고 해서 Health Blueprint와 제휴·협력 관계에 있거나 당사가 보증한다는 의미는 아닙니다. 현재 제공되는 진료와 자격은 반드시 병원에 직접 확인하시기 바랍니다."
       },
       program: {
         viewDetails: "자세히 보기",
@@ -3485,7 +3575,8 @@ window.I18N = {
         included: "일반적인 포함 사항",
         selectProgram: "이 진료과 선택",
         agentsTitle: "이 진료과의 이용 가능한 에이전트",
-        agentsSubtitle: "이 에이전트들은 계획 단계부터 무사히 귀국하실 때까지 중국 여행 전 과정을 함께합니다."
+        agentsSubtitle: "이 에이전트들은 계획 단계부터 무사히 귀국하실 때까지 중국 여행 전 과정을 함께합니다.",
+        agentsSampleNote: "아래 동행 담당자 프로필은 저희가 구축 중인 지원 형태를 보여주는 예시이며, 개별 검증을 거쳐 현재 예약 가능한 실제 인물이 아닙니다. 문의를 보내주시면 검증된 실제 담당자를 연결해 드리고, 어려운 경우에는 솔직하게 알려드립니다."
       },
       agent: {
         yearsExp: "경력 {n}년",
@@ -3531,6 +3622,10 @@ window.I18N = {
         travelEndLabel: "가장 늦은 여행 날짜",
         medicalRecordsLabel: "기존 의료 기록 또는 보고서 (선택 사항)",
         medicalRecordsHint: "PDF, JPG 또는 PNG — 안전하게 저장되며 배정된 에이전트/병원에만 공유됩니다",
+        directAskPrompt: "필요한 것이 이미 정해지셨나요? 바로 알려주시면 24시간 이내에 답변드립니다.",
+        directAskCta: "문의 보내기",
+        noPreferencePrompt: "특별한 선호가 없거나 맞는 분이 없으신가요? 적합한 담당자를 연결해 드립니다.",
+        noPreferenceCta: "선택 없이 문의하기"
       },
       footer: {
         aboutTitle: "Health Blueprint 소개",
@@ -3637,7 +3732,8 @@ window.I18N = {
         removeRoute: "이 경로 삭제",
         addRoute: "여행 경로 추가",
         noRoute: "아직 선택된 경로가 없습니다",
-        noHospital: "아직 선택된 병원이 없습니다"
+        noHospital: "아직 선택된 병원이 없습니다",
+        hospitalsInRegion: "이 지역의 병원"
       },
       homeContent: {
         aboutTitle: "회사 소개",
@@ -3648,14 +3744,13 @@ window.I18N = {
         scenarioOncologyDesc: "국내 최고 수준의 종양 전문의 및 치료 프로그램 이용.",
         scenarioObgynDesc: "경험 많은 전문의가 제공하는 생식 건강, 난임, 여성 건강 관리.",
         scenarioCardiologyDesc: "최고 수준의 심장센터에서 제공하는 심장 진단 및 치료.",
-        testimonialsTitle: "환자 후기",
-        testimonialsNote: "아래 내용은 저희가 제공하고자 하는 서비스 경험을 일반적인 환자 경험을 바탕으로 표현한 것이며, 특정 개인의 실제 발언이 아닙니다. 향후 동의를 받은 실제 환자 후기를 순차적으로 추가할 예정입니다.",
-        testimonial1Quote: "“담당자가 공항으로 마중 나와 모든 진료에 함께해 주어서 한 번도 헤매지 않았습니다.”",
-        testimonial1Name: "미국에서 온 환자",
-        testimonial2Quote: "“병원 조율과 통역 지원 덕분에 부담스러웠던 여정이 수월해졌습니다.”",
-        testimonial2Name: "인도네시아에서 온 환자",
-        testimonial3Quote: "“처음 문의부터 귀국 후 후속 관리까지 소통이 명확했습니다.”",
-        testimonial3Name: "영국에서 온 환자"
+        howItWorksTitle: "이용 절차",
+        howStep1Title: "필요한 것을 알려주세요",
+        howStep1Desc: "증상이나 원하시는 진료, 대략적인 일정, 선호하는 언어를 적어 문의를 보내주세요. 계정 등록은 필요 없습니다.",
+        howStep2Title: "선택지를 정리해 회신드립니다",
+        howStep2Desc: "24시간 이내에 연락드려 적합한 병원과 진행 절차, 현실적인 비용과 기간을 안내해 드립니다.",
+        howStep3Title: "현지 담당자가 이어받습니다",
+        howStep3Desc: "방문을 결정하시면 검증된 담당자가 예약, 통역, 이동을 맡아 도착부터 귀국까지 함께합니다."
       },
       travelCosts: {
         sectionTitle: "여행 비용 참고 정보",
@@ -3782,7 +3877,9 @@ window.I18N = {
 
     hi: {
       brand: { name: "Health Blueprint", tagline: "चीन में स्वास्थ्य सेवा तक आपका भरोसेमंद रास्ता" },
-      nav: { home: "होम", howItWorks: "यह कैसे काम करता है", contact: "संपर्क करें", joinUs: "एजेंट के रूप में जुड़ें", trip: "यात्रा की योजना बनाएं" },
+      nav: { home: "होम", howItWorks: "यह कैसे काम करता है", contact: "संपर्क करें", joinUs: "एजेंट के रूप में जुड़ें", trip: "यात्रा की योजना बनाएं",
+        findCare: "इलाज खोजें"
+      },
       fontSize: { label: "टेक्स्ट का आकार", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "चीन में सही अस्पताल खोजें — साथ में आपका मार्गदर्शन करने वाले लोग भी",
@@ -3815,7 +3912,9 @@ window.I18N = {
         officialWebsite: "अस्पताल की आधिकारिक वेबसाइट",
         illustrationNote: "यह एक चित्रण है, वास्तविक तस्वीर नहीं — वास्तविक तस्वीरों के लिए ऊपर दी गई आधिकारिक वेबसाइट देखें।",
         photoNote: "फोटो बाहरी स्रोत से ली गई है — हमेशा सही ढंग से लोड नहीं हो सकती।",
-        tierLabel: "2023 चीन अस्पताल रैंकिंग"
+        tierLabel: "2023 चीन अस्पताल रैंकिंग",
+        tierShort: "2023 रैंकिंग",
+        directoryDisclaimer: "यह निर्देशिका सार्वजनिक रूप से उपलब्ध जानकारी से तैयार की गई है, जिसमें 2023 की चीन अस्पताल रैंकिंग शामिल है। यहाँ किसी अस्पताल का होना यह नहीं दर्शाता कि वह Health Blueprint से संबद्ध है, हमारा साझेदार है या हमारे द्वारा अनुमोदित है। अस्पताल की मौजूदा सेवाओं और योग्यताओं की पुष्टि हमेशा सीधे अस्पताल से करें।"
       },
       program: {
         viewDetails: "विवरण देखें",
@@ -3826,7 +3925,8 @@ window.I18N = {
         included: "आमतौर पर इसमें क्या शामिल होता है",
         selectProgram: "यह विभाग चुनें",
         agentsTitle: "इस विभाग के लिए उपलब्ध एजेंट",
-        agentsSubtitle: "ये एजेंट योजना बनाने से लेकर आपकी सुरक्षित वापसी तक, चीन की पूरी यात्रा के दौरान आपकी देखभाल करेंगे।"
+        agentsSubtitle: "ये एजेंट योजना बनाने से लेकर आपकी सुरक्षित वापसी तक, चीन की पूरी यात्रा के दौरान आपकी देखभाल करेंगे।",
+        agentsSampleNote: "नीचे दिए गए सहायक प्रोफ़ाइल नमूना प्रोफ़ाइल हैं, जो यह दिखाते हैं कि हम किस तरह की सहायता तैयार कर रहे हैं। ये अलग-अलग सत्यापित और आज बुकिंग के लिए उपलब्ध व्यक्ति नहीं हैं। अनुरोध भेजें और हम आपको एक वास्तविक, जाँचे गए सहायक से जोड़ेंगे — या साफ़-साफ़ बता देंगे कि यह संभव नहीं है।"
       },
       agent: {
         yearsExp: "{n} वर्षों का अनुभव",
@@ -3872,6 +3972,10 @@ window.I18N = {
         travelEndLabel: "सबसे देर यात्रा तिथि",
         medicalRecordsLabel: "मौजूदा मेडिकल रिकॉर्ड या रिपोर्ट (वैकल्पिक)",
         medicalRecordsHint: "PDF, JPG, या PNG — सुरक्षित रूप से संग्रहीत और केवल आपके नियुक्त एजेंट/अस्पताल के साथ साझा किया जाता है",
+        directAskPrompt: "पहले से पता है कि आपको क्या चाहिए? हमें सीधे बताएँ — हम 24 घंटे के भीतर उत्तर देंगे।",
+        directAskCta: "अनुरोध भेजें",
+        noPreferencePrompt: "कोई विशेष पसंद नहीं, या इनमें से कोई उपयुक्त नहीं? हम आपके लिए उपयुक्त सहायक चुन देंगे।",
+        noPreferenceCta: "बिना चुने अनुरोध करें"
       },
       footer: {
         aboutTitle: "Health Blueprint के बारे में",
@@ -3978,7 +4082,8 @@ window.I18N = {
         removeRoute: "यह मार्ग हटाएं",
         addRoute: "यात्रा मार्ग जोड़ें",
         noRoute: "अभी तक कोई मार्ग नहीं चुना गया",
-        noHospital: "अभी तक कोई अस्पताल नहीं चुना गया"
+        noHospital: "अभी तक कोई अस्पताल नहीं चुना गया",
+        hospitalsInRegion: "इस क्षेत्र के अस्पताल"
       },
       homeContent: {
         aboutTitle: "हम कौन हैं",
@@ -3989,14 +4094,13 @@ window.I18N = {
         scenarioOncologyDesc: "अग्रणी कैंसर विशेषज्ञों और उपचार कार्यक्रमों तक पहुंच।",
         scenarioObgynDesc: "अनुभवी विशेषज्ञों द्वारा प्रजनन स्वास्थ्य, प्रजनन क्षमता और महिला देखभाल।",
         scenarioCardiologyDesc: "शीर्ष रैंक वाले हृदय केंद्रों से हृदय जांच और उपचार।",
-        testimonialsTitle: "मरीज़ों की राय",
-        testimonialsNote: "ये सामान्य मरीज़ अनुभवों के आधार पर हमारे प्रदान किए जाने वाले अनुभव के प्रकार को दर्शाते हैं — ये किसी नामित व्यक्ति के शब्दशः उद्धरण नहीं हैं। समय के साथ हम सहमति-प्राप्त वास्तविक मरीज़ों की समीक्षाएं जोड़ेंगे।",
-        testimonial1Quote: "“हमारे एजेंट ने हमें एयरपोर्ट पर रिसीव किया और हर अपॉइंटमेंट में हमारे साथ रहे। हमें कभी असहाय महसूस नहीं हुआ।”",
-        testimonial1Name: "संयुक्त राज्य अमेरिका से एक मरीज़",
-        testimonial2Quote: "“अस्पताल समन्वय और अनुवाद सहायता ने एक तनावपूर्ण यात्रा को आसान बना दिया।”",
-        testimonial2Name: "इंडोनेशिया से एक मरीज़",
-        testimonial3Quote: "“पहली पूछताछ से लेकर घर लौटने के बाद की फॉलो-अप देखभाल तक स्पष्ट संवाद रहा।”",
-        testimonial3Name: "यूनाइटेड किंगडम से एक मरीज़"
+        howItWorksTitle: "यह कैसे काम करता है",
+        howStep1Title: "बताएँ आपको क्या चाहिए",
+        howStep1Desc: "अपनी स्थिति या जिस इलाज की तलाश है, अनुमानित तिथियाँ और पसंदीदा भाषा बताते हुए अनुरोध भेजें। खाता बनाने की ज़रूरत नहीं।",
+        howStep2Title: "हम विकल्पों के साथ लौटते हैं",
+        howStep2Desc: "24 घंटे के भीतर हम आपसे संपर्क कर उपयुक्त अस्पतालों, प्रक्रिया और लागत व समय के वास्तविक अनुमान पर बात करते हैं।",
+        howStep3Title: "आगे का काम स्थानीय सहायक संभालता है",
+        howStep3Desc: "आपके आने का निर्णय लेने पर, एक जाँचा-परखा सहायक अपॉइंटमेंट, अनुवाद और यात्रा व्यवस्था संभालता है — आगमन से लेकर वापसी तक।"
       },
       travelCosts: {
         sectionTitle: "यात्रा लागत संदर्भ",
@@ -4123,7 +4227,9 @@ window.I18N = {
   ,
     id: {
       brand: { name: "Health Blueprint", tagline: "Jalan Anda yang Terpercaya Menuju Layanan Kesehatan di Tiongkok" },
-      nav: { home: "Beranda", howItWorks: "Cara Kerja", contact: "Kontak", joinUs: "Gabung sebagai Agen", trip: "Rencanakan Perjalanan" },
+      nav: { home: "Beranda", howItWorks: "Cara Kerja", contact: "Kontak", joinUs: "Gabung sebagai Agen", trip: "Rencanakan Perjalanan",
+        findCare: "Cari Layanan"
+      },
       fontSize: { label: "Ukuran teks", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "Temukan rumah sakit yang tepat di Tiongkok — dengan pendamping yang membimbing Anda",
@@ -4156,7 +4262,9 @@ window.I18N = {
         officialWebsite: "Situs resmi rumah sakit",
         illustrationNote: "Ilustrasi, bukan foto asli — kunjungi situs resmi di atas untuk foto sebenarnya.",
         photoNote: "Foto bersumber dari luar — mungkin tidak selalu dapat dimuat dengan andal.",
-        tierLabel: "Peringkat Rumah Sakit Tiongkok 2023"
+        tierLabel: "Peringkat Rumah Sakit Tiongkok 2023",
+        tierShort: "Peringkat 2023",
+        directoryDisclaimer: "Direktori ini disusun dari informasi yang tersedia untuk umum, termasuk Peringkat Rumah Sakit Tiongkok 2023. Tercantumnya sebuah rumah sakit di sini tidak berarti rumah sakit tersebut berafiliasi, bermitra, atau direkomendasikan oleh Health Blueprint. Selalu pastikan layanan dan kredensial terkini langsung kepada rumah sakit yang bersangkutan."
       },
       program: {
         viewDetails: "Lihat Detail",
@@ -4167,7 +4275,8 @@ window.I18N = {
         included: "Yang biasanya termasuk",
         selectProgram: "Pilih Spesialisasi Ini",
         agentsTitle: "Agen yang Tersedia untuk Spesialisasi Ini",
-        agentsSubtitle: "Agen-agen ini akan mendampingi Anda sepanjang perjalanan Anda ke Tiongkok — mulai dari perencanaan hingga kepulangan Anda dengan selamat."
+        agentsSubtitle: "Agen-agen ini akan mendampingi Anda sepanjang perjalanan Anda ke Tiongkok — mulai dari perencanaan hingga kepulangan Anda dengan selamat.",
+        agentsSampleNote: "Profil pendamping di bawah ini adalah profil contoh yang menggambarkan jenis dukungan yang sedang kami bangun, bukan orang yang telah diverifikasi satu per satu dan tersedia untuk dipesan hari ini. Kirim permintaan dan kami akan mencarikan pendamping asli yang telah diperiksa — atau menyampaikan secara jujur bila belum bisa."
       },
       agent: {
         yearsExp: "{n} tahun pengalaman",
@@ -4213,6 +4322,10 @@ window.I18N = {
         travelEndLabel: "Tanggal perjalanan paling akhir",
         medicalRecordsLabel: "Rekam medis atau laporan yang sudah ada (opsional)",
         medicalRecordsHint: "PDF, JPG, atau PNG — disimpan dengan aman dan hanya dibagikan dengan agen/rumah sakit yang ditugaskan",
+        directAskPrompt: "Sudah tahu apa yang Anda butuhkan? Sampaikan langsung kepada kami — kami akan membalas dalam 24 jam.",
+        directAskCta: "Kirim Permintaan",
+        noPreferencePrompt: "Tidak ada preferensi, atau tidak ada yang cocok? Kami akan mencarikan pendamping yang sesuai.",
+        noPreferenceCta: "Ajukan Tanpa Memilih"
       },
       footer: {
         aboutTitle: "Tentang Health Blueprint",
@@ -4319,7 +4432,8 @@ window.I18N = {
         removeRoute: "Hapus Rute Ini",
         addRoute: "Tambah Rute Perjalanan",
         noRoute: "Belum ada rute yang dipilih",
-        noHospital: "Belum ada rumah sakit yang dipilih"
+        noHospital: "Belum ada rumah sakit yang dipilih",
+        hospitalsInRegion: "Rumah Sakit di Wilayah Ini"
       },
       homeContent: {
         aboutTitle: "Siapa Kami",
@@ -4330,14 +4444,13 @@ window.I18N = {
         scenarioOncologyDesc: "Akses ke spesialis dan program pengobatan kanker terkemuka.",
         scenarioObgynDesc: "Kesehatan reproduksi, kesuburan, dan perawatan wanita bersama spesialis berpengalaman.",
         scenarioCardiologyDesc: "Diagnosis dan pengobatan jantung dari pusat jantung dengan peringkat teratas.",
-        testimonialsTitle: "Kata Pasien Kami",
-        testimonialsNote: "Ini mencerminkan jenis pengalaman yang ingin kami berikan, berdasarkan perjalanan umum pasien kami — bukan kutipan langsung dari individu tertentu. Seiring waktu kami akan menambahkan testimoni pasien asli dengan persetujuan mereka.",
-        testimonial1Quote: "“Agen kami menjemput kami di bandara dan mendampingi kami di setiap janji temu. Kami tidak pernah merasa tersesat.”",
-        testimonial1Name: "Seorang pasien dari Amerika Serikat",
-        testimonial2Quote: "“Koordinasi rumah sakit dan dukungan penerjemahan membuat perjalanan yang penuh tekanan menjadi lebih terkendali.”",
-        testimonial2Name: "Seorang pasien dari Indonesia",
-        testimonial3Quote: "“Komunikasi yang jelas sejak pertanyaan pertama hingga perawatan lanjutan setelah kami kembali ke rumah.”",
-        testimonial3Name: "Seorang pasien dari Inggris"
+        howItWorksTitle: "Cara Kerjanya",
+        howStep1Title: "Sampaikan kebutuhan Anda",
+        howStep1Desc: "Kirim permintaan berisi kondisi atau perawatan yang Anda cari, perkiraan tanggal, dan bahasa yang Anda inginkan. Tidak perlu membuat akun.",
+        howStep2Title: "Kami kembali dengan pilihan",
+        howStep2Desc: "Dalam 24 jam kami menghubungi Anda untuk membahas rumah sakit yang sesuai, alur prosesnya, serta gambaran biaya dan waktu yang realistis.",
+        howStep3Title: "Pendamping lokal mengurus selanjutnya",
+        howStep3Desc: "Setelah Anda memutuskan untuk datang, pendamping terverifikasi mengurus janji temu, penerjemahan, dan logistik — sejak kedatangan hingga perjalanan pulang."
       },
       travelCosts: {
         sectionTitle: "Referensi Biaya Perjalanan",
@@ -4463,7 +4576,9 @@ window.I18N = {
     },
     vi: {
       brand: { name: "Health Blueprint", tagline: "Con đường đáng tin cậy đến với dịch vụ chăm sóc sức khỏe tại Trung Quốc" },
-      nav: { home: "Trang chủ", howItWorks: "Cách thức hoạt động", contact: "Liên hệ", joinUs: "Trở thành đại lý", trip: "Lên kế hoạch chuyến đi" },
+      nav: { home: "Trang chủ", howItWorks: "Cách thức hoạt động", contact: "Liên hệ", joinUs: "Trở thành đại lý", trip: "Lên kế hoạch chuyến đi",
+        findCare: "Tìm dịch vụ y tế"
+      },
       fontSize: { label: "Cỡ chữ", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "Tìm bệnh viện phù hợp tại Trung Quốc — cùng người đồng hành hướng dẫn bạn",
@@ -4496,7 +4611,9 @@ window.I18N = {
         officialWebsite: "Trang web chính thức của bệnh viện",
         illustrationNote: "Hình minh họa, không phải ảnh thật — hãy truy cập trang web chính thức ở trên để xem ảnh thật.",
         photoNote: "Ảnh lấy từ nguồn bên ngoài — có thể không phải lúc nào cũng tải được ổn định.",
-        tierLabel: "Bảng Xếp Hạng Bệnh Viện Trung Quốc 2023"
+        tierLabel: "Bảng Xếp Hạng Bệnh Viện Trung Quốc 2023",
+        tierShort: "Xếp hạng 2023",
+        directoryDisclaimer: "Danh mục này được tổng hợp từ thông tin công khai, bao gồm Bảng xếp hạng Bệnh viện Trung Quốc 2023. Việc một bệnh viện xuất hiện ở đây không có nghĩa bệnh viện đó liên kết, hợp tác hay được Health Blueprint bảo chứng. Hãy luôn xác nhận dịch vụ và chứng chỉ hiện hành trực tiếp với bệnh viện."
       },
       program: {
         viewDetails: "Xem Chi Tiết",
@@ -4507,7 +4624,8 @@ window.I18N = {
         included: "Những gì thường được bao gồm",
         selectProgram: "Chọn Chuyên Khoa Này",
         agentsTitle: "Các Đại Lý Có Sẵn Cho Chuyên Khoa Này",
-        agentsSubtitle: "Những đại lý này sẽ chăm sóc bạn trong suốt chuyến đi đến Trung Quốc — từ lúc lên kế hoạch cho đến khi bạn trở về nhà an toàn."
+        agentsSubtitle: "Những đại lý này sẽ chăm sóc bạn trong suốt chuyến đi đến Trung Quốc — từ lúc lên kế hoạch cho đến khi bạn trở về nhà an toàn.",
+        agentsSampleNote: "Các hồ sơ người đồng hành dưới đây là hồ sơ mẫu, minh họa hình thức hỗ trợ mà chúng tôi đang xây dựng, không phải những người đã được xác minh riêng lẻ và có thể đặt lịch ngay hôm nay. Hãy gửi yêu cầu, chúng tôi sẽ kết nối bạn với một người đồng hành thật đã qua kiểm duyệt — hoặc nói rõ nếu chưa thể."
       },
       agent: {
         yearsExp: "{n} năm kinh nghiệm",
@@ -4553,6 +4671,10 @@ window.I18N = {
         travelEndLabel: "Ngày đi muộn nhất",
         medicalRecordsLabel: "Hồ sơ hoặc báo cáo y tế hiện có (không bắt buộc)",
         medicalRecordsHint: "PDF, JPG hoặc PNG — được lưu trữ an toàn và chỉ chia sẻ với đại lý/bệnh viện được chỉ định cho bạn",
+        directAskPrompt: "Bạn đã biết mình cần gì? Hãy cho chúng tôi biết trực tiếp — chúng tôi sẽ phản hồi trong vòng 24 giờ.",
+        directAskCta: "Gửi yêu cầu",
+        noPreferencePrompt: "Không có lựa chọn ưu tiên, hoặc không ai phù hợp? Chúng tôi sẽ ghép bạn với người đồng hành phù hợp.",
+        noPreferenceCta: "Gửi yêu cầu không cần chọn"
       },
       footer: {
         aboutTitle: "Về Health Blueprint",
@@ -4659,7 +4781,8 @@ window.I18N = {
         removeRoute: "Xóa Lộ Trình Này",
         addRoute: "Thêm Lộ Trình Du Lịch",
         noRoute: "Chưa chọn lộ trình",
-        noHospital: "Chưa chọn bệnh viện"
+        noHospital: "Chưa chọn bệnh viện",
+        hospitalsInRegion: "Bệnh viện trong khu vực này"
       },
       homeContent: {
         aboutTitle: "Chúng Tôi Là Ai",
@@ -4670,14 +4793,13 @@ window.I18N = {
         scenarioOncologyDesc: "Tiếp cận các chuyên gia và chương trình điều trị ung thư hàng đầu.",
         scenarioObgynDesc: "Sức khỏe sinh sản, hiếm muộn và chăm sóc phụ nữ với các chuyên gia giàu kinh nghiệm.",
         scenarioCardiologyDesc: "Chẩn đoán và điều trị tim mạch từ các trung tâm tim hàng đầu.",
-        testimonialsTitle: "Bệnh Nhân Nói Gì",
-        testimonialsNote: "Những nội dung này phản ánh loại trải nghiệm mà chúng tôi hướng tới, dựa trên hành trình phổ biến của bệnh nhân — không phải trích dẫn nguyên văn từ một cá nhân cụ thể. Theo thời gian, chúng tôi sẽ bổ sung đánh giá thật từ bệnh nhân, có sự đồng ý của họ.",
-        testimonial1Quote: "“Đại lý của chúng tôi đón chúng tôi tại sân bay và đồng hành trong mọi cuộc hẹn. Chúng tôi không bao giờ cảm thấy lạc lõng.”",
-        testimonial1Name: "Một bệnh nhân đến từ Hoa Kỳ",
-        testimonial2Quote: "“Việc điều phối bệnh viện và hỗ trợ phiên dịch giúp chuyến đi vốn căng thẳng trở nên dễ kiểm soát hơn.”",
-        testimonial2Name: "Một bệnh nhân đến từ Indonesia",
-        testimonial3Quote: "“Giao tiếp rõ ràng từ lần liên hệ đầu tiên cho đến khi chăm sóc theo dõi sau khi chúng tôi về nước.”",
-        testimonial3Name: "Một bệnh nhân đến từ Vương quốc Anh"
+        howItWorksTitle: "Quy trình",
+        howStep1Title: "Cho chúng tôi biết bạn cần gì",
+        howStep1Desc: "Gửi yêu cầu kèm tình trạng bệnh hoặc dịch vụ bạn tìm, khoảng thời gian dự kiến và ngôn ngữ bạn muốn dùng. Không cần tạo tài khoản.",
+        howStep2Title: "Chúng tôi phản hồi kèm phương án",
+        howStep2Desc: "Trong vòng 24 giờ, chúng tôi liên hệ để trao đổi về bệnh viện phù hợp, quy trình thực hiện và ước tính thực tế về chi phí cũng như thời gian.",
+        howStep3Title: "Người đồng hành tại chỗ lo phần còn lại",
+        howStep3Desc: "Khi bạn quyết định sang, một người đồng hành đã qua kiểm duyệt sẽ lo việc đặt lịch khám, phiên dịch và đi lại — từ lúc bạn đến cho tới chuyến về."
       },
       travelCosts: {
         sectionTitle: "Tham Khảo Chi Phí Du Lịch",
@@ -4803,7 +4925,9 @@ window.I18N = {
     },
     th: {
       brand: { name: "Health Blueprint", tagline: "เส้นทางที่คุณไว้วางใจสู่การรักษาพยาบาลในจีน" },
-      nav: { home: "หน้าแรก", howItWorks: "ขั้นตอนการทำงาน", contact: "ติดต่อเรา", joinUs: "สมัครเป็นตัวแทน", trip: "วางแผนการเดินทาง" },
+      nav: { home: "หน้าแรก", howItWorks: "ขั้นตอนการทำงาน", contact: "ติดต่อเรา", joinUs: "สมัครเป็นตัวแทน", trip: "วางแผนการเดินทาง",
+        findCare: "ค้นหาการรักษา"
+      },
       fontSize: { label: "ขนาดตัวอักษร", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "ค้นหาโรงพยาบาลที่เหมาะสมในจีน — พร้อมผู้ดูแลที่คอยแนะนำคุณ",
@@ -4836,7 +4960,9 @@ window.I18N = {
         officialWebsite: "เว็บไซต์ทางการของโรงพยาบาล",
         illustrationNote: "ภาพประกอบ ไม่ใช่ภาพถ่ายจริง — เยี่ยมชมเว็บไซต์ทางการด้านบนเพื่อดูภาพจริง",
         photoNote: "ภาพถ่ายมาจากแหล่งภายนอก — อาจไม่สามารถโหลดได้อย่างเสถียรเสมอไป",
-        tierLabel: "อันดับโรงพยาบาลจีน ปี 2023"
+        tierLabel: "อันดับโรงพยาบาลจีน ปี 2023",
+        tierShort: "อันดับปี 2023",
+        directoryDisclaimer: "สารบบนี้รวบรวมจากข้อมูลที่เปิดเผยต่อสาธารณะ รวมถึงการจัดอันดับโรงพยาบาลจีนประจำปี 2023 การที่โรงพยาบาลปรากฏอยู่ที่นี่ไม่ได้หมายความว่าโรงพยาบาลนั้นเป็นพันธมิตร มีความเกี่ยวข้อง หรือได้รับการรับรองจาก Health Blueprint โปรดตรวจสอบบริการและคุณวุฒิปัจจุบันกับโรงพยาบาลโดยตรงเสมอ"
       },
       program: {
         viewDetails: "ดูรายละเอียด",
@@ -4847,7 +4973,8 @@ window.I18N = {
         included: "สิ่งที่มักรวมอยู่ด้วย",
         selectProgram: "เลือกความเชี่ยวชาญนี้",
         agentsTitle: "ตัวแทนที่พร้อมให้บริการสำหรับความเชี่ยวชาญนี้",
-        agentsSubtitle: "ตัวแทนเหล่านี้จะดูแลคุณตลอดการเดินทางไปจีน — ตั้งแต่การวางแผนจนกลับถึงบ้านอย่างปลอดภัย"
+        agentsSubtitle: "ตัวแทนเหล่านี้จะดูแลคุณตลอดการเดินทางไปจีน — ตั้งแต่การวางแผนจนกลับถึงบ้านอย่างปลอดภัย",
+        agentsSampleNote: "ประวัติผู้ดูแลด้านล่างเป็นตัวอย่างที่แสดงรูปแบบการดูแลที่เรากำลังจัดตั้งขึ้น ไม่ใช่บุคคลที่ผ่านการตรวจสอบรายบุคคลและพร้อมให้จองในขณะนี้ เมื่อคุณส่งคำขอเข้ามา เราจะจับคู่คุณกับผู้ดูแลตัวจริงที่ผ่านการตรวจสอบ หรือแจ้งตามตรงหากยังทำไม่ได้"
       },
       agent: {
         yearsExp: "ประสบการณ์ {n} ปี",
@@ -4893,6 +5020,10 @@ window.I18N = {
         travelEndLabel: "วันที่เดินทางช้าที่สุด",
         medicalRecordsLabel: "ประวัติการรักษาหรือรายงานทางการแพทย์ที่มีอยู่ (ไม่บังคับ)",
         medicalRecordsHint: "PDF, JPG หรือ PNG — จัดเก็บอย่างปลอดภัยและแชร์เฉพาะกับตัวแทน/โรงพยาบาลที่จับคู่ให้คุณเท่านั้น",
+        directAskPrompt: "ทราบความต้องการของคุณแล้วใช่ไหม แจ้งเราได้โดยตรง เราจะติดต่อกลับภายใน 24 ชั่วโมง",
+        directAskCta: "ส่งคำขอ",
+        noPreferencePrompt: "ไม่มีผู้ที่ต้องการเป็นพิเศษ หรือไม่มีใครเหมาะสม เราจะจัดหาผู้ดูแลที่เหมาะสมให้คุณ",
+        noPreferenceCta: "ส่งคำขอโดยไม่เลือก"
       },
       footer: {
         aboutTitle: "เกี่ยวกับ Health Blueprint",
@@ -4999,7 +5130,8 @@ window.I18N = {
         removeRoute: "ลบเส้นทางนี้",
         addRoute: "เพิ่มเส้นทางการเดินทาง",
         noRoute: "ยังไม่ได้เลือกเส้นทาง",
-        noHospital: "ยังไม่ได้เลือกโรงพยาบาล"
+        noHospital: "ยังไม่ได้เลือกโรงพยาบาล",
+        hospitalsInRegion: "โรงพยาบาลในพื้นที่นี้"
       },
       homeContent: {
         aboutTitle: "เราคือใคร",
@@ -5010,14 +5142,13 @@ window.I18N = {
         scenarioOncologyDesc: "เข้าถึงผู้เชี่ยวชาญด้านมะเร็งชั้นนำและโปรแกรมการรักษา",
         scenarioObgynDesc: "สุขภาพเจริญพันธุ์ ภาวะมีบุตรยาก และการดูแลสตรีโดยผู้เชี่ยวชาญที่มีประสบการณ์",
         scenarioCardiologyDesc: "การวินิจฉัยและรักษาโรคหัวใจจากศูนย์หัวใจอันดับต้นๆ",
-        testimonialsTitle: "เสียงจากผู้ป่วย",
-        testimonialsNote: "ข้อความเหล่านี้สะท้อนถึงประสบการณ์ที่เรามุ่งมั่นจะมอบให้ โดยอ้างอิงจากเส้นทางทั่วไปของผู้ป่วย ไม่ใช่คำพูดที่ยกมาโดยตรงจากบุคคลใดบุคคลหนึ่ง เราจะทยอยเพิ่มคำรับรองจากผู้ป่วยจริงที่ได้รับความยินยอมในภายหลัง",
-        testimonial1Quote: "“ตัวแทนของเรามารับที่สนามบินและอยู่กับเราตลอดทุกนัดหมาย เราไม่เคยรู้สึกหลงทางเลย”",
-        testimonial1Name: "ผู้ป่วยจากสหรัฐอเมริกา",
-        testimonial2Quote: "“การประสานงานกับโรงพยาบาลและการสนับสนุนด้านการแปลทำให้การเดินทางที่เครียดกลายเป็นเรื่องที่จัดการได้”",
-        testimonial2Name: "ผู้ป่วยจากอินโดนีเซีย",
-        testimonial3Quote: "“การสื่อสารที่ชัดเจนตั้งแต่การสอบถามครั้งแรกจนถึงการติดตามผลหลังจากเรากลับบ้าน”",
-        testimonial3Name: "ผู้ป่วยจากสหราชอาณาจักร"
+        howItWorksTitle: "ขั้นตอนการใช้บริการ",
+        howStep1Title: "บอกเราว่าคุณต้องการอะไร",
+        howStep1Desc: "ส่งคำขอพร้อมระบุอาการหรือการรักษาที่คุณมองหา ช่วงเวลาคร่าว ๆ และภาษาที่คุณถนัด ไม่ต้องสมัครบัญชี",
+        howStep2Title: "เราติดต่อกลับพร้อมทางเลือก",
+        howStep2Desc: "ภายใน 24 ชั่วโมง เราจะติดต่อกลับเพื่อพูดคุยถึงโรงพยาบาลที่เหมาะสม ขั้นตอนการดำเนินการ และประมาณการค่าใช้จ่ายกับระยะเวลาตามความเป็นจริง",
+        howStep3Title: "ผู้ดูแลในพื้นที่รับช่วงต่อ",
+        howStep3Desc: "เมื่อคุณตัดสินใจเดินทางมา ผู้ดูแลที่ผ่านการตรวจสอบจะจัดการเรื่องนัดหมาย การแปล และการเดินทาง ตั้งแต่วันที่คุณมาถึงจนถึงเที่ยวบินขากลับ"
       },
       travelCosts: {
         sectionTitle: "ข้อมูลอ้างอิงค่าใช้จ่ายการเดินทาง",
@@ -5143,7 +5274,9 @@ window.I18N = {
     },
     ms: {
       brand: { name: "Health Blueprint", tagline: "Laluan yang Anda Percayai Menuju Penjagaan Kesihatan di China" },
-      nav: { home: "Laman Utama", howItWorks: "Cara Ia Berfungsi", contact: "Hubungi Kami", joinUs: "Sertai sebagai Ejen", trip: "Rancang Perjalanan" },
+      nav: { home: "Laman Utama", howItWorks: "Cara Ia Berfungsi", contact: "Hubungi Kami", joinUs: "Sertai sebagai Ejen", trip: "Rancang Perjalanan",
+        findCare: "Cari Rawatan"
+      },
       fontSize: { label: "Saiz teks", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "Cari hospital yang tepat di China — dengan orang yang membimbing anda",
@@ -5176,7 +5309,9 @@ window.I18N = {
         officialWebsite: "Laman web rasmi hospital",
         illustrationNote: "Ilustrasi, bukan foto sebenar — layari laman web rasmi di atas untuk foto sebenar.",
         photoNote: "Foto diperoleh dari luar — mungkin tidak selalu dapat dimuatkan dengan boleh dipercayai.",
-        tierLabel: "Ranking Hospital China 2023"
+        tierLabel: "Ranking Hospital China 2023",
+        tierShort: "Ranking 2023",
+        directoryDisclaimer: "Direktori ini disusun daripada maklumat yang tersedia untuk umum, termasuk Ranking Hospital China 2023. Kehadiran sesebuah hospital di sini tidak bermakna hospital tersebut bergabung, bekerjasama atau disokong oleh Health Blueprint. Sentiasa sahkan perkhidmatan dan kelayakan semasa terus dengan pihak hospital."
       },
       program: {
         viewDetails: "Lihat Butiran",
@@ -5187,7 +5322,8 @@ window.I18N = {
         included: "Apa yang biasanya termasuk",
         selectProgram: "Pilih Kepakaran Ini",
         agentsTitle: "Ejen yang Tersedia untuk Kepakaran Ini",
-        agentsSubtitle: "Ejen-ejen ini akan menjaga anda sepanjang perjalanan anda ke China — dari perancangan hingga pulang dengan selamat."
+        agentsSubtitle: "Ejen-ejen ini akan menjaga anda sepanjang perjalanan anda ke China — dari perancangan hingga pulang dengan selamat.",
+        agentsSampleNote: "Profil pengiring di bawah ialah profil contoh yang menunjukkan bentuk sokongan yang sedang kami bina, bukan individu yang telah disahkan satu persatu dan boleh ditempah hari ini. Hantarkan permintaan dan kami akan memadankan anda dengan pengiring sebenar yang telah disaring — atau memberitahu dengan jelas jika kami belum mampu."
       },
       agent: {
         yearsExp: "{n} tahun pengalaman",
@@ -5233,6 +5369,10 @@ window.I18N = {
         travelEndLabel: "Tarikh perjalanan paling lewat",
         medicalRecordsLabel: "Rekod perubatan atau laporan sedia ada (pilihan)",
         medicalRecordsHint: "PDF, JPG atau PNG — disimpan dengan selamat dan dikongsi hanya dengan ejen/hospital yang ditugaskan",
+        directAskPrompt: "Sudah tahu apa yang anda perlukan? Beritahu kami terus — kami akan membalas dalam masa 24 jam.",
+        directAskCta: "Hantar Permintaan",
+        noPreferencePrompt: "Tiada pilihan tertentu, atau tiada yang sesuai? Kami akan memadankan anda dengan pengiring yang sesuai.",
+        noPreferenceCta: "Mohon Tanpa Memilih"
       },
       footer: {
         aboutTitle: "Tentang Health Blueprint",
@@ -5339,7 +5479,8 @@ window.I18N = {
         removeRoute: "Alih Keluar Laluan Ini",
         addRoute: "Tambah Laluan Perjalanan",
         noRoute: "Belum ada laluan dipilih",
-        noHospital: "Belum ada hospital dipilih"
+        noHospital: "Belum ada hospital dipilih",
+        hospitalsInRegion: "Hospital di Wilayah Ini"
       },
       homeContent: {
         aboutTitle: "Siapa Kami",
@@ -5350,14 +5491,13 @@ window.I18N = {
         scenarioOncologyDesc: "Akses kepada pakar kanser terkemuka dan program rawatan.",
         scenarioObgynDesc: "Kesihatan reproduktif, kesuburan, dan penjagaan wanita bersama pakar yang berpengalaman.",
         scenarioCardiologyDesc: "Diagnosis dan rawatan jantung daripada pusat jantung berkedudukan tinggi.",
-        testimonialsTitle: "Kata Pesakit Kami",
-        testimonialsNote: "Ini menggambarkan jenis pengalaman yang ingin kami sediakan, berdasarkan perjalanan biasa pesakit kami — bukan petikan sebenar daripada individu tertentu. Kami akan menambah testimoni pesakit sebenar, dengan kebenaran, dari semasa ke semasa.",
-        testimonial1Quote: "“Ejen kami menyambut kami di lapangan terbang dan bersama kami sepanjang setiap janji temu. Kami tidak pernah rasa keliru.”",
-        testimonial1Name: "Seorang pesakit dari Amerika Syarikat",
-        testimonial2Quote: "“Penyelarasan hospital dan sokongan terjemahan menjadikan perjalanan yang tertekan lebih terkawal.”",
-        testimonial2Name: "Seorang pesakit dari Indonesia",
-        testimonial3Quote: "“Komunikasi yang jelas dari pertanyaan pertama hingga penjagaan susulan selepas kami pulang.”",
-        testimonial3Name: "Seorang pesakit dari United Kingdom"
+        howItWorksTitle: "Cara Ia Berfungsi",
+        howStep1Title: "Beritahu kami keperluan anda",
+        howStep1Desc: "Hantar permintaan dengan menyatakan keadaan kesihatan atau rawatan yang anda cari, anggaran tarikh, dan bahasa pilihan anda. Tiada akaun diperlukan.",
+        howStep2Title: "Kami kembali dengan pilihan",
+        howStep2Desc: "Dalam masa 24 jam kami akan menghubungi anda untuk membincangkan hospital yang sesuai, aliran prosesnya, serta anggaran kos dan tempoh yang realistik.",
+        howStep3Title: "Pengiring tempatan menguruskan selebihnya",
+        howStep3Desc: "Setelah anda memutuskan untuk datang, pengiring yang telah disaring akan menguruskan temu janji, terjemahan dan logistik — dari ketibaan sehingga perjalanan pulang."
       },
       travelCosts: {
         sectionTitle: "Rujukan Kos Perjalanan",
@@ -5483,7 +5623,9 @@ window.I18N = {
     },
     fil: {
       brand: { name: "Health Blueprint", tagline: "Ang Iyong Pinagkakatiwalaang Landas Patungo sa Pangangalagang Pangkalusugan sa Tsina" },
-      nav: { home: "Home", howItWorks: "Paano Ito Gumagana", contact: "Makipag-ugnayan", joinUs: "Sumali bilang Ahente", trip: "Planuhin ang Biyahe" },
+      nav: { home: "Home", howItWorks: "Paano Ito Gumagana", contact: "Makipag-ugnayan", joinUs: "Sumali bilang Ahente", trip: "Planuhin ang Biyahe",
+        findCare: "Maghanap ng Serbisyong Medikal"
+      },
       fontSize: { label: "Laki ng teksto", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "Hanapin ang tamang ospital sa Tsina — may kasamang gagabay sa iyo",
@@ -5516,7 +5658,9 @@ window.I18N = {
         officialWebsite: "Opisyal na website ng ospital",
         illustrationNote: "Ilustrasyon, hindi aktwal na larawan — bisitahin ang opisyal na website sa itaas para sa tunay na mga larawan.",
         photoNote: "Ang larawan ay galing sa panlabas na pinagmulan — maaaring hindi laging maayos ang pag-load.",
-        tierLabel: "2023 China Hospital Ranking"
+        tierLabel: "2023 China Hospital Ranking",
+        tierShort: "Ranking 2023",
+        directoryDisclaimer: "Ang direktoryong ito ay binuo mula sa impormasyong available sa publiko, kabilang ang 2023 China Hospital Ranking. Ang paglitaw ng isang ospital dito ay hindi nangangahulugang kaanib, kasosyo, o inirerekomenda ito ng Health Blueprint. Palaging kumpirmahin nang direkta sa ospital ang kasalukuyang mga serbisyo at kredensyal nito."
       },
       program: {
         viewDetails: "Tingnan ang Detalye",
@@ -5527,7 +5671,8 @@ window.I18N = {
         included: "Karaniwang kasama",
         selectProgram: "Piliin ang Espesyalidad na Ito",
         agentsTitle: "Mga Available na Ahente para sa Espesyalidad na Ito",
-        agentsSubtitle: "Aalagaan ka ng mga ahenteng ito sa buong biyahe mo sa Tsina — mula sa pagpaplano hanggang sa ligtas na pag-uwi."
+        agentsSubtitle: "Aalagaan ka ng mga ahenteng ito sa buong biyahe mo sa Tsina — mula sa pagpaplano hanggang sa ligtas na pag-uwi.",
+        agentsSampleNote: "Ang mga profile ng agent sa ibaba ay mga halimbawang profile na nagpapakita ng uri ng suportang binubuo namin, hindi mga indibidwal na na-verify at available nang mag-book ngayon. Magpadala ng kahilingan at itutugma ka namin sa isang tunay at nasuring agent — o sasabihin naming malinaw kung hindi pa namin kaya."
       },
       agent: {
         yearsExp: "{n} taon ng karanasan",
@@ -5573,6 +5718,10 @@ window.I18N = {
         travelEndLabel: "Pinakahuling petsa ng paglalakbay",
         medicalRecordsLabel: "Umiiral na medikal na rekord o ulat (opsyonal)",
         medicalRecordsHint: "PDF, JPG, o PNG — ligtas na iniimbak at ibinabahagi lamang sa itinalagang ahente/ospital mo",
+        directAskPrompt: "Alam mo na ba ang kailangan mo? Sabihin mo sa amin nang direkta — sasagot kami sa loob ng 24 oras.",
+        directAskCta: "Magpadala ng Kahilingan",
+        noPreferencePrompt: "Walang partikular na gusto, o walang akmang pagpipilian? Itutugma ka namin sa angkop na agent.",
+        noPreferenceCta: "Humiling nang Walang Pinipili"
       },
       footer: {
         aboutTitle: "Tungkol sa Health Blueprint",
@@ -5679,7 +5828,8 @@ window.I18N = {
         removeRoute: "Alisin ang Rutang Ito",
         addRoute: "Magdagdag ng Ruta ng Biyahe",
         noRoute: "Wala pang napiling ruta",
-        noHospital: "Wala pang napiling ospital"
+        noHospital: "Wala pang napiling ospital",
+        hospitalsInRegion: "Mga Ospital sa Rehiyong Ito"
       },
       homeContent: {
         aboutTitle: "Sino Kami",
@@ -5690,14 +5840,13 @@ window.I18N = {
         scenarioOncologyDesc: "Access sa nangungunang mga espesyalista at programa sa paggamot ng kanser.",
         scenarioObgynDesc: "Reproductive health, fertility, at pangangalaga sa kababaihan kasama ang mga bihasang espesyalista.",
         scenarioCardiologyDesc: "Cardiac diagnostics at paggamot mula sa mga nangungunang heart center.",
-        testimonialsTitle: "Sabi ng mga Pasyente",
-        testimonialsNote: "Ipinapakita nito ang uri ng karanasang nais naming ibigay, batay sa karaniwang paglalakbay ng aming mga pasyente — hindi ito eksaktong sinabi ng isang partikular na tao. Unti-unti kaming magdaragdag ng tunay na testimonya ng pasyente, na may pahintulot.",
-        testimonial1Quote: "“Sinalubong kami ng aming ahente sa paliparan at nanatili kasama namin sa bawat appointment. Hindi kami kailanman naligaw.”",
-        testimonial1Name: "Isang pasyente mula sa Estados Unidos",
-        testimonial2Quote: "“Ang koordinasyon sa ospital at suportang pagsasalin ang naging dahilan kung bakit naging madali ang isang mapaghirap na biyahe.”",
-        testimonial2Name: "Isang pasyente mula sa Indonesia",
-        testimonial3Quote: "“Malinaw na komunikasyon mula sa unang tanong hanggang sa follow-up care matapos kaming makauwi.”",
-        testimonial3Name: "Isang pasyente mula sa United Kingdom"
+        howItWorksTitle: "Paano Ito Gumagana",
+        howStep1Title: "Sabihin sa amin ang kailangan mo",
+        howStep1Desc: "Magpadala ng kahilingan kasama ang iyong kondisyon o ang hinahanap mong serbisyo, tinatayang petsa, at gustong wika. Hindi kailangan ng account.",
+        howStep2Title: "Babalikan ka namin nang may mga opsyon",
+        howStep2Desc: "Sa loob ng 24 oras, kokontakin ka namin para pag-usapan ang angkop na mga ospital, ang daloy ng proseso, at makatotohanang tantya ng gastos at tagal.",
+        howStep3Title: "Lokal na agent ang bahala sa susunod",
+        howStep3Desc: "Kapag nagpasya kang pumunta, isang nasuring agent ang aasikaso sa mga appointment, pagsasalin, at lohistika — mula pagdating hanggang pag-uwi."
       },
       travelCosts: {
         sectionTitle: "Sanggunian sa Gastos sa Paglalakbay",
@@ -5823,7 +5972,9 @@ window.I18N = {
     },
     it: {
       brand: { name: "Health Blueprint", tagline: "Il Tuo Percorso Affidabile Verso l'Assistenza Sanitaria in Cina" },
-      nav: { home: "Home", howItWorks: "Come Funziona", contact: "Contatti", joinUs: "Diventa Agente", trip: "Pianifica il Viaggio" },
+      nav: { home: "Home", howItWorks: "Come Funziona", contact: "Contatti", joinUs: "Diventa Agente", trip: "Pianifica il Viaggio",
+        findCare: "Trova assistenza"
+      },
       fontSize: { label: "Dimensione testo", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "Trova l'ospedale giusto in Cina — con qualcuno che ti guida",
@@ -5856,7 +6007,9 @@ window.I18N = {
         officialWebsite: "Sito ufficiale dell'ospedale",
         illustrationNote: "Illustrazione, non una foto reale — visita il sito ufficiale sopra per foto vere.",
         photoNote: "Foto proveniente da fonte esterna — potrebbe non caricarsi sempre in modo affidabile.",
-        tierLabel: "Classifica degli Ospedali Cinesi 2023"
+        tierLabel: "Classifica degli Ospedali Cinesi 2023",
+        tierShort: "Classifica 2023",
+        directoryDisclaimer: "Questo elenco è stato compilato a partire da informazioni pubblicamente disponibili, tra cui la Classifica degli ospedali cinesi 2023. La presenza di un ospedale in questo elenco non significa che sia affiliato, partner o approvato da Health Blueprint. Verificate sempre i servizi e le qualifiche attuali direttamente presso l'ospedale."
       },
       program: {
         viewDetails: "Vedi Dettagli",
@@ -5867,7 +6020,8 @@ window.I18N = {
         included: "Cosa è tipicamente incluso",
         selectProgram: "Seleziona Questa Specializzazione",
         agentsTitle: "Agenti Disponibili per Questa Specializzazione",
-        agentsSubtitle: "Questi agenti si prenderanno cura di te durante tutto il tuo viaggio in Cina — dalla pianificazione al tuo sicuro ritorno a casa."
+        agentsSubtitle: "Questi agenti si prenderanno cura di te durante tutto il tuo viaggio in Cina — dalla pianificazione al tuo sicuro ritorno a casa.",
+        agentsSampleNote: "I profili degli accompagnatori qui sotto sono profili di esempio che mostrano il tipo di supporto che stiamo costruendo, non persone verificate singolarmente e prenotabili oggi. Inviate una richiesta e vi metteremo in contatto con un accompagnatore reale e verificato, oppure vi diremo chiaramente se non ci è possibile."
       },
       agent: {
         yearsExp: "{n} anni di esperienza",
@@ -5913,6 +6067,10 @@ window.I18N = {
         travelEndLabel: "Data di viaggio più tardiva",
         medicalRecordsLabel: "Cartelle cliniche o referti esistenti (facoltativo)",
         medicalRecordsHint: "PDF, JPG o PNG — archiviato in modo sicuro e condiviso solo con l'agente/ospedale a te assegnato",
+        directAskPrompt: "Sapete già di cosa avete bisogno? Ditecelo direttamente: vi rispondiamo entro 24 ore.",
+        directAskCta: "Invia una richiesta",
+        noPreferencePrompt: "Nessuna preferenza o nessuno adatto? Vi assegneremo un accompagnatore idoneo.",
+        noPreferenceCta: "Richiedi senza scegliere"
       },
       footer: {
         aboutTitle: "Informazioni su Health Blueprint",
@@ -6019,7 +6177,8 @@ window.I18N = {
         removeRoute: "Rimuovi Questo Percorso",
         addRoute: "Aggiungi un Percorso di Viaggio",
         noRoute: "Nessun percorso ancora selezionato",
-        noHospital: "Nessun ospedale ancora selezionato"
+        noHospital: "Nessun ospedale ancora selezionato",
+        hospitalsInRegion: "Ospedali in questa regione"
       },
       homeContent: {
         aboutTitle: "Chi Siamo",
@@ -6030,14 +6189,13 @@ window.I18N = {
         scenarioOncologyDesc: "Accesso ai migliori specialisti oncologici e programmi di trattamento.",
         scenarioObgynDesc: "Salute riproduttiva, fertilità e cura della donna con specialisti esperti.",
         scenarioCardiologyDesc: "Diagnostica e trattamento cardiaco presso i migliori centri cardiologici.",
-        testimonialsTitle: "Cosa Dicono i Pazienti",
-        testimonialsNote: "Riflettono il tipo di esperienza che miriamo a offrire, basata su percorsi comuni dei nostri pazienti — non citazioni testuali di persone identificate. Nel tempo aggiungeremo testimonianze reali di pazienti, con il loro consenso.",
-        testimonial1Quote: "“Il nostro agente ci ha accolto in aeroporto ed è rimasto con noi per ogni appuntamento. Non ci siamo mai sentiti persi.”",
-        testimonial1Name: "Un paziente dagli Stati Uniti",
-        testimonial2Quote: "“Il coordinamento ospedaliero e il supporto alla traduzione hanno reso gestibile un viaggio stressante.”",
-        testimonial2Name: "Un paziente dall'Indonesia",
-        testimonial3Quote: "“Comunicazione chiara dalla prima richiesta fino all'assistenza di follow-up dopo il nostro ritorno a casa.”",
-        testimonial3Name: "Un paziente dal Regno Unito"
+        howItWorksTitle: "Come funziona",
+        howStep1Title: "Diteci di cosa avete bisogno",
+        howStep1Desc: "Inviate una richiesta indicando la patologia o le cure che cercate, le date indicative e la lingua che preferite. Non serve creare un account.",
+        howStep2Title: "Vi rispondiamo con le opzioni",
+        howStep2Desc: "Entro 24 ore vi ricontattiamo per parlare degli ospedali adatti, di come si svolge il percorso e di una stima realistica di costi e tempi.",
+        howStep3Title: "Da lì se ne occupa un accompagnatore locale",
+        howStep3Desc: "Una volta deciso di venire, un accompagnatore verificato gestisce appuntamenti, traduzione e logistica, dall'arrivo fino al viaggio di ritorno."
       },
       travelCosts: {
         sectionTitle: "Riferimento sui Costi di Viaggio",
@@ -6163,7 +6321,9 @@ window.I18N = {
     },
     nl: {
       brand: { name: "Health Blueprint", tagline: "Uw Betrouwbare Weg naar Gezondheidszorg in China" },
-      nav: { home: "Home", howItWorks: "Hoe Het Werkt", contact: "Contact", joinUs: "Word Agent", trip: "Plan een Reis" },
+      nav: { home: "Home", howItWorks: "Hoe Het Werkt", contact: "Contact", joinUs: "Word Agent", trip: "Plan een Reis",
+        findCare: "Zorg zoeken"
+      },
       fontSize: { label: "Tekstgrootte", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "Vind het juiste ziekenhuis in China — met iemand die u begeleidt",
@@ -6196,7 +6356,9 @@ window.I18N = {
         officialWebsite: "Officiële website van het ziekenhuis",
         illustrationNote: "Illustratie, geen echte foto — bezoek de officiële website hierboven voor echte foto's.",
         photoNote: "Foto van externe bron — laadt mogelijk niet altijd betrouwbaar.",
-        tierLabel: "Chinese Ziekenhuisranglijst 2023"
+        tierLabel: "Chinese Ziekenhuisranglijst 2023",
+        tierShort: "Ranglijst 2023",
+        directoryDisclaimer: "Deze lijst is samengesteld uit openbaar beschikbare informatie, waaronder de Chinese ziekenhuisranglijst van 2023. Vermelding van een ziekenhuis betekent niet dat het gelieerd is aan Health Blueprint, met ons samenwerkt of door ons wordt aanbevolen. Controleer actuele diensten en kwalificaties altijd rechtstreeks bij het ziekenhuis."
       },
       program: {
         viewDetails: "Bekijk Details",
@@ -6207,7 +6369,8 @@ window.I18N = {
         included: "Wat gewoonlijk is inbegrepen",
         selectProgram: "Selecteer Dit Specialisme",
         agentsTitle: "Beschikbare Agenten voor Dit Specialisme",
-        agentsSubtitle: "Deze agenten zorgen voor u gedurende uw hele reis naar China — van planning tot uw veilige terugkeer naar huis."
+        agentsSubtitle: "Deze agenten zorgen voor u gedurende uw hele reis naar China — van planning tot uw veilige terugkeer naar huis.",
+        agentsSampleNote: "De onderstaande begeleidersprofielen zijn voorbeeldprofielen die laten zien wat voor ondersteuning wij opbouwen. Het zijn geen individueel geverifieerde personen die vandaag te boeken zijn. Dien een aanvraag in en wij koppelen u aan een echte, gescreende begeleider — of zeggen eerlijk dat het nog niet lukt."
       },
       agent: {
         yearsExp: "{n} jaar ervaring",
@@ -6253,6 +6416,10 @@ window.I18N = {
         travelEndLabel: "Laatste reisdatum",
         medicalRecordsLabel: "Bestaande medische dossiers of rapporten (optioneel)",
         medicalRecordsHint: "PDF, JPG of PNG — veilig opgeslagen en alleen gedeeld met uw toegewezen agent/ziekenhuis",
+        directAskPrompt: "Weet u al wat u nodig hebt? Laat het ons direct weten — wij reageren binnen 24 uur.",
+        directAskCta: "Aanvraag versturen",
+        noPreferencePrompt: "Geen voorkeur, of zit er niets passends bij? Wij koppelen u aan een geschikte begeleider.",
+        noPreferenceCta: "Aanvragen zonder te kiezen"
       },
       footer: {
         aboutTitle: "Over Health Blueprint",
@@ -6359,7 +6526,8 @@ window.I18N = {
         removeRoute: "Verwijder Deze Route",
         addRoute: "Reisroute Toevoegen",
         noRoute: "Nog geen route geselecteerd",
-        noHospital: "Nog geen ziekenhuis geselecteerd"
+        noHospital: "Nog geen ziekenhuis geselecteerd",
+        hospitalsInRegion: "Ziekenhuizen in deze regio"
       },
       homeContent: {
         aboutTitle: "Wie Wij Zijn",
@@ -6370,14 +6538,13 @@ window.I18N = {
         scenarioOncologyDesc: "Toegang tot toonaangevende kankerspecialisten en behandelprogramma's.",
         scenarioObgynDesc: "Reproductieve gezondheid, vruchtbaarheid en vrouwenzorg met ervaren specialisten.",
         scenarioCardiologyDesc: "Hartdiagnostiek en -behandeling van topcentra voor hartzorg.",
-        testimonialsTitle: "Wat Patiënten Zeggen",
-        testimonialsNote: "Ze weerspiegelen het soort ervaring dat wij willen bieden, gebaseerd op veelvoorkomende patiëntentrajecten — geen letterlijke citaten van met naam genoemde personen. Na verloop van tijd voegen we echte, met toestemming gedeelde patiëntervaringen toe.",
-        testimonial1Quote: "“Onze agent haalde ons op van het vliegveld en bleef bij ons tijdens elke afspraak. We voelden ons nooit verloren.”",
-        testimonial1Name: "Een patiënt uit de Verenigde Staten",
-        testimonial2Quote: "“De ziekenhuiscoördinatie en vertaalondersteuning maakten een stressvolle reis beheersbaar.”",
-        testimonial2Name: "Een patiënt uit Indonesië",
-        testimonial3Quote: "“Duidelijke communicatie vanaf de eerste vraag tot de nazorg na onze terugkeer.”",
-        testimonial3Name: "Een patiënt uit het Verenigd Koninkrijk"
+        howItWorksTitle: "Hoe het werkt",
+        howStep1Title: "Vertel ons wat u nodig hebt",
+        howStep1Desc: "Stuur een aanvraag met uw aandoening of de zorg die u zoekt, uw globale data en uw voorkeurstaal. Een account is niet nodig.",
+        howStep2Title: "Wij komen terug met opties",
+        howStep2Desc: "Binnen 24 uur nemen wij contact op om passende ziekenhuizen te bespreken, hoe het traject verloopt en een realistisch beeld van kosten en doorlooptijd.",
+        howStep3Title: "Een lokale begeleider neemt het over",
+        howStep3Desc: "Zodra u besluit te komen, regelt een gescreende begeleider de afspraken, vertaling en logistiek — van uw aankomst tot de terugreis."
       },
       travelCosts: {
         sectionTitle: "Referentie Reiskosten",
@@ -6503,7 +6670,9 @@ window.I18N = {
     },
     pl: {
       brand: { name: "Health Blueprint", tagline: "Twoja Zaufana Droga do Opieki Zdrowotnej w Chinach" },
-      nav: { home: "Strona główna", howItWorks: "Jak To Działa", contact: "Kontakt", joinUs: "Dołącz jako Agent", trip: "Zaplanuj Podróż" },
+      nav: { home: "Strona główna", howItWorks: "Jak To Działa", contact: "Kontakt", joinUs: "Dołącz jako Agent", trip: "Zaplanuj Podróż",
+        findCare: "Znajdź leczenie"
+      },
       fontSize: { label: "Rozmiar tekstu", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "Znajdź odpowiedni szpital w Chinach — z osobą, która Cię poprowadzi",
@@ -6536,7 +6705,9 @@ window.I18N = {
         officialWebsite: "Oficjalna strona szpitala",
         illustrationNote: "Ilustracja, nie rzeczywiste zdjęcie — odwiedź oficjalną stronę powyżej, aby zobaczyć prawdziwe zdjęcia.",
         photoNote: "Zdjęcie pochodzi ze źródła zewnętrznego — może nie zawsze ładować się prawidłowo.",
-        tierLabel: "Ranking Szpitali Chińskich 2023"
+        tierLabel: "Ranking Szpitali Chińskich 2023",
+        tierShort: "Ranking 2023",
+        directoryDisclaimer: "Ten katalog powstał na podstawie informacji publicznie dostępnych, w tym Rankingu Szpitali Chińskich 2023. Obecność szpitala na liście nie oznacza, że jest on powiązany z Health Blueprint, współpracuje z nami ani że go rekomendujemy. Aktualny zakres usług i uprawnienia zawsze potwierdzaj bezpośrednio w szpitalu."
       },
       program: {
         viewDetails: "Zobacz Szczegóły",
@@ -6547,7 +6718,8 @@ window.I18N = {
         included: "Co zazwyczaj jest wliczone",
         selectProgram: "Wybierz Tę Specjalizację",
         agentsTitle: "Dostępni Agenci dla Tej Specjalizacji",
-        agentsSubtitle: "Ci agenci zaopiekują się Tobą przez całą podróż do Chin — od planowania po bezpieczny powrót do domu."
+        agentsSubtitle: "Ci agenci zaopiekują się Tobą przez całą podróż do Chin — od planowania po bezpieczny powrót do domu.",
+        agentsSampleNote: "Poniższe profile opiekunów to profile przykładowe, pokazujące rodzaj wsparcia, które budujemy. Nie są to osoby zweryfikowane indywidualnie i dostępne do rezerwacji już dziś. Wyślij zgłoszenie, a dobierzemy Ci prawdziwego, sprawdzonego opiekuna — albo wprost powiemy, jeśli nie będzie to możliwe."
       },
       agent: {
         yearsExp: "{n} lat doświadczenia",
@@ -6593,6 +6765,10 @@ window.I18N = {
         travelEndLabel: "Najpóźniejsza data podróży",
         medicalRecordsLabel: "Istniejąca dokumentacja medyczna lub raporty (opcjonalnie)",
         medicalRecordsHint: "PDF, JPG lub PNG — bezpiecznie przechowywane i udostępniane wyłącznie przyznanemu agentowi/szpitalowi",
+        directAskPrompt: "Wiesz już, czego potrzebujesz? Napisz do nas bezpośrednio — odpowiemy w ciągu 24 godzin.",
+        directAskCta: "Wyślij zgłoszenie",
+        noPreferencePrompt: "Nie masz preferencji albo nikt nie pasuje? Dobierzemy odpowiedniego opiekuna.",
+        noPreferenceCta: "Zgłoszenie bez wyboru"
       },
       footer: {
         aboutTitle: "O Health Blueprint",
@@ -6699,7 +6875,8 @@ window.I18N = {
         removeRoute: "Usuń Tę Trasę",
         addRoute: "Dodaj Trasę Podróży",
         noRoute: "Nie wybrano jeszcze trasy",
-        noHospital: "Nie wybrano jeszcze szpitala"
+        noHospital: "Nie wybrano jeszcze szpitala",
+        hospitalsInRegion: "Szpitale w tym regionie"
       },
       homeContent: {
         aboutTitle: "Kim Jesteśmy",
@@ -6710,14 +6887,13 @@ window.I18N = {
         scenarioOncologyDesc: "Dostęp do czołowych specjalistów onkologicznych i programów leczenia.",
         scenarioObgynDesc: "Zdrowie reprodukcyjne, płodność i opieka nad kobietami z doświadczonymi specjalistami.",
         scenarioCardiologyDesc: "Diagnostyka i leczenie kardiologiczne w czołowych ośrodkach kardiologicznych.",
-        testimonialsTitle: "Co Mówią Pacjenci",
-        testimonialsNote: "Odzwierciedlają rodzaj doświadczenia, jakie chcemy zapewnić, na podstawie typowych ścieżek naszych pacjentów — nie są to dosłowne cytaty konkretnych, nazwanych osób. Z czasem dodamy prawdziwe opinie pacjentów, za ich zgodą.",
-        testimonial1Quote: "„Nasz agent odebrał nas z lotniska i towarzyszył nam na każdej wizycie. Nigdy nie czuliśmy się zagubieni”.",
-        testimonial1Name: "Pacjent ze Stanów Zjednoczonych",
-        testimonial2Quote: "„Koordynacja szpitalna i wsparcie tłumaczeniowe sprawiły, że stresująca podróż stała się łatwiejsza do opanowania”.",
-        testimonial2Name: "Pacjent z Indonezji",
-        testimonial3Quote: "„Jasna komunikacja od pierwszego zapytania po opiekę pooperacyjną po powrocie do domu”.",
-        testimonial3Name: "Pacjent z Wielkiej Brytanii"
+        howItWorksTitle: "Jak to działa",
+        howStep1Title: "Napisz, czego potrzebujesz",
+        howStep1Desc: "Wyślij zgłoszenie z opisem schorzenia lub poszukiwanego leczenia, orientacyjnymi terminami i preferowanym językiem. Konto nie jest potrzebne.",
+        howStep2Title: "Wracamy z propozycjami",
+        howStep2Desc: "W ciągu 24 godzin kontaktujemy się, aby omówić odpowiednie szpitale, przebieg procesu oraz realistyczny koszt i czas trwania.",
+        howStep3Title: "Dalej prowadzi Cię opiekun na miejscu",
+        howStep3Desc: "Gdy zdecydujesz się przyjechać, sprawdzony opiekun zajmie się wizytami, tłumaczeniem i logistyką — od przylotu po drogę powrotną."
       },
       travelCosts: {
         sectionTitle: "Orientacyjne Koszty Podróży",
@@ -6843,7 +7019,9 @@ window.I18N = {
     },
     sv: {
       brand: { name: "Health Blueprint", tagline: "Din Pålitliga Väg till Sjukvård i Kina" },
-      nav: { home: "Hem", howItWorks: "Så Fungerar Det", contact: "Kontakt", joinUs: "Bli Agent", trip: "Planera Resa" },
+      nav: { home: "Hem", howItWorks: "Så Fungerar Det", contact: "Kontakt", joinUs: "Bli Agent", trip: "Planera Resa",
+        findCare: "Hitta vård"
+      },
       fontSize: { label: "Textstorlek", decrease: "A−", reset: "A", increase: "A+" },
       hero: {
         title: "Hitta rätt sjukhus i Kina — med någon som guidar dig",
@@ -6876,7 +7054,9 @@ window.I18N = {
         officialWebsite: "Sjukhusets officiella webbplats",
         illustrationNote: "Illustration, inte ett verkligt foto — besök den officiella webbplatsen ovan för riktiga bilder.",
         photoNote: "Foto hämtat externt — kanske inte alltid laddas pålitligt.",
-        tierLabel: "Kinas Sjukhusranking 2023"
+        tierLabel: "Kinas Sjukhusranking 2023",
+        tierShort: "Rankning 2023",
+        directoryDisclaimer: "Den här katalogen är sammanställd från offentligt tillgänglig information, bland annat 2023 års rankning av kinesiska sjukhus. Att ett sjukhus finns med här betyder inte att det är anslutet till, samarbetar med eller rekommenderas av Health Blueprint. Bekräfta alltid aktuella tjänster och behörigheter direkt med sjukhuset."
       },
       program: {
         viewDetails: "Visa Detaljer",
@@ -6887,7 +7067,8 @@ window.I18N = {
         included: "Vad som vanligtvis ingår",
         selectProgram: "Välj Denna Specialitet",
         agentsTitle: "Tillgängliga Agenter för Denna Specialitet",
-        agentsSubtitle: "Dessa agenter tar hand om dig under hela din resa till Kina — från planering till din trygga hemresa."
+        agentsSubtitle: "Dessa agenter tar hand om dig under hela din resa till Kina — från planering till din trygga hemresa.",
+        agentsSampleNote: "Profilerna för medföljare nedan är exempelprofiler som visar vilken typ av stöd vi bygger upp, inte individuellt verifierade personer som går att boka i dag. Skicka en förfrågan så matchar vi dig med en riktig, granskad medföljare — eller säger rakt ut om vi inte kan."
       },
       agent: {
         yearsExp: "{n} års erfarenhet",
@@ -6933,6 +7114,10 @@ window.I18N = {
         travelEndLabel: "Senast önskat resedatum",
         medicalRecordsLabel: "Befintliga journaler eller rapporter (valfritt)",
         medicalRecordsHint: "PDF, JPG eller PNG — lagras säkert och delas endast med din tilldelade agent/sjukhus",
+        directAskPrompt: "Vet du redan vad du behöver? Berätta direkt för oss — vi återkommer inom 24 timmar.",
+        directAskCta: "Skicka förfrågan",
+        noPreferencePrompt: "Ingen särskild önskan, eller passar ingen? Vi matchar dig med en lämplig medföljare.",
+        noPreferenceCta: "Fråga utan att välja"
       },
       footer: {
         aboutTitle: "Om Health Blueprint",
@@ -7039,7 +7224,8 @@ window.I18N = {
         removeRoute: "Ta Bort Denna Rutt",
         addRoute: "Lägg till Resrutt",
         noRoute: "Ingen rutt vald ännu",
-        noHospital: "Inget sjukhus valt ännu"
+        noHospital: "Inget sjukhus valt ännu",
+        hospitalsInRegion: "Sjukhus i den här regionen"
       },
       homeContent: {
         aboutTitle: "Vilka Vi Är",
@@ -7050,14 +7236,13 @@ window.I18N = {
         scenarioOncologyDesc: "Tillgång till ledande cancerspecialister och behandlingsprogram.",
         scenarioObgynDesc: "Reproduktiv hälsa, fertilitet och kvinnovård med erfarna specialister.",
         scenarioCardiologyDesc: "Hjärtdiagnostik och behandling från toppklassade hjärtcentrum.",
-        testimonialsTitle: "Vad Patienter Säger",
-        testimonialsNote: "De speglar den typ av upplevelse vi strävar efter att erbjuda, baserat på vanliga patientresor — inte ordagranna citat från namngivna individer. Med tiden kommer vi att lägga till riktiga patientomdömen, med samtycke.",
-        testimonial1Quote: "”Vår agent mötte oss på flygplatsen och stannade med oss genom varje möte. Vi kände oss aldrig vilsna.”",
-        testimonial1Name: "En patient från USA",
-        testimonial2Quote: "”Sjukhuskoordinationen och översättningsstödet gjorde en stressig resa hanterbar.”",
-        testimonial2Name: "En patient från Indonesien",
-        testimonial3Quote: "”Tydlig kommunikation från första förfrågan till uppföljande vård efter att vi kommit hem.”",
-        testimonial3Name: "En patient från Storbritannien"
+        howItWorksTitle: "Så fungerar det",
+        howStep1Title: "Berätta vad du behöver",
+        howStep1Desc: "Skicka en förfrågan med ditt tillstånd eller den vård du söker, ungefärliga datum och vilket språk du föredrar. Inget konto behövs.",
+        howStep2Title: "Vi återkommer med alternativ",
+        howStep2Desc: "Inom 24 timmar hör vi av oss för att gå igenom lämpliga sjukhus, hur processen ser ut och en realistisk bild av kostnad och tidsåtgång.",
+        howStep3Title: "En medföljare på plats tar vid",
+        howStep3Desc: "När du bestämt dig för att resa sköter en granskad medföljare bokningar, tolkning och logistik — från ankomst till hemresa."
       },
       travelCosts: {
         sectionTitle: "Referens för Resekostnader",
