@@ -1731,7 +1731,7 @@
             "</div>" +
             '<div class="field-row">' +
               '<div class="field"><label for="jPhone">' + esc(t("join.phone")) + ' *</label><input id="jPhone" name="phone" required></div>' +
-              '<div class="field"><label for="jEmail">' + esc(t("join.email")) + " (" + esc(t("common.optional")) + ')</label><input id="jEmail" type="email" name="email"></div>' +
+              '<div class="field"><label for="jEmail">' + esc(t("join.email")) + ' *</label><input id="jEmail" type="email" name="email" required></div>' +
             "</div>" +
             '<div class="field"><label for="jResume">' + esc(t("join.resume")) + " (" + esc(t("common.optional")) + ')</label>' +
               '<input id="jResume" type="file" name="resume" accept=".pdf,.doc,.docx">' +
@@ -1763,7 +1763,7 @@
         var dbPayload = {
           user_id: authState.user ? authState.user.id : null,
           full_name: fd.get("name"),
-          email: fd.get("email") || "",
+          email: fd.get("email"),
           phone: fd.get("phone"),
           message: "Birth year: " + (fd.get("birthYear") || "—"),
           resume_path: resumePath
